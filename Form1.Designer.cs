@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.AddLineButton = new System.Windows.Forms.Button();
+            this.addLineBtn = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newProjBtn = new System.Windows.Forms.ToolStripButton();
             this.openProjBtn = new System.Windows.Forms.ToolStripButton();
@@ -68,16 +68,17 @@
             this.dataGrid.Size = new System.Drawing.Size(843, 405);
             this.dataGrid.TabIndex = 1;
             // 
-            // AddLineButton
+            // addLineBtn
             // 
-            this.AddLineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddLineButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddLineButton.Location = new System.Drawing.Point(907, 438);
-            this.AddLineButton.Name = "AddLineButton";
-            this.AddLineButton.Size = new System.Drawing.Size(159, 42);
-            this.AddLineButton.TabIndex = 2;
-            this.AddLineButton.Text = "Add Line";
-            this.AddLineButton.UseVisualStyleBackColor = true;
+            this.addLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addLineBtn.Enabled = false;
+            this.addLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addLineBtn.Location = new System.Drawing.Point(907, 438);
+            this.addLineBtn.Name = "addLineBtn";
+            this.addLineBtn.Size = new System.Drawing.Size(159, 42);
+            this.addLineBtn.TabIndex = 2;
+            this.addLineBtn.Text = "Add Line";
+            this.addLineBtn.UseVisualStyleBackColor = true;
             // 
             // toolStrip1
             // 
@@ -118,6 +119,7 @@
             // 
             // saveProjBtn
             // 
+            this.saveProjBtn.Enabled = false;
             this.saveProjBtn.Image = ((System.Drawing.Image)(resources.GetObject("saveProjBtn.Image")));
             this.saveProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveProjBtn.Name = "saveProjBtn";
@@ -126,6 +128,7 @@
             // 
             // saveAsProjBtn
             // 
+            this.saveAsProjBtn.Enabled = false;
             this.saveAsProjBtn.Image = ((System.Drawing.Image)(resources.GetObject("saveAsProjBtn.Image")));
             this.saveAsProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveAsProjBtn.Name = "saveAsProjBtn";
@@ -147,6 +150,7 @@
             // projSettingsBtn
             // 
             this.projSettingsBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.projSettingsBtn.Enabled = false;
             this.projSettingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("projSettingsBtn.Image")));
             this.projSettingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.projSettingsBtn.Name = "projSettingsBtn";
@@ -199,7 +203,7 @@
             this.ClientSize = new System.Drawing.Size(1078, 492);
             this.Controls.Add(this.fileListBox);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.AddLineButton);
+            this.Controls.Add(this.addLineBtn);
             this.Controls.Add(this.dataGrid);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -214,7 +218,7 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dataGrid;
-        private System.Windows.Forms.Button AddLineButton;
+        private System.Windows.Forms.Button addLineBtn;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton newProjBtn;
         private System.Windows.Forms.ToolStripButton openProjBtn;

@@ -22,6 +22,15 @@ namespace Reviser
             InitializeComponent();
         }
 
+        private void EnableControls()
+        {
+            addLineBtn.Enabled = true;
+            dataGrid.Enabled = true;
+            projSettingsBtn.Enabled = true;
+            saveAsProjBtn.Enabled = true;
+            saveProjBtn.Enabled = true;
+        }
+
         private void openProjBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog
@@ -40,7 +49,8 @@ namespace Reviser
 
                 fileListBox.Items.AddRange(project.file_list);
                 fileListBox.SelectedIndex = 0;
-                dataGrid.Enabled = true;
+
+                EnableControls();
             }
         }
 
