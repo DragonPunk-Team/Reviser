@@ -38,10 +38,11 @@
             this.saveProjBtn = new System.Windows.Forms.ToolStripButton();
             this.saveAsProjBtn = new System.Windows.Forms.ToolStripButton();
             this.fileListBox = new System.Windows.Forms.CheckedListBox();
-            this.lineId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.character = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.origLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tranLine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orig_line = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tran_line = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proposal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comment = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
@@ -55,23 +56,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.lineId,
+            this.id,
             this.character,
-            this.origLine,
-            this.tranLine,
+            this.orig_line,
+            this.tran_line,
             this.proposal,
             this.comment});
             this.dataGrid.Enabled = false;
-            this.dataGrid.Location = new System.Drawing.Point(138, 27);
+            this.dataGrid.Location = new System.Drawing.Point(223, 27);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(893, 405);
+            this.dataGrid.Size = new System.Drawing.Size(843, 405);
             this.dataGrid.TabIndex = 1;
             // 
             // AddLineButton
             // 
             this.AddLineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.AddLineButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddLineButton.Location = new System.Drawing.Point(872, 438);
+            this.AddLineButton.Location = new System.Drawing.Point(907, 438);
             this.AddLineButton.Name = "AddLineButton";
             this.AddLineButton.Size = new System.Drawing.Size(159, 42);
             this.AddLineButton.TabIndex = 2;
@@ -85,10 +86,11 @@
             this.openProjBtn,
             this.toolStripSeparator1,
             this.saveProjBtn,
-            this.saveAsProjBtn});
+            this.saveAsProjBtn,
+            this.projSettingsBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1043, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1078, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -134,18 +136,29 @@
             // 
             this.fileListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.fileListBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileListBox.FormattingEnabled = true;
             this.fileListBox.Location = new System.Drawing.Point(12, 28);
             this.fileListBox.Name = "fileListBox";
-            this.fileListBox.Size = new System.Drawing.Size(120, 454);
+            this.fileListBox.Size = new System.Drawing.Size(205, 446);
             this.fileListBox.TabIndex = 4;
+            this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
-            // lineId
+            // projSettingsBtn
             // 
-            this.lineId.HeaderText = "Id";
-            this.lineId.Name = "lineId";
-            this.lineId.ReadOnly = true;
-            this.lineId.Width = 40;
+            this.projSettingsBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.projSettingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("projSettingsBtn.Image")));
+            this.projSettingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.projSettingsBtn.Name = "projSettingsBtn";
+            this.projSettingsBtn.Size = new System.Drawing.Size(109, 22);
+            this.projSettingsBtn.Text = "Project Settings";
+            // 
+            // id
+            // 
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 40;
             // 
             // character
             // 
@@ -153,25 +166,25 @@
             this.character.Name = "character";
             this.character.ReadOnly = true;
             // 
-            // origLine
+            // orig_line
             // 
-            this.origLine.HeaderText = "Original Line";
-            this.origLine.Name = "origLine";
-            this.origLine.ReadOnly = true;
-            this.origLine.Width = 200;
+            this.orig_line.HeaderText = "Original Line";
+            this.orig_line.Name = "orig_line";
+            this.orig_line.ReadOnly = true;
+            this.orig_line.Width = 200;
             // 
-            // tranLine
+            // tran_line
             // 
-            this.tranLine.HeaderText = "Translated Line";
-            this.tranLine.Name = "tranLine";
-            this.tranLine.ReadOnly = true;
-            this.tranLine.Width = 200;
+            this.tran_line.HeaderText = "Translated Line";
+            this.tran_line.Name = "tran_line";
+            this.tran_line.ReadOnly = true;
+            this.tran_line.Width = 200;
             // 
             // proposal
             // 
             this.proposal.HeaderText = "Proposal";
             this.proposal.Name = "proposal";
-            this.proposal.Width = 250;
+            this.proposal.Width = 200;
             // 
             // comment
             // 
@@ -183,7 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 492);
+            this.ClientSize = new System.Drawing.Size(1078, 492);
             this.Controls.Add(this.fileListBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.AddLineButton);
@@ -209,10 +222,11 @@
         private System.Windows.Forms.ToolStripButton saveAsProjBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.CheckedListBox fileListBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lineId;
+        private System.Windows.Forms.ToolStripButton projSettingsBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn character;
-        private System.Windows.Forms.DataGridViewTextBoxColumn origLine;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tranLine;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orig_line;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tran_line;
         private System.Windows.Forms.DataGridViewTextBoxColumn proposal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn comment;
     }

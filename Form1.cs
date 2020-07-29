@@ -32,10 +32,33 @@ namespace Reviser
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                Text = "DragonPunk Reviser - " + ofd.SafeFileName;
                 filename = ofd.FileName;
 
                 project = JsonConvert.DeserializeObject<ProjectFile.Project>(File.ReadAllText(filename));
+
+                Text = "DragonPunk Reviser - " + project.name;
+
+                fileListBox.Items.AddRange(project.file_list);
+                fileListBox.SelectedIndex = 0;
+                dataGrid.Enabled = true;
+            }
+        }
+
+        private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string currentItem = fileListBox.SelectedItem.ToString();
+
+            if (project.files.ContainsKey(currentItem))
+            {
+                foreach (ProjectFile.FileContent content in project.files[currentItem].content)
+                {
+                    Object[] row = { content.id, content.character, content.orig_line, content.tran_line, content.proposal, content.comment };
+                    dataGrid.Rows.Add(row);
+                }
+            }
+            else
+            {
+                dataGrid.Rows.Clear();
             }
         }
     }
