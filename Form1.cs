@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,19 +46,16 @@ namespace Reviser
 
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dataGrid.Rows.Clear();
             string currentItem = fileListBox.SelectedItem.ToString();
 
             if (project.files.ContainsKey(currentItem))
             {
                 foreach (ProjectFile.FileContent content in project.files[currentItem].content)
                 {
-                    Object[] row = { content.id, content.character, content.orig_line, content.tran_line, content.proposal, content.comment };
+                    object[] row = { content.id, content.character, content.orig_line, content.tran_line, content.proposal, content.comment };
                     dataGrid.Rows.Add(row);
                 }
-            }
-            else
-            {
-                dataGrid.Rows.Clear();
             }
         }
     }
