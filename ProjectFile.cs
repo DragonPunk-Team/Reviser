@@ -10,27 +10,27 @@ namespace Reviser
     {
         public class FileContent
         {
-            public int Id { get; set; }                         // id
-            public string Character { get; set; }               // character
-            public string OrigLine { get; set; }                // orig_line
-            public string TranLine { get; set; }                // tran_line
-            public string Proposal { get; set; }                // proposal
-            public bool Comment { get; set; }                   // comment
+            public int id { get; set; }
+            public string character { get; set; }
+            public string orig_line { get; set; }
+            public string tran_line { get; set; }
+            public string proposal { get; set; }
+            public bool comment { get; set; }
         }
 
         public class File
         {
-            public bool Complete { get; set; }                  // complete
-            public FileContent[] Content { get; set; }          // content
+            public bool complete { get; set; }
+            public FileContent[] content { get; set; }
         }
 
         public class Project
         {
-            public string Name { get; set; }                    // name
-            public string[] FileList { get; set; }              // file_list
-            public string OrigPath { get; set; }                // orig_path
-            public string TranPath { get; set; }                // tran_path
-            public Dictionary<string, File> Files { get; set; } // files
+            public string name { get; set; }
+            public string[] file_list { get; set; }
+            public string orig_path { get; set; }
+            public string tran_path { get; set; }
+            public Dictionary<string, File> files { get; set; }
         }
     }
 }
