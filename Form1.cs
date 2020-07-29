@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +51,14 @@ namespace Reviser
                 fileListBox.SelectedIndex = 0;
 
                 EnableControls();
+
+                foreach (string file in project.file_list)
+                {
+                    if (project.files.ContainsKey(file) && project.files[file].complete)
+                    {
+                        fileListBox.SetItemChecked(Array.IndexOf(project.file_list, file), true);
+                    }
+                }
             }
         }
 
