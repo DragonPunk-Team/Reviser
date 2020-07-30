@@ -63,9 +63,9 @@
             this.proposal,
             this.comment});
             this.dataGrid.Enabled = false;
-            this.dataGrid.Location = new System.Drawing.Point(223, 27);
+            this.dataGrid.Location = new System.Drawing.Point(240, 27);
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(843, 405);
+            this.dataGrid.Size = new System.Drawing.Size(843, 415);
             this.dataGrid.TabIndex = 1;
             // 
             // id
@@ -112,7 +112,7 @@
             this.addLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addLineBtn.Enabled = false;
             this.addLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addLineBtn.Location = new System.Drawing.Point(907, 438);
+            this.addLineBtn.Location = new System.Drawing.Point(924, 448);
             this.addLineBtn.Name = "addLineBtn";
             this.addLineBtn.Size = new System.Drawing.Size(159, 42);
             this.addLineBtn.TabIndex = 2;
@@ -130,7 +130,7 @@
             this.projSettingsBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1078, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1095, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -192,9 +192,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.fileListBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileListBox.FormattingEnabled = true;
-            this.fileListBox.Location = new System.Drawing.Point(12, 28);
+            this.fileListBox.Location = new System.Drawing.Point(12, 27);
             this.fileListBox.Name = "fileListBox";
-            this.fileListBox.Size = new System.Drawing.Size(205, 446);
+            this.fileListBox.Size = new System.Drawing.Size(222, 463);
             this.fileListBox.TabIndex = 4;
             this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
@@ -202,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1078, 492);
+            this.ClientSize = new System.Drawing.Size(1095, 502);
             this.Controls.Add(this.fileListBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.addLineBtn);
