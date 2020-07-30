@@ -1,6 +1,6 @@
 ﻿namespace Reviser
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Variabile di progettazione necessaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGrid = new System.Windows.Forms.DataGridView();
             this.addLineBtn = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -102,6 +102,7 @@
             this.newProjBtn.Name = "newProjBtn";
             this.newProjBtn.Size = new System.Drawing.Size(91, 22);
             this.newProjBtn.Text = "New Project";
+            this.newProjBtn.Click += new System.EventHandler(this.newProjBtn_Click);
             // 
             // openProjBtn
             // 

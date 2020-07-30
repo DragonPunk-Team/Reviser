@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace Reviser
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         string filename;
         ProjectFile.Project project;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -75,6 +75,12 @@ namespace Reviser
                     dataGrid.Rows.Add(row);
                 }
             }
+        }
+
+        private void newProjBtn_Click(object sender, EventArgs e)
+        {
+            ProjectSettings projectSettings = new ProjectSettings(true);
+            projectSettings.Show();
         }
     }
 }
