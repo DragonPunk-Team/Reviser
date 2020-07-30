@@ -30,6 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGrid = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.character = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orig_line = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tran_line = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proposal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comment = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.addLineBtn = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newProjBtn = new System.Windows.Forms.ToolStripButton();
@@ -37,14 +43,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveProjBtn = new System.Windows.Forms.ToolStripButton();
             this.saveAsProjBtn = new System.Windows.Forms.ToolStripButton();
-            this.fileListBox = new System.Windows.Forms.CheckedListBox();
             this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.character = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orig_line = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tran_line = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proposal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comment = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.fileListBox = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +67,45 @@
             this.dataGrid.Name = "dataGrid";
             this.dataGrid.Size = new System.Drawing.Size(843, 405);
             this.dataGrid.TabIndex = 1;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 40;
+            // 
+            // character
+            // 
+            this.character.HeaderText = "Character";
+            this.character.Name = "character";
+            this.character.ReadOnly = true;
+            // 
+            // orig_line
+            // 
+            this.orig_line.HeaderText = "Original Line";
+            this.orig_line.Name = "orig_line";
+            this.orig_line.ReadOnly = true;
+            this.orig_line.Width = 200;
+            // 
+            // tran_line
+            // 
+            this.tran_line.HeaderText = "Translated Line";
+            this.tran_line.Name = "tran_line";
+            this.tran_line.ReadOnly = true;
+            this.tran_line.Width = 200;
+            // 
+            // proposal
+            // 
+            this.proposal.HeaderText = "Proposal";
+            this.proposal.Name = "proposal";
+            this.proposal.Width = 200;
+            // 
+            // comment
+            // 
+            this.comment.HeaderText = "Comment";
+            this.comment.Name = "comment";
+            this.comment.Width = 60;
             // 
             // addLineBtn
             // 
@@ -136,6 +175,17 @@
             this.saveAsProjBtn.Size = new System.Drawing.Size(116, 22);
             this.saveAsProjBtn.Text = "Save Project As...";
             // 
+            // projSettingsBtn
+            // 
+            this.projSettingsBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.projSettingsBtn.Enabled = false;
+            this.projSettingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("projSettingsBtn.Image")));
+            this.projSettingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.projSettingsBtn.Name = "projSettingsBtn";
+            this.projSettingsBtn.Size = new System.Drawing.Size(109, 22);
+            this.projSettingsBtn.Text = "Project Settings";
+            this.projSettingsBtn.Click += new System.EventHandler(this.projSettingsBtn_Click);
+            // 
             // fileListBox
             // 
             this.fileListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -148,56 +198,7 @@
             this.fileListBox.TabIndex = 4;
             this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
-            // projSettingsBtn
-            // 
-            this.projSettingsBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.projSettingsBtn.Enabled = false;
-            this.projSettingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("projSettingsBtn.Image")));
-            this.projSettingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.projSettingsBtn.Name = "projSettingsBtn";
-            this.projSettingsBtn.Size = new System.Drawing.Size(109, 22);
-            this.projSettingsBtn.Text = "Project Settings";
-            // 
-            // id
-            // 
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Width = 40;
-            // 
-            // character
-            // 
-            this.character.HeaderText = "Character";
-            this.character.Name = "character";
-            this.character.ReadOnly = true;
-            // 
-            // orig_line
-            // 
-            this.orig_line.HeaderText = "Original Line";
-            this.orig_line.Name = "orig_line";
-            this.orig_line.ReadOnly = true;
-            this.orig_line.Width = 200;
-            // 
-            // tran_line
-            // 
-            this.tran_line.HeaderText = "Translated Line";
-            this.tran_line.Name = "tran_line";
-            this.tran_line.ReadOnly = true;
-            this.tran_line.Width = 200;
-            // 
-            // proposal
-            // 
-            this.proposal.HeaderText = "Proposal";
-            this.proposal.Name = "proposal";
-            this.proposal.Width = 200;
-            // 
-            // comment
-            // 
-            this.comment.HeaderText = "Comment";
-            this.comment.Name = "comment";
-            this.comment.Width = 60;
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -206,7 +207,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.addLineBtn);
             this.Controls.Add(this.dataGrid);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DragonPunk Reviser";
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();

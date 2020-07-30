@@ -82,5 +82,11 @@ namespace Reviser
             ProjectSettings projectSettings = new ProjectSettings(true);
             projectSettings.Show();
         }
+
+        private void projSettingsBtn_Click(object sender, EventArgs e)
+        {
+            ProjectSettings projectSettings = new ProjectSettings(false);
+            projectSettings.Show();
+        }
     }
 }
