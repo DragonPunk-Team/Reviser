@@ -156,18 +156,18 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 161);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 13);
+            this.label5.Size = new System.Drawing.Size(79, 13);
             this.label5.TabIndex = 12;
-            this.label5.Text = "First File:";
+            this.label5.Text = "First File Name:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 187);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Last File:";
+            this.label6.Text = "Last File Name:";
             // 
             // button3
             // 
