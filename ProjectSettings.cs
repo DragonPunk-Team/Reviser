@@ -30,5 +30,10 @@ namespace Reviser
                 Text = "Project Settings";
             }
         }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
