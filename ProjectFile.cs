@@ -33,5 +33,13 @@ namespace Reviser
             public string tran_path { get; set; }
             public Dictionary<string, File> files { get; set; }
         }
+
+        public string Comment(bool comment)
+        {
+            if (comment)
+                return "Yes";
+            else
+                return "No";
+        }
     }
 }

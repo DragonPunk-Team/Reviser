@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.dataGrid = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.character = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orig_line = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tran_line = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proposal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comment = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.addLineBtn = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newProjBtn = new System.Windows.Forms.ToolStripButton();
@@ -45,74 +38,22 @@
             this.saveAsProjBtn = new System.Windows.Forms.ToolStripButton();
             this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
             this.fileListBox = new System.Windows.Forms.CheckedListBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
+            this.listView = new System.Windows.Forms.ListView();
+            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.character = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.orig_line = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tran_line = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.proposal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.comment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataGrid
-            // 
-            this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.character,
-            this.orig_line,
-            this.tran_line,
-            this.proposal,
-            this.comment});
-            this.dataGrid.Enabled = false;
-            this.dataGrid.Location = new System.Drawing.Point(240, 27);
-            this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(843, 415);
-            this.dataGrid.TabIndex = 1;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Width = 40;
-            // 
-            // character
-            // 
-            this.character.HeaderText = "Character";
-            this.character.Name = "character";
-            this.character.ReadOnly = true;
-            // 
-            // orig_line
-            // 
-            this.orig_line.HeaderText = "Original Line";
-            this.orig_line.Name = "orig_line";
-            this.orig_line.ReadOnly = true;
-            this.orig_line.Width = 200;
-            // 
-            // tran_line
-            // 
-            this.tran_line.HeaderText = "Translated Line";
-            this.tran_line.Name = "tran_line";
-            this.tran_line.ReadOnly = true;
-            this.tran_line.Width = 200;
-            // 
-            // proposal
-            // 
-            this.proposal.HeaderText = "Proposal";
-            this.proposal.Name = "proposal";
-            this.proposal.Width = 200;
-            // 
-            // comment
-            // 
-            this.comment.HeaderText = "Comment";
-            this.comment.Name = "comment";
-            this.comment.Width = 60;
             // 
             // addLineBtn
             // 
             this.addLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addLineBtn.Enabled = false;
             this.addLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addLineBtn.Location = new System.Drawing.Point(924, 448);
+            this.addLineBtn.Location = new System.Drawing.Point(935, 448);
             this.addLineBtn.Name = "addLineBtn";
             this.addLineBtn.Size = new System.Drawing.Size(159, 42);
             this.addLineBtn.TabIndex = 2;
@@ -130,7 +71,7 @@
             this.projSettingsBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1095, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1106, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -192,25 +133,78 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.fileListBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileListBox.FormattingEnabled = true;
-            this.fileListBox.Location = new System.Drawing.Point(12, 27);
+            this.fileListBox.Location = new System.Drawing.Point(12, 28);
             this.fileListBox.Name = "fileListBox";
             this.fileListBox.Size = new System.Drawing.Size(222, 463);
             this.fileListBox.TabIndex = 4;
             this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
+            // listView
+            // 
+            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView.AutoArrange = false;
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.id,
+            this.character,
+            this.orig_line,
+            this.tran_line,
+            this.proposal,
+            this.comment});
+            this.listView.FullRowSelect = true;
+            this.listView.GridLines = true;
+            this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView.HideSelection = false;
+            this.listView.Location = new System.Drawing.Point(240, 28);
+            this.listView.MultiSelect = false;
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(854, 414);
+            this.listView.TabIndex = 5;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            // 
+            // id
+            // 
+            this.id.Text = "Id";
+            this.id.Width = 40;
+            // 
+            // character
+            // 
+            this.character.Text = "Character";
+            this.character.Width = 100;
+            // 
+            // orig_line
+            // 
+            this.orig_line.Text = "Original Line";
+            this.orig_line.Width = 200;
+            // 
+            // tran_line
+            // 
+            this.tran_line.Text = "Translated Line";
+            this.tran_line.Width = 200;
+            // 
+            // proposal
+            // 
+            this.proposal.Text = "Proposal";
+            this.proposal.Width = 250;
+            // 
+            // comment
+            // 
+            this.comment.Text = "Comment";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1095, 502);
+            this.ClientSize = new System.Drawing.Size(1106, 502);
+            this.Controls.Add(this.listView);
             this.Controls.Add(this.fileListBox);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.addLineBtn);
-            this.Controls.Add(this.dataGrid);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DragonPunk Reviser";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -219,7 +213,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGrid;
         private System.Windows.Forms.Button addLineBtn;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton newProjBtn;
@@ -229,12 +222,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.CheckedListBox fileListBox;
         private System.Windows.Forms.ToolStripButton projSettingsBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn character;
-        private System.Windows.Forms.DataGridViewTextBoxColumn orig_line;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tran_line;
-        private System.Windows.Forms.DataGridViewTextBoxColumn proposal;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn comment;
+        private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.ColumnHeader id;
+        private System.Windows.Forms.ColumnHeader character;
+        private System.Windows.Forms.ColumnHeader orig_line;
+        private System.Windows.Forms.ColumnHeader tran_line;
+        private System.Windows.Forms.ColumnHeader proposal;
+        private System.Windows.Forms.ColumnHeader comment;
     }
 }
 

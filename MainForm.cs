@@ -25,7 +25,7 @@ namespace Reviser
         private void EnableControls()
         {
             addLineBtn.Enabled = true;
-            dataGrid.Enabled = true;
+            listView.Enabled = true;
             projSettingsBtn.Enabled = true;
             saveAsProjBtn.Enabled = true;
             saveProjBtn.Enabled = true;
@@ -64,15 +64,17 @@ namespace Reviser
 
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataGrid.Rows.Clear();
+            listView.Items.Clear();
             string currentItem = fileListBox.SelectedItem.ToString();
 
             if (project.files.ContainsKey(currentItem))
             {
+                ProjectFile pf = new ProjectFile();
+
                 foreach (ProjectFile.FileContent content in project.files[currentItem].content)
                 {
-                    object[] row = { content.id, content.character, content.orig_line, content.tran_line, content.proposal, content.comment };
-                    dataGrid.Rows.Add(row);
+                    string[] row = { content.id.ToString(), content.character, content.orig_line, content.tran_line, content.proposal, pf.Comment(content.comment) };
+                    listView.Items.Add(new ListViewItem(row));
                 }
             }
         }
