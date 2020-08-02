@@ -1,20 +1,12 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Reviser
 {
     public partial class MainForm : Form
     {
-        string filename;
         ProjectFile.Project project;
 
         public MainForm()
@@ -41,9 +33,7 @@ namespace Reviser
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                filename = ofd.FileName;
-
-                project = JsonConvert.DeserializeObject<ProjectFile.Project>(File.ReadAllText(filename));
+                project = JsonConvert.DeserializeObject<ProjectFile.Project>(File.ReadAllText(ofd.FileName));
 
                 Text = "DragonPunk Reviser - " + project.name;
 
@@ -71,11 +61,15 @@ namespace Reviser
             {
                 ProjectFile pf = new ProjectFile();
 
+                listView.BeginUpdate();
+
                 foreach (ProjectFile.FileContent content in project.files[currentItem].content)
                 {
                     string[] row = { content.id.ToString(), content.character, content.orig_line, content.tran_line, content.proposal, pf.Comment(content.comment) };
                     listView.Items.Add(new ListViewItem(row));
                 }
+
+                listView.EndUpdate();
             }
         }
 

@@ -53,7 +53,7 @@
             this.addLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addLineBtn.Enabled = false;
             this.addLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addLineBtn.Location = new System.Drawing.Point(935, 448);
+            this.addLineBtn.Location = new System.Drawing.Point(935, 449);
             this.addLineBtn.Name = "addLineBtn";
             this.addLineBtn.Size = new System.Drawing.Size(159, 42);
             this.addLineBtn.TabIndex = 2;
