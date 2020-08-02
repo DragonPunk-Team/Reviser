@@ -1,13 +1,11 @@
-using Newtonsoft.Json;
 using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace Reviser
 {
     public partial class MainForm : Form
     {
-        ProjectFile.Project project;
+        ProjectFile pf = new ProjectFile();
 
         public MainForm()
         {
@@ -33,20 +31,20 @@ namespace Reviser
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                project = JsonConvert.DeserializeObject<ProjectFile.Project>(File.ReadAllText(ofd.FileName));
+                pf.GetProject(ofd.FileName);
 
-                Text = "DragonPunk Reviser - " + project.name;
+                Text = "DragonPunk Reviser - " + pf.project.name;
 
-                fileListBox.Items.AddRange(project.file_list);
+                fileListBox.Items.AddRange(pf.project.file_list);
                 fileListBox.SelectedIndex = 0;
 
                 EnableControls();
 
-                foreach (string file in project.file_list)
+                foreach (string file in pf.project.file_list)
                 {
-                    if (project.files.ContainsKey(file) && project.files[file].complete)
+                    if (pf.project.files.ContainsKey(file) && pf.project.files[file].complete)
                     {
-                        fileListBox.SetItemChecked(Array.IndexOf(project.file_list, file), true);
+                        fileListBox.SetItemChecked(Array.IndexOf(pf.project.file_list, file), true);
                     }
                 }
             }
@@ -57,13 +55,11 @@ namespace Reviser
             listView.Items.Clear();
             string currentItem = fileListBox.SelectedItem.ToString();
 
-            if (project.files.ContainsKey(currentItem))
+            if (pf.project.files.ContainsKey(currentItem))
             {
-                ProjectFile pf = new ProjectFile();
-
                 listView.BeginUpdate();
 
-                foreach (ProjectFile.FileContent content in project.files[currentItem].content)
+                foreach (ProjectFile.FileContent content in pf.project.files[currentItem].content)
                 {
                     string[] row = { content.id.ToString(), content.character, content.orig_line, content.tran_line, content.proposal, pf.Comment(content.comment) };
                     listView.Items.Add(new ListViewItem(row));

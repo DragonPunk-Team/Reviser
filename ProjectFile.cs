@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace Reviser
 {
@@ -18,7 +16,7 @@ namespace Reviser
             public bool comment { get; set; }
         }
 
-        public class File
+        public class RevisedFile
         {
             public bool complete { get; set; }
             public FileContent[] content { get; set; }
@@ -31,7 +29,14 @@ namespace Reviser
             public string[] file_list { get; set; }
             public string orig_path { get; set; }
             public string tran_path { get; set; }
-            public Dictionary<string, File> files { get; set; }
+            public Dictionary<string, RevisedFile> files { get; set; }
+        }
+
+        public Project project;
+
+        public void GetProject(string filename)
+        {
+            project = JsonConvert.DeserializeObject<Project>(File.ReadAllText(filename));
         }
 
         public string Comment(bool comment)
