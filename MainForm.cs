@@ -31,7 +31,8 @@ namespace Reviser
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                pf.GetProject(ofd.FileName);
+                pf.path = ofd.FileName;
+                pf.GetProject();
 
                 Text = "DragonPunk Reviser - " + pf.project.name;
 

@@ -33,10 +33,11 @@ namespace Reviser
         }
 
         public Project project;
+        public string path;
 
-        public void GetProject(string filename)
+        public void GetProject()
         {
-            project = JsonConvert.DeserializeObject<Project>(File.ReadAllText(filename));
+            project = JsonConvert.DeserializeObject<Project>(File.ReadAllText(path));
         }
 
         public string Comment(bool comment)
