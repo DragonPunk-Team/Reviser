@@ -5,7 +5,7 @@ namespace Reviser
 {
     public partial class MainForm : Form
     {
-        ProjectFile pf = new ProjectFile();
+        private ProjectFile pf = new ProjectFile();
 
         public MainForm()
         {
