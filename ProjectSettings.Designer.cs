@@ -38,15 +38,12 @@
             this.tranFilesBtn = new System.Windows.Forms.Button();
             this.tranFilesBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.firstFileBox = new System.Windows.Forms.TextBox();
-            this.lastFileBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.caseNumBox = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.caseNumBox)).BeginInit();
+            this.firstFileBox = new System.Windows.Forms.ComboBox();
+            this.lastFileBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -139,37 +136,23 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Translated Files:";
             // 
-            // firstFileBox
-            // 
-            this.firstFileBox.Location = new System.Drawing.Point(102, 158);
-            this.firstFileBox.Name = "firstFileBox";
-            this.firstFileBox.Size = new System.Drawing.Size(188, 20);
-            this.firstFileBox.TabIndex = 10;
-            // 
-            // lastFileBox
-            // 
-            this.lastFileBox.Location = new System.Drawing.Point(102, 184);
-            this.lastFileBox.Name = "lastFileBox";
-            this.lastFileBox.Size = new System.Drawing.Size(188, 20);
-            this.lastFileBox.TabIndex = 11;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 161);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.Size = new System.Drawing.Size(48, 13);
             this.label5.TabIndex = 12;
-            this.label5.Text = "First File Name:";
+            this.label5.Text = "First File:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 187);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Last File Name:";
+            this.label6.Text = "Last File:";
             // 
             // SaveBtn
             // 
@@ -191,50 +174,35 @@
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
-            // label7
+            // firstFileBox
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(162, 41);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 13);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "Case Number:";
+            this.firstFileBox.FormattingEnabled = true;
+            this.firstFileBox.Location = new System.Drawing.Point(102, 157);
+            this.firstFileBox.Name = "firstFileBox";
+            this.firstFileBox.Size = new System.Drawing.Size(188, 21);
+            this.firstFileBox.TabIndex = 22;
+            this.firstFileBox.DropDown += new System.EventHandler(this.firstFileBox_DropDown);
             // 
-            // caseNumBox
+            // lastFileBox
             // 
-            this.caseNumBox.Location = new System.Drawing.Point(242, 39);
-            this.caseNumBox.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.caseNumBox.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.caseNumBox.Name = "caseNumBox";
-            this.caseNumBox.Size = new System.Drawing.Size(48, 20);
-            this.caseNumBox.TabIndex = 21;
-            this.caseNumBox.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.lastFileBox.FormattingEnabled = true;
+            this.lastFileBox.Location = new System.Drawing.Point(102, 184);
+            this.lastFileBox.Name = "lastFileBox";
+            this.lastFileBox.Size = new System.Drawing.Size(188, 21);
+            this.lastFileBox.TabIndex = 23;
+            this.lastFileBox.DropDown += new System.EventHandler(this.lastFileBox_DropDown);
             // 
             // ProjectSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(302, 257);
-            this.Controls.Add(this.caseNumBox);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.lastFileBox);
+            this.Controls.Add(this.firstFileBox);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.lastFileBox);
-            this.Controls.Add(this.firstFileBox);
             this.Controls.Add(this.tranFilesBtn);
             this.Controls.Add(this.tranFilesBox);
             this.Controls.Add(this.label4);
@@ -252,7 +220,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProjectSettings";
             this.Load += new System.EventHandler(this.ProjectSettings_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.caseNumBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,13 +237,11 @@
         private System.Windows.Forms.Button tranFilesBtn;
         private System.Windows.Forms.TextBox tranFilesBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox firstFileBox;
-        private System.Windows.Forms.TextBox lastFileBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button SaveBtn;
         private System.Windows.Forms.Button cancelBtn;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown caseNumBox;
+        private System.Windows.Forms.ComboBox firstFileBox;
+        private System.Windows.Forms.ComboBox lastFileBox;
     }
 }

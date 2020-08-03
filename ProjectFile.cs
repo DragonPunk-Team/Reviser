@@ -26,7 +26,6 @@ namespace Reviser
         {
             public string name { get; set; }
             public string type { get; set; }
-            public int case_num { get; set; }
             public string[] file_list { get; set; }
             public string orig_path { get; set; }
             public string tran_path { get; set; }

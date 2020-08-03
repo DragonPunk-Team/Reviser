@@ -10,6 +10,7 @@ namespace Reviser
     {
         bool newProj;
         ProjectFile.Project project;
+        string[] fileList = { };
         public ProjectSettings(bool newp, ProjectFile.Project proj = null)
         {
             InitializeComponent();
@@ -26,15 +27,13 @@ namespace Reviser
             else
             {
                 Text = "Project Settings";
-                caseNumBox.Enabled = false;
 
                 projNameBox.Text = project.name;
                 projTypeBox.SelectedItem = project.type;
-                caseNumBox.Value = project.case_num;
                 origFilesBox.Text = project.orig_path;
                 tranFilesBox.Text = project.tran_path;
-                firstFileBox.Text = TrimFilename(project.file_list[0], project.type);
-                lastFileBox.Text = TrimFilename(project.file_list[project.file_list.Length - 1], project.type);
+                firstFileBox.Text = project.file_list[0];
+                lastFileBox.Text = project.file_list[project.file_list.Length - 1];
             }
         }
 
@@ -43,42 +42,30 @@ namespace Reviser
             Close();
         }
 
-        private string TrimFilename(string filename, string type)
+        private string[] GetFiles(string path)
         {
-            if (type == "SoJ")
-            {
-                return filename.Remove(0, 7).Remove(9, 8);      // removes _sce0X and _eng.gmd
-            }
+            List<string> files = new List<string>();
 
-            return filename;
+            foreach (string file in Directory.GetFiles(path))
+                files.Add(Path.GetFileName(file));
+
+            return files.ToArray();
         }
 
-        private string FillFilename(string filename, string type)
-        {
-            if (type == "SoJ")
-            {
-                return string.Format("_sce0{0}_{1}_eng.gmd", (project.case_num - 1), filename);
-            }
-
-            return filename;
-        }
-
-        private string[] GetFiles(string first, string last, string path)
+        private string[] MakeFileList(string first, string last, string path)
         {
             List<string> files = new List<string>();
             bool add = false;
 
-            foreach (string file in Directory.GetFiles(path))
+            foreach (string file in fileList)
             {
-                string filename = Path.GetFileName(file);
-
-                if (filename == first)
+                if (file == first)
                     add = true;
-                else if (filename == last)
+                else if (file == last)
                     add = false;
 
                 if (add)
-                    files.Add(filename);
+                    files.Add(file);
             }
 
             return files.ToArray();
@@ -110,6 +97,22 @@ namespace Reviser
             }
         }
 
+        private void firstFileBox_DropDown(object sender, EventArgs e)
+        {
+            if (fileList.Length == 0)
+                fileList = GetFiles(tranFilesBox.Text);
+
+            firstFileBox.Items.AddRange(fileList);
+        }
+
+        private void lastFileBox_DropDown(object sender, EventArgs e)
+        {
+            if (fileList.Length == 0)
+                fileList = GetFiles(tranFilesBox.Text);
+
+            lastFileBox.Items.AddRange(fileList);
+        }
+
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             if (newProj)
@@ -118,13 +121,12 @@ namespace Reviser
                 {
                     name = projNameBox.Text,
                     type = projTypeBox.SelectedItem.ToString(),
-                    case_num = (int)caseNumBox.Value,
                     orig_path = origFilesBox.Text,
                     tran_path = tranFilesBox.Text,
                     files = new Dictionary<string, ProjectFile.RevisedFile>()
                 };
 
-                project.file_list = GetFiles(FillFilename(firstFileBox.Text, project.type), FillFilename(lastFileBox.Text, project.type), origFilesBox.Text);
+                project.file_list = MakeFileList(firstFileBox.SelectedItem.ToString(), lastFileBox.SelectedItem.ToString(), project.tran_path);
 
                 SaveFileDialog sfd = new SaveFileDialog()
                 {
