@@ -111,6 +111,7 @@
             this.origFilesBtn.TabIndex = 6;
             this.origFilesBtn.Text = "...";
             this.origFilesBtn.UseVisualStyleBackColor = true;
+            this.origFilesBtn.Click += new System.EventHandler(this.origFilesBtn_Click);
             // 
             // tranFilesBtn
             // 
@@ -120,6 +121,7 @@
             this.tranFilesBtn.TabIndex = 9;
             this.tranFilesBtn.Text = "...";
             this.tranFilesBtn.UseVisualStyleBackColor = true;
+            this.tranFilesBtn.Click += new System.EventHandler(this.tranFilesBtn_Click);
             // 
             // tranFilesBox
             // 
@@ -177,6 +179,7 @@
             this.SaveBtn.TabIndex = 17;
             this.SaveBtn.Text = "Save";
             this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
             // 
             // cancelBtn
             // 

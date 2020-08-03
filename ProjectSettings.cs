@@ -1,11 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -65,6 +61,88 @@ namespace Reviser
             }
 
             return filename;
+        }
+
+        private string[] GetFiles(string first, string last, string path)
+        {
+            List<string> files = new List<string>();
+            bool add = false;
+
+            foreach (string file in Directory.GetFiles(path))
+            {
+                string filename = Path.GetFileName(file);
+
+                if (filename == first)
+                    add = true;
+                else if (filename == last)
+                    add = false;
+
+                if (add)
+                    files.Add(filename);
+            }
+
+            return files.ToArray();
+        }
+
+        private void origFilesBtn_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog()
+            {
+                Description = "Select Original Files Folder"
+            };
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                origFilesBox.Text = fbd.SelectedPath;
+            }
+        }
+
+        private void tranFilesBtn_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog()
+            {
+                Description = "Select Translated Files Folder"
+            };
+
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                tranFilesBox.Text = fbd.SelectedPath;
+            }
+        }
+
+        private void SaveBtn_Click(object sender, EventArgs e)
+        {
+            if (newProj)
+            {
+                project = new ProjectFile.Project()
+                {
+                    name = projNameBox.Text,
+                    type = projTypeBox.SelectedItem.ToString(),
+                    case_num = (int)caseNumBox.Value,
+                    orig_path = origFilesBox.Text,
+                    tran_path = tranFilesBox.Text,
+                    files = new Dictionary<string, ProjectFile.RevisedFile>()
+                };
+
+                project.file_list = GetFiles(FillFilename(firstFileBox.Text, project.type), FillFilename(lastFileBox.Text, project.type), origFilesBox.Text);
+
+                SaveFileDialog sfd = new SaveFileDialog()
+                {
+                    Title = "Save Project",
+                    Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr|All files (*.*)|*.*",
+                    FileName = project.name
+                };
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(sfd.FileName, JsonConvert.SerializeObject(project, Formatting.Indented));
+                    Close();
+                }
+            }
+            else
+            {
+                // TODO: implement saving to existing project
+            }
         }
     }
 }
