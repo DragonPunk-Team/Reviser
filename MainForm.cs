@@ -53,7 +53,10 @@ namespace Reviser
 
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            editLineBtn.Enabled = false;
+
             listView.Items.Clear();
+
             string currentItem = fileListBox.SelectedItem.ToString();
 
             if (pf.project.files.ContainsKey(currentItem))
@@ -80,6 +83,12 @@ namespace Reviser
         {
             ProjectSettings projectSettings = new ProjectSettings(false, pf.project);
             projectSettings.Show();
+        }
+
+        private void listView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView.SelectedItems != null)
+                editLineBtn.Enabled = true;
         }
     }
 }
