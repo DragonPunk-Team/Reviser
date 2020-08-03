@@ -126,6 +126,7 @@
             this.tranFilesBox.Name = "tranFilesBox";
             this.tranFilesBox.Size = new System.Drawing.Size(157, 20);
             this.tranFilesBox.TabIndex = 8;
+            this.tranFilesBox.TextChanged += new System.EventHandler(this.tranFilesBox_TextChanged);
             // 
             // label4
             // 
@@ -176,6 +177,7 @@
             // 
             // firstFileBox
             // 
+            this.firstFileBox.Enabled = false;
             this.firstFileBox.FormattingEnabled = true;
             this.firstFileBox.Location = new System.Drawing.Point(102, 157);
             this.firstFileBox.Name = "firstFileBox";
@@ -185,6 +187,7 @@
             // 
             // lastFileBox
             // 
+            this.lastFileBox.Enabled = false;
             this.lastFileBox.FormattingEnabled = true;
             this.lastFileBox.Location = new System.Drawing.Point(102, 184);
             this.lastFileBox.Name = "lastFileBox";

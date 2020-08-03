@@ -11,6 +11,7 @@ namespace Reviser
         bool newProj;
         ProjectFile.Project project;
         string[] fileList = { };
+
         public ProjectSettings(bool newp, ProjectFile.Project proj = null)
         {
             InitializeComponent();
@@ -94,7 +95,16 @@ namespace Reviser
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 tranFilesBox.Text = fbd.SelectedPath;
+
+                firstFileBox.Enabled = true;
+                lastFileBox.Enabled = true;
             }
+        }
+
+        private void tranFilesBox_TextChanged(object sender, EventArgs e)
+        {
+            firstFileBox.Enabled = true;
+            lastFileBox.Enabled = true;
         }
 
         private void firstFileBox_DropDown(object sender, EventArgs e)
