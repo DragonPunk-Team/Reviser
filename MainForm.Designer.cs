@@ -45,6 +45,7 @@
             this.tran_line = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.proposal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.editLineBtn = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -193,15 +194,29 @@
             // 
             this.comment.Text = "Comment";
             // 
+            // editLineBtn
+            // 
+            this.editLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.editLineBtn.Enabled = false;
+            this.editLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editLineBtn.Location = new System.Drawing.Point(770, 449);
+            this.editLineBtn.Name = "editLineBtn";
+            this.editLineBtn.Size = new System.Drawing.Size(159, 42);
+            this.editLineBtn.TabIndex = 6;
+            this.editLineBtn.Text = "Edit Line";
+            this.editLineBtn.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 502);
-            this.Controls.Add(this.listView);
             this.Controls.Add(this.fileListBox);
+            this.Controls.Add(this.listView);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.editLineBtn);
             this.Controls.Add(this.addLineBtn);
+            this.MinimumSize = new System.Drawing.Size(591, 404);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DragonPunk Reviser";
@@ -229,6 +244,7 @@
         private System.Windows.Forms.ColumnHeader tran_line;
         private System.Windows.Forms.ColumnHeader proposal;
         private System.Windows.Forms.ColumnHeader comment;
+        private System.Windows.Forms.Button editLineBtn;
     }
 }
 
