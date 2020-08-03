@@ -30,9 +30,11 @@ namespace Reviser
             else
             {
                 Text = "Project Settings";
+                caseNumBox.Enabled = false;
 
                 projNameBox.Text = project.name;
                 projTypeBox.SelectedItem = project.type;
+                caseNumBox.Value = project.case_num;
                 origFilesBox.Text = project.orig_path;
                 tranFilesBox.Text = project.tran_path;
                 firstFileBox.Text = TrimFilename(project.file_list[0], project.type);
@@ -49,7 +51,17 @@ namespace Reviser
         {
             if (type == "SoJ")
             {
-                return filename.Remove(0, 7).Remove(9, 8);
+                return filename.Remove(0, 7).Remove(9, 8);      // removes _sce0X and _eng.gmd
+            }
+
+            return filename;
+        }
+
+        private string FillFilename(string filename, string type)
+        {
+            if (type == "SoJ")
+            {
+                return string.Format("_sce0{0}_{1}_eng.gmd", (project.case_num - 1), filename);
             }
 
             return filename;

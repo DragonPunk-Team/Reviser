@@ -44,6 +44,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.caseNumBox = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.caseNumBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -80,7 +83,7 @@
             "Trilogy"});
             this.projTypeBox.Location = new System.Drawing.Point(102, 38);
             this.projTypeBox.Name = "projTypeBox";
-            this.projTypeBox.Size = new System.Drawing.Size(121, 21);
+            this.projTypeBox.Size = new System.Drawing.Size(54, 21);
             this.projTypeBox.TabIndex = 3;
             this.projTypeBox.Text = "SoJ";
             // 
@@ -185,11 +188,44 @@
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(162, 41);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 13);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Case Number:";
+            // 
+            // caseNumBox
+            // 
+            this.caseNumBox.Location = new System.Drawing.Point(242, 39);
+            this.caseNumBox.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.caseNumBox.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.caseNumBox.Name = "caseNumBox";
+            this.caseNumBox.Size = new System.Drawing.Size(48, 20);
+            this.caseNumBox.TabIndex = 21;
+            this.caseNumBox.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // ProjectSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(302, 257);
+            this.Controls.Add(this.caseNumBox);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.label6);
@@ -213,6 +249,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProjectSettings";
             this.Load += new System.EventHandler(this.ProjectSettings_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.caseNumBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,5 +273,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button SaveBtn;
         private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown caseNumBox;
     }
 }
