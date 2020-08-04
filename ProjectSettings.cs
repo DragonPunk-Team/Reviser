@@ -9,14 +9,14 @@ namespace Reviser
     public partial class ProjectSettings : Form
     {
         bool newProj;
-        ProjectFile.Project project;
+        ProjectFile pf;
         string[] fileList = { };
 
-        public ProjectSettings(bool newp, ProjectFile.Project proj = null)
+        public ProjectSettings(bool newp, ProjectFile projf = null)
         {
             InitializeComponent();
             newProj = newp;
-            project = proj;
+            pf = projf;
         }
 
         private void ProjectSettings_Load(object sender, EventArgs e)
@@ -29,12 +29,12 @@ namespace Reviser
             {
                 Text = "Project Settings";
 
-                projNameBox.Text = project.name;
-                projTypeBox.SelectedItem = project.type;
-                origFilesBox.Text = project.orig_path;
-                tranFilesBox.Text = project.tran_path;
-                firstFileBox.Text = project.file_list[0];
-                lastFileBox.Text = project.file_list[project.file_list.Length - 1];
+                projNameBox.Text = pf.project.name;
+                projTypeBox.SelectedItem = pf.project.type;
+                origFilesBox.Text = pf.project.orig_path;
+                tranFilesBox.Text = pf.project.tran_path;
+                firstFileBox.Text = pf.project.file_list[0];
+                lastFileBox.Text = pf.project.file_list[pf.project.file_list.Length - 1];
             }
         }
 
@@ -127,7 +127,7 @@ namespace Reviser
         {
             if (newProj)
             {
-                project = new ProjectFile.Project()
+                pf.project = new ProjectFile.Project()
                 {
                     name = projNameBox.Text,
                     type = projTypeBox.SelectedItem.ToString(),
@@ -136,18 +136,18 @@ namespace Reviser
                     files = new Dictionary<string, ProjectFile.RevisedFile>()
                 };
 
-                project.file_list = MakeFileList(firstFileBox.SelectedItem.ToString(), lastFileBox.SelectedItem.ToString(), project.tran_path);
+                pf.project.file_list = MakeFileList(firstFileBox.SelectedItem.ToString(), lastFileBox.SelectedItem.ToString(), pf.project.tran_path);
 
                 SaveFileDialog sfd = new SaveFileDialog()
                 {
                     Title = "Save Project",
                     Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr|All files (*.*)|*.*",
-                    FileName = project.name
+                    FileName = pf.project.name
                 };
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    File.WriteAllText(sfd.FileName, JsonConvert.SerializeObject(project, Formatting.Indented));
+                    File.WriteAllText(sfd.FileName, JsonConvert.SerializeObject(pf.project, Formatting.Indented));
                     Close();
                 }
             }
