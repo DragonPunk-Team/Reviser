@@ -81,7 +81,7 @@ namespace Reviser
 
         private void projSettingsBtn_Click(object sender, EventArgs e)
         {
-            ProjectSettings projectSettings = new ProjectSettings(false, pf.project);
+            ProjectSettings projectSettings = new ProjectSettings(false, pf);
             projectSettings.Show();
         }
 
