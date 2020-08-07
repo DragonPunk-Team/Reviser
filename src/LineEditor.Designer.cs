@@ -37,6 +37,8 @@
             this.origLblPicBox = new System.Windows.Forms.PictureBox();
             this.tranLblText = new System.Windows.Forms.Label();
             this.origLblText = new System.Windows.Forms.Label();
+            this.tranTextBox = new System.Windows.Forms.Label();
+            this.origTextBox = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tranLblPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.origPicBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tranPicBox)).BeginInit();
@@ -115,7 +117,7 @@
             this.tranLblText.ForeColor = System.Drawing.Color.White;
             this.tranLblText.Location = new System.Drawing.Point(21, 43);
             this.tranLblText.Name = "tranLblText";
-            this.tranLblText.Size = new System.Drawing.Size(69, 17);
+            this.tranLblText.Size = new System.Drawing.Size(66, 17);
             this.tranLblText.TabIndex = 7;
             this.tranLblText.Text = "tranLblText";
             // 
@@ -131,11 +133,37 @@
             this.origLblText.TabIndex = 8;
             this.origLblText.Text = "origLblText";
             // 
+            // tranTextBox
+            // 
+            this.tranTextBox.AutoSize = true;
+            this.tranTextBox.BackColor = System.Drawing.Color.Transparent;
+            this.tranTextBox.Font = new System.Drawing.Font("N.O.- Perfect Kiss/Low-life", 14F);
+            this.tranTextBox.ForeColor = System.Drawing.Color.White;
+            this.tranTextBox.Location = new System.Drawing.Point(21, 63);
+            this.tranTextBox.Name = "tranTextBox";
+            this.tranTextBox.Size = new System.Drawing.Size(103, 24);
+            this.tranTextBox.TabIndex = 9;
+            this.tranTextBox.Text = "tranTextBox";
+            // 
+            // origTextBox
+            // 
+            this.origTextBox.AutoSize = true;
+            this.origTextBox.BackColor = System.Drawing.Color.Transparent;
+            this.origTextBox.Font = new System.Drawing.Font("N.O.- Perfect Kiss/Low-life", 14F);
+            this.origTextBox.ForeColor = System.Drawing.Color.White;
+            this.origTextBox.Location = new System.Drawing.Point(21, 155);
+            this.origTextBox.Name = "origTextBox";
+            this.origTextBox.Size = new System.Drawing.Size(102, 24);
+            this.origTextBox.TabIndex = 10;
+            this.origTextBox.Text = "origTextBox";
+            // 
             // LineEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.origTextBox);
+            this.Controls.Add(this.tranTextBox);
             this.Controls.Add(this.origLblText);
             this.Controls.Add(this.tranLblText);
             this.Controls.Add(this.origLblPicBox);
@@ -169,5 +197,7 @@
         private System.Windows.Forms.PictureBox origLblPicBox;
         private System.Windows.Forms.Label tranLblText;
         private System.Windows.Forms.Label origLblText;
+        private System.Windows.Forms.Label tranTextBox;
+        private System.Windows.Forms.Label origTextBox;
     }
 }

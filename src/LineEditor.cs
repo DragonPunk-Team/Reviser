@@ -33,15 +33,31 @@ namespace Reviser
 
         private void FixLabels()
         {
-            Padding pad = new Padding(3);
+            int all = 3;
+
+            int left = 14;
+            int top = 28;
+            int right = all;
+            int bottom = all;
+            
+            Padding pad = new Padding(all);
+            Padding top_pad = new Padding(left, top, right, bottom);
 
             tranLblText.Location = FixLabelsLocation(tranLblText);
             tranLblText.Padding = pad;
             tranLblText.Parent = tranLblPicBox;
 
+            tranTextBox.Location = FixLabelsLocation(tranTextBox);
+            tranTextBox.Padding = top_pad;
+            tranTextBox.Parent = tranPicBox;
+
             origLblText.Location = FixLabelsLocation(origLblText);
             origLblText.Padding = pad;
             origLblText.Parent = origLblPicBox;
+
+            origTextBox.Location = FixLabelsLocation(origTextBox);
+            origTextBox.Padding = top_pad;
+            origTextBox.Parent = origPicBox;
         }
 
         private Point FixLabelsLocation(Label label)
@@ -60,8 +76,11 @@ namespace Reviser
                 Text = "Edit Line";
 
                 idBox.Text = ld.lineId;
+
                 tranLblText.Text = ld.fc.character;
+                tranTextBox.Text = ld.fc.tran_line;
                 origLblText.Text = ld.fc.character;
+                origTextBox.Text = ld.fc.orig_line;
             }
         }
     }
