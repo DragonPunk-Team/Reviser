@@ -15,6 +15,7 @@ namespace Reviser
         public ProjectSettings(bool newp, ProjectFile projf = null)
         {
             InitializeComponent();
+
             newProj = newp;
             pf = projf;
         }
@@ -141,7 +142,7 @@ namespace Reviser
                 SaveFileDialog sfd = new SaveFileDialog()
                 {
                     Title = "Save Project",
-                    Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr|All files (*.*)|*.*",
+                    Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr",
                     FileName = pf.project.name
                 };
 
