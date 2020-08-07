@@ -1,11 +1,13 @@
 using System;
+using System.Collections;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Reviser
 {
     public partial class MainForm : Form
     {
-        private ProjectFile pf = new ProjectFile();
+        private ProjectFile pf;
 
         public MainForm()
         {
@@ -26,12 +28,15 @@ namespace Reviser
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "Open Project",
-                Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr|All files (*.*)|*.*"
+                Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr"
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                pf.path = ofd.FileName;
+                pf = new ProjectFile() { 
+                    path = ofd.FileName
+                };
+
                 pf.GetProject();
 
                 Text = "DragonPunk Reviser - " + pf.project.name;
@@ -54,6 +59,7 @@ namespace Reviser
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             editLineBtn.Enabled = false;
+            delLineBtn.Enabled = false;
 
             listView.Items.Clear();
 
@@ -88,7 +94,46 @@ namespace Reviser
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView.SelectedItems != null)
+            {
                 editLineBtn.Enabled = true;
+                delLineBtn.Enabled = true;
+            }
+        }
+
+        private void addLineBtn_Click(object sender, EventArgs e)
+        {
+            string currentFile = fileListBox.SelectedItem.ToString();
+
+            LineEditor.LineData ld = new LineEditor.LineData()
+            {
+                newLine = true,
+                currentFile = currentFile
+            };
+            
+            LineEditor lineEditor = new LineEditor(ld);
+            lineEditor.Show();
+        }
+
+        private void editLineBtn_Click(object sender, EventArgs e)
+        {
+            string currentFile = fileListBox.SelectedItem.ToString();
+            string lineId = listView.SelectedItems[0].SubItems[0].Text;
+
+            LineEditor.LineData ld = new LineEditor.LineData()
+            {
+                newLine = false,
+                fc = pf.project.files[currentFile].content.Single(content => content.id.ToString() == lineId),
+                lineId = lineId,
+                currentFile = currentFile
+            };
+
+            LineEditor lineEditor = new LineEditor(ld);
+            lineEditor.Show();
+        }
+
+        private void listView_DoubleClick(object sender, EventArgs e)
+        {
+            editLineBtn_Click(sender, e);
         }
     }
 }
