@@ -137,11 +137,11 @@
             // 
             this.tranTextBox.AutoSize = true;
             this.tranTextBox.BackColor = System.Drawing.Color.Transparent;
-            this.tranTextBox.Font = new System.Drawing.Font("N.O.- Perfect Kiss/Low-life", 14F);
+            this.tranTextBox.Font = new System.Drawing.Font("N.O.- Perfect Kiss/Low-life", 13F);
             this.tranTextBox.ForeColor = System.Drawing.Color.White;
             this.tranTextBox.Location = new System.Drawing.Point(21, 63);
             this.tranTextBox.Name = "tranTextBox";
-            this.tranTextBox.Size = new System.Drawing.Size(103, 24);
+            this.tranTextBox.Size = new System.Drawing.Size(96, 23);
             this.tranTextBox.TabIndex = 9;
             this.tranTextBox.Text = "tranTextBox";
             // 
@@ -149,11 +149,11 @@
             // 
             this.origTextBox.AutoSize = true;
             this.origTextBox.BackColor = System.Drawing.Color.Transparent;
-            this.origTextBox.Font = new System.Drawing.Font("N.O.- Perfect Kiss/Low-life", 14F);
+            this.origTextBox.Font = new System.Drawing.Font("N.O.- Perfect Kiss/Low-life", 13F);
             this.origTextBox.ForeColor = System.Drawing.Color.White;
             this.origTextBox.Location = new System.Drawing.Point(21, 155);
             this.origTextBox.Name = "origTextBox";
-            this.origTextBox.Size = new System.Drawing.Size(102, 24);
+            this.origTextBox.Size = new System.Drawing.Size(95, 23);
             this.origTextBox.TabIndex = 10;
             this.origTextBox.Text = "origTextBox";
             // 
