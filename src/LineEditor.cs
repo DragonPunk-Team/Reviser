@@ -69,7 +69,7 @@ namespace Reviser
                     if (sb.Length > 0)
                         sb.AppendLine();
 
-                    sb.AppendLine(fc.character[i] + ":");
+                    sb.AppendLine("[" + fc.character[i] + "]");
                 }
 
                 lastChar = fc.character[i];
