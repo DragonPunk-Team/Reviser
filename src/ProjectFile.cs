@@ -8,10 +8,10 @@ namespace Reviser
     {
         public class FileContent
         {
-            public int id { get; set; }
-            public string character { get; set; }
-            public string orig_line { get; set; }
-            public string tran_line { get; set; }
+            public string id { get; set; }
+            public string[] character { get; set; }
+            public string[] orig_line { get; set; }
+            public string[] tran_line { get; set; }
             public string proposal { get; set; }
             public bool comment { get; set; }
         }
