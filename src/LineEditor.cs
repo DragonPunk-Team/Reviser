@@ -27,37 +27,6 @@ namespace Reviser
             InitializeComponent();
 
             ld = lineData;
-
-            FixLabels();
-        }
-
-        private void FixLabels()
-        {
-            int all = 3;
-
-            int left = 14;
-            int top = 28;
-            int right = all;
-            int bottom = all;
-            
-            Padding pad = new Padding(all);
-            Padding top_pad = new Padding(left, top, right, bottom);
-
-            tranLblText.Location = FixLabelsLocation(tranLblText);
-            tranLblText.Padding = pad;
-            tranLblText.Parent = tranLblPicBox;
-
-            tranTextBox.Location = FixLabelsLocation(tranTextBox);
-            tranTextBox.Padding = top_pad;
-            tranTextBox.Parent = tranPicBox;
-
-            origLblText.Location = FixLabelsLocation(origLblText);
-            origLblText.Padding = pad;
-            origLblText.Parent = origLblPicBox;
-
-            origTextBox.Location = FixLabelsLocation(origTextBox);
-            origTextBox.Padding = top_pad;
-            origTextBox.Parent = origPicBox;
         }
 
         private Point FixLabelsLocation(Label label)
@@ -76,12 +45,40 @@ namespace Reviser
                 Text = "Edit Line";
 
                 idBox.Text = ld.lineId;
+                lineBox.Text = FormatSavedLines(ld.fc);
+                commentBox.Text = ld.fc.proposal;
 
-                tranLblText.Text = ld.fc.character;
-                tranTextBox.Text = ld.fc.tran_line;
-                origLblText.Text = ld.fc.character;
-                origTextBox.Text = ld.fc.orig_line;
             }
+        }
+
+        private string FormatSavedLines(ProjectFile.FileContent fc)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            int len = fc.character.Length;
+            string lastChar = "";
+
+            for (int i = 0; i < len; i++)
+            {
+                if (lastChar == fc.character[i])
+                {
+                    sb.AppendLine();
+                }
+                else
+                {
+                    if (sb.Length > 0)
+                        sb.AppendLine();
+
+                    sb.AppendLine(fc.character[i] + ":");
+                }
+
+                lastChar = fc.character[i];
+
+                sb.AppendLine(fc.orig_line[i]);
+                sb.AppendLine(fc.tran_line[i]);
+            }            
+
+            return sb.ToString();
         }
     }
 }
