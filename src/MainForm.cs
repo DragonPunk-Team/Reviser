@@ -23,6 +23,34 @@ namespace Reviser
             saveProjBtn.Enabled = true;
         }
 
+        public void Open(string filename)
+        {
+            pf = new ProjectFile()
+            {
+                path = filename
+            };
+
+            pf.GetProject();
+
+            Text = "DragonPunk Reviser - " + pf.project.name;
+
+            if (fileListBox.Items.Count > 0)
+                fileListBox.Items.Clear();
+
+            fileListBox.Items.AddRange(pf.project.file_list);
+            fileListBox.SelectedIndex = 0;
+
+            EnableControls();
+
+            foreach (string file in pf.project.file_list)
+            {
+                if (pf.project.files.ContainsKey(file) && pf.project.files[file].complete)
+                {
+                    fileListBox.SetItemChecked(Array.IndexOf(pf.project.file_list, file), true);
+                }
+            }
+        }
+
         private void openProjBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog
@@ -33,26 +61,7 @@ namespace Reviser
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                pf = new ProjectFile() { 
-                    path = ofd.FileName
-                };
-
-                pf.GetProject();
-
-                Text = "DragonPunk Reviser - " + pf.project.name;
-
-                fileListBox.Items.AddRange(pf.project.file_list);
-                fileListBox.SelectedIndex = 0;
-
-                EnableControls();
-
-                foreach (string file in pf.project.file_list)
-                {
-                    if (pf.project.files.ContainsKey(file) && pf.project.files[file].complete)
-                    {
-                        fileListBox.SetItemChecked(Array.IndexOf(pf.project.file_list, file), true);
-                    }
-                }
+                Open(ofd.FileName);
             }
         }
 
@@ -89,7 +98,7 @@ namespace Reviser
 
         private void newProjBtn_Click(object sender, EventArgs e)
         {
-            ProjectSettings projectSettings = new ProjectSettings(true);
+            ProjectSettings projectSettings = new ProjectSettings(true, null, this);
             projectSettings.Show();
         }
 

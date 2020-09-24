@@ -10,9 +10,10 @@ namespace Reviser
     {
         bool newProj;
         ProjectFile pf;
+        MainForm mf;
         string[] fileList = { };
 
-        public ProjectSettings(bool newp, ProjectFile projf = null)
+        public ProjectSettings(bool newp, ProjectFile projf = null, MainForm mainf = null)
         {
             InitializeComponent();
 
@@ -22,6 +23,8 @@ namespace Reviser
                 pf = new ProjectFile();
             else
                 pf = projf;
+
+            mf = mainf;
         }
 
         private void ProjectSettings_Load(object sender, EventArgs e)
@@ -153,6 +156,9 @@ namespace Reviser
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     File.WriteAllText(sfd.FileName, JsonConvert.SerializeObject(pf.project, Formatting.Indented));
+
+                    mf.Open(sfd.FileName);
+
                     Close();
                 }
             }
