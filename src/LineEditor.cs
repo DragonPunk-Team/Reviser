@@ -29,11 +29,6 @@ namespace Reviser
             ld = lineData;
         }
 
-        private Point FixLabelsLocation(Label label)
-        {
-            return label.PointToClient(this.PointToScreen(label.Location));
-        }
-
         private void LineEditor_Load(object sender, EventArgs e)
         {
             if (ld.newLine)
