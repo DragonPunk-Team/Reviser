@@ -25,7 +25,6 @@ namespace Reviser
         public LineEditor(LineData lineData)
         {
             InitializeComponent();
-
             ld = lineData;
         }
 
@@ -42,7 +41,6 @@ namespace Reviser
                 idBox.Text = ld.lineId;
                 lineBox.Text = FormatSavedLines(ld.fc);
                 commentBox.Text = ld.fc.proposal;
-
             }
         }
 
