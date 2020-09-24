@@ -17,7 +17,11 @@ namespace Reviser
             InitializeComponent();
 
             newProj = newp;
-            pf = projf;
+
+            if (projf == null)
+                pf = new ProjectFile();
+            else
+                pf = projf;
         }
 
         private void ProjectSettings_Load(object sender, EventArgs e)
@@ -54,7 +58,7 @@ namespace Reviser
             return files.ToArray();
         }
 
-        private string[] MakeFileList(string first, string last, string path)
+        private string[] MakeFileList(string first, string last)
         {
             List<string> files = new List<string>();
             bool add = false;
@@ -137,7 +141,7 @@ namespace Reviser
                     files = new Dictionary<string, ProjectFile.RevisedFile>()
                 };
 
-                pf.project.file_list = MakeFileList(firstFileBox.SelectedItem.ToString(), lastFileBox.SelectedItem.ToString(), pf.project.tran_path);
+                pf.project.file_list = MakeFileList(firstFileBox.SelectedItem.ToString(), lastFileBox.SelectedItem.ToString());
 
                 SaveFileDialog sfd = new SaveFileDialog()
                 {
