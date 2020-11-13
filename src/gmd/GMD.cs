@@ -77,7 +77,7 @@ namespace Reviser
                 {
                     string line = strC.Trim().Replace("\r\n", " ");
                     string characterName = GetCharacter(line);
-                    line = CleanLine(line);
+                    line = RemoveTags(line);
                     sectionData.Add(new Tuple<string, string> (characterName, line));
                 }
 
@@ -101,14 +101,10 @@ namespace Reviser
             return characterName;
         }
 
-        private string CleanLine (string line)
+        private string RemoveTags (string line)
         {
-            string newLine;
-
             Regex rx = new Regex(@"<[A-Z 0-9]*>", RegexOptions.Compiled);
-            newLine = rx.Replace(line, "");
-
-            return newLine;
+            return rx.Replace(line, "");
         }
     }
 }
