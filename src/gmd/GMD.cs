@@ -8,37 +8,31 @@ namespace Reviser
 {
 	public class GMD
     {   
-        public class GMDContent
-        {
-            public string[] Labels;
-            public Dictionary<string, Tuple<string, string>[]> Content;
-        }
+        Tuple<string, string>[][] Content;
 
-        public GMDContent ReadGMD(string filepath)
+        public void ReadGMD(string filepath)
         {
-            GMDContent gmd = new GMDContent();
-
             var fstr = File.OpenRead(filepath);
             var br = new BinaryReader(fstr);
 
-            // Skip first 28 bytes: we don't need those
-            fstr.Seek(28, SeekOrigin.Begin);
+            // Skip first 24 bytes: we don't need those
+            fstr.Seek(24, SeekOrigin.Begin);
 
-            // Get sizes for labels and sections
-            int LabelSize = br.ReadInt32();
+            // Get amount of sections
+            int Sections = br.ReadInt32();
+
+            // Skip next 4 bytes: we don't need those
+            fstr.Seek(4, SeekOrigin.Current);
+
+            // Get totale size of sections
             int SectionSize = br.ReadInt32();
 
             // Seek the content from the end of the file
-            fstr.Seek( - (LabelSize + SectionSize), SeekOrigin.End);
-
-            // Split label
-            gmd.Labels = SplitBytes(br.ReadBytes(LabelSize));
+            fstr.Seek( - SectionSize, SeekOrigin.End);
 
             // Split contents
             var contentBlob = SplitBytes(br.ReadBytes(SectionSize));
-            gmd.Content = SplitStrings(gmd.Labels, contentBlob);
-
-            return gmd;
+            Content = SplitStrings(Sections, contentBlob);
         }
 
         private string[] SplitBytes(byte[] blob)
@@ -62,9 +56,10 @@ namespace Reviser
             return content.ToArray();
         }
 
-        private Dictionary<string, Tuple<string, string>[]> SplitStrings(string[] labels, string[] blob)
+        private Tuple<string, string>[][] SplitStrings(int sections, string[] blob)
         {
-            Dictionary<string, Tuple<string, string>[]> content = new Dictionary<string, Tuple<string, string>[]>();
+            Tuple<string, string>[][] content = new Tuple<string, string>[sections][];
+            int section = 0;
 
             foreach (string str in blob)
             {
@@ -80,7 +75,8 @@ namespace Reviser
                     sectionData.Add(new Tuple<string, string> (characterName, line));
                 }
 
-                content.Add(labels[labelIndex], sectionData.ToArray());
+                content[section] = sectionData.ToArray();
+                section++;
             }
 
             return content;
