@@ -44,19 +44,18 @@ namespace Reviser
         private string[] SplitBytes(byte[] blob)
         {
             List<string> content = new List<string>();
-
-            StringBuilder sb = new StringBuilder();
+            List<byte> bytes = new List<byte>();
 
             foreach (byte ch in blob)
             {
                 if (ch == 0)
                 {
-                    content.Add(sb.ToString());
-                    sb.Clear();
+                    content.Add(Encoding.UTF8.GetString(bytes.ToArray()));
+                    bytes.Clear();
                 }
                 else
                 {
-                    sb.Append((char)ch);
+                    bytes.Add(ch);
                 }
             }
 
