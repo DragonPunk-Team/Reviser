@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Reviser
 {
-	public class GMD
+    public class GMD
     {   
         Tuple<string, string>[][] Content;
 
@@ -63,14 +63,14 @@ namespace Reviser
 
         private Tuple<string, string>[][] SplitStrings(int sections, string[] blob)
         {
-            Tuple<string, string>[][] content = new Tuple<string, string>[sections][];
+            var content = new Tuple<string, string>[sections][];
             int section = 0;
 
             foreach (string str in blob)
             {
                 int labelIndex = Array.IndexOf(blob, str);
                 string[] strContent = str.Split(new string[] { "<PAGE>" }, StringSplitOptions.None);
-                List<Tuple<string, string>> sectionData = new List<Tuple<string, string>>();
+                var sectionData = new List<Tuple<string, string>>();
 
                 foreach (string strC in strContent)
                 {
