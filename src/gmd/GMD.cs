@@ -168,7 +168,14 @@ namespace Reviser
                 if ((section.Length + totalLength) > lineId)
                 {
                     int index = lineId - totalLength - firstLine;
-                    return section[index];
+                    try
+                    {
+                        return section[index];
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        return null;
+                    }
                 }
                 else
                 {
@@ -191,7 +198,7 @@ namespace Reviser
             {
                 var line = GetLine(id);
 
-                if (!string.IsNullOrEmpty(line.Item2))
+                if (line != null && !string.IsNullOrEmpty(line.Item2))
                     lines.Add(line);
             }
 

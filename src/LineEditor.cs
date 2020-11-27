@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -75,7 +76,17 @@ namespace Reviser
                 }
 
                 sb.AppendLine(line.Item2);
-                sb.AppendLine(tranLines[index].Item2);
+
+                if (line.Item1 == "Error")
+                {
+                    SystemSounds.Beep.Play();
+                    break;
+                }
+                else
+                {
+                    sb.AppendLine(tranLines[index].Item2);
+                }
+
                 sb.AppendLine();
             }
 
