@@ -65,6 +65,7 @@
             this.searchBtn.Size = new System.Drawing.Size(20, 20);
             this.searchBtn.TabIndex = 2;
             this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // toolStripContainer1
             // 
@@ -119,10 +120,11 @@
             // 
             // lineBox
             // 
-            this.lineBox.Enabled = false;
             this.lineBox.Location = new System.Drawing.Point(12, 32);
             this.lineBox.Multiline = true;
             this.lineBox.Name = "lineBox";
+            this.lineBox.ReadOnly = true;
+            this.lineBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.lineBox.Size = new System.Drawing.Size(402, 178);
             this.lineBox.TabIndex = 15;
             // 

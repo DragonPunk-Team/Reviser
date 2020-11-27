@@ -15,17 +15,24 @@ namespace Reviser
         public class LineData
         {
             public bool newLine { get; set; }
-            public ProjectFile.FileContent fc { get; set; }
-            public string lineId { get; set; }
+            public string origPath { get; set; }
+            public string tranPath { get; set; }
             public string currentFile { get; set; }
+            public ProjectFile.FileContent fc { get; set; }
         }
 
         LineData ld;
+        GMD origGMD;
+        GMD tranGMD;
 
         public LineEditor(LineData lineData)
         {
             InitializeComponent();
+            
             ld = lineData;
+            var filePath = "\\" + ld.currentFile;
+            origGMD = new GMD(ld.origPath + filePath);
+            tranGMD = new GMD(ld.tranPath + filePath);
         }
 
         private void LineEditor_Load(object sender, EventArgs e)
@@ -38,40 +45,46 @@ namespace Reviser
             {
                 Text = "Edit Line";
 
-                idBox.Text = ld.lineId;
-                lineBox.Text = FormatSavedLines(ld.fc);
+                idBox.Text = ld.fc.lineId;
+                lineBox.Text = FormatLines();
                 commentBox.Text = ld.fc.proposal;
             }
         }
 
-        private string FormatSavedLines(ProjectFile.FileContent fc)
+        private string FormatLines()
         {
             StringBuilder sb = new StringBuilder();
 
-            int len = fc.character.Length;
+            var origLines = origGMD.GetLines(idBox.Text);
+            var tranLines = tranGMD.GetLines(idBox.Text);
+
             string lastChar = "";
 
-            for (int i = 0; i < len; i++)
+            foreach (var line in origLines)
             {
-                if (lastChar == fc.character[i])
+                int index = Array.IndexOf(origLines, line);
+
+                if (line.Item1 == lastChar)
                 {
-                    sb.AppendLine();
+                    sb.Append("\n\n");
                 }
                 else
                 {
-                    if (sb.Length > 0)
-                        sb.AppendLine();
-
-                    sb.AppendLine("[" + fc.character[i] + "]");
+                    lastChar = line.Item1;
+                    sb.AppendLine("[" + line.Item1 + "]");
                 }
 
-                lastChar = fc.character[i];
-
-                sb.AppendLine(fc.orig_line[i]);
-                sb.AppendLine(fc.tran_line[i]);
-            }            
+                sb.AppendLine(line.Item2);
+                sb.AppendLine(tranLines[index].Item2);
+                sb.AppendLine();
+            }
 
             return sb.ToString();
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            lineBox.Text = FormatLines();
         }
     }
 }
