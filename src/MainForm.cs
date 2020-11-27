@@ -80,20 +80,12 @@ namespace Reviser
 
                 foreach (ProjectFile.FileContent content in pf.project.files[currentItem].content)
                 {
-                    string[] row = { content.id, GetLine(content.character), GetLine(content.orig_line), GetLine(content.tran_line), content.proposal, pf.Comment(content.comment) };
+                    string[] row = { content.lineId, content.proposal, pf.Comment(content.comment) };
                     listView.Items.Add(new ListViewItem(row));
                 }
 
                 listView.EndUpdate();
             }
-        }
-
-        private string GetLine(string[] strarr)
-        {
-            if (strarr.Length > 1)
-                return strarr.Length + " lines";
-            else
-                return strarr[0];
         }
 
         private void newProjBtn_Click(object sender, EventArgs e)
@@ -124,6 +116,8 @@ namespace Reviser
             LineEditor.LineData ld = new LineEditor.LineData()
             {
                 newLine = true,
+                origPath = pf.project.orig_path,
+                tranPath = pf.project.tran_path,
                 currentFile = currentFile
             };
             
@@ -139,8 +133,9 @@ namespace Reviser
             LineEditor.LineData ld = new LineEditor.LineData()
             {
                 newLine = false,
-                fc = pf.project.files[currentFile].content.Single(content => content.id.ToString() == lineId),
-                lineId = lineId,
+                origPath = pf.project.orig_path,
+                tranPath = pf.project.tran_path,
+                fc = pf.project.files[currentFile].content.Single(content => content.lineId.ToString() == lineId),
                 currentFile = currentFile
             };
 

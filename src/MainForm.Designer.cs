@@ -39,10 +39,7 @@
             this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
             this.fileListBox = new System.Windows.Forms.CheckedListBox();
             this.listView = new System.Windows.Forms.ListView();
-            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.character = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.orig_line = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tran_line = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lineId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.proposal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editLineBtn = new System.Windows.Forms.Button();
@@ -150,10 +147,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listView.AutoArrange = false;
             this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.id,
-            this.character,
-            this.orig_line,
-            this.tran_line,
+            this.lineId,
             this.proposal,
             this.comment});
             this.listView.FullRowSelect = true;
@@ -171,30 +165,15 @@
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
             this.listView.DoubleClick += new System.EventHandler(this.listView_DoubleClick);
             // 
-            // id
+            // lineId
             // 
-            this.id.Text = "Id";
-            this.id.Width = 40;
-            // 
-            // character
-            // 
-            this.character.Text = "Character";
-            this.character.Width = 100;
-            // 
-            // orig_line
-            // 
-            this.orig_line.Text = "Original Line";
-            this.orig_line.Width = 200;
-            // 
-            // tran_line
-            // 
-            this.tran_line.Text = "Translated Line";
-            this.tran_line.Width = 200;
+            this.lineId.Text = "Line";
+            this.lineId.Width = 50;
             // 
             // proposal
             // 
             this.proposal.Text = "Proposal";
-            this.proposal.Width = 250;
+            this.proposal.Width = 740;
             // 
             // comment
             // 
@@ -258,10 +237,7 @@
         private System.Windows.Forms.CheckedListBox fileListBox;
         private System.Windows.Forms.ToolStripButton projSettingsBtn;
         private System.Windows.Forms.ListView listView;
-        private System.Windows.Forms.ColumnHeader id;
-        private System.Windows.Forms.ColumnHeader character;
-        private System.Windows.Forms.ColumnHeader orig_line;
-        private System.Windows.Forms.ColumnHeader tran_line;
+        private System.Windows.Forms.ColumnHeader lineId;
         private System.Windows.Forms.ColumnHeader proposal;
         private System.Windows.Forms.ColumnHeader comment;
         private System.Windows.Forms.Button editLineBtn;
