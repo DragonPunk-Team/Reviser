@@ -106,5 +106,99 @@ namespace Reviser
             Regex rx = new Regex(@"<[A-Z 0-9]*>", RegexOptions.Compiled);
             return rx.Replace(line, "");
         }
+
+        private int[] GetId (string lineIds)
+        {
+            var idList = new List<int>();
+
+            Regex mainRx = new Regex(@"[0-9]*", RegexOptions.Compiled);
+            Regex sepRx = new Regex(@"-", RegexOptions.Compiled);
+
+            // Check for ids separated by a dash (-),
+            // multiple different lines.
+            bool multiline = false;
+
+            MatchCollection ids = mainRx.Matches(lineIds);
+            MatchCollection seps = sepRx.Matches(lineIds);
+
+            foreach (Match sep in seps)
+            {
+                if (sep.Value == "-")
+                    multiline = true;
+            }
+
+            int startLine = int.Parse(ids[0].Value);
+            int endLine;
+
+            if (multiline)
+                endLine = int.Parse(ids[2].Value);
+            else
+                endLine = 0;
+
+            idList.Add(startLine);
+
+            if (endLine != 0)
+            {
+                int lineCount = startLine;
+                
+                while (lineCount < endLine)
+                {
+                    lineCount++;
+                    idList.Add(lineCount);
+                }
+            }
+
+            return idList.ToArray();
+        }
+
+        private Tuple<string, string> GetLine(int lineId)
+        {
+            // First line is always 5, but since we are going to
+            // use lineId as an array index, we need to add 1,
+            // since we are going to subtract this value to
+            // obtain the actual index.
+            int firstLine = 6;
+
+            // Also, keep count of the sections and headers/footers
+            // length to be able to find the requested line in the file.
+            int totalLength = 0;
+
+            foreach (var section in Content)
+            {
+                if ((section.Length + totalLength) > lineId)
+                {
+                    int index = lineId - totalLength - firstLine;
+                    return section[index];
+                }
+                else
+                {
+                    totalLength++;
+                }
+
+                totalLength += 1 + section.Length;
+            }
+
+            return null;
+        }
+
+        public Tuple<string, string>[] GetLines (string lineIds)
+        {
+            var lines = new List<Tuple<string, string>>();
+
+            int[] idList = GetId(lineIds);
+
+            foreach (int id in idList)
+            {
+                var line = GetLine(id);
+
+                if (!string.IsNullOrEmpty(line.Item2))
+                    lines.Add(line);
+            }
+
+            if (lines.Count == 0)
+                lines.Add(new Tuple<string, string>("Error", "No lines found!"));
+
+            return lines.ToArray();
+        }
     }
 }
