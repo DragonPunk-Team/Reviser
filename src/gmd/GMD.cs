@@ -168,6 +168,7 @@ namespace Reviser
                 if ((section.Length + totalLength) > lineId)
                 {
                     int index = lineId - totalLength - firstLine;
+
                     try
                     {
                         return section[index];
