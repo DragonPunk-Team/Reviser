@@ -134,7 +134,17 @@ namespace Reviser
                     diffLines = true;
             }
 
-            int startLine = int.Parse(ids[0].Value);
+            int startLine;
+
+            try
+            {
+                 startLine = int.Parse(ids[0].Value);
+            }
+            catch (System.FormatException)
+            {
+                return new int[0];
+            }
+
             int endLine = 0;
 
             if (multiline || diffLines)
