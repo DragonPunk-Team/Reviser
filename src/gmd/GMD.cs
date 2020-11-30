@@ -107,44 +107,67 @@ namespace Reviser
             return rx.Replace(line, "");
         }
 
-        private int[] GetId (string lineIds)
+        private int[] GetIdList (string lineIds)
         {
             var idList = new List<int>();
 
             Regex mainRx = new Regex(@"[0-9]*", RegexOptions.Compiled);
-            Regex sepRx = new Regex(@"-", RegexOptions.Compiled);
+            Regex sepRx = new Regex(@"-|,", RegexOptions.Compiled);
 
             // Check for ids separated by a dash (-),
             // multiple different lines.
             bool multiline = false;
+
+            // Check for ids separated by a comma (,),
+            // they may be two different lines.
+            bool diffLines = false;
 
             MatchCollection ids = mainRx.Matches(lineIds);
             MatchCollection seps = sepRx.Matches(lineIds);
 
             foreach (Match sep in seps)
             {
+                Console.WriteLine("Current Separator: [" + sep.Value + "]");
+
                 if (sep.Value == "-")
                     multiline = true;
+
+                if (sep.Value == ",")
+                    diffLines = true;
             }
 
             int startLine = int.Parse(ids[0].Value);
-            int endLine;
+            int endLine = 0;
 
-            if (multiline)
-                endLine = int.Parse(ids[2].Value);
-            else
-                endLine = 0;
+            if (multiline || diffLines)
+            {
+                foreach (Match id in ids)
+                {
+                    if (id.Value != ids[0].Value && id.Value != "")
+                    {
+                        endLine = int.Parse(id.Value);
+                        break;
+                    }
+                }
+            }
 
             idList.Add(startLine);
 
             if (endLine != 0)
             {
-                int lineCount = startLine;
-                
-                while (lineCount < endLine)
+                if (diffLines)
                 {
-                    lineCount++;
-                    idList.Add(lineCount);
+                    idList.Add(endLine);
+                }
+                else
+                {
+                    int lineCount = startLine;
+
+                    while (lineCount < endLine)
+                    {
+                        lineCount++;
+                        idList.Add(lineCount);
+                    }
                 }
             }
 
@@ -193,14 +216,19 @@ namespace Reviser
         {
             var lines = new List<Tuple<string, string>>();
 
-            int[] idList = GetId(lineIds);
+            int[] idList = GetIdList(lineIds);
+
+            Tuple<string, string> lastTuple = null;
 
             foreach (int id in idList)
             {
                 var line = GetLine(id);
 
-                if (line != null && !string.IsNullOrEmpty(line.Item2))
+                if (line != null && !string.IsNullOrEmpty(line.Item2) && line != lastTuple)
+                {
+                    lastTuple = line;
                     lines.Add(line);
+                }
             }
 
             if (lines.Count == 0)
