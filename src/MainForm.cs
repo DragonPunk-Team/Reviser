@@ -124,7 +124,7 @@ namespace Reviser
                 newLine = false,
                 origPath = pf.project.orig_path,
                 tranPath = pf.project.tran_path,
-                fc = pf.project.files[currentFile].content.Single(content => content.lineId.ToString() == lineId),
+                fc = pf.project.files[currentFile].content.Single(content => content.lineId == lineId),
                 currentFile = currentFile
             };
 
