@@ -47,23 +47,24 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(19, 13);
+            this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Id:";
+            this.label1.Text = "Insert Line ID:";
             // 
             // idBox
             // 
-            this.idBox.Location = new System.Drawing.Point(37, 6);
+            this.idBox.Location = new System.Drawing.Point(91, 6);
             this.idBox.Name = "idBox";
             this.idBox.Size = new System.Drawing.Size(67, 20);
             this.idBox.TabIndex = 1;
             // 
             // searchBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(110, 6);
+            this.searchBtn.Location = new System.Drawing.Point(164, 5);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(20, 20);
+            this.searchBtn.Size = new System.Drawing.Size(50, 20);
             this.searchBtn.TabIndex = 2;
+            this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = true;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
