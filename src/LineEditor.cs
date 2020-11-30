@@ -16,6 +16,8 @@ namespace Reviser
             public ProjectFile.FileContent fc { get; set; }
         }
 
+        public ProjectFile.FileContent newfc;
+
         LineData ld;
         GMD origGMD;
         GMD tranGMD;
@@ -90,6 +92,23 @@ namespace Reviser
         private void searchBtn_Click(object sender, EventArgs e)
         {
             lineBox.Text = FormatLines();
+        }
+
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            newfc = new ProjectFile.FileContent
+            {
+                lineId = idBox.Text,
+                proposal = commentBox.Text,
+                comment = commentCheckBox.Checked
+            };
+
+            this.Close();
         }
     }
 }

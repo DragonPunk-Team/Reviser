@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -69,39 +70,29 @@ namespace Reviser
             editLineBtn.Enabled = false;
             delLineBtn.Enabled = false;
 
-            listView.Items.Clear();
-
-            string currentItem = fileListBox.SelectedItem.ToString();
-
-            if (pf.project.files.ContainsKey(currentItem))
-            {
-                listView.BeginUpdate();
-
-                foreach (ProjectFile.FileContent content in pf.project.files[currentItem].content)
-                {
-                    string[] row = { content.lineId, content.proposal, pf.Comment(content.comment) };
-                    listView.Items.Add(new ListViewItem(row));
-                }
-
-                listView.EndUpdate();
-            }
+            ListViewUpdate();
         }
 
         private void newProjBtn_Click(object sender, EventArgs e)
         {
-            ProjectSettings projectSettings = new ProjectSettings(true, null, this);
-            projectSettings.Show();
+            ProjectSettings projectSettings = new ProjectSettings(true, mainf: this);
+            projectSettings.ShowDialog();
         }
 
         private void projSettingsBtn_Click(object sender, EventArgs e)
         {
-            ProjectSettings projectSettings = new ProjectSettings(false, pf);
-            projectSettings.Show();
+            ProjectSettings projectSettings = new ProjectSettings(false, pf, this);
+            projectSettings.ShowDialog();
         }
 
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView.SelectedItems != null)
+            if (listView.SelectedItems == null)
+            {
+                editLineBtn.Enabled = false;
+                delLineBtn.Enabled = false;
+            }
+            else
             {
                 editLineBtn.Enabled = true;
                 delLineBtn.Enabled = true;
@@ -120,8 +111,7 @@ namespace Reviser
                 currentFile = currentFile
             };
 
-            LineEditor lineEditor = new LineEditor(ld);
-            lineEditor.Show();
+            OpenLineEditor(ld);
         }
 
         private void editLineBtn_Click(object sender, EventArgs e)
@@ -138,13 +128,62 @@ namespace Reviser
                 currentFile = currentFile
             };
 
-            LineEditor lineEditor = new LineEditor(ld);
-            lineEditor.Show();
+            OpenLineEditor(ld);
         }
 
         private void listView_DoubleClick(object sender, EventArgs e)
         {
             editLineBtn_Click(sender, e);
+        }
+
+        private void OpenLineEditor(LineEditor.LineData ld)
+        {
+            LineEditor lineEditor = new LineEditor(ld);
+            lineEditor.ShowDialog();
+
+            string currentItem = fileListBox.SelectedItem.ToString();
+
+            if (!pf.project.files.ContainsKey(currentItem))
+            {
+                ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                {
+                    complete = false,
+                    content = new List<ProjectFile.FileContent>(),
+                };
+
+                pf.project.files.Add(currentItem, rf);
+            }
+
+            ProjectFile.FileContent fc = new ProjectFile.FileContent
+            {
+                lineId = lineEditor.newfc.lineId,
+                proposal = lineEditor.newfc.proposal,
+                comment = lineEditor.newfc.comment
+            };
+            
+            pf.project.files[currentItem].content.Add(fc);
+
+            ListViewUpdate();
+        }
+
+        private void ListViewUpdate()
+        {
+            listView.Items.Clear();
+
+            string currentItem = fileListBox.SelectedItem.ToString();
+
+            if (pf.project.files.ContainsKey(currentItem))
+            {
+                listView.BeginUpdate();
+
+                foreach (ProjectFile.FileContent content in pf.project.files[currentItem].content)
+                {
+                    string[] row = { content.lineId, content.proposal, pf.Comment(content.comment) };
+                    listView.Items.Add(new ListViewItem(row));
+                }
+
+                listView.EndUpdate();
+            }
         }
     }
 }

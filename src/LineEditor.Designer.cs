@@ -37,6 +37,7 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.lineBox = new System.Windows.Forms.TextBox();
+            this.commentCheckBox = new System.Windows.Forms.CheckBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -109,6 +110,7 @@
             this.saveBtn.TabIndex = 13;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // cancelBtn
             // 
@@ -118,6 +120,7 @@
             this.cancelBtn.TabIndex = 14;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // lineBox
             // 
@@ -129,11 +132,22 @@
             this.lineBox.Size = new System.Drawing.Size(402, 178);
             this.lineBox.TabIndex = 15;
             // 
+            // commentCheckBox
+            // 
+            this.commentCheckBox.AutoSize = true;
+            this.commentCheckBox.Location = new System.Drawing.Point(12, 432);
+            this.commentCheckBox.Name = "commentCheckBox";
+            this.commentCheckBox.Size = new System.Drawing.Size(70, 17);
+            this.commentCheckBox.TabIndex = 16;
+            this.commentCheckBox.Text = "Comment";
+            this.commentCheckBox.UseVisualStyleBackColor = true;
+            // 
             // LineEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 458);
+            this.Controls.Add(this.commentCheckBox);
             this.Controls.Add(this.lineBox);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
@@ -170,5 +184,6 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.TextBox lineBox;
+        private System.Windows.Forms.CheckBox commentCheckBox;
     }
 }

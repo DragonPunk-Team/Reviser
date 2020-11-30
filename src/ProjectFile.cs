@@ -16,7 +16,7 @@ namespace Reviser
         public class RevisedFile
         {
             public bool complete { get; set; }
-            public FileContent[] content { get; set; }
+            public List<FileContent> content { get; set; }
         }
 
         public class Project
