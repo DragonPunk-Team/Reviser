@@ -96,6 +96,13 @@ namespace Reviser
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
+            newfc = new ProjectFile.FileContent
+            {
+                lineId = ld.fc.lineId,
+                proposal = ld.fc.proposal,
+                comment = ld.fc.comment
+            };
+            
             this.Close();
         }
 

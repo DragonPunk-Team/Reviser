@@ -154,6 +154,19 @@ namespace Reviser
                 pf.project.files.Add(currentItem, rf);
             }
 
+            try
+            {
+                string lineId = lineEditor.newfc.lineId;
+                var item = pf.project.files[currentItem].content.Single(line => line.lineId == lineId);
+
+                if (pf.project.files[currentItem].content.Contains(item))
+                    pf.project.files[currentItem].content.Remove(item);
+            }
+            catch (System.InvalidOperationException)
+            {
+                ;
+            }
+
             ProjectFile.FileContent fc = new ProjectFile.FileContent
             {
                 lineId = lineEditor.newfc.lineId,
