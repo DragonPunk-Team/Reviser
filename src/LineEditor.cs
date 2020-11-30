@@ -23,7 +23,7 @@ namespace Reviser
         public LineEditor(LineData lineData)
         {
             InitializeComponent();
-            
+
             ld = lineData;
             var filePath = "\\" + ld.currentFile;
             origGMD = new GMD(ld.origPath + filePath);

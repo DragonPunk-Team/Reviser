@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -120,7 +119,7 @@ namespace Reviser
                 tranPath = pf.project.tran_path,
                 currentFile = currentFile
             };
-            
+
             LineEditor lineEditor = new LineEditor(ld);
             lineEditor.Show();
         }

@@ -7,10 +7,10 @@ using System.Text.RegularExpressions;
 namespace Reviser
 {
     public class GMD
-    {   
+    {
         Tuple<string, string>[][] Content;
 
-        public GMD (string file)
+        public GMD(string file)
         {
             ReadGMD(file);
         }
@@ -33,7 +33,7 @@ namespace Reviser
             int SectionSize = br.ReadInt32();
 
             // Seek the content from the end of the file
-            fstr.Seek( - SectionSize, SeekOrigin.End);
+            fstr.Seek(-SectionSize, SeekOrigin.End);
 
             // Split contents
             var contentBlob = SplitBytes(br.ReadBytes(SectionSize));
@@ -77,7 +77,7 @@ namespace Reviser
                     string line = strC.Trim().Replace("\r\n", " ");
                     string characterName = GetCharacter(line);
                     line = RemoveTags(line);
-                    sectionData.Add(new Tuple<string, string> (characterName, line));
+                    sectionData.Add(new Tuple<string, string>(characterName, line));
                 }
 
                 content[section] = sectionData.ToArray();
@@ -87,7 +87,7 @@ namespace Reviser
             return content;
         }
 
-        private string GetCharacter (string line)
+        private string GetCharacter(string line)
         {
             string characterName = "";
             Cast cast = new Cast();
@@ -101,13 +101,13 @@ namespace Reviser
             return characterName;
         }
 
-        private string RemoveTags (string line)
+        private string RemoveTags(string line)
         {
             Regex rx = new Regex(@"<[A-Z 0-9]*>", RegexOptions.Compiled);
             return rx.Replace(line, "");
         }
 
-        private int[] GetIdList (string lineIds)
+        private int[] GetIdList(string lineIds)
         {
             var idList = new List<int>();
 
@@ -127,8 +127,6 @@ namespace Reviser
 
             foreach (Match sep in seps)
             {
-                Console.WriteLine("Current Separator: [" + sep.Value + "]");
-
                 if (sep.Value == "-")
                     multiline = true;
 
@@ -212,7 +210,7 @@ namespace Reviser
             return null;
         }
 
-        public Tuple<string, string>[] GetLines (string lineIds)
+        public Tuple<string, string>[] GetLines(string lineIds)
         {
             var lines = new List<Tuple<string, string>>();
 
