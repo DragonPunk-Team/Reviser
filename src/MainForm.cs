@@ -220,6 +220,10 @@ namespace Reviser
                 var item = pf.project.files[currentItem].content.Single(line => line.lineId == lineId);
 
                 pf.project.files[currentItem].content.Remove(item);
+
+                if (pf.project.files[currentItem].content.Count == 0)
+                    pf.project.files.Remove(currentItem);
+
                 ListViewUpdate();
 
                 listView_SelectedIndexChanged(sender, e);
