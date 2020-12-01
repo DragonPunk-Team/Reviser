@@ -87,7 +87,7 @@ namespace Reviser
 
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView.SelectedItems == null)
+            if (listView.SelectedItems == null || listView.Items.Count == 0)
             {
                 editLineBtn.Enabled = false;
                 delLineBtn.Enabled = false;
@@ -204,6 +204,21 @@ namespace Reviser
                 }
 
                 listView.EndUpdate();
+            }
+        }
+
+        private void delLineBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete this line?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string currentItem = fileListBox.SelectedItem.ToString();
+                string lineId = listView.SelectedItems[0].SubItems[0].Text;
+                var item = pf.project.files[currentItem].content.Single(line => line.lineId == lineId);
+
+                pf.project.files[currentItem].content.Remove(item);
+                ListViewUpdate();
+
+                listView_SelectedIndexChanged(sender, e);
             }
         }
     }
