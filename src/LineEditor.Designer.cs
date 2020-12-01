@@ -62,7 +62,7 @@
             // 
             // searchBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(164, 5);
+            this.searchBtn.Location = new System.Drawing.Point(164, 6);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(50, 20);
             this.searchBtn.TabIndex = 2;
@@ -94,6 +94,7 @@
             this.commentBox.Name = "commentBox";
             this.commentBox.Size = new System.Drawing.Size(402, 181);
             this.commentBox.TabIndex = 0;
+            this.commentBox.TextChanged += new System.EventHandler(this.commentBox_TextChanged);
             // 
             // toolStrip1
             // 
@@ -105,6 +106,7 @@
             // 
             // saveBtn
             // 
+            this.saveBtn.Enabled = false;
             this.saveBtn.Location = new System.Drawing.Point(339, 428);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
@@ -132,11 +134,13 @@
             this.lineBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.lineBox.Size = new System.Drawing.Size(402, 178);
             this.lineBox.TabIndex = 15;
+            this.lineBox.TextChanged += new System.EventHandler(this.lineBox_TextChanged);
             // 
             // commentCheckBox
             // 
             this.commentCheckBox.AutoSize = true;
-            this.commentCheckBox.Location = new System.Drawing.Point(12, 432);
+            this.commentCheckBox.Enabled = false;
+            this.commentCheckBox.Location = new System.Drawing.Point(124, 432);
             this.commentCheckBox.Name = "commentCheckBox";
             this.commentCheckBox.Size = new System.Drawing.Size(70, 17);
             this.commentCheckBox.TabIndex = 16;
@@ -146,7 +150,8 @@
             // colorCheckBox
             // 
             this.colorCheckBox.AutoSize = true;
-            this.colorCheckBox.Location = new System.Drawing.Point(105, 432);
+            this.colorCheckBox.Enabled = false;
+            this.colorCheckBox.Location = new System.Drawing.Point(12, 432);
             this.colorCheckBox.Name = "colorCheckBox";
             this.colorCheckBox.Size = new System.Drawing.Size(92, 17);
             this.colorCheckBox.TabIndex = 17;

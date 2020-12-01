@@ -145,5 +145,33 @@ namespace Reviser
 
             this.Close();
         }
+
+        private void commentBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(commentBox.Text))
+                commentCheckBox.Enabled = false;
+            else
+                commentCheckBox.Enabled = true;
+
+            CheckSaveBtn();
+        }
+
+        private void lineBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(lineBox.Text))
+                colorCheckBox.Enabled = false;
+            else
+                colorCheckBox.Enabled = true;
+
+            CheckSaveBtn();
+        }
+
+        private void CheckSaveBtn()
+        {
+            if (lineBox.Text.Contains("[Error]") || string.IsNullOrWhiteSpace(commentBox.Text))
+                saveBtn.Enabled = false;
+            else
+                saveBtn.Enabled = true;
+        }
     }
 }
