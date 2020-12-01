@@ -146,46 +146,48 @@ namespace Reviser
         private void OpenLineEditor(LineEditor.LineData ld)
         {
             LineEditor lineEditor = new LineEditor(ld);
-            lineEditor.ShowDialog();
 
-            string currentItem = fileListBox.SelectedItem.ToString();
-
-            if (!pf.project.files.ContainsKey(currentItem))
+            if (lineEditor.ShowDialog() == DialogResult.OK)
             {
-                ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                string currentItem = fileListBox.SelectedItem.ToString();
+
+                if (!pf.project.files.ContainsKey(currentItem))
                 {
-                    complete = false,
-                    content = new List<ProjectFile.FileContent>(),
+                    ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                    {
+                        complete = false,
+                        content = new List<ProjectFile.FileContent>(),
+                    };
+
+                    pf.project.files.Add(currentItem, rf);
+                }
+
+                try
+                {
+                    int contentId = lineEditor.newfc.contentId;
+                    var item = pf.project.files[currentItem].content.Single(line => line.contentId == contentId);
+
+                    if (pf.project.files[currentItem].content.Contains(item))
+                        pf.project.files[currentItem].content.Remove(item);
+                }
+                catch (System.InvalidOperationException)
+                {
+                    ;
+                }
+
+                ProjectFile.FileContent fc = new ProjectFile.FileContent
+                {
+                    contentId = lineEditor.newfc.contentId,
+                    lineId = lineEditor.newfc.lineId,
+                    proposal = lineEditor.newfc.proposal,
+                    comment = lineEditor.newfc.comment,
+                    color = lineEditor.newfc.color
                 };
 
-                pf.project.files.Add(currentItem, rf);
+                pf.project.files[currentItem].content.Add(fc);
+
+                ListViewUpdate();
             }
-
-            try
-            {
-                int contentId = lineEditor.newfc.contentId;
-                var item = pf.project.files[currentItem].content.Single(line => line.contentId == contentId);
-
-                if (pf.project.files[currentItem].content.Contains(item))
-                    pf.project.files[currentItem].content.Remove(item);
-            }
-            catch (System.InvalidOperationException)
-            {
-                ;
-            }
-
-            ProjectFile.FileContent fc = new ProjectFile.FileContent
-            {
-                contentId = lineEditor.newfc.contentId,
-                lineId = lineEditor.newfc.lineId,
-                proposal = lineEditor.newfc.proposal,
-                comment = lineEditor.newfc.comment,
-                color = lineEditor.newfc.color
-            };
-            
-            pf.project.files[currentItem].content.Add(fc);
-
-            ListViewUpdate();
         }
 
         private void ListViewUpdate()

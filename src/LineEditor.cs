@@ -110,16 +110,7 @@ namespace Reviser
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            newfc = new ProjectFile.FileContent
-            {
-                contentId = ld.fc.contentId,
-                lineId = ld.fc.lineId,
-                proposal = ld.fc.proposal,
-                comment = ld.fc.comment,
-                color = ld.fc.color
-            };
-            
-            this.Close();
+            CloseForm(false);
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -137,12 +128,22 @@ namespace Reviser
             else
                 newfc.contentId = ld.fc.contentId;
 
-            this.Close();
+            CloseForm(true);
         }
 
         private void colorCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             lineBox.Text = FormatLines();
+        }
+
+        private void CloseForm(bool save)
+        {
+            if (save)
+                this.DialogResult = DialogResult.OK;
+            else
+                this.DialogResult = DialogResult.Cancel;
+
+            this.Close();
         }
     }
 }
