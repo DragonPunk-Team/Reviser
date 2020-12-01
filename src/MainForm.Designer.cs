@@ -106,6 +106,7 @@
             this.saveProjBtn.Name = "saveProjBtn";
             this.saveProjBtn.Size = new System.Drawing.Size(91, 22);
             this.saveProjBtn.Text = "Save Project";
+            this.saveProjBtn.Click += new System.EventHandler(this.saveProjBtn_Click);
             // 
             // saveAsProjBtn
             // 

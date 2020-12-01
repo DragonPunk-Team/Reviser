@@ -34,9 +34,14 @@ namespace Reviser
         public Project project;
         public string path;
 
-        public void GetProject()
+        public void ReadProject()
         {
             project = JsonConvert.DeserializeObject<Project>(File.ReadAllText(path));
+        }
+
+        public void WriteProject()
+        {
+            File.WriteAllText(path, JsonConvert.SerializeObject(project, Formatting.Indented));
         }
 
         public string Comment(bool comment)

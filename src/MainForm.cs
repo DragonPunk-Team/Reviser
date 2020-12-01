@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -30,7 +31,7 @@ namespace Reviser
                 path = filename
             };
 
-            pf.GetProject();
+            pf.ReadProject();
 
             Text = "DragonPunk Reviser - " + pf.project.name;
 
@@ -223,6 +224,12 @@ namespace Reviser
 
                 listView_SelectedIndexChanged(sender, e);
             }
+        }
+
+        private void saveProjBtn_Click(object sender, EventArgs e)
+        {
+            pf.WriteProject();
+            SystemSounds.Beep.Play();
         }
     }
 }
