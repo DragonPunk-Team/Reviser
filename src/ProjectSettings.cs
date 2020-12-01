@@ -64,18 +64,10 @@ namespace Reviser
         private string[] MakeFileList(string first, string last)
         {
             List<string> files = new List<string>();
-            bool add = false;
 
-            foreach (string file in fileList)
-            {
-                if (file == first)
-                    add = true;
-                else if (file == last)
-                    add = false;
-
-                if (add)
-                    files.Add(file);
-            }
+            int firstIndex = Array.IndexOf(fileList, first);
+            int lastIndex = Array.IndexOf(fileList, last);
+            files.AddRange(new ArraySegment<string>(fileList, firstIndex, lastIndex - firstIndex + 1));
 
             return files.ToArray();
         }
