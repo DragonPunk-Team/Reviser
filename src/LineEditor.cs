@@ -14,6 +14,7 @@ namespace Reviser
             public string tranPath { get; set; }
             public string currentFile { get; set; }
             public ProjectFile.FileContent fc { get; set; }
+            public int lastContentId { get; set; }
         }
 
         public ProjectFile.FileContent newfc;
@@ -21,6 +22,7 @@ namespace Reviser
         LineData ld;
         GMD origGMD;
         GMD tranGMD;
+        int contentId;
 
         public LineEditor(LineData lineData)
         {
@@ -36,6 +38,8 @@ namespace Reviser
         {
             if (ld.newLine)
             {
+                contentId = ld.lastContentId + 1;
+
                 Text = "Add New Line";
             }
             else
@@ -98,6 +102,7 @@ namespace Reviser
         {
             newfc = new ProjectFile.FileContent
             {
+                contentId = ld.fc.contentId,
                 lineId = ld.fc.lineId,
                 proposal = ld.fc.proposal,
                 comment = ld.fc.comment
@@ -114,6 +119,11 @@ namespace Reviser
                 proposal = commentBox.Text,
                 comment = commentCheckBox.Checked
             };
+
+            if (ld.newLine)
+                newfc.contentId = contentId;
+            else
+                newfc.contentId = ld.fc.contentId;
 
             this.Close();
         }

@@ -102,13 +102,18 @@ namespace Reviser
         private void addLineBtn_Click(object sender, EventArgs e)
         {
             string currentFile = fileListBox.SelectedItem.ToString();
+            int currentId = -1;
+
+            if (pf.project.files.ContainsKey(currentFile))
+                currentId = pf.project.files[currentFile].content.Last().contentId;
 
             LineEditor.LineData ld = new LineEditor.LineData()
             {
                 newLine = true,
                 origPath = pf.project.orig_path,
                 tranPath = pf.project.tran_path,
-                currentFile = currentFile
+                currentFile = currentFile,
+                lastContentId = currentId
             };
 
             OpenLineEditor(ld);
@@ -118,14 +123,16 @@ namespace Reviser
         {
             string currentFile = fileListBox.SelectedItem.ToString();
             string lineId = listView.SelectedItems[0].SubItems[0].Text;
+            var item = pf.project.files[currentFile].content.Single(line => line.lineId == lineId);
 
             LineEditor.LineData ld = new LineEditor.LineData()
             {
                 newLine = false,
                 origPath = pf.project.orig_path,
                 tranPath = pf.project.tran_path,
-                fc = pf.project.files[currentFile].content.Single(line => line.lineId == lineId),
-                currentFile = currentFile
+                fc = item,
+                currentFile = currentFile,
+                lastContentId = item.contentId
             };
 
             OpenLineEditor(ld);
@@ -156,8 +163,8 @@ namespace Reviser
 
             try
             {
-                string lineId = lineEditor.newfc.lineId;
-                var item = pf.project.files[currentItem].content.Single(line => line.lineId == lineId);
+                int contentId = lineEditor.newfc.contentId;
+                var item = pf.project.files[currentItem].content.Single(line => line.contentId == contentId);
 
                 if (pf.project.files[currentItem].content.Contains(item))
                     pf.project.files[currentItem].content.Remove(item);
@@ -169,6 +176,7 @@ namespace Reviser
 
             ProjectFile.FileContent fc = new ProjectFile.FileContent
             {
+                contentId = lineEditor.newfc.contentId,
                 lineId = lineEditor.newfc.lineId,
                 proposal = lineEditor.newfc.proposal,
                 comment = lineEditor.newfc.comment

@@ -8,6 +8,7 @@ namespace Reviser
     {
         public class FileContent
         {
+            public int contentId { get; set; }
             public string lineId { get; set; }
             public string proposal { get; set; }
             public bool comment { get; set; }
