@@ -49,6 +49,8 @@ namespace Reviser
                 idBox.Text = ld.fc.lineId;
                 lineBox.Text = FormatLines();
                 commentBox.Text = ld.fc.proposal;
+                commentCheckBox.Checked = ld.fc.comment;
+                colorCheckBox.Checked = ld.fc.color;
             }
         }
 
