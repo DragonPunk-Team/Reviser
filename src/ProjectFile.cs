@@ -12,6 +12,7 @@ namespace Reviser
             public string lineId { get; set; }
             public string proposal { get; set; }
             public bool comment { get; set; }
+            public bool color { get; set; }
         }
 
         public class RevisedFile

@@ -76,7 +76,7 @@ namespace Reviser
                 {
                     string line = strC.Trim().Replace("\r\n", " ");
                     string characterName = GetCharacter(line);
-                    line = RemoveTags(line);
+                    line = GetColor(line);
                     sectionData.Add(new Tuple<string, string>(characterName, line));
                 }
 
@@ -101,9 +101,43 @@ namespace Reviser
             return characterName;
         }
 
+        private string GetColor (string line)
+        {
+            string coloredLine;
+
+            Regex redRx = new Regex(@"<E006>", RegexOptions.Compiled);
+            Regex endRx = new Regex(@"<E00(5|7|8)>", RegexOptions.Compiled);
+
+            coloredLine = redRx.Replace(line, "<red>");
+
+            if (coloredLine == line)
+            {
+                return RemoveTags(line);
+            }
+            else
+            {
+                coloredLine = endRx.Replace(coloredLine, "</red>");
+                coloredLine = RemoveTags(coloredLine);
+
+                if (coloredLine.StartsWith("</red>"))
+                {
+                    Regex rx = new Regex(@"<\/red>", RegexOptions.Compiled);
+                    coloredLine = rx.Replace(coloredLine, "", 1);
+                }
+
+                return coloredLine;
+            }
+        }
+
         private string RemoveTags(string line)
         {
             Regex rx = new Regex(@"<[A-Z 0-9]*>", RegexOptions.Compiled);
+            return rx.Replace(line, "");
+        }
+
+        public string RemoveColors(string line)
+        {
+            Regex rx = new Regex(@"<(|\/)red>", RegexOptions.Compiled);
             return rx.Replace(line, "");
         }
 

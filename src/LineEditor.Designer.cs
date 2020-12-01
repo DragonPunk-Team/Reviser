@@ -38,6 +38,7 @@
             this.cancelBtn = new System.Windows.Forms.Button();
             this.lineBox = new System.Windows.Forms.TextBox();
             this.commentCheckBox = new System.Windows.Forms.CheckBox();
+            this.colorCheckBox = new System.Windows.Forms.CheckBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -142,11 +143,23 @@
             this.commentCheckBox.Text = "Comment";
             this.commentCheckBox.UseVisualStyleBackColor = true;
             // 
+            // colorCheckBox
+            // 
+            this.colorCheckBox.AutoSize = true;
+            this.colorCheckBox.Location = new System.Drawing.Point(105, 432);
+            this.colorCheckBox.Name = "colorCheckBox";
+            this.colorCheckBox.Size = new System.Drawing.Size(92, 17);
+            this.colorCheckBox.TabIndex = 17;
+            this.colorCheckBox.Text = "Include colors";
+            this.colorCheckBox.UseVisualStyleBackColor = true;
+            this.colorCheckBox.CheckedChanged += new System.EventHandler(this.colorCheckBox_CheckedChanged);
+            // 
             // LineEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 458);
+            this.Controls.Add(this.colorCheckBox);
             this.Controls.Add(this.commentCheckBox);
             this.Controls.Add(this.lineBox);
             this.Controls.Add(this.cancelBtn);
@@ -185,5 +198,6 @@
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.TextBox lineBox;
         private System.Windows.Forms.CheckBox commentCheckBox;
+        private System.Windows.Forms.CheckBox colorCheckBox;
     }
 }

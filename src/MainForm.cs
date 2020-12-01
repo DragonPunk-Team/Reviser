@@ -179,7 +179,8 @@ namespace Reviser
                 contentId = lineEditor.newfc.contentId,
                 lineId = lineEditor.newfc.lineId,
                 proposal = lineEditor.newfc.proposal,
-                comment = lineEditor.newfc.comment
+                comment = lineEditor.newfc.comment,
+                color = lineEditor.newfc.color
             };
             
             pf.project.files[currentItem].content.Add(fc);

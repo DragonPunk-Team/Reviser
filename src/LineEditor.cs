@@ -75,7 +75,12 @@ namespace Reviser
                     sb.AppendLine("[" + line.Item1 + "]");
                 }
 
-                sb.AppendLine(line.Item2);
+                var origLine = line.Item2;
+
+                if (!colorCheckBox.Checked)
+                    origLine = origGMD.RemoveColors(origLine);
+
+                sb.AppendLine(origLine);
 
                 if (line.Item1 == "Error")
                 {
@@ -84,7 +89,12 @@ namespace Reviser
                 }
                 else
                 {
-                    sb.AppendLine(tranLines[index].Item2);
+                    var tranLine = tranLines[index].Item2;
+
+                    if (!colorCheckBox.Checked)
+                        tranLine = tranGMD.RemoveColors(tranLine);
+
+                    sb.AppendLine(tranLine);
                 }
 
                 sb.AppendLine();
@@ -105,7 +115,8 @@ namespace Reviser
                 contentId = ld.fc.contentId,
                 lineId = ld.fc.lineId,
                 proposal = ld.fc.proposal,
-                comment = ld.fc.comment
+                comment = ld.fc.comment,
+                color = ld.fc.color
             };
             
             this.Close();
@@ -117,7 +128,8 @@ namespace Reviser
             {
                 lineId = idBox.Text,
                 proposal = commentBox.Text,
-                comment = commentCheckBox.Checked
+                comment = commentCheckBox.Checked,
+                color = colorCheckBox.Checked
             };
 
             if (ld.newLine)
@@ -126,6 +138,11 @@ namespace Reviser
                 newfc.contentId = ld.fc.contentId;
 
             this.Close();
+        }
+
+        private void colorCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            lineBox.Text = FormatLines();
         }
     }
 }
