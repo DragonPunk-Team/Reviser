@@ -1,4 +1,4 @@
-﻿namespace Reviser
+namespace Reviser
 {
     partial class MainForm
     {
@@ -116,6 +116,7 @@
             this.saveAsProjBtn.Name = "saveAsProjBtn";
             this.saveAsProjBtn.Size = new System.Drawing.Size(116, 22);
             this.saveAsProjBtn.Text = "Save Project As...";
+            this.saveAsProjBtn.Click += new System.EventHandler(this.saveAsProjBtn_Click);
             // 
             // projSettingsBtn
             // 

@@ -235,5 +235,28 @@ namespace Reviser
             pf.WriteProject();
             SystemSounds.Beep.Play();
         }
+
+        private void saveAsProjBtn_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Title = "Save Project",
+                Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr",
+                FileName = pf.project.name
+            };
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                var currentPath = pf.path;
+                pf.path = sfd.FileName;
+
+                pf.WriteProject();
+
+                if (MessageBox.Show("Do you want to open the new copy of the project now?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    this.Open(sfd.FileName);
+                else
+                    pf.path = currentPath;
+            }
+        }
     }
 }
