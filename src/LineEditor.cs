@@ -170,7 +170,9 @@ namespace Reviser
 
         private void CheckSaveBtn()
         {
-            if (lineBox.Text.Contains("[Error]") || string.IsNullOrWhiteSpace(commentBox.Text))
+            if (lineBox.Text.Contains("[Error]") || 
+                string.IsNullOrWhiteSpace(commentBox.Text) || 
+                string.IsNullOrWhiteSpace(lineBox.Text))
                 saveBtn.Enabled = false;
             else
                 saveBtn.Enabled = true;
