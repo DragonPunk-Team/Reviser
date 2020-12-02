@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -11,7 +12,7 @@ namespace Reviser
         bool newProj;
         ProjectFile pf;
         MainForm mf;
-        string[] fileList = { };
+        List<string> fileList = new List<string>();
 
         public ProjectSettings(bool newp, ProjectFile projf = null, MainForm mainf = null)
         {
@@ -48,7 +49,7 @@ namespace Reviser
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private string[] GetFiles(string path)
@@ -65,9 +66,9 @@ namespace Reviser
         {
             List<string> files = new List<string>();
 
-            int firstIndex = Array.IndexOf(fileList, first);
-            int lastIndex = Array.IndexOf(fileList, last);
-            files.AddRange(new ArraySegment<string>(fileList, firstIndex, lastIndex - firstIndex + 1));
+            int firstIndex = fileList.IndexOf(first);
+            int lastIndex = fileList.IndexOf(last);
+            files.AddRange(new ArraySegment<string>(fileList.ToArray(), firstIndex, lastIndex - firstIndex + 1));
 
             return files.ToArray();
         }
@@ -109,54 +110,110 @@ namespace Reviser
 
         private void firstFileBox_DropDown(object sender, EventArgs e)
         {
-            if (fileList.Length == 0)
-                fileList = GetFiles(tranFilesBox.Text);
-
-            firstFileBox.Items.AddRange(fileList);
+            UpdateFileLists();
         }
 
         private void lastFileBox_DropDown(object sender, EventArgs e)
         {
-            if (fileList.Length == 0)
-                fileList = GetFiles(tranFilesBox.Text);
-
-            lastFileBox.Items.AddRange(fileList);
+            UpdateFileLists();
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
+            ProjectFile newpf = new ProjectFile();
+
+            newpf.project = new ProjectFile.Project()
+            {
+                name = projNameBox.Text,
+                type = projTypeBox.SelectedItem.ToString(),
+                orig_path = origFilesBox.Text,
+                tran_path = tranFilesBox.Text
+            };
+
+            newpf.project.file_list = MakeFileList(firstFileBox.Text, lastFileBox.Text);
+
             if (newProj)
             {
-                pf.project = new ProjectFile.Project()
-                {
-                    name = projNameBox.Text,
-                    type = projTypeBox.SelectedItem.ToString(),
-                    orig_path = origFilesBox.Text,
-                    tran_path = tranFilesBox.Text,
-                    files = new Dictionary<string, ProjectFile.RevisedFile>()
-                };
-
-                pf.project.file_list = MakeFileList(firstFileBox.SelectedItem.ToString(), lastFileBox.SelectedItem.ToString());
+                newpf.project.files = new Dictionary<string, ProjectFile.RevisedFile>();
 
                 SaveFileDialog sfd = new SaveFileDialog()
                 {
                     Title = "Save Project",
                     Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr",
-                    FileName = pf.project.name
+                    FileName = newpf.project.name
                 };
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    File.WriteAllText(sfd.FileName, JsonConvert.SerializeObject(pf.project, Formatting.Indented));
+                    File.WriteAllText(sfd.FileName, JsonConvert.SerializeObject(newpf.project, Formatting.Indented));
 
                     mf.Open(sfd.FileName);
 
-                    Close();
+                    this.Close();
                 }
             }
             else
             {
-                // TODO: implement saving to existing project
+                IEnumerable<string> diff = pf.project.file_list.Except(newpf.project.file_list);
+
+                if (diff.Count() > 0)
+                {
+                    bool lines = false;
+
+                    foreach (string file in diff)
+                    {
+                        if (pf.project.files.ContainsKey(file) && pf.project.files[file].content.Count > 0)
+                        {
+                            lines = true;
+                            break;
+                        }
+                    }
+
+                    if (lines)
+                    {
+                        if (MessageBox.Show("Looks like the file list has changed." +
+                                                "\nBy saving the project right now, you will lose the comments related to the files which are not in the file list anymore." +
+                                                "\nAre you sure you want to continue?" +
+                                                "\n\n(clicking \"No\" will ignore the new file list and the new file paths.)", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            foreach (string file in diff)
+                            {
+                                if (pf.project.files.ContainsKey(file))
+                                    pf.project.files.Remove(file);
+                            }
+                        }
+                        else
+                        {
+                            newpf.project.orig_path = pf.project.orig_path;
+                            newpf.project.tran_path = pf.project.tran_path;
+                            newpf.project.file_list = pf.project.file_list;
+                        }
+                    }
+                }
+
+                newpf.project.files = pf.project.files;
+
+                File.WriteAllText(pf.path, JsonConvert.SerializeObject(newpf.project, Formatting.Indented));
+
+                mf.Open(pf.path);
+
+                this.Close();
+            }
+        }
+
+        private void UpdateFileLists()
+        {
+            if (fileList.Count == 0)
+            {
+                fileList.AddRange(GetFiles(tranFilesBox.Text));
+
+                firstFileBox.Items.AddRange(fileList.ToArray());
+                lastFileBox.Items.AddRange(fileList.ToArray());
+            }
+            else
+            {
+                fileList.Clear();
+                UpdateFileLists();
             }
         }
     }
