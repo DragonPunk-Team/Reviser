@@ -1,4 +1,4 @@
-namespace Reviser
+﻿namespace Reviser
 {
     partial class LineEditor
     {
@@ -58,14 +58,15 @@ namespace Reviser
             this.idBox.Location = new System.Drawing.Point(91, 6);
             this.idBox.Name = "idBox";
             this.idBox.Size = new System.Drawing.Size(67, 20);
-            this.idBox.TabIndex = 1;
+            this.idBox.TabIndex = 0;
             // 
             // searchBtn
             // 
             this.searchBtn.Location = new System.Drawing.Point(164, 6);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(50, 20);
-            this.searchBtn.TabIndex = 2;
+            this.searchBtn.TabIndex = 0;
+            this.searchBtn.TabStop = false;
             this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = true;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
@@ -80,7 +81,7 @@ namespace Reviser
             this.toolStripContainer1.Location = new System.Drawing.Point(12, 216);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.Size = new System.Drawing.Size(402, 206);
-            this.toolStripContainer1.TabIndex = 12;
+            this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // toolStripContainer1.TopToolStripPanel
@@ -94,7 +95,7 @@ namespace Reviser
             this.commentBox.Multiline = true;
             this.commentBox.Name = "commentBox";
             this.commentBox.Size = new System.Drawing.Size(402, 181);
-            this.commentBox.TabIndex = 0;
+            this.commentBox.TabIndex = 1;
             this.commentBox.TextChanged += new System.EventHandler(this.commentBox_TextChanged);
             // 
             // toolStrip1
@@ -111,7 +112,7 @@ namespace Reviser
             this.saveBtn.Location = new System.Drawing.Point(339, 428);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
-            this.saveBtn.TabIndex = 13;
+            this.saveBtn.TabIndex = 4;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
@@ -121,7 +122,7 @@ namespace Reviser
             this.cancelBtn.Location = new System.Drawing.Point(258, 428);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
-            this.cancelBtn.TabIndex = 14;
+            this.cancelBtn.TabIndex = 5;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
@@ -134,7 +135,8 @@ namespace Reviser
             this.lineBox.ReadOnly = true;
             this.lineBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.lineBox.Size = new System.Drawing.Size(402, 178);
-            this.lineBox.TabIndex = 15;
+            this.lineBox.TabIndex = 0;
+            this.lineBox.TabStop = false;
             this.lineBox.TextChanged += new System.EventHandler(this.lineBox_TextChanged);
             // 
             // commentCheckBox
@@ -144,7 +146,7 @@ namespace Reviser
             this.commentCheckBox.Location = new System.Drawing.Point(124, 432);
             this.commentCheckBox.Name = "commentCheckBox";
             this.commentCheckBox.Size = new System.Drawing.Size(70, 17);
-            this.commentCheckBox.TabIndex = 16;
+            this.commentCheckBox.TabIndex = 3;
             this.commentCheckBox.Text = "Comment";
             this.commentCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -155,7 +157,7 @@ namespace Reviser
             this.colorCheckBox.Location = new System.Drawing.Point(12, 432);
             this.colorCheckBox.Name = "colorCheckBox";
             this.colorCheckBox.Size = new System.Drawing.Size(92, 17);
-            this.colorCheckBox.TabIndex = 17;
+            this.colorCheckBox.TabIndex = 2;
             this.colorCheckBox.Text = "Include colors";
             this.colorCheckBox.UseVisualStyleBackColor = true;
             this.colorCheckBox.CheckedChanged += new System.EventHandler(this.colorCheckBox_CheckedChanged);
