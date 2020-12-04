@@ -23,6 +23,7 @@ namespace Reviser
         GMD origGMD;
         GMD tranGMD;
         int contentId;
+        string tranLine;
 
         public LineEditor(LineData lineData)
         {
@@ -91,7 +92,7 @@ namespace Reviser
                 }
                 else
                 {
-                    var tranLine = tranLines[index].Item2;
+                    tranLine = tranLines[index].Item2;
 
                     if (!colorCheckBox.Checked)
                         tranLine = tranGMD.RemoveColors(tranLine);
@@ -108,6 +109,24 @@ namespace Reviser
         private void searchBtn_Click(object sender, EventArgs e)
         {
             lineBox.Text = FormatLines();
+
+            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains("[Error]"))
+            {
+                copyLineBtn.Enabled = false;
+                insertLineIdBtn.Enabled = false;
+                insertFileLineIdBtn.Enabled = false;
+                commentBox.Enabled = false;
+                commentCheckBox.Enabled = false;
+            }
+            else
+            {
+                copyLineBtn.Enabled = true;
+                insertLineIdBtn.Enabled = true;
+                insertFileLineIdBtn.Enabled = true;
+                commentBox.Enabled = true;
+                commentCheckBox.Enabled = true;
+            }
+
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -150,17 +169,12 @@ namespace Reviser
 
         private void commentBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(commentBox.Text))
-                commentCheckBox.Enabled = false;
-            else
-                commentCheckBox.Enabled = true;
-
             CheckSaveBtn();
         }
 
         private void lineBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(lineBox.Text))
+            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains("[Error]"))
                 colorCheckBox.Enabled = false;
             else
                 colorCheckBox.Enabled = true;
@@ -176,6 +190,19 @@ namespace Reviser
                 saveBtn.Enabled = false;
             else
                 saveBtn.Enabled = true;
+        }
+
+        private void commentCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (commentCheckBox.Checked)
+                normalTextBtn.Enabled = true;
+            else
+                normalTextBtn.Enabled = false;
+        }
+
+        private void copyLineBtn_Click(object sender, EventArgs e)
+        {
+            commentBox.Text += tranLine;
         }
     }
 }
