@@ -71,6 +71,18 @@
   <ItemGroup>
     <Compile Include="src\gmd\Cast.cs" />
     <Compile Include="src\gmd\GMD.cs" />
+    <Compile Include="src\InsertFileName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\InsertFileName.Designer.cs">
+      <DependentUpon>InsertFileName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\InsertLineID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\InsertLineID.Designer.cs">
+      <DependentUpon>InsertLineID.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +104,12 @@
       <DependentUpon>ProjectSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="src\InsertFileName.resx">
+      <DependentUpon>InsertFileName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\InsertLineID.resx">
+      <DependentUpon>InsertLineID.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\LineEditor.resx">
       <DependentUpon>LineEditor.cs</DependentUpon>
     </EmbeddedResource>

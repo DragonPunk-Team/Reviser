@@ -114,7 +114,8 @@ namespace Reviser
                 origPath = pf.project.orig_path,
                 tranPath = pf.project.tran_path,
                 currentFile = currentFile,
-                lastContentId = currentId
+                lastContentId = currentId,
+                filelist = pf.project.file_list
             };
 
             OpenLineEditor(ld);
@@ -133,7 +134,8 @@ namespace Reviser
                 tranPath = pf.project.tran_path,
                 fc = item,
                 currentFile = currentFile,
-                lastContentId = item.contentId
+                lastContentId = item.contentId,
+                filelist = pf.project.file_list
             };
 
             OpenLineEditor(ld);

@@ -15,6 +15,7 @@ namespace Reviser
             public string currentFile { get; set; }
             public ProjectFile.FileContent fc { get; set; }
             public int lastContentId { get; set; }
+            public string[] filelist { get; set; }
         }
 
         public ProjectFile.FileContent newfc;
@@ -203,6 +204,57 @@ namespace Reviser
         private void copyLineBtn_Click(object sender, EventArgs e)
         {
             commentBox.Text += tranLine;
+        }
+
+        private void insertLineIdBtn_Click(object sender, EventArgs e)
+        {
+            InsertLineID ilid = new InsertLineID();
+            
+            if (ilid.ShowDialog() == DialogResult.OK)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                if (!commentBox.Text.EndsWith(" ") && commentBox.Text.Length > 0)
+                    sb.Append(" ");
+
+                sb.Append("`");
+                sb.Append(ilid.lineId);
+                sb.Append("`");
+
+                commentBox.Text += sb.ToString();
+            }
+        }
+
+        private void insertFileLineIdBtn_Click(object sender, EventArgs e)
+        {
+            InsertFileName ifn = new InsertFileName(ld.filelist);
+
+            if (ifn.ShowDialog() == DialogResult.OK)
+            {
+                InsertLineID ilid = new InsertLineID();
+
+                if (ilid.ShowDialog() == DialogResult.OK)
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    if (!commentBox.Text.EndsWith(" ") && commentBox.Text.Length > 0)
+                       sb.Append(" ");
+
+                    sb.Append("`");
+                    sb.Append(ifn.filename);
+                    sb.Append(":");
+                    sb.Append(ilid.lineId);
+                    sb.Append("`");
+
+                    commentBox.Text += sb.ToString();
+                }
+            }
+        }
+
+        private void normalTextBtn_Click(object sender, EventArgs e)
+        {
+            commentBox.Text += "<n></n>";
+            commentBox.Select(commentBox.Text.Length - 4, 0);
         }
     }
 }

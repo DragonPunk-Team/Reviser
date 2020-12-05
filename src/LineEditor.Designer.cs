@@ -35,15 +35,15 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.commentBox = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.copyLineBtn = new System.Windows.Forms.ToolStripButton();
+            this.insertLineIdBtn = new System.Windows.Forms.ToolStripButton();
+            this.insertFileLineIdBtn = new System.Windows.Forms.ToolStripButton();
+            this.normalTextBtn = new System.Windows.Forms.ToolStripButton();
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.lineBox = new System.Windows.Forms.TextBox();
             this.commentCheckBox = new System.Windows.Forms.CheckBox();
             this.colorCheckBox = new System.Windows.Forms.CheckBox();
-            this.copyLineBtn = new System.Windows.Forms.ToolStripButton();
-            this.insertLineIdBtn = new System.Windows.Forms.ToolStripButton();
-            this.normalTextBtn = new System.Windows.Forms.ToolStripButton();
-            this.insertFileLineIdBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -118,8 +118,54 @@
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(95, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(126, 25);
             this.toolStrip1.TabIndex = 0;
+            // 
+            // copyLineBtn
+            // 
+            this.copyLineBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.copyLineBtn.Enabled = false;
+            this.copyLineBtn.Image = ((System.Drawing.Image)(resources.GetObject("copyLineBtn.Image")));
+            this.copyLineBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.copyLineBtn.Name = "copyLineBtn";
+            this.copyLineBtn.Size = new System.Drawing.Size(23, 22);
+            this.copyLineBtn.Text = "toolStripButton1";
+            this.copyLineBtn.ToolTipText = "Copy line from above";
+            this.copyLineBtn.Click += new System.EventHandler(this.copyLineBtn_Click);
+            // 
+            // insertLineIdBtn
+            // 
+            this.insertLineIdBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.insertLineIdBtn.Enabled = false;
+            this.insertLineIdBtn.Image = ((System.Drawing.Image)(resources.GetObject("insertLineIdBtn.Image")));
+            this.insertLineIdBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.insertLineIdBtn.Name = "insertLineIdBtn";
+            this.insertLineIdBtn.Size = new System.Drawing.Size(23, 22);
+            this.insertLineIdBtn.Text = "Insert line id";
+            this.insertLineIdBtn.Click += new System.EventHandler(this.insertLineIdBtn_Click);
+            // 
+            // insertFileLineIdBtn
+            // 
+            this.insertFileLineIdBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.insertFileLineIdBtn.Enabled = false;
+            this.insertFileLineIdBtn.Image = ((System.Drawing.Image)(resources.GetObject("insertFileLineIdBtn.Image")));
+            this.insertFileLineIdBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.insertFileLineIdBtn.Name = "insertFileLineIdBtn";
+            this.insertFileLineIdBtn.Size = new System.Drawing.Size(23, 22);
+            this.insertFileLineIdBtn.Text = "toolStripButton1";
+            this.insertFileLineIdBtn.ToolTipText = "Insert filename and line ID";
+            this.insertFileLineIdBtn.Click += new System.EventHandler(this.insertFileLineIdBtn_Click);
+            // 
+            // normalTextBtn
+            // 
+            this.normalTextBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.normalTextBtn.Enabled = false;
+            this.normalTextBtn.Image = ((System.Drawing.Image)(resources.GetObject("normalTextBtn.Image")));
+            this.normalTextBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.normalTextBtn.Name = "normalTextBtn";
+            this.normalTextBtn.Size = new System.Drawing.Size(23, 22);
+            this.normalTextBtn.Text = "Normal text";
+            this.normalTextBtn.Click += new System.EventHandler(this.normalTextBtn_Click);
             // 
             // saveBtn
             // 
@@ -177,49 +223,6 @@
             this.colorCheckBox.Text = "Include colors";
             this.colorCheckBox.UseVisualStyleBackColor = true;
             this.colorCheckBox.CheckedChanged += new System.EventHandler(this.colorCheckBox_CheckedChanged);
-            // 
-            // copyLineBtn
-            // 
-            this.copyLineBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.copyLineBtn.Enabled = false;
-            this.copyLineBtn.Image = ((System.Drawing.Image)(resources.GetObject("copyLineBtn.Image")));
-            this.copyLineBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyLineBtn.Name = "copyLineBtn";
-            this.copyLineBtn.Size = new System.Drawing.Size(23, 22);
-            this.copyLineBtn.Text = "toolStripButton1";
-            this.copyLineBtn.ToolTipText = "Copy line from above";
-            this.copyLineBtn.Click += new System.EventHandler(this.copyLineBtn_Click);
-            // 
-            // insertLineIdBtn
-            // 
-            this.insertLineIdBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.insertLineIdBtn.Enabled = false;
-            this.insertLineIdBtn.Image = ((System.Drawing.Image)(resources.GetObject("insertLineIdBtn.Image")));
-            this.insertLineIdBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.insertLineIdBtn.Name = "insertLineIdBtn";
-            this.insertLineIdBtn.Size = new System.Drawing.Size(23, 22);
-            this.insertLineIdBtn.Text = "Insert line id";
-            // 
-            // normalTextBtn
-            // 
-            this.normalTextBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.normalTextBtn.Enabled = false;
-            this.normalTextBtn.Image = ((System.Drawing.Image)(resources.GetObject("normalTextBtn.Image")));
-            this.normalTextBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.normalTextBtn.Name = "normalTextBtn";
-            this.normalTextBtn.Size = new System.Drawing.Size(23, 22);
-            this.normalTextBtn.Text = "Normal text";
-            // 
-            // insertFileLineIdBtn
-            // 
-            this.insertFileLineIdBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.insertFileLineIdBtn.Enabled = false;
-            this.insertFileLineIdBtn.Image = ((System.Drawing.Image)(resources.GetObject("insertFileLineIdBtn.Image")));
-            this.insertFileLineIdBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.insertFileLineIdBtn.Name = "insertFileLineIdBtn";
-            this.insertFileLineIdBtn.Size = new System.Drawing.Size(23, 22);
-            this.insertFileLineIdBtn.Text = "toolStripButton1";
-            this.insertFileLineIdBtn.ToolTipText = "Insert filename and line ID";
             // 
             // LineEditor
             // 
