@@ -121,8 +121,7 @@ namespace Reviser
 
                 if (coloredLine.StartsWith("</red>"))
                 {
-                    Regex rx = new Regex(@"<\/red>", RegexOptions.Compiled);
-                    coloredLine = rx.Replace(coloredLine, "", 1);
+                    coloredLine = ReplaceRemove(coloredLine, @"<\/red>", 1);
                 }
 
                 return coloredLine;
@@ -131,14 +130,18 @@ namespace Reviser
 
         private string RemoveTags(string line)
         {
-            Regex rx = new Regex(@"<[A-Z 0-9]*>", RegexOptions.Compiled);
-            return rx.Replace(line, "");
+            return ReplaceRemove(line, @"<[A-Z 0-9]*>");
         }
 
         public string RemoveColors(string line)
         {
-            Regex rx = new Regex(@"<(|\/)red>", RegexOptions.Compiled);
-            return rx.Replace(line, "");
+            return ReplaceRemove(line, @"<(|\/)red>");
+        }
+
+        private string ReplaceRemove(string line, string regex, int count = -1)
+        {
+            Regex rx = new Regex(regex, RegexOptions.Compiled);
+            return rx.Replace(line, "", count);
         }
 
         private int[] GetIdList(string lineIds)
