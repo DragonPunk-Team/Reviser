@@ -49,10 +49,12 @@ namespace Reviser
                 Text = "Edit Line";
 
                 idBox.Text = ld.fc.lineId;
-                lineBox.Text = FormatLines();
                 commentBox.Text = ld.fc.proposal;
                 commentCheckBox.Checked = ld.fc.comment;
                 colorCheckBox.Checked = ld.fc.color;
+
+                searchBtn_Click(sender, e);
+                commentCheckBox_CheckedChanged(sender, e);
             }
         }
 
@@ -118,6 +120,7 @@ namespace Reviser
                 insertFileLineIdBtn.Enabled = false;
                 commentBox.Enabled = false;
                 commentCheckBox.Enabled = false;
+                prevLinesBtn.Enabled = false;
             }
             else
             {
@@ -126,6 +129,7 @@ namespace Reviser
                 insertFileLineIdBtn.Enabled = true;
                 commentBox.Enabled = true;
                 commentCheckBox.Enabled = true;
+                prevLinesBtn.Enabled = true;
             }
 
         }
@@ -142,6 +146,7 @@ namespace Reviser
                 lineId = idBox.Text,
                 proposal = commentBox.Text,
                 comment = commentCheckBox.Checked,
+                prevLineId = prevLinesBtn.Text,
                 color = colorCheckBox.Checked
             };
 
@@ -255,6 +260,22 @@ namespace Reviser
         {
             commentBox.Text += "<n></n>";
             commentBox.Select(commentBox.Text.Length - 4, 0);
+        }
+
+        private void prevLinesBtn_Click(object sender, EventArgs e)
+        {
+            PrevLinesEditor ple = new PrevLinesEditor(origGMD, tranGMD, colorCheckBox.Checked, prevLinesBtn.Text);
+
+            if (ple.ShowDialog() == DialogResult.OK)
+            {
+                prevLinesBtn.Text = ple.lineId;
+                prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+            }
+            else
+            {
+                prevLinesBtn.Text = "-1";
+                prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            }
         }
     }
 }

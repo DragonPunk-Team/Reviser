@@ -11,6 +11,7 @@ namespace Reviser
             public int contentId { get; set; }
             public string lineId { get; set; }
             public string proposal { get; set; }
+            public string prevLineId { get; set; }
             public bool comment { get; set; }
             public bool color { get; set; }
         }

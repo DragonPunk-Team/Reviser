@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\ILMerge.3.0.41\build\ILMerge.props" Condition="Exists('packages\ILMerge.3.0.41\build\ILMerge.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -96,6 +96,12 @@
       <DependentUpon>LineEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="src\PrevLinesEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\PrevLinesEditor.Designer.cs">
+      <DependentUpon>PrevLinesEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\ProjectFile.cs" />
     <Compile Include="src\ProjectSettings.cs">
       <SubType>Form</SubType>
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\PrevLinesEditor.resx">
+      <DependentUpon>PrevLinesEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\ProjectSettings.resx">
       <DependentUpon>ProjectSettings.cs</DependentUpon>

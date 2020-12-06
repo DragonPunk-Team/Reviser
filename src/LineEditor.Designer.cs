@@ -44,6 +44,7 @@
             this.lineBox = new System.Windows.Forms.TextBox();
             this.commentCheckBox = new System.Windows.Forms.CheckBox();
             this.colorCheckBox = new System.Windows.Forms.CheckBox();
+            this.prevLinesBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -114,11 +115,12 @@
             this.copyLineBtn,
             this.insertLineIdBtn,
             this.insertFileLineIdBtn,
+            this.prevLinesBtn,
             this.normalTextBtn});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(95, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(118, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // copyLineBtn
@@ -224,6 +226,18 @@
             this.colorCheckBox.UseVisualStyleBackColor = true;
             this.colorCheckBox.CheckedChanged += new System.EventHandler(this.colorCheckBox_CheckedChanged);
             // 
+            // prevLinesBtn
+            // 
+            this.prevLinesBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.prevLinesBtn.Enabled = false;
+            this.prevLinesBtn.Image = ((System.Drawing.Image)(resources.GetObject("prevLinesBtn.Image")));
+            this.prevLinesBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.prevLinesBtn.Name = "prevLinesBtn";
+            this.prevLinesBtn.Size = new System.Drawing.Size(23, 22);
+            this.prevLinesBtn.Text = "-1";
+            this.prevLinesBtn.ToolTipText = "Add previous lines";
+            this.prevLinesBtn.Click += new System.EventHandler(this.prevLinesBtn_Click);
+            // 
             // LineEditor
             // 
             this.AcceptButton = this.searchBtn;
@@ -276,5 +290,6 @@
         private System.Windows.Forms.ToolStripButton insertLineIdBtn;
         private System.Windows.Forms.ToolStripButton normalTextBtn;
         private System.Windows.Forms.ToolStripButton insertFileLineIdBtn;
+        private System.Windows.Forms.ToolStripButton prevLinesBtn;
     }
 }
