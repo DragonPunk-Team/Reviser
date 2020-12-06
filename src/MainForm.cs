@@ -235,6 +235,7 @@ namespace Reviser
 
         private void saveProjBtn_Click(object sender, EventArgs e)
         {
+            OrderProjectFile();
             pf.WriteProject();
             SystemSounds.Beep.Play();
         }
@@ -250,6 +251,8 @@ namespace Reviser
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
+                OrderProjectFile();
+
                 var currentPath = pf.path;
                 pf.path = sfd.FileName;
 
@@ -271,6 +274,51 @@ namespace Reviser
                     pf.project.files[item].complete = true;
                 else
                     pf.project.files[item].complete = false;
+            }
+        }
+
+        private void OrderProjectFile()
+        {
+            var copy = new ProjectFile.Project()
+            {
+                files = new Dictionary<string, ProjectFile.RevisedFile>()
+            };
+
+            foreach (var file in pf.project.files)
+                copy.files.Add(file.Key, file.Value);
+
+            foreach (var file in copy.files) {
+                GMD gmd = new GMD(pf.project.tran_path + "\\" + file.Key);
+                List<int> ids = new List<int>();
+
+                foreach (var content in file.Value.content)
+                {
+                    ids.Add(gmd.GetIdList(content.lineId)[0]);
+                }
+
+                ids.Sort();
+
+                var fileCopy = file;
+                pf.project.files.Remove(file.Key);
+
+                var rf = new ProjectFile.RevisedFile
+                {
+                    complete = fileCopy.Value.complete,
+                    content = new List<ProjectFile.FileContent>()
+                };
+
+                foreach (int index in ids)
+                {
+                    foreach (var content in file.Value.content)
+                    {
+                        if (gmd.GetIdList(content.lineId)[0] == index)
+                        {
+                            rf.content.Add(content);
+                        }
+                    }
+                }
+
+                pf.project.files.Add(fileCopy.Key, rf);
             }
         }
     }

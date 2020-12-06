@@ -144,7 +144,7 @@ namespace Reviser
             return rx.Replace(line, "", count);
         }
 
-        private int[] GetIdList(string lineIds)
+        public int[] GetIdList(string lineIds)
         {
             var idList = new List<int>();
 
