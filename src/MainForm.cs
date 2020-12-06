@@ -235,7 +235,6 @@ namespace Reviser
 
         private void saveProjBtn_Click(object sender, EventArgs e)
         {
-            OrderProjectFile();
             pf.WriteProject();
             SystemSounds.Beep.Play();
         }
@@ -251,8 +250,6 @@ namespace Reviser
 
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                OrderProjectFile();
-
                 var currentPath = pf.path;
                 pf.path = sfd.FileName;
 
@@ -284,8 +281,18 @@ namespace Reviser
                 files = new Dictionary<string, ProjectFile.RevisedFile>()
             };
 
-            foreach (var file in pf.project.files)
-                copy.files.Add(file.Key, file.Value);
+            foreach (string filename in pf.project.file_list)
+            {
+                foreach (var file in pf.project.files)
+                {
+                    if (filename == file.Key)
+                    {
+                        copy.files.Add(file.Key, file.Value);
+                    }
+                }
+            }
+
+            pf.project.files.Clear();
 
             foreach (var file in copy.files) {
                 GMD gmd = new GMD(pf.project.tran_path + "\\" + file.Key);
@@ -299,7 +306,6 @@ namespace Reviser
                 ids.Sort();
 
                 var fileCopy = file;
-                pf.project.files.Remove(file.Key);
 
                 var rf = new ProjectFile.RevisedFile
                 {
