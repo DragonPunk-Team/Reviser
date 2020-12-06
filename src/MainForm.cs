@@ -260,5 +260,17 @@ namespace Reviser
                     pf.path = currentPath;
             }
         }
+        private void fileListBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            var item = fileListBox.SelectedItem.ToString();
+
+            if (pf.project.files.Count > 0 && pf.project.files.ContainsKey(item))
+            {
+                if (e.NewValue == CheckState.Checked)
+                    pf.project.files[item].complete = true;
+                else
+                    pf.project.files[item].complete = false;
+            }
+        }
     }
 }

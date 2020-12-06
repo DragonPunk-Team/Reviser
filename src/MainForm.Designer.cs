@@ -139,6 +139,7 @@ namespace Reviser
             this.fileListBox.Name = "fileListBox";
             this.fileListBox.Size = new System.Drawing.Size(222, 463);
             this.fileListBox.TabIndex = 4;
+            this.fileListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.fileListBox_ItemCheck);
             this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
             // listView
