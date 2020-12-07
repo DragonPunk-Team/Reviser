@@ -29,7 +29,7 @@ namespace Reviser
             // Skip next 4 bytes: we don't need those
             fstr.Seek(4, SeekOrigin.Current);
 
-            // Get totale size of sections
+            // Get total size of sections
             int SectionSize = br.ReadInt32();
 
             // Seek the content from the end of the file
