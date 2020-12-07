@@ -22,6 +22,7 @@ namespace Reviser
             projSettingsBtn.Enabled = true;
             saveAsProjBtn.Enabled = true;
             saveProjBtn.Enabled = true;
+            generateReportBtn.Enabled = true;
         }
 
         public void Open(string filename)
@@ -261,6 +262,33 @@ namespace Reviser
                     pf.path = currentPath;
             }
         }
+
+        private void generateReportBtn_Click(object sender, EventArgs e)
+        {
+            OrderProjectFile();
+            GenerateReport gr = new GenerateReport(pf);
+
+            if (!gr.ProjectEmpty())
+            {
+                SaveFileDialog sfd = new SaveFileDialog()
+                {
+                    Title = "Select report destination",
+                    Filter = "Markdown File (*.md)|*.md",
+                    FileName = pf.project.name
+                };
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    gr.path = sfd.FileName;
+                    gr.Generate();
+                }
+            }
+            else
+            {
+                MessageBox.Show("You can't generate a report right now, since the project is empty.", "Error", MessageBoxButtons.OK);
+            }
+        }
+
         private void fileListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var item = fileListBox.SelectedItem.ToString();

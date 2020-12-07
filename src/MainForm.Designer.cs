@@ -1,4 +1,4 @@
-namespace Reviser
+﻿namespace Reviser
 {
     partial class MainForm
     {
@@ -37,6 +37,8 @@ namespace Reviser
             this.saveProjBtn = new System.Windows.Forms.ToolStripButton();
             this.saveAsProjBtn = new System.Windows.Forms.ToolStripButton();
             this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.generateReportBtn = new System.Windows.Forms.ToolStripButton();
             this.fileListBox = new System.Windows.Forms.CheckedListBox();
             this.listView = new System.Windows.Forms.ListView();
             this.lineId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -68,7 +70,9 @@ namespace Reviser
             this.toolStripSeparator1,
             this.saveProjBtn,
             this.saveAsProjBtn,
-            this.projSettingsBtn});
+            this.projSettingsBtn,
+            this.toolStripSeparator2,
+            this.generateReportBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1106, 25);
@@ -128,6 +132,23 @@ namespace Reviser
             this.projSettingsBtn.Size = new System.Drawing.Size(109, 22);
             this.projSettingsBtn.Text = "Project Settings";
             this.projSettingsBtn.Click += new System.EventHandler(this.projSettingsBtn_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // generateReportBtn
+            // 
+            this.generateReportBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.generateReportBtn.Enabled = false;
+            this.generateReportBtn.Image = ((System.Drawing.Image)(resources.GetObject("generateReportBtn.Image")));
+            this.generateReportBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.generateReportBtn.Name = "generateReportBtn";
+            this.generateReportBtn.Size = new System.Drawing.Size(112, 22);
+            this.generateReportBtn.Text = "Generate Report";
+            this.generateReportBtn.Click += new System.EventHandler(this.generateReportBtn_Click);
             // 
             // fileListBox
             // 
@@ -246,6 +267,8 @@ namespace Reviser
         private System.Windows.Forms.ColumnHeader comment;
         private System.Windows.Forms.Button editLineBtn;
         private System.Windows.Forms.Button delLineBtn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton generateReportBtn;
     }
 }
 
