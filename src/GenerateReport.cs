@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Reviser
 {
-    public class GenerateReport
+    public partial class GenerateReport : Form
     {
         ProjectFile pf;
         public string path;
@@ -20,7 +20,15 @@ namespace Reviser
 
         public GenerateReport(ProjectFile project)
         {
+            InitializeComponent();
+
             pf = project;
+        }
+
+        private void GenerateReport_Load(object sender, EventArgs e)
+        {
+            OrderProjectFile();
+            Generate();
         }
 
         public bool ProjectEmpty()
@@ -45,7 +53,62 @@ namespace Reviser
             }
         }
 
-        public void Generate()
+        private void OrderProjectFile()
+        {
+            var copy = new ProjectFile.Project()
+            {
+                files = new Dictionary<string, ProjectFile.RevisedFile>()
+            };
+
+            foreach (string filename in pf.project.file_list)
+            {
+                foreach (var file in pf.project.files)
+                {
+                    if (filename == file.Key)
+                    {
+                        copy.files.Add(file.Key, file.Value);
+                    }
+                }
+            }
+
+            pf.project.files.Clear();
+
+            foreach (var file in copy.files)
+            {
+                GMD gmd = new GMD(pf.project.tran_path + "\\" + file.Key);
+                List<int> ids = new List<int>();
+
+                foreach (var content in file.Value.content)
+                {
+                    ids.Add(gmd.GetIdList(content.lineId)[0]);
+                }
+
+                ids.Sort();
+
+                var fileCopy = file;
+
+                var rf = new ProjectFile.RevisedFile
+                {
+                    complete = fileCopy.Value.complete,
+                    content = new List<ProjectFile.FileContent>()
+                };
+
+                foreach (int index in ids)
+                {
+                    foreach (var content in file.Value.content)
+                    {
+                        if (gmd.GetIdList(content.lineId)[0] == index)
+                        {
+                            rf.content.Add(content);
+                        }
+                    }
+                }
+
+                pf.project.files.Add(fileCopy.Key, rf);
+            }
+        }
+
+        private void Generate()
         {
             StringBuilder sb = new StringBuilder();
 
@@ -131,8 +194,10 @@ namespace Reviser
 
             File.WriteAllText(path, sb.ToString());
 
+            this.Hide();
             SystemSounds.Beep.Play();
             MessageBox.Show("Report generated successfully.", "Done!", MessageBoxButtons.OK);
+            this.Close();
         }
 
         private string Replace(string regex, string line)
@@ -192,61 +257,6 @@ namespace Reviser
             var matches = rx.Matches(line);
 
             return matches.Count;
-        }
-
-        public void OrderProjectFile()
-        {
-            var copy = new ProjectFile.Project()
-            {
-                files = new Dictionary<string, ProjectFile.RevisedFile>()
-            };
-
-            foreach (string filename in pf.project.file_list)
-            {
-                foreach (var file in pf.project.files)
-                {
-                    if (filename == file.Key)
-                    {
-                        copy.files.Add(file.Key, file.Value);
-                    }
-                }
-            }
-
-            pf.project.files.Clear();
-
-            foreach (var file in copy.files)
-            {
-                GMD gmd = new GMD(pf.project.tran_path + "\\" + file.Key);
-                List<int> ids = new List<int>();
-
-                foreach (var content in file.Value.content)
-                {
-                    ids.Add(gmd.GetIdList(content.lineId)[0]);
-                }
-
-                ids.Sort();
-
-                var fileCopy = file;
-
-                var rf = new ProjectFile.RevisedFile
-                {
-                    complete = fileCopy.Value.complete,
-                    content = new List<ProjectFile.FileContent>()
-                };
-
-                foreach (int index in ids)
-                {
-                    foreach (var content in file.Value.content)
-                    {
-                        if (gmd.GetIdList(content.lineId)[0] == index)
-                        {
-                            rf.content.Add(content);
-                        }
-                    }
-                }
-
-                pf.project.files.Add(fileCopy.Key, rf);
-            }
         }
     }
 }

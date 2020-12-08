@@ -69,7 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\GenerateReport.cs" />
+    <Compile Include="src\GenerateReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\GenerateReport.Designer.cs">
+      <DependentUpon>GenerateReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\gmd\Cast.cs" />
     <Compile Include="src\gmd\GMD.cs" />
     <Compile Include="src\InsertFileName.cs">
@@ -111,6 +116,9 @@
       <DependentUpon>ProjectSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="src\GenerateReport.resx">
+      <DependentUpon>GenerateReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\InsertFileName.resx">
       <DependentUpon>InsertFileName.cs</DependentUpon>
     </EmbeddedResource>

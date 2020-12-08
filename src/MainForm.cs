@@ -279,8 +279,7 @@ namespace Reviser
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     gr.path = sfd.FileName;
-                    gr.OrderProjectFile();
-                    gr.Generate();
+                    gr.ShowDialog();
                 }
             }
             else
