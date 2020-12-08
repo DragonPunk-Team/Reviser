@@ -123,10 +123,11 @@ namespace Reviser
                         }
                     }
 
-                    if (pf.project.files.Keys.Last<string>() != file)
-                        sb.Append("\n\n\n");
+                    sb.Append("\n\n\n");
                 }
             }
+
+            sb.Length -= 3;
 
             File.WriteAllText(path, sb.ToString());
 
