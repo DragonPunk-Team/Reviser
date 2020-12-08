@@ -107,7 +107,9 @@ namespace Reviser
             int currentId = -1;
 
             if (pf.project.files.ContainsKey(currentFile))
-                currentId = pf.project.files[currentFile].content.Last().contentId;
+                foreach (var content in pf.project.files[currentFile].content)
+                    if (content.contentId > currentId)
+                        currentId = content.contentId;
 
             LineEditor.LineData ld = new LineEditor.LineData()
             {
