@@ -55,56 +55,66 @@ namespace Reviser
 
         private void OrderProjectFile()
         {
-            var copy = new ProjectFile.Project()
+            if (pf.project.files.Count > 1)
             {
-                files = new Dictionary<string, ProjectFile.RevisedFile>()
-            };
-
-            foreach (string filename in pf.project.file_list)
-            {
-                foreach (var file in pf.project.files)
+                var copy = new ProjectFile.Project()
                 {
-                    if (filename == file.Key)
-                    {
-                        copy.files.Add(file.Key, file.Value);
-                    }
-                }
-            }
-
-            pf.project.files.Clear();
-
-            foreach (var file in copy.files)
-            {
-                GMD gmd = new GMD(pf.project.tran_path + "\\" + file.Key);
-                List<int> ids = new List<int>();
-
-                foreach (var content in file.Value.content)
-                {
-                    ids.Add(gmd.GetIdList(content.lineId)[0]);
-                }
-
-                ids.Sort();
-
-                var fileCopy = file;
-
-                var rf = new ProjectFile.RevisedFile
-                {
-                    complete = fileCopy.Value.complete,
-                    content = new List<ProjectFile.FileContent>()
+                    files = new Dictionary<string, ProjectFile.RevisedFile>()
                 };
 
-                foreach (int index in ids)
+                foreach (string filename in pf.project.file_list)
                 {
-                    foreach (var content in file.Value.content)
+                    foreach (var file in pf.project.files)
                     {
-                        if (gmd.GetIdList(content.lineId)[0] == index)
+                        if (filename == file.Key)
                         {
-                            rf.content.Add(content);
+                            copy.files.Add(file.Key, file.Value);
                         }
                     }
                 }
 
-                pf.project.files.Add(fileCopy.Key, rf);
+                pf.project.files.Clear();
+
+                foreach (var file in copy.files)
+                {
+                    if (file.Value.content.Count > 1)
+                    {
+                        GMD gmd = new GMD(pf.project.tran_path + "\\" + file.Key);
+                        List<int> ids = new List<int>();
+
+                        foreach (var content in file.Value.content)
+                        {
+                            ids.Add(gmd.GetIdList(content.lineId)[0]);
+                        }
+
+                        ids.Sort();
+
+                        var fileCopy = file;
+
+                        var rf = new ProjectFile.RevisedFile
+                        {
+                            complete = fileCopy.Value.complete,
+                            content = new List<ProjectFile.FileContent>()
+                        };
+
+                        foreach (int index in ids)
+                        {
+                            foreach (var content in file.Value.content)
+                            {
+                                if (gmd.GetIdList(content.lineId)[0] == index)
+                                {
+                                    rf.content.Add(content);
+                                }
+                            }
+                        }
+
+                        pf.project.files.Add(fileCopy.Key, rf);
+                    }
+                    else
+                    {
+                        pf.project.files.Add(file.Key, file.Value);
+                    }
+                }
             }
         }
 
