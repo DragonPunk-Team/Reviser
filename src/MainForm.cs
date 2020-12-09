@@ -89,7 +89,7 @@ namespace Reviser
 
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView.SelectedItems == null || listView.Items.Count == 0)
+            if (listView.SelectedItems.Count == 0 || listView.Items.Count == 0)
             {
                 editLineBtn.Enabled = false;
                 delLineBtn.Enabled = false;
