@@ -46,6 +46,7 @@
             this.comment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editLineBtn = new System.Windows.Forms.Button();
             this.delLineBtn = new System.Windows.Forms.Button();
+            this.completeLabel = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -229,11 +230,26 @@
             this.delLineBtn.UseVisualStyleBackColor = true;
             this.delLineBtn.Click += new System.EventHandler(this.delLineBtn_Click);
             // 
+            // completeLabel
+            // 
+            this.completeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.completeLabel.Enabled = false;
+            this.completeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.completeLabel.Location = new System.Drawing.Point(240, 449);
+            this.completeLabel.Name = "completeLabel";
+            this.completeLabel.Size = new System.Drawing.Size(359, 42);
+            this.completeLabel.TabIndex = 8;
+            this.completeLabel.Text = "This file was marked as complete.\r\nIf you want to edit it, untick it from the fil" +
+    "e list.";
+            this.completeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.completeLabel.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 502);
+            this.Controls.Add(this.completeLabel);
             this.Controls.Add(this.delLineBtn);
             this.Controls.Add(this.fileListBox);
             this.Controls.Add(this.listView);
@@ -269,6 +285,7 @@
         private System.Windows.Forms.Button delLineBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton generateReportBtn;
+        private System.Windows.Forms.Label completeLabel;
     }
 }
 

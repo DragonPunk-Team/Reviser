@@ -44,6 +44,8 @@ namespace Reviser
 
             EnableControls();
 
+            fileListBox.ItemCheck -= fileListBox_ItemCheck;
+
             foreach (string file in pf.project.file_list)
             {
                 if (pf.project.files.ContainsKey(file) && pf.project.files[file].complete)
@@ -51,6 +53,22 @@ namespace Reviser
                     fileListBox.SetItemChecked(Array.IndexOf(pf.project.file_list, file), true);
                 }
             }
+
+            if (fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
+            {
+                listView.Enabled = false;
+                addLineBtn.Enabled = false;
+                SystemSounds.Beep.Play();
+                completeLabel.Visible = true;
+            }
+            else
+            {
+                listView.Enabled = true;
+                addLineBtn.Enabled = true;
+                completeLabel.Visible = false;
+            }
+
+            fileListBox.ItemCheck += fileListBox_ItemCheck;
         }
 
         private void openProjBtn_Click(object sender, EventArgs e)
@@ -71,6 +89,20 @@ namespace Reviser
         {
             editLineBtn.Enabled = false;
             delLineBtn.Enabled = false;
+
+            if (fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
+            {
+                listView.Enabled = false;
+                addLineBtn.Enabled = false;
+                SystemSounds.Beep.Play();
+                completeLabel.Visible = true;
+            }
+            else
+            {
+                listView.Enabled = true;
+                addLineBtn.Enabled = true;
+                completeLabel.Visible = false;
+            }
 
             ListViewUpdate();
         }
@@ -297,9 +329,40 @@ namespace Reviser
             if (pf.project.files.Count > 0 && pf.project.files.ContainsKey(item))
             {
                 if (e.NewValue == CheckState.Checked)
-                    pf.project.files[item].complete = true;
+                {
+                    DialogResult dr = MessageBox.Show("Are you sure you want to mark this file as complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        pf.project.files[item].complete = true;
+
+                        listView.Enabled = false;
+                        addLineBtn.Enabled = false;
+                        SystemSounds.Beep.Play();
+                        completeLabel.Visible = true;
+                    }
+                    else
+                    {
+                        e.NewValue = CheckState.Unchecked;
+                    }
+                }
                 else
-                    pf.project.files[item].complete = false;
+                {
+                    DialogResult dr = MessageBox.Show("Are you sure you want to mark this file as not complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        pf.project.files[item].complete = false;
+
+                        listView.Enabled = true;
+                        addLineBtn.Enabled = true;
+                        completeLabel.Visible = false;
+                    }
+                    else
+                    {
+                        e.NewValue = CheckState.Checked;
+                    }
+                }
             }
         }
     }
