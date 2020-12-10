@@ -15,6 +15,11 @@ namespace Reviser
             InitializeComponent();
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            toolStrip1.Renderer = new ToolStripOverride();
+        }
+
         private void EnableControls()
         {
             addLineBtn.Enabled = true;

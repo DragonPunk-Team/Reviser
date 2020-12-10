@@ -32,9 +32,11 @@ namespace Reviser
             this.addLineBtn = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newProjBtn = new System.Windows.Forms.ToolStripButton();
-            this.openProjBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.openProjBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.saveProjBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.saveAsProjBtn = new System.Windows.Forms.ToolStripButton();
             this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -66,20 +68,22 @@ namespace Reviser
             // toolStrip1
             // 
             this.toolStrip1.AutoSize = false;
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newProjBtn,
-            this.openProjBtn,
             this.toolStripSeparator1,
+            this.openProjBtn,
+            this.toolStripSeparator4,
             this.saveProjBtn,
+            this.toolStripSeparator3,
             this.saveAsProjBtn,
             this.projSettingsBtn,
             this.toolStripSeparator2,
             this.generateReportBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(1106, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
@@ -88,11 +92,15 @@ namespace Reviser
             // 
             this.newProjBtn.Image = ((System.Drawing.Image)(resources.GetObject("newProjBtn.Image")));
             this.newProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newProjBtn.Margin = new System.Windows.Forms.Padding(12, 1, 0, 2);
             this.newProjBtn.Name = "newProjBtn";
             this.newProjBtn.Size = new System.Drawing.Size(91, 22);
             this.newProjBtn.Text = "New Project";
             this.newProjBtn.Click += new System.EventHandler(this.newProjBtn_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // openProjBtn
             // 
@@ -103,10 +111,10 @@ namespace Reviser
             this.openProjBtn.Text = "Open Project";
             this.openProjBtn.Click += new System.EventHandler(this.openProjBtn_Click);
             // 
-            // toolStripSeparator1
+            // toolStripSeparator4
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // saveProjBtn
             // 
@@ -117,6 +125,11 @@ namespace Reviser
             this.saveProjBtn.Size = new System.Drawing.Size(91, 22);
             this.saveProjBtn.Text = "Save Project";
             this.saveProjBtn.Click += new System.EventHandler(this.saveProjBtn_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // saveAsProjBtn
             // 
@@ -134,7 +147,6 @@ namespace Reviser
             this.projSettingsBtn.Enabled = false;
             this.projSettingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("projSettingsBtn.Image")));
             this.projSettingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.projSettingsBtn.Margin = new System.Windows.Forms.Padding(0, 1, 11, 2);
             this.projSettingsBtn.Name = "projSettingsBtn";
             this.projSettingsBtn.Size = new System.Drawing.Size(109, 22);
             this.projSettingsBtn.Text = "Project Settings";
@@ -267,6 +279,7 @@ namespace Reviser
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DragonPunk Reviser";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -292,6 +305,8 @@ namespace Reviser
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton generateReportBtn;
         private System.Windows.Forms.Label completeLabel;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 
