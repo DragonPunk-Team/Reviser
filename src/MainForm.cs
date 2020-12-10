@@ -198,6 +198,7 @@ namespace Reviser
                     ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
                     {
                         complete = false,
+                        note = "",
                         content = new List<ProjectFile.FileContent>(),
                     };
 
@@ -367,6 +368,34 @@ namespace Reviser
                         e.NewValue = CheckState.Checked;
                     }
                 }
+            }
+        }
+
+        private void addNoteBtn_Click(object sender, EventArgs e)
+        {
+            string currentFile = fileListBox.SelectedItem.ToString();
+
+            if (!pf.project.files.ContainsKey(currentFile))
+            {
+                ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                {
+                    complete = false,
+                    note = "",
+                    content = new List<ProjectFile.FileContent>(),
+                };
+
+                pf.project.files.Add(currentFile, rf);
+            }
+
+            NoteEditor ne = new NoteEditor(currentFile, pf.project.files[currentFile].note);
+
+            if (ne.ShowDialog() == DialogResult.OK)
+            {
+                pf.project.files[currentFile].note = ne.note;
+            }
+            else
+            {
+                pf.project.files[currentFile].note = "";
             }
         }
     }

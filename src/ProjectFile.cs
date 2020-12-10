@@ -19,6 +19,7 @@ namespace Reviser
         public class RevisedFile
         {
             public bool complete { get; set; }
+            public string note { get; set; }
             public List<FileContent> content { get; set; }
         }
 

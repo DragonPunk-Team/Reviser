@@ -94,6 +94,7 @@ namespace Reviser
                         var rf = new ProjectFile.RevisedFile
                         {
                             complete = fileCopy.Value.complete,
+                            note = fileCopy.Value.note,
                             content = new List<ProjectFile.FileContent>()
                         };
 
@@ -133,6 +134,12 @@ namespace Reviser
 
                 sb.AppendLine("## `" + file + "`");
                 sb.AppendLine();
+
+                if (!string.IsNullOrWhiteSpace(pf.project.files[file].note))
+                {
+                    sb.AppendLine("### " + pf.project.files[file].note);
+                    sb.AppendLine();
+                }
 
                 foreach (ProjectFile.FileContent fc in pf.project.files[file].content)
                 {

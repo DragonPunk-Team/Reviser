@@ -1,4 +1,4 @@
-namespace Reviser
+﻿namespace Reviser
 {
     partial class MainForm
     {
@@ -49,6 +49,7 @@ namespace Reviser
             this.editLineBtn = new System.Windows.Forms.Button();
             this.delLineBtn = new System.Windows.Forms.Button();
             this.completeLabel = new System.Windows.Forms.Label();
+            this.addNoteBtn = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -263,11 +264,22 @@ namespace Reviser
             this.completeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.completeLabel.Visible = false;
             // 
+            // addNoteBtn
+            // 
+            this.addNoteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.addNoteBtn.Location = new System.Drawing.Point(228, 436);
+            this.addNoteBtn.Name = "addNoteBtn";
+            this.addNoteBtn.Size = new System.Drawing.Size(42, 42);
+            this.addNoteBtn.TabIndex = 9;
+            this.addNoteBtn.UseVisualStyleBackColor = true;
+            this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 488);
+            this.Controls.Add(this.addNoteBtn);
             this.Controls.Add(this.completeLabel);
             this.Controls.Add(this.delLineBtn);
             this.Controls.Add(this.fileListBox);
@@ -305,6 +317,7 @@ namespace Reviser
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton generateReportBtn;
         private System.Windows.Forms.Label completeLabel;
+        private System.Windows.Forms.Button addNoteBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
