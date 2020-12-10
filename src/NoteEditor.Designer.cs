@@ -32,6 +32,7 @@
             this.addBtn = new System.Windows.Forms.Button();
             this.noteBox = new System.Windows.Forms.TextBox();
             this.cancelBtn = new System.Windows.Forms.Button();
+            this.removeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -75,11 +76,23 @@
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
+            // removeBtn
+            // 
+            this.removeBtn.Enabled = false;
+            this.removeBtn.Location = new System.Drawing.Point(12, 216);
+            this.removeBtn.Name = "removeBtn";
+            this.removeBtn.Size = new System.Drawing.Size(75, 23);
+            this.removeBtn.TabIndex = 7;
+            this.removeBtn.Text = "Remove";
+            this.removeBtn.UseVisualStyleBackColor = true;
+            this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
+            // 
             // NoteEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 245);
+            this.Controls.Add(this.removeBtn);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.noteBox);
             this.Controls.Add(this.addBtn);
@@ -102,5 +115,6 @@
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.TextBox noteBox;
         private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Button removeBtn;
     }
 }

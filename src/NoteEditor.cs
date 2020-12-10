@@ -5,7 +5,6 @@ namespace Reviser
 {
     public partial class NoteEditor : Form
     {
-        bool remove;
         public string note;
 
         public NoteEditor(string file, string note)
@@ -21,21 +20,21 @@ namespace Reviser
             if (!string.IsNullOrWhiteSpace(note))
             {
                 noteBox.Text = note;
-                cancelBtn.Text = "Remove";
+                removeBtn.Enabled = true;
             }
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            if (cancelBtn.Text == "Remove")
-                remove = true;
-            else
-                remove = false;
-
-            CloseForm(false);
+            CloseForm(save: false);
         }
 
-        private void CloseForm(bool save)
+        private void removeBtn_Click(object sender, EventArgs e)
+        {
+            CloseForm(remove: false);
+        }
+
+        private void CloseForm(bool save = false, bool remove = false)
         {
             if (save)
                 this.DialogResult = DialogResult.OK;

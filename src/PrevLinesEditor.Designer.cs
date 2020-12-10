@@ -1,4 +1,4 @@
-namespace Reviser
+﻿namespace Reviser
 {
     partial class PrevLinesEditor
     {
@@ -34,6 +34,7 @@ namespace Reviser
             this.addBtn = new System.Windows.Forms.Button();
             this.lineBox = new System.Windows.Forms.TextBox();
             this.cancelBtn = new System.Windows.Forms.Button();
+            this.removeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -96,12 +97,24 @@ namespace Reviser
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
+            // removeBtn
+            // 
+            this.removeBtn.Enabled = false;
+            this.removeBtn.Location = new System.Drawing.Point(12, 216);
+            this.removeBtn.Name = "removeBtn";
+            this.removeBtn.Size = new System.Drawing.Size(75, 23);
+            this.removeBtn.TabIndex = 6;
+            this.removeBtn.Text = "Remove";
+            this.removeBtn.UseVisualStyleBackColor = true;
+            this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
+            // 
             // PrevLinesEditor
             // 
             this.AcceptButton = this.searchBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(430, 245);
+            this.Controls.Add(this.removeBtn);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.lineBox);
             this.Controls.Add(this.addBtn);
@@ -128,5 +141,6 @@ namespace Reviser
         private System.Windows.Forms.Button addBtn;
         private System.Windows.Forms.TextBox lineBox;
         private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.Button removeBtn;
     }
 }

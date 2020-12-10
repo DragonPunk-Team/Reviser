@@ -10,7 +10,6 @@ namespace Reviser
         GMD origGMD;
         GMD tranGMD;
         bool color;
-        bool remove;
         public string lineId;
 
         public PrevLinesEditor(GMD origGMD, GMD tranGMD, bool color, string lineId)
@@ -28,7 +27,7 @@ namespace Reviser
             if (lineId != "-1")
             {
                 idBox.Text = lineId;
-                cancelBtn.Text = "Remove";
+                removeBtn.Enabled = true;
 
                 searchBtn_Click(sender, e);
             }
@@ -92,15 +91,15 @@ namespace Reviser
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            if (cancelBtn.Text == "Remove")
-                remove = true;
-            else
-                remove = false;
-
-            CloseForm(false);
+            CloseForm(save: false);
         }
 
-        private void CloseForm(bool save)
+        private void removeBtn_Click(object sender, EventArgs e)
+        {
+            CloseForm(remove: false);
+        }
+
+        private void CloseForm(bool save = false, bool remove = false)
         {
             if (save)
                 this.DialogResult = DialogResult.OK;
