@@ -5,6 +5,7 @@ namespace Reviser
 {
     public partial class NoteEditor : Form
     {
+        bool remove;
         public string note;
 
         public NoteEditor(string file, string note)
@@ -26,6 +27,11 @@ namespace Reviser
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
+            if (cancelBtn.Text == "Remove")
+                remove = true;
+            else
+                remove = false;
+
             CloseForm(false);
         }
 
@@ -33,6 +39,8 @@ namespace Reviser
         {
             if (save)
                 this.DialogResult = DialogResult.OK;
+            else if (remove)
+                this.DialogResult = DialogResult.Abort;
             else
                 this.DialogResult = DialogResult.Cancel;
 

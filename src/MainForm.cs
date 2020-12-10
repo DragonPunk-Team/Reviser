@@ -388,12 +388,13 @@ namespace Reviser
             }
 
             NoteEditor ne = new NoteEditor(currentFile, pf.project.files[currentFile].note);
+            DialogResult dr = ne.ShowDialog();
 
-            if (ne.ShowDialog() == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 pf.project.files[currentFile].note = ne.note;
             }
-            else
+            else if (dr == DialogResult.Abort)
             {
                 pf.project.files[currentFile].note = "";
             }

@@ -10,6 +10,7 @@ namespace Reviser
         GMD origGMD;
         GMD tranGMD;
         bool color;
+        bool remove;
         public string lineId;
 
         public PrevLinesEditor(GMD origGMD, GMD tranGMD, bool color, string lineId)
@@ -91,6 +92,11 @@ namespace Reviser
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
+            if (cancelBtn.Text == "Remove")
+                remove = true;
+            else
+                remove = false;
+
             CloseForm(false);
         }
 
@@ -98,6 +104,8 @@ namespace Reviser
         {
             if (save)
                 this.DialogResult = DialogResult.OK;
+            else if (remove)
+                this.DialogResult = DialogResult.Abort;
             else
                 this.DialogResult = DialogResult.Cancel;
 

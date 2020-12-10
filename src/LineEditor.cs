@@ -265,13 +265,14 @@ namespace Reviser
         private void prevLinesBtn_Click(object sender, EventArgs e)
         {
             PrevLinesEditor ple = new PrevLinesEditor(origGMD, tranGMD, colorCheckBox.Checked, prevLinesBtn.Text);
+            DialogResult dr = ple.ShowDialog();
 
-            if (ple.ShowDialog() == DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 prevLinesBtn.Text = ple.lineId;
                 prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
             }
-            else
+            else if (dr == DialogResult.Abort)
             {
                 prevLinesBtn.Text = "-1";
                 prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.Image;
