@@ -63,7 +63,6 @@ namespace Reviser
             {
                 listView.Enabled = false;
                 addLineBtn.Enabled = false;
-                SystemSounds.Beep.Play();
                 completeLabel.Visible = true;
             }
             else
