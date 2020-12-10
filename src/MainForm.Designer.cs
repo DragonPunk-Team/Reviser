@@ -1,4 +1,4 @@
-﻿namespace Reviser
+namespace Reviser
 {
     partial class MainForm
     {
@@ -55,7 +55,7 @@
             this.addLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addLineBtn.Enabled = false;
             this.addLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addLineBtn.Location = new System.Drawing.Point(935, 449);
+            this.addLineBtn.Location = new System.Drawing.Point(935, 436);
             this.addLineBtn.Name = "addLineBtn";
             this.addLineBtn.Size = new System.Drawing.Size(159, 42);
             this.addLineBtn.TabIndex = 2;
@@ -65,6 +65,10 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newProjBtn,
             this.openProjBtn,
@@ -84,6 +88,7 @@
             // 
             this.newProjBtn.Image = ((System.Drawing.Image)(resources.GetObject("newProjBtn.Image")));
             this.newProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newProjBtn.Margin = new System.Windows.Forms.Padding(12, 1, 0, 2);
             this.newProjBtn.Name = "newProjBtn";
             this.newProjBtn.Size = new System.Drawing.Size(91, 22);
             this.newProjBtn.Text = "New Project";
@@ -129,6 +134,7 @@
             this.projSettingsBtn.Enabled = false;
             this.projSettingsBtn.Image = ((System.Drawing.Image)(resources.GetObject("projSettingsBtn.Image")));
             this.projSettingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.projSettingsBtn.Margin = new System.Windows.Forms.Padding(0, 1, 11, 2);
             this.projSettingsBtn.Name = "projSettingsBtn";
             this.projSettingsBtn.Size = new System.Drawing.Size(109, 22);
             this.projSettingsBtn.Text = "Project Settings";
@@ -153,11 +159,10 @@
             // 
             // fileListBox
             // 
-            this.fileListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.fileListBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.fileListBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileListBox.FormattingEnabled = true;
-            this.fileListBox.Location = new System.Drawing.Point(12, 28);
+            this.fileListBox.Location = new System.Drawing.Point(0, 25);
             this.fileListBox.Name = "fileListBox";
             this.fileListBox.Size = new System.Drawing.Size(222, 463);
             this.fileListBox.TabIndex = 4;
@@ -179,10 +184,10 @@
             this.listView.GridLines = true;
             this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(240, 28);
+            this.listView.Location = new System.Drawing.Point(228, 25);
             this.listView.MultiSelect = false;
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(854, 414);
+            this.listView.Size = new System.Drawing.Size(866, 401);
             this.listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView.TabIndex = 5;
             this.listView.UseCompatibleStateImageBehavior = false;
@@ -209,7 +214,7 @@
             this.editLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.editLineBtn.Enabled = false;
             this.editLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editLineBtn.Location = new System.Drawing.Point(770, 449);
+            this.editLineBtn.Location = new System.Drawing.Point(770, 436);
             this.editLineBtn.Name = "editLineBtn";
             this.editLineBtn.Size = new System.Drawing.Size(159, 42);
             this.editLineBtn.TabIndex = 6;
@@ -222,7 +227,7 @@
             this.delLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.delLineBtn.Enabled = false;
             this.delLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delLineBtn.Location = new System.Drawing.Point(605, 449);
+            this.delLineBtn.Location = new System.Drawing.Point(605, 436);
             this.delLineBtn.Name = "delLineBtn";
             this.delLineBtn.Size = new System.Drawing.Size(159, 42);
             this.delLineBtn.TabIndex = 7;
@@ -232,12 +237,14 @@
             // 
             // completeLabel
             // 
+            this.completeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.completeLabel.BackColor = System.Drawing.Color.Transparent;
             this.completeLabel.Enabled = false;
             this.completeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.completeLabel.Location = new System.Drawing.Point(240, 449);
+            this.completeLabel.Location = new System.Drawing.Point(276, 436);
             this.completeLabel.Name = "completeLabel";
-            this.completeLabel.Size = new System.Drawing.Size(359, 42);
+            this.completeLabel.Size = new System.Drawing.Size(323, 42);
             this.completeLabel.TabIndex = 8;
             this.completeLabel.Text = "This file was marked as complete.\r\nIf you want to edit it, untick it from the fil" +
     "e list.";
@@ -248,7 +255,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 502);
+            this.ClientSize = new System.Drawing.Size(1106, 488);
             this.Controls.Add(this.completeLabel);
             this.Controls.Add(this.delLineBtn);
             this.Controls.Add(this.fileListBox);
@@ -263,7 +270,6 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
