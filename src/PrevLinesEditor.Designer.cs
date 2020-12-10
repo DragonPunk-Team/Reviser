@@ -1,4 +1,4 @@
-﻿namespace Reviser
+namespace Reviser
 {
     partial class PrevLinesEditor
     {
@@ -41,20 +41,20 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Insert Line ID:";
+            this.label1.Text = "Insert line ID:";
             // 
             // idBox
             // 
-            this.idBox.Location = new System.Drawing.Point(91, 6);
+            this.idBox.Location = new System.Drawing.Point(87, 6);
             this.idBox.Name = "idBox";
             this.idBox.Size = new System.Drawing.Size(67, 20);
             this.idBox.TabIndex = 0;
             // 
             // searchBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(164, 6);
+            this.searchBtn.Location = new System.Drawing.Point(160, 6);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(50, 20);
             this.searchBtn.TabIndex = 0;
@@ -113,7 +113,7 @@
             this.MinimizeBox = false;
             this.Name = "PrevLinesEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add Previous Line";
+            this.Text = "Add previous line";
             this.Load += new System.EventHandler(this.PrevLinesEditor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
