@@ -92,7 +92,7 @@ namespace Reviser
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            CloseForm(save: false);
+            CloseForm();
         }
 
         private void removeBtn_Click(object sender, EventArgs e)
@@ -129,7 +129,7 @@ namespace Reviser
         private void addBtn_Click(object sender, EventArgs e)
         {
             lineId = idBox.Text;
-            CloseForm(true);
+            CloseForm(save: true);
         }
     }
 }
