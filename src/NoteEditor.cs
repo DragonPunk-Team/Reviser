@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -19,6 +19,7 @@ namespace Reviser
         {
             if (!string.IsNullOrWhiteSpace(note))
             {
+                this.Text = this.Text.Replace("Add", "Edit");
                 noteBox.Text = note;
                 removeBtn.Enabled = true;
             }

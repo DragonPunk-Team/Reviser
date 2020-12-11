@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Media;
 using System.Text;
 using System.Windows.Forms;
@@ -26,6 +26,7 @@ namespace Reviser
         {
             if (lineId != "-1")
             {
+                this.Text = this.Text.Replace("Add", "Edit");
                 idBox.Text = lineId;
                 removeBtn.Enabled = true;
 
