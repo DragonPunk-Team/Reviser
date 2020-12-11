@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Media;
 using System.Text;
 using System.Windows.Forms;
@@ -96,7 +96,7 @@ namespace Reviser
 
         private void removeBtn_Click(object sender, EventArgs e)
         {
-            CloseForm(remove: false);
+            CloseForm(remove: true);
         }
 
         private void CloseForm(bool save = false, bool remove = false)
