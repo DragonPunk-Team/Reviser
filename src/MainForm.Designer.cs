@@ -58,9 +58,9 @@
             this.addLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addLineBtn.Enabled = false;
             this.addLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addLineBtn.Location = new System.Drawing.Point(935, 436);
+            this.addLineBtn.Location = new System.Drawing.Point(966, 436);
             this.addLineBtn.Name = "addLineBtn";
-            this.addLineBtn.Size = new System.Drawing.Size(159, 42);
+            this.addLineBtn.Size = new System.Drawing.Size(128, 42);
             this.addLineBtn.TabIndex = 2;
             this.addLineBtn.Text = "Add Line";
             this.addLineBtn.UseVisualStyleBackColor = true;
@@ -227,9 +227,9 @@
             this.editLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.editLineBtn.Enabled = false;
             this.editLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editLineBtn.Location = new System.Drawing.Point(770, 436);
+            this.editLineBtn.Location = new System.Drawing.Point(832, 436);
             this.editLineBtn.Name = "editLineBtn";
-            this.editLineBtn.Size = new System.Drawing.Size(159, 42);
+            this.editLineBtn.Size = new System.Drawing.Size(128, 42);
             this.editLineBtn.TabIndex = 6;
             this.editLineBtn.Text = "Edit Line";
             this.editLineBtn.UseVisualStyleBackColor = true;
@@ -240,9 +240,9 @@
             this.delLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.delLineBtn.Enabled = false;
             this.delLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delLineBtn.Location = new System.Drawing.Point(605, 436);
+            this.delLineBtn.Location = new System.Drawing.Point(698, 436);
             this.delLineBtn.Name = "delLineBtn";
-            this.delLineBtn.Size = new System.Drawing.Size(159, 42);
+            this.delLineBtn.Size = new System.Drawing.Size(128, 42);
             this.delLineBtn.TabIndex = 7;
             this.delLineBtn.Text = "Delete Line";
             this.delLineBtn.UseVisualStyleBackColor = true;
@@ -257,7 +257,7 @@
             this.completeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.completeLabel.Location = new System.Drawing.Point(276, 436);
             this.completeLabel.Name = "completeLabel";
-            this.completeLabel.Size = new System.Drawing.Size(323, 42);
+            this.completeLabel.Size = new System.Drawing.Size(416, 42);
             this.completeLabel.TabIndex = 8;
             this.completeLabel.Text = "This file was marked as complete.\r\nIf you want to edit it, untick it from the fil" +
     "e list.";
@@ -291,7 +291,6 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DragonPunk Reviser";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -95,7 +95,6 @@ namespace Reviser
             {
                 listView.Enabled = false;
                 addLineBtn.Enabled = false;
-                SystemSounds.Beep.Play();
                 completeLabel.Visible = true;
             }
             else
@@ -328,42 +327,52 @@ namespace Reviser
         {
             var item = fileListBox.SelectedItem.ToString();
 
-            if (pf.project.files.Count > 0 && pf.project.files.ContainsKey(item))
+            if (e.NewValue == CheckState.Checked)
             {
-                if (e.NewValue == CheckState.Checked)
-                {
-                    DialogResult dr = MessageBox.Show("Are you sure you want to mark this file as complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+                DialogResult dr = DialogResult.Yes;
 
-                    if (dr == DialogResult.Yes)
+                if (pf.project.files.ContainsKey(item))
+                    if (pf.project.files[item].content.Count > 0)
+                        dr = MessageBox.Show("Are you sure you want to mark this file as complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+
+                if (dr == DialogResult.Yes)
+                {
+                    if (pf.project.files.ContainsKey(item))
                     {
                         pf.project.files[item].complete = true;
+                    }
 
-                        listView.Enabled = false;
-                        addLineBtn.Enabled = false;
-                        SystemSounds.Beep.Play();
-                        completeLabel.Visible = true;
-                    }
-                    else
-                    {
-                        e.NewValue = CheckState.Unchecked;
-                    }
+                    listView.Enabled = false;
+                    addLineBtn.Enabled = false;
+                    completeLabel.Visible = true;
                 }
                 else
                 {
-                    DialogResult dr = MessageBox.Show("Are you sure you want to mark this file as not complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+                    e.NewValue = CheckState.Unchecked;
+                }
+            }
+            else
+            {
+                DialogResult dr = DialogResult.Yes;
 
-                    if (dr == DialogResult.Yes)
+                if (pf.project.files.ContainsKey(item))
+                    if (pf.project.files[item].content.Count > 0)
+                        dr = MessageBox.Show("Are you sure you want to mark this file as not complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+
+                if (dr == DialogResult.Yes)
+                {
+                    if (pf.project.files.ContainsKey(item))
                     {
                         pf.project.files[item].complete = false;
+                    }
 
-                        listView.Enabled = true;
-                        addLineBtn.Enabled = true;
-                        completeLabel.Visible = false;
-                    }
-                    else
-                    {
-                        e.NewValue = CheckState.Checked;
-                    }
+                    listView.Enabled = true;
+                    addLineBtn.Enabled = true;
+                    completeLabel.Visible = false;
+                }
+                else
+                {
+                    e.NewValue = CheckState.Checked;
                 }
             }
         }
