@@ -338,9 +338,7 @@ namespace Reviser
                 if (dr == DialogResult.Yes)
                 {
                     if (pf.project.files.ContainsKey(item))
-                    {
                         pf.project.files[item].complete = true;
-                    }
 
                     listView.Enabled = false;
                     addLineBtn.Enabled = false;
@@ -362,9 +360,7 @@ namespace Reviser
                 if (dr == DialogResult.Yes)
                 {
                     if (pf.project.files.ContainsKey(item))
-                    {
                         pf.project.files[item].complete = false;
-                    }
 
                     listView.Enabled = true;
                     addLineBtn.Enabled = true;
