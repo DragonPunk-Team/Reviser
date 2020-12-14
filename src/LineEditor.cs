@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Media;
 using System.Text;
 using System.Windows.Forms;
@@ -24,7 +26,7 @@ namespace Reviser
         GMD origGMD;
         GMD tranGMD;
         int contentId;
-        string tranLine;
+        List<string> tranLines = new List<string>();
 
         public LineEditor(LineData lineData)
         {
@@ -66,6 +68,7 @@ namespace Reviser
             var tranLines = tranGMD.GetLines(idBox.Text);
 
             string lastChar = "";
+            this.tranLines.Clear();
 
             foreach (var line in origLines)
             {
@@ -95,10 +98,12 @@ namespace Reviser
                 }
                 else
                 {
-                    tranLine = tranLines[index].Item2;
+                    var tranLine = tranLines[index].Item2;
 
                     if (!colorCheckBox.Checked)
                         tranLine = tranGMD.RemoveColors(tranLine);
+
+                    this.tranLines.Add(tranLine);
 
                     sb.AppendLine(tranLine);
                 }
@@ -208,7 +213,16 @@ namespace Reviser
 
         private void copyLineBtn_Click(object sender, EventArgs e)
         {
-            commentBox.Text += tranLine;
+            foreach (string line in tranLines)
+            {
+                if (commentCheckBox.Checked)
+                    commentBox.Text += "<n>" + line + "</n>";
+                else
+                    commentBox.Text += line;
+
+                if (tranLines.Last() != line)
+                    commentBox.Text += "\r\n";
+            }
         }
 
         private void insertLineIdBtn_Click(object sender, EventArgs e)
