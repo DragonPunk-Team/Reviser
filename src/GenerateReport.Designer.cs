@@ -38,6 +38,7 @@ namespace Reviser
             this.progressBar.Location = new System.Drawing.Point(12, 39);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(361, 23);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 0;
             // 
             // statusLabel

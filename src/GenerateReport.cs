@@ -55,6 +55,9 @@ namespace Reviser
 
         private void OrderProjectFile()
         {
+            statusLabel.Text = "Ordering files...";
+            progressBar.Style = ProgressBarStyle.Marquee;
+
             var copy = new ProjectFile.Project()
             {
                 files = new Dictionary<string, ProjectFile.RevisedFile>()
@@ -67,6 +70,8 @@ namespace Reviser
                             copy.files.Add(file.Key, file.Value);
  
             pf.project.files.Clear();
+
+            progressBar.Style = ProgressBarStyle.Continuous;
 
             foreach (var file in copy.files)
             {
@@ -112,11 +117,16 @@ namespace Reviser
                 {
                     pf.project.files.Add(file.Key, file.Value);
                 }
+
+                progressBar.Value = (Array.IndexOf(copy.files.ToArray(), file) + 1 ) / copy.files.Count;
             }
         }
 
         private void Generate()
         {
+            progressBar.Value = 0;
+            statusLabel.Text = "Generating report...";
+
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("# " + pf.project.name);
@@ -124,6 +134,8 @@ namespace Reviser
 
             foreach (string file in pf.project.files.Keys)
             {
+                statusLabel.Text = "Adding file " + file + "...";
+
                 origGMD = new GMD();
                 tranGMD = new GMD();
 
@@ -205,6 +217,8 @@ namespace Reviser
 
                     sb.Append("\n\n\n");
                 }
+
+                progressBar.Value = (Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1) / pf.project.files.Count;
             }
 
             sb.Length -= 3;
