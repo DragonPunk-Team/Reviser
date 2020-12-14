@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -145,7 +144,8 @@ namespace Reviser
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    File.WriteAllText(sfd.FileName, JsonConvert.SerializeObject(newpf.project, Formatting.Indented));
+                    newpf.path = sfd.FileName;
+                    newpf.WriteProject();
 
                     mf.Open(sfd.FileName);
 
@@ -193,7 +193,8 @@ namespace Reviser
 
                 newpf.project.files = pf.project.files;
 
-                File.WriteAllText(pf.path, JsonConvert.SerializeObject(newpf.project, Formatting.Indented));
+                newpf.path = pf.path;
+                newpf.WriteProject();
 
                 mf.Open(pf.path);
 
