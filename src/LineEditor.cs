@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
@@ -26,7 +26,7 @@ namespace Reviser
         GMD origGMD;
         GMD tranGMD;
         int contentId;
-        List<string> tranLines = new List<string>();
+        Tuple<string, string>[] tranLines;
 
         public LineEditor(LineData lineData)
         {
@@ -69,10 +69,9 @@ namespace Reviser
             StringBuilder sb = new StringBuilder();
 
             var origLines = origGMD.GetLines(idBox.Text);
-            var tranLines = tranGMD.GetLines(idBox.Text);
+            tranLines = tranGMD.GetLines(idBox.Text);
 
             string lastChar = "";
-            this.tranLines.Clear();
 
             foreach (var line in origLines)
             {
@@ -106,8 +105,6 @@ namespace Reviser
 
                     if (!colorCheckBox.Checked)
                         tranLine = tranGMD.RemoveColors(tranLine);
-
-                    this.tranLines.Add(tranLine);
 
                     sb.AppendLine(tranLine);
                 }
@@ -217,16 +214,66 @@ namespace Reviser
 
         private void copyLineBtn_Click(object sender, EventArgs e)
         {
-            foreach (string line in tranLines)
-            {
-                if (commentCheckBox.Checked)
-                    commentBox.Text += "<n>" + line + "</n>";
-                else
-                    commentBox.Text += line;
+            StringBuilder sb = new StringBuilder();
+            string currentLine;
+            GMD gmd = new GMD();
 
-                if (tranLines.Last() != line)
-                    commentBox.Text += "\r\n";
+            if (tranLines.Count() == 1)
+            {
+                currentLine = tranLines[0].Item2;
+
+                if (!colorCheckBox.Checked)
+                    currentLine = gmd.RemoveColors(currentLine);
+
+                if (commentCheckBox.Checked)
+                    sb.Append("<n>" + currentLine + "</n>");
+                else
+                    sb.Append(currentLine);
             }
+            else
+            {
+                string lastChar = "";
+                bool sameChar = false;
+
+                foreach (var line in tranLines)
+                {
+                    sameChar = (line.Item1 == lastChar);
+
+                    if (sameChar)
+                    {
+                        if (!sb.ToString().EndsWith("\n"))
+                            sb.AppendLine();
+                    }
+                    else
+                    {
+                        lastChar = line.Item1;
+
+                        if (commentCheckBox.Checked)
+                            sb.AppendLine("<n>**" + line.Item1 + ":**</n>");
+                        else
+                            sb.AppendLine("**" + line.Item1 + ":**");
+                    }
+
+                    currentLine = line.Item2;
+
+                    if (!colorCheckBox.Checked)
+                        currentLine = gmd.RemoveColors(currentLine);
+
+                    if (commentCheckBox.Checked)
+                        sb.AppendLine("<n>" + currentLine + "</n>");
+                    else
+                        sb.AppendLine(currentLine);
+
+                    if (tranLines.Last() != line)
+                        sb.AppendLine();
+                }
+
+                if (sameChar)
+                    sb.Remove(0, sb.ToString().Split('\n').FirstOrDefault().Length + 1);
+            }
+
+            commentBox.Text += sb.ToString();
+            commentBox.Select(commentBox.Text.Length, 0);
         }
 
         private void insertLineIdBtn_Click(object sender, EventArgs e)
