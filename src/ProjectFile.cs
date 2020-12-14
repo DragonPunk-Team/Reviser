@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
+using System.Text;
 
 namespace Reviser
 {
@@ -38,12 +41,18 @@ namespace Reviser
 
         public void ReadProject()
         {
-            project = JsonConvert.DeserializeObject<Project>(File.ReadAllText(path));
+            byte[] compressed = Convert.FromBase64String(File.ReadAllText(path));
+            byte[] decompressed = Decompress(compressed);
+
+            project = JsonConvert.DeserializeObject<Project>(Encoding.UTF8.GetString(decompressed));
         }
 
         public void WriteProject()
         {
-            File.WriteAllText(path, JsonConvert.SerializeObject(project, Formatting.Indented));
+            byte[] encoded = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(project));
+            byte[] compressed = Compress(encoded);
+
+            File.WriteAllText(path, Convert.ToBase64String(compressed));
         }
 
         public string Comment(bool comment)
@@ -52,6 +61,40 @@ namespace Reviser
                 return "Yes";
             else
                 return "No";
+        }
+
+        public byte[] Compress(byte[] input)
+        {
+            using (var result = new MemoryStream())
+            {
+                var lengthBytes = BitConverter.GetBytes(input.Length);
+                result.Write(lengthBytes, 0, 4);
+
+                using (var compressionStream = new GZipStream(result, CompressionMode.Compress))
+                {
+                    compressionStream.Write(input, 0, input.Length);
+                    compressionStream.Flush();
+                }
+
+                return result.ToArray();
+            }
+        }
+
+        public static byte[] Decompress(byte[] input)
+        {
+            using (var source = new MemoryStream(input))
+            {
+                byte[] lengthBytes = new byte[4];
+                source.Read(lengthBytes, 0, 4);
+
+                var length = BitConverter.ToInt32(lengthBytes, 0);
+                using (var decompressionStream = new GZipStream(source, CompressionMode.Decompress))
+                {
+                    var result = new byte[length];
+                    decompressionStream.Read(result, 0, length);
+                    return result;
+                }
+            }
         }
     }
 }
