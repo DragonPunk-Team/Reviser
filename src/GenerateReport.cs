@@ -130,9 +130,10 @@ namespace Reviser
 
             foreach (string file in pf.project.files.Keys)
             {
-                var filePath = "\\" + file;
                 origGMD = new GMD();
                 tranGMD = new GMD();
+
+                var filePath = "\\" + file;
 
                 origGMD.ReadGMD(pf.project.orig_path + filePath);
                 tranGMD.ReadGMD(pf.project.tran_path + filePath);
