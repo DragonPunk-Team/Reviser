@@ -10,12 +10,7 @@ namespace Reviser
     {
         Tuple<string, string>[][] Content;
 
-        public GMD(string file)
-        {
-            ReadGMD(file);
-        }
-
-        private void ReadGMD(string filepath)
+        public void ReadGMD(string filepath)
         {
             var fstr = File.OpenRead(filepath);
             var br = new BinaryReader(fstr);

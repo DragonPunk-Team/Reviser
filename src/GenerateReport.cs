@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -79,7 +79,9 @@ namespace Reviser
                 {
                     if (file.Value.content.Count > 1)
                     {
-                        GMD gmd = new GMD(pf.project.tran_path + "\\" + file.Key);
+                        GMD gmd = new GMD();
+                        gmd.ReadGMD(pf.project.tran_path + "\\" + file.Key);
+
                         List<int> ids = new List<int>();
 
                         foreach (var content in file.Value.content)
@@ -129,8 +131,11 @@ namespace Reviser
             foreach (string file in pf.project.files.Keys)
             {
                 var filePath = "\\" + file;
-                origGMD = new GMD(pf.project.orig_path + filePath);
-                tranGMD = new GMD(pf.project.tran_path + filePath);
+                origGMD = new GMD();
+                tranGMD = new GMD();
+
+                origGMD.ReadGMD(pf.project.orig_path + filePath);
+                tranGMD.ReadGMD(pf.project.tran_path + filePath);
 
                 sb.AppendLine("## `" + file + "`");
                 sb.AppendLine();

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
@@ -34,8 +34,12 @@ namespace Reviser
 
             ld = lineData;
             var filePath = "\\" + ld.currentFile;
-            origGMD = new GMD(ld.origPath + filePath);
-            tranGMD = new GMD(ld.tranPath + filePath);
+
+            origGMD = new GMD();
+            tranGMD = new GMD();
+
+            origGMD.ReadGMD(ld.origPath + filePath);
+            tranGMD.ReadGMD(ld.tranPath + filePath);
         }
 
         private void LineEditor_Load(object sender, EventArgs e)
