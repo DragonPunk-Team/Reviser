@@ -77,7 +77,7 @@ namespace Reviser
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "Open Project",
-                Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr"
+                Filter = "DragonPunk Reviser Project (*.drpj)|*.drpj"
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -280,7 +280,7 @@ namespace Reviser
             SaveFileDialog sfd = new SaveFileDialog()
             {
                 Title = "Save Project",
-                Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr",
+                Filter = "DragonPunk Reviser Project (*.drpj)|*.drpj",
                 FileName = pf.project.name
             };
 

@@ -138,7 +138,7 @@ namespace Reviser
                 SaveFileDialog sfd = new SaveFileDialog()
                 {
                     Title = "Save Project",
-                    Filter = "DragonPunk Reviser Project (*.dtr)|*.dtr",
+                    Filter = "DragonPunk Reviser Project (*.drpj)|*.drpj",
                     FileName = newpf.project.name
                 };
 
