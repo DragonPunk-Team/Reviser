@@ -201,6 +201,21 @@
   <ItemGroup>
     <None Include="Resources\Add Note.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add previous lines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy line from above.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Insert filename and line ID.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Insert line ID.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Normal text.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

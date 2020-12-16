@@ -73,6 +73,26 @@ namespace Reviser.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_previous_lines {
+            get {
+                object obj = ResourceManager.GetObject("Add previous lines", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Copy_line_from_above {
+            get {
+                object obj = ResourceManager.GetObject("Copy line from above", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Generate_Report {
             get {
                 object obj = ResourceManager.GetObject("Generate Report", resourceCulture);
@@ -83,9 +103,39 @@ namespace Reviser.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Insert_filename_and_line_ID {
+            get {
+                object obj = ResourceManager.GetObject("Insert filename and line ID", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Insert_line_ID {
+            get {
+                object obj = ResourceManager.GetObject("Insert line ID", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap New_Project {
             get {
                 object obj = ResourceManager.GetObject("New Project", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Normal_text {
+            get {
+                object obj = ResourceManager.GetObject("Normal text", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
