@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.idBox = new System.Windows.Forms.TextBox();
-            this.searchBtn = new System.Windows.Forms.Button();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.commentBox = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -39,6 +38,7 @@
             this.lineBox = new System.Windows.Forms.TextBox();
             this.commentCheckBox = new System.Windows.Forms.CheckBox();
             this.colorCheckBox = new System.Windows.Forms.CheckBox();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.copyLineBtn = new System.Windows.Forms.ToolStripButton();
             this.insertLineIdBtn = new System.Windows.Forms.ToolStripButton();
             this.insertFileLineIdBtn = new System.Windows.Forms.ToolStripButton();
@@ -65,17 +65,6 @@
             this.idBox.Name = "idBox";
             this.idBox.Size = new System.Drawing.Size(67, 20);
             this.idBox.TabIndex = 0;
-            // 
-            // searchBtn
-            // 
-            this.searchBtn.Location = new System.Drawing.Point(164, 6);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(50, 20);
-            this.searchBtn.TabIndex = 0;
-            this.searchBtn.TabStop = false;
-            this.searchBtn.Text = "Search";
-            this.searchBtn.UseVisualStyleBackColor = true;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // toolStripContainer1
             // 
@@ -180,6 +169,17 @@
             this.colorCheckBox.Text = "Include colors";
             this.colorCheckBox.UseVisualStyleBackColor = true;
             this.colorCheckBox.CheckedChanged += new System.EventHandler(this.colorCheckBox_CheckedChanged);
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Image = global::Reviser.Properties.Resources.Search;
+            this.searchBtn.Location = new System.Drawing.Point(164, 6);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(20, 20);
+            this.searchBtn.TabIndex = 0;
+            this.searchBtn.TabStop = false;
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // copyLineBtn
             // 

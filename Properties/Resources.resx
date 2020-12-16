@@ -124,6 +124,12 @@
   <data name="New Project" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\New Project.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Copy line from above" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Copy line from above.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Insert filename and line ID" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Insert filename and line ID.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Project Settings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Project Settings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,19 +142,16 @@
   <data name="Open Project" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Open Project.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Add previous lines" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add previous lines.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Copy line from above" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Copy line from above.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Insert filename and line ID" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Insert filename and line ID.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Normal text" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Normal text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Insert line ID" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Insert line ID.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Normal text" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Normal text.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Add previous lines" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add previous lines.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
