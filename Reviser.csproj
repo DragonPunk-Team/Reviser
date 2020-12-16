@@ -122,7 +122,8 @@
       <DependentUpon>ProjectSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\ToolStripOverride.cs" />
+    <Compile Include="src\ui\CustomColorTable.cs" />
+    <Compile Include="src\ui\ToolStripOverride.cs" />
     <EmbeddedResource Include="src\GenerateReport.resx">
       <DependentUpon>GenerateReport.cs</DependentUpon>
     </EmbeddedResource>

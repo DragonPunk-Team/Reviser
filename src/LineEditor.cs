@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -31,6 +32,11 @@ namespace Reviser
         public LineEditor(LineData lineData)
         {
             InitializeComponent();
+
+            toolStrip1.Renderer = new ToolStripOverride();
+            toolStripContainer1.TopToolStripPanel.RowMargin = new Padding(0);
+            toolStrip1.Location = new Point(0, 0);
+            toolStrip1.Size = new Size(toolStrip1.Size.Width + 3, toolStrip1.Size.Height);
 
             ld = lineData;
             var filePath = "\\" + ld.currentFile;
