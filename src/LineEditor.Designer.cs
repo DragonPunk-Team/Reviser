@@ -219,7 +219,7 @@
             this.prevLinesBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.prevLinesBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.prevLinesBtn.Enabled = false;
-            this.prevLinesBtn.Image = global::Reviser.Properties.Resources.Add_previous_lines;
+            this.prevLinesBtn.Image = global::Reviser.Properties.Resources.Add_previous_lines___no_lines;
             this.prevLinesBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.prevLinesBtn.Name = "prevLinesBtn";
             this.prevLinesBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

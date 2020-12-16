@@ -335,11 +335,13 @@ namespace Reviser
             if (dr == DialogResult.OK)
             {
                 prevLinesBtn.Text = ple.lineId;
+                prevLinesBtn.Image = Properties.Resources.Add_previous_lines;
                 prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
             }
             else if (dr == DialogResult.Abort)
             {
                 prevLinesBtn.Text = "-1";
+                prevLinesBtn.Image = Properties.Resources.Add_previous_lines___no_lines;
                 prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.Image;
             }
         }

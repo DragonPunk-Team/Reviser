@@ -83,6 +83,16 @@ namespace Reviser.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_previous_lines___no_lines {
+            get {
+                object obj = ResourceManager.GetObject("Add previous lines - no lines", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Copy_line_from_above {
             get {
                 object obj = ResourceManager.GetObject("Copy line from above", resourceCulture);
