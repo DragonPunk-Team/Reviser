@@ -31,7 +31,7 @@ namespace Reviser
                 }
                 else if (dr == DialogResult.Cancel)
                 {
-                    this.DialogResult = DialogResult.Cancel;
+                    this.DialogResult = dr;
                     this.Close();
                 }
             }
@@ -46,6 +46,12 @@ namespace Reviser
                 if (string.IsNullOrWhiteSpace(match.Value))
                     lineIdBox.Text = rx.Replace(lineIdBox.Text, "");
             }
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Reviser
                 }
                 else if (dr == DialogResult.Cancel)
                 {
-                    this.DialogResult = DialogResult.Cancel;
+                    this.DialogResult = dr;
                     this.Close();
                 }
             }
@@ -43,6 +43,12 @@ namespace Reviser
         private void InsertFileName_Load(object sender, EventArgs e)
         {
             fileComboBox.Items.AddRange(filelist);
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

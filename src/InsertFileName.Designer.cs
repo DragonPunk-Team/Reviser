@@ -32,6 +32,7 @@ namespace Reviser
             this.label1 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.fileComboBox = new System.Windows.Forms.ComboBox();
+            this.closeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -61,11 +62,24 @@ namespace Reviser
             this.fileComboBox.Size = new System.Drawing.Size(182, 21);
             this.fileComboBox.TabIndex = 3;
             // 
+            // closeButton
+            // 
+            this.closeButton.Location = new System.Drawing.Point(0, 0);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(16, 16);
+            this.closeButton.TabIndex = 4;
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Visible = false;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
             // InsertFileName
             // 
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.closeButton;
             this.ClientSize = new System.Drawing.Size(206, 83);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.fileComboBox);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.label1);
@@ -87,5 +101,6 @@ namespace Reviser
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.ComboBox fileComboBox;
+        private System.Windows.Forms.Button closeButton;
     }
 }
