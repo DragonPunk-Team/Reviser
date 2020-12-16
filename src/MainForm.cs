@@ -20,9 +20,9 @@ namespace Reviser
         private void EnableControls()
         {
             addLineBtn.Enabled = true;
+            addNoteBtn.Enabled = true;
             listView.Enabled = true;
             projSettingsBtn.Enabled = true;
-            saveAsProjBtn.Enabled = true;
             saveProjBtn.Enabled = true;
             generateReportBtn.Enabled = true;
         }
@@ -60,12 +60,14 @@ namespace Reviser
             {
                 listView.Enabled = false;
                 addLineBtn.Enabled = false;
+                addNoteBtn.Enabled = false;
                 completeLabel.Visible = true;
             }
             else
             {
                 listView.Enabled = true;
                 addLineBtn.Enabled = true;
+                addNoteBtn.Enabled = true;
                 completeLabel.Visible = false;
             }
 
@@ -95,12 +97,14 @@ namespace Reviser
             {
                 listView.Enabled = false;
                 addLineBtn.Enabled = false;
+                addNoteBtn.Enabled = false;
                 completeLabel.Visible = true;
             }
             else
             {
                 listView.Enabled = true;
                 addLineBtn.Enabled = true;
+                addNoteBtn.Enabled = true;
                 completeLabel.Visible = false;
             }
 
@@ -269,13 +273,13 @@ namespace Reviser
             }
         }
 
-        private void saveProjBtn_Click(object sender, EventArgs e)
+        private void saveProjBtn_ButtonClick(object sender, EventArgs e)
         {
             pf.WriteProject();
             SystemSounds.Beep.Play();
         }
 
-        private void saveAsProjBtn_Click(object sender, EventArgs e)
+        private void saveProjectAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog()
             {
@@ -342,6 +346,7 @@ namespace Reviser
 
                     listView.Enabled = false;
                     addLineBtn.Enabled = false;
+                    addNoteBtn.Enabled = false;
                     completeLabel.Visible = true;
                 }
                 else
@@ -364,6 +369,7 @@ namespace Reviser
 
                     listView.Enabled = true;
                     addLineBtn.Enabled = true;
+                    addNoteBtn.Enabled = true;
                     completeLabel.Visible = false;
                 }
                 else

@@ -183,7 +183,24 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Generate Report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New Project.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Open Project.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Project Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save Project.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add Note.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
