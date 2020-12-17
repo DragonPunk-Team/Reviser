@@ -224,19 +224,12 @@ namespace Reviser
 
             foreach (var section in Content)
             {
-                if ((section.Length + totalLength) > lineId)
-                {
-                    int index = lineId - totalLength - firstLine;
+                int index = lineId - totalLength - firstLine;
 
-                    if (index >= 0 && index < section.Length)
-                        return section[index];
-                    else
-                        return null;
-                }
+                if (index >= 0 && index < section.Length)
+                    return section[index];
                 else
-                {
                     totalLength++;
-                }
 
                 totalLength += 1 + section.Length;
             }
