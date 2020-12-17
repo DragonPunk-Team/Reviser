@@ -215,17 +215,14 @@ namespace Reviser
                     pf.project.files.Add(currentItem, rf);
                 }
 
-                try
+                int contentId = lineEditor.newfc.contentId;
+
+                if (pf.project.files[currentItem].content.FindIndex(line => line.contentId == contentId) != -1)
                 {
-                    int contentId = lineEditor.newfc.contentId;
                     var item = pf.project.files[currentItem].content.Single(line => line.contentId == contentId);
 
                     if (pf.project.files[currentItem].content.Contains(item))
                         pf.project.files[currentItem].content.Remove(item);
-                }
-                catch (System.InvalidOperationException)
-                {
-                    ;
                 }
 
                 ProjectFile.FileContent fc = new ProjectFile.FileContent
