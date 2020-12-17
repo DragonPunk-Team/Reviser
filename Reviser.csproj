@@ -84,6 +84,12 @@
     </Compile>
     <Compile Include="src\gmd\Cast.cs" />
     <Compile Include="src\gmd\GMD.cs" />
+    <Compile Include="src\InfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\InfoForm.Designer.cs">
+      <DependentUpon>InfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\InsertFileName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     <Compile Include="src\ui\ToolStripOverride.cs" />
     <EmbeddedResource Include="src\GenerateReport.resx">
       <DependentUpon>GenerateReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\InfoForm.resx">
+      <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\InsertFileName.resx">
       <DependentUpon>InsertFileName.cs</DependentUpon>
@@ -231,6 +240,7 @@
     <None Include="Resources\Add previous lines - no lines.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Info.png" />
     <Content Include="Reviser.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

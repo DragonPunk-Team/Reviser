@@ -417,5 +417,11 @@ namespace Reviser
                 pf.project.files[currentFile].note = "";
             }
         }
+
+        private void infoBtn_Click(object sender, EventArgs e)
+        {
+            InfoForm info = new InfoForm();
+            info.ShowDialog();
+        }
     }
 }

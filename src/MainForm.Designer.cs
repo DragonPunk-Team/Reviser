@@ -49,6 +49,7 @@
             this.saveProjectAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateReportBtn = new System.Windows.Forms.ToolStripButton();
             this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
+            this.infoBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +78,8 @@
             this.saveProjBtn,
             this.toolStripSeparator1,
             this.generateReportBtn,
-            this.projSettingsBtn});
+            this.projSettingsBtn,
+            this.infoBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -237,7 +239,7 @@
             // saveProjectAsToolStripMenuItem
             // 
             this.saveProjectAsToolStripMenuItem.Name = "saveProjectAsToolStripMenuItem";
-            this.saveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.saveProjectAsToolStripMenuItem.Text = "Save Project As...";
             this.saveProjectAsToolStripMenuItem.Click += new System.EventHandler(this.saveProjectAsToolStripMenuItem_Click);
             // 
@@ -264,6 +266,17 @@
             this.projSettingsBtn.Size = new System.Drawing.Size(32, 32);
             this.projSettingsBtn.Text = "Project Settings";
             this.projSettingsBtn.Click += new System.EventHandler(this.projSettingsBtn_Click);
+            // 
+            // infoBtn
+            // 
+            this.infoBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.infoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.infoBtn.Image = global::Reviser.Properties.Resources.Info;
+            this.infoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.infoBtn.Name = "infoBtn";
+            this.infoBtn.Size = new System.Drawing.Size(28, 29);
+            this.infoBtn.ToolTipText = "Info";
+            this.infoBtn.Click += new System.EventHandler(this.infoBtn_Click);
             // 
             // MainForm
             // 
@@ -310,6 +323,7 @@
         private System.Windows.Forms.ToolStripSplitButton saveProjBtn;
         private System.Windows.Forms.ToolStripMenuItem saveProjectAsToolStripMenuItem;
         private System.Windows.Forms.ToolTip addNoteTooltip;
+        private System.Windows.Forms.ToolStripButton infoBtn;
     }
 }
 
