@@ -168,14 +168,10 @@ namespace Reviser
 
             int startLine;
 
-            try
-            {
-                 startLine = int.Parse(ids[0].Value);
-            }
-            catch (System.FormatException)
-            {
+            if (int.TryParse(ids[0].Value, out _))
+                startLine = int.Parse(ids[0].Value);
+            else
                 return new int[0];
-            }
 
             int endLine = 0;
 
@@ -183,7 +179,7 @@ namespace Reviser
             {
                 foreach (Match id in ids)
                 {
-                    if (id.Value != ids[0].Value && id.Value != "")
+                    if (id.Value != ids[0].Value && id.Value != "" && int.TryParse(id.Value, out _))
                     {
                         endLine = int.Parse(id.Value);
                         break;
@@ -232,14 +228,10 @@ namespace Reviser
                 {
                     int index = lineId - totalLength - firstLine;
 
-                    try
-                    {
+                    if (index >= 0 && index < section.Length)
                         return section[index];
-                    }
-                    catch (IndexOutOfRangeException)
-                    {
+                    else
                         return null;
-                    }
                 }
                 else
                 {
@@ -262,6 +254,9 @@ namespace Reviser
 
             foreach (int id in idList)
             {
+                if (id < 1)
+                    break;
+
                 var line = GetLine(id);
 
                 if (line != null && !string.IsNullOrEmpty(line.Item2) && line != lastTuple)
