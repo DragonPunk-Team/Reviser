@@ -1,0 +1,2 @@
+@echo off
+".\packages\ILMerge.3.0.41\tools\net452\ILMerge.exe" /target:winexe /targetplatform:"v4,C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2" /ndebug:false /out:".\bin\Reviser.exe" ".\bin\Release\Reviser.exe" ".\bin\Release\Newtonsoft.Json.dll"
