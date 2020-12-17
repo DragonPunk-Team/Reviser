@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.addLineBtn = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -236,7 +237,7 @@
             // saveProjectAsToolStripMenuItem
             // 
             this.saveProjectAsToolStripMenuItem.Name = "saveProjectAsToolStripMenuItem";
-            this.saveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.saveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveProjectAsToolStripMenuItem.Text = "Save Project As...";
             this.saveProjectAsToolStripMenuItem.Click += new System.EventHandler(this.saveProjectAsToolStripMenuItem_Click);
             // 
@@ -277,6 +278,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.editLineBtn);
             this.Controls.Add(this.addLineBtn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(591, 404);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
