@@ -75,7 +75,6 @@
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(238, 16);
             this.linkLabel1.TabIndex = 3;
-            this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Program icon by Freepik on Flaticon";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkLabel1.UseCompatibleTextRendering = true;
@@ -88,7 +87,6 @@
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(238, 16);
             this.linkLabel2.TabIndex = 4;
-            this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Color icons by Icons8.";
             this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkLabel2.UseCompatibleTextRendering = true;
@@ -101,7 +99,6 @@
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(238, 16);
             this.linkLabel3.TabIndex = 6;
-            this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "JSON Parser by NewtonSoft.";
             this.linkLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkLabel3.UseCompatibleTextRendering = true;
@@ -110,12 +107,12 @@
             // closeButton
             // 
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(0, 0);
+            this.closeButton.Location = new System.Drawing.Point(279, 0);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(16, 16);
-            this.closeButton.TabIndex = 7;
+            this.closeButton.TabIndex = 0;
+            this.closeButton.TabStop = false;
             this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Visible = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // InfoForm

@@ -1,4 +1,4 @@
-﻿namespace Reviser
+namespace Reviser
 {
     partial class LineEditor
     {
@@ -108,6 +108,7 @@
             this.normalTextBtn});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.toolStrip1.Size = new System.Drawing.Size(399, 25);
@@ -260,7 +261,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LineEditor";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "LineEditor";
             this.Load += new System.EventHandler(this.LineEditor_Load);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);

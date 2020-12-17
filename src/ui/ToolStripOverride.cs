@@ -11,7 +11,10 @@ namespace Reviser
         // Pressed button background color.
         Brush bgPressedColor = Brushes.LightGray;
 
-        public ToolStripOverride() : base(new CustomColorTable()) { }
+        public ToolStripOverride() : base(new CustomColorTable())
+        {
+            base.RoundedEdges = false;
+        }
 
         protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e) { }
 

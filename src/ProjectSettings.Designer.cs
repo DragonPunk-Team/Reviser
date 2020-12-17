@@ -222,7 +222,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProjectSettings";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ProjectSettings";
             this.Load += new System.EventHandler(this.ProjectSettings_Load);
             this.ResumeLayout(false);

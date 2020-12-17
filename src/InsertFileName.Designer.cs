@@ -64,12 +64,13 @@ namespace Reviser
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(0, 0);
+            this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.closeButton.Location = new System.Drawing.Point(222, 0);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(16, 16);
             this.closeButton.TabIndex = 4;
+            this.closeButton.TabStop = false;
             this.closeButton.UseVisualStyleBackColor = true;
-            this.closeButton.Visible = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // InsertFileName
