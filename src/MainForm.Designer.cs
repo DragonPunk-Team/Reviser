@@ -32,7 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.addLineBtn = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.newProjBtn = new System.Windows.Forms.ToolStripButton();
+            this.openProjBtn = new System.Windows.Forms.ToolStripButton();
+            this.saveProjBtn = new System.Windows.Forms.ToolStripSplitButton();
+            this.saveProjectAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.generateReportBtn = new System.Windows.Forms.ToolStripButton();
+            this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
+            this.infoBtn = new System.Windows.Forms.ToolStripButton();
             this.fileListBox = new System.Windows.Forms.CheckedListBox();
             this.listView = new System.Windows.Forms.ListView();
             this.lineId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -43,13 +50,6 @@
             this.completeLabel = new System.Windows.Forms.Label();
             this.addNoteTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.addNoteBtn = new System.Windows.Forms.Button();
-            this.newProjBtn = new System.Windows.Forms.ToolStripButton();
-            this.openProjBtn = new System.Windows.Forms.ToolStripButton();
-            this.saveProjBtn = new System.Windows.Forms.ToolStripSplitButton();
-            this.saveProjectAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generateReportBtn = new System.Windows.Forms.ToolStripButton();
-            this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
-            this.infoBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,16 +82,96 @@
             this.infoBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(1082, 32);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // newProjBtn
+            // 
+            this.newProjBtn.AutoSize = false;
+            this.newProjBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.newProjBtn.Image = global::Reviser.Properties.Resources.New_Project;
+            this.newProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newProjBtn.Name = "newProjBtn";
+            this.newProjBtn.Size = new System.Drawing.Size(32, 32);
+            this.newProjBtn.Text = "New Project";
+            this.newProjBtn.Click += new System.EventHandler(this.newProjBtn_Click);
+            // 
+            // openProjBtn
+            // 
+            this.openProjBtn.AutoSize = false;
+            this.openProjBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.openProjBtn.Image = global::Reviser.Properties.Resources.Open_Project;
+            this.openProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.openProjBtn.Name = "openProjBtn";
+            this.openProjBtn.Size = new System.Drawing.Size(32, 32);
+            this.openProjBtn.Text = "Open Project";
+            this.openProjBtn.Click += new System.EventHandler(this.openProjBtn_Click);
+            // 
+            // saveProjBtn
+            // 
+            this.saveProjBtn.AutoSize = false;
+            this.saveProjBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.saveProjBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveProjectAsToolStripMenuItem});
+            this.saveProjBtn.Enabled = false;
+            this.saveProjBtn.Image = global::Reviser.Properties.Resources.Save_Project;
+            this.saveProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.saveProjBtn.Name = "saveProjBtn";
+            this.saveProjBtn.Size = new System.Drawing.Size(43, 32);
+            this.saveProjBtn.Text = "Save Project";
+            this.saveProjBtn.ButtonClick += new System.EventHandler(this.saveProjBtn_ButtonClick);
+            // 
+            // saveProjectAsToolStripMenuItem
+            // 
+            this.saveProjectAsToolStripMenuItem.Name = "saveProjectAsToolStripMenuItem";
+            this.saveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.saveProjectAsToolStripMenuItem.Text = "Save Project As...";
+            this.saveProjectAsToolStripMenuItem.Click += new System.EventHandler(this.saveProjectAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 32);
+            // 
+            // generateReportBtn
+            // 
+            this.generateReportBtn.AutoSize = false;
+            this.generateReportBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.generateReportBtn.Enabled = false;
+            this.generateReportBtn.Image = global::Reviser.Properties.Resources.Generate_Report;
+            this.generateReportBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.generateReportBtn.Name = "generateReportBtn";
+            this.generateReportBtn.Size = new System.Drawing.Size(32, 32);
+            this.generateReportBtn.Text = "Generate Report";
+            this.generateReportBtn.Click += new System.EventHandler(this.generateReportBtn_Click);
+            // 
+            // projSettingsBtn
+            // 
+            this.projSettingsBtn.AutoSize = false;
+            this.projSettingsBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.projSettingsBtn.Enabled = false;
+            this.projSettingsBtn.Image = global::Reviser.Properties.Resources.Project_Settings;
+            this.projSettingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.projSettingsBtn.Name = "projSettingsBtn";
+            this.projSettingsBtn.Size = new System.Drawing.Size(32, 32);
+            this.projSettingsBtn.Text = "Project Settings";
+            this.projSettingsBtn.Click += new System.EventHandler(this.projSettingsBtn_Click);
+            // 
+            // infoBtn
+            // 
+            this.infoBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.infoBtn.AutoSize = false;
+            this.infoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.infoBtn.Image = global::Reviser.Properties.Resources.Info;
+            this.infoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.infoBtn.Name = "infoBtn";
+            this.infoBtn.Size = new System.Drawing.Size(32, 32);
+            this.infoBtn.ToolTipText = "Info";
+            this.infoBtn.Click += new System.EventHandler(this.infoBtn_Click);
             // 
             // fileListBox
             // 
@@ -199,84 +279,6 @@
             this.addNoteTooltip.SetToolTip(this.addNoteBtn, "Add Note");
             this.addNoteBtn.UseVisualStyleBackColor = true;
             this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
-            // 
-            // newProjBtn
-            // 
-            this.newProjBtn.AutoSize = false;
-            this.newProjBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newProjBtn.Image = global::Reviser.Properties.Resources.New_Project;
-            this.newProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newProjBtn.Name = "newProjBtn";
-            this.newProjBtn.Size = new System.Drawing.Size(32, 32);
-            this.newProjBtn.Text = "New Project";
-            this.newProjBtn.Click += new System.EventHandler(this.newProjBtn_Click);
-            // 
-            // openProjBtn
-            // 
-            this.openProjBtn.AutoSize = false;
-            this.openProjBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.openProjBtn.Image = global::Reviser.Properties.Resources.Open_Project;
-            this.openProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openProjBtn.Name = "openProjBtn";
-            this.openProjBtn.Size = new System.Drawing.Size(32, 32);
-            this.openProjBtn.Text = "Open Project";
-            this.openProjBtn.Click += new System.EventHandler(this.openProjBtn_Click);
-            // 
-            // saveProjBtn
-            // 
-            this.saveProjBtn.AutoSize = false;
-            this.saveProjBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.saveProjBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveProjectAsToolStripMenuItem});
-            this.saveProjBtn.Enabled = false;
-            this.saveProjBtn.Image = global::Reviser.Properties.Resources.Save_Project;
-            this.saveProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveProjBtn.Name = "saveProjBtn";
-            this.saveProjBtn.Size = new System.Drawing.Size(43, 32);
-            this.saveProjBtn.Text = "Save Project";
-            this.saveProjBtn.ButtonClick += new System.EventHandler(this.saveProjBtn_ButtonClick);
-            // 
-            // saveProjectAsToolStripMenuItem
-            // 
-            this.saveProjectAsToolStripMenuItem.Name = "saveProjectAsToolStripMenuItem";
-            this.saveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.saveProjectAsToolStripMenuItem.Text = "Save Project As...";
-            this.saveProjectAsToolStripMenuItem.Click += new System.EventHandler(this.saveProjectAsToolStripMenuItem_Click);
-            // 
-            // generateReportBtn
-            // 
-            this.generateReportBtn.AutoSize = false;
-            this.generateReportBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.generateReportBtn.Enabled = false;
-            this.generateReportBtn.Image = global::Reviser.Properties.Resources.Generate_Report;
-            this.generateReportBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.generateReportBtn.Name = "generateReportBtn";
-            this.generateReportBtn.Size = new System.Drawing.Size(32, 32);
-            this.generateReportBtn.Text = "Generate Report";
-            this.generateReportBtn.Click += new System.EventHandler(this.generateReportBtn_Click);
-            // 
-            // projSettingsBtn
-            // 
-            this.projSettingsBtn.AutoSize = false;
-            this.projSettingsBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.projSettingsBtn.Enabled = false;
-            this.projSettingsBtn.Image = global::Reviser.Properties.Resources.Project_Settings;
-            this.projSettingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.projSettingsBtn.Name = "projSettingsBtn";
-            this.projSettingsBtn.Size = new System.Drawing.Size(32, 32);
-            this.projSettingsBtn.Text = "Project Settings";
-            this.projSettingsBtn.Click += new System.EventHandler(this.projSettingsBtn_Click);
-            // 
-            // infoBtn
-            // 
-            this.infoBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.infoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.infoBtn.Image = global::Reviser.Properties.Resources.Info;
-            this.infoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.infoBtn.Name = "infoBtn";
-            this.infoBtn.Size = new System.Drawing.Size(28, 29);
-            this.infoBtn.ToolTipText = "Info";
-            this.infoBtn.Click += new System.EventHandler(this.infoBtn_Click);
             // 
             // MainForm
             // 
