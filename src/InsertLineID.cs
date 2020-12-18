@@ -39,7 +39,7 @@ namespace Reviser
 
         private void lineIdBox_TextChanged(object sender, EventArgs e)
         {
-            Regex rx = new Regex(@"[^0-9]*", RegexOptions.Compiled);
+            Regex rx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
 
             foreach (Match match in rx.Matches(lineIdBox.Text))
             {
