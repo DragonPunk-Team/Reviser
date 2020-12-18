@@ -128,8 +128,6 @@ namespace Reviser
             if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains("[Error]"))
             {
                 copyLineBtn.Enabled = false;
-                insertLineIdBtn.Enabled = false;
-                insertFileLineIdBtn.Enabled = false;
                 commentBox.Enabled = false;
                 commentCheckBox.Enabled = false;
                 prevLinesBtn.Enabled = false;
@@ -137,8 +135,6 @@ namespace Reviser
             else
             {
                 copyLineBtn.Enabled = true;
-                insertLineIdBtn.Enabled = true;
-                insertFileLineIdBtn.Enabled = true;
                 commentBox.Enabled = true;
                 commentCheckBox.Enabled = true;
                 prevLinesBtn.Enabled = true;
@@ -212,9 +208,17 @@ namespace Reviser
         private void commentCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (commentCheckBox.Checked)
+            {
                 normalTextBtn.Enabled = true;
+                insertLineIdBtn.Enabled = true;
+                insertFileLineIdBtn.Enabled = true;
+            }
             else
+            {
                 normalTextBtn.Enabled = false;
+                insertLineIdBtn.Enabled = false;
+                insertFileLineIdBtn.Enabled = false;
+            }
         }
 
         private void copyLineBtn_Click(object sender, EventArgs e)
