@@ -48,7 +48,7 @@ namespace Reviser
             // 
             this.okButton.Location = new System.Drawing.Point(12, 51);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(100, 23);
+            this.okButton.Size = new System.Drawing.Size(119, 23);
             this.okButton.TabIndex = 2;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
@@ -58,14 +58,14 @@ namespace Reviser
             // 
             this.lineIdBox.Location = new System.Drawing.Point(12, 25);
             this.lineIdBox.Name = "lineIdBox";
-            this.lineIdBox.Size = new System.Drawing.Size(100, 20);
+            this.lineIdBox.Size = new System.Drawing.Size(119, 20);
             this.lineIdBox.TabIndex = 1;
             this.lineIdBox.TextChanged += new System.EventHandler(this.lineIdBox_TextChanged);
             // 
             // closeButton
             // 
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(150, 0);
+            this.closeButton.Location = new System.Drawing.Point(200, 0);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(16, 16);
             this.closeButton.TabIndex = 3;
@@ -79,7 +79,7 @@ namespace Reviser
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeButton;
-            this.ClientSize = new System.Drawing.Size(124, 83);
+            this.ClientSize = new System.Drawing.Size(143, 83);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.lineIdBox);
