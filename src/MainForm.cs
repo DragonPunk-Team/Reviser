@@ -253,7 +253,7 @@ namespace Reviser
 
                 foreach (ProjectFile.FileContent content in pf.project.files[currentItem].content)
                 {
-                    string[] row = { content.lineId, content.proposal, pf.Comment(content.comment) };
+                    string[] row = { content.lineId, content.proposal.Replace("\r\n", " "), pf.Comment(content.comment) };
                     listView.Items.Add(new ListViewItem(row));
                 }
 
