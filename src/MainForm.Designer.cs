@@ -58,7 +58,7 @@
             this.addLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.addLineBtn.Enabled = false;
             this.addLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addLineBtn.Location = new System.Drawing.Point(942, 460);
+            this.addLineBtn.Location = new System.Drawing.Point(948, 460);
             this.addLineBtn.Name = "addLineBtn";
             this.addLineBtn.Size = new System.Drawing.Size(128, 42);
             this.addLineBtn.TabIndex = 2;
@@ -230,7 +230,7 @@
             this.editLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.editLineBtn.Enabled = false;
             this.editLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editLineBtn.Location = new System.Drawing.Point(808, 460);
+            this.editLineBtn.Location = new System.Drawing.Point(814, 460);
             this.editLineBtn.Name = "editLineBtn";
             this.editLineBtn.Size = new System.Drawing.Size(128, 42);
             this.editLineBtn.TabIndex = 6;
@@ -243,7 +243,7 @@
             this.delLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.delLineBtn.Enabled = false;
             this.delLineBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.delLineBtn.Location = new System.Drawing.Point(674, 460);
+            this.delLineBtn.Location = new System.Drawing.Point(680, 460);
             this.delLineBtn.Name = "delLineBtn";
             this.delLineBtn.Size = new System.Drawing.Size(128, 42);
             this.delLineBtn.TabIndex = 7;
@@ -253,14 +253,13 @@
             // 
             // completeLabel
             // 
-            this.completeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.completeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.completeLabel.BackColor = System.Drawing.Color.Transparent;
             this.completeLabel.Enabled = false;
             this.completeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.completeLabel.Location = new System.Drawing.Point(276, 460);
+            this.completeLabel.Location = new System.Drawing.Point(680, 460);
             this.completeLabel.Name = "completeLabel";
-            this.completeLabel.Size = new System.Drawing.Size(392, 42);
+            this.completeLabel.Size = new System.Drawing.Size(396, 42);
             this.completeLabel.TabIndex = 8;
             this.completeLabel.Text = "This file was marked as complete.\r\nIf you want to edit it, untick it from the fil" +
     "e list.";
@@ -294,11 +293,12 @@
             this.Controls.Add(this.editLineBtn);
             this.Controls.Add(this.addLineBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(591, 404);
+            this.MinimumSize = new System.Drawing.Size(695, 404);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DragonPunk Reviser";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -420,5 +420,13 @@ namespace Reviser
             InfoForm info = new InfoForm();
             info.ShowDialog();
         }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            var lineWidth = listView.Columns[0].Width;
+            var commentWidth = listView.Columns[2].Width;
+
+            listView.Columns[1].Width = listView.Width - (lineWidth + commentWidth + 5);
+        }
     }
 }
