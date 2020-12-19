@@ -219,7 +219,7 @@
             // proposal
             // 
             this.proposal.Text = "Proposal";
-            this.proposal.Width = 740;
+            this.proposal.Width = 720;
             // 
             // comment
             // 

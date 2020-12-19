@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\CustomListSort.cs" />
     <Compile Include="src\FileAssociation.cs" />
     <Compile Include="src\GenerateReport.cs">
       <SubType>Form</SubType>

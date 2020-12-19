@@ -259,11 +259,13 @@ namespace Reviser
                 foreach (ProjectFile.FileContent content in pf.project.files[currentItem].content)
                 {
                     string[] row = { content.lineId, content.proposal.Replace("\r\n", " "), pf.Comment(content.comment) };
-                    listView.Items.Add(new ListViewItem(row));
+                    listView.Items.Add(new ListViewItem(row) { Tag = content.lineId });
                 }
 
                 listView.EndUpdate();
             }
+
+            listView.ListViewItemSorter = new CustomListSort();
         }
 
         private void delLineBtn_Click(object sender, EventArgs e)
