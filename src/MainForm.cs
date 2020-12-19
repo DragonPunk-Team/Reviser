@@ -48,6 +48,8 @@ namespace Reviser
 
             Text = "DragonPunk Reviser - " + pf.project.name;
 
+            fileListBox.BeginUpdate();
+
             if (fileListBox.Items.Count > 0)
                 fileListBox.Items.Clear();
 
@@ -70,6 +72,8 @@ namespace Reviser
                     break;
                 }
             }
+
+            fileListBox.EndUpdate();
 
             if (fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
             {
