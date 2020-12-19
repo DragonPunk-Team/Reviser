@@ -135,20 +135,16 @@ namespace Reviser
 
                     if (fc.comment)
                     {
-                        var proposal = fc.proposal;
+                        var proposal = "_" + fc.proposal + "_";
 
-                        proposal = Replace(@"(\r\n| |)(\`[a-z0-9_.:]*\`)(\r\n| |)", proposal);
-                        proposal = Replace(@"(\r\n| |)<n>(.*)</n>(\r\n| |)", proposal);
+                        proposal = Replace(@"(\r\n)<n>", proposal, "_\r\n");
+                        proposal = Replace(@"</n>_", proposal);
+                        proposal = MatchReplace(@"^_<n>(.*)</n>\r\n", proposal, afterRepl: "\r\n_");
+                        proposal = Replace(@"</n>(\r\n)", proposal, "\r\n_");
+                        proposal = MatchReplace(@" (\`.*\`)[\r\n|]_", proposal, "_ ", "\r\n");
+                        proposal = Replace(@"__", proposal);
 
-                        if (!(Matches(@"_", proposal) % 2 == 0))
-                            sb.Append("_");
-
-                        sb.Append(proposal);
-
-                        if ((Matches(@"_", proposal) % 2 == 0))
-                            sb.Append("_");
-
-                        sb.AppendLine();
+                        sb.AppendLine(proposal);
                     }
                     else
                     {
@@ -192,25 +188,17 @@ namespace Reviser
             this.Close();
         }
 
-        private string Replace(string regex, string line)
+        private string Replace(string regex, string line, string repl = "")
         {
-            StringBuilder sb = new StringBuilder();
             Regex rx = new Regex(regex, RegexOptions.Compiled);
+            return rx.Replace(line, repl);
+        }
 
-            MatchCollection matches = rx.Matches(line);
-
-            foreach (Match match in matches)
-            {
-                if (!string.IsNullOrEmpty(match.Groups[1].Value))
-                    sb.Append("_" + match.Groups[1].Value);
-
-                sb.Append(match.Groups[2]);
-
-                if (!string.IsNullOrEmpty(match.Groups[3].Value))
-                    sb.Append(match.Groups[3].Value + "_");
-            }
-
-            return rx.Replace(line, sb.ToString());
+        private string MatchReplace(string regex, string line, string beforeRepl = "", string afterRepl = "")
+        {
+            Regex rx = new Regex(regex, RegexOptions.Compiled);
+            Match match = rx.Match(line);
+            return rx.Replace(line, beforeRepl + match.Groups[1].Value + afterRepl);
         }
 
         private string FormatLine(string origLine, string tranLine, string character, string file, int contentId)
@@ -241,14 +229,6 @@ namespace Reviser
             sb.AppendLine(tranLine);
 
             return sb.ToString();
-        }
-
-        private int Matches(string regex, string line)
-        {
-            Regex rx = new Regex(regex, RegexOptions.Compiled);
-            var matches = rx.Matches(line);
-
-            return matches.Count;
         }
     }
 }
