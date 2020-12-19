@@ -98,24 +98,10 @@ namespace Reviser
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 tranFilesBox.Text = fbd.SelectedPath;
-
-                firstFileBox.Enabled = true;
-                lastFileBox.Enabled = true;
             }
         }
 
         private void tranFilesBox_TextChanged(object sender, EventArgs e)
-        {
-            firstFileBox.Enabled = true;
-            lastFileBox.Enabled = true;
-        }
-
-        private void firstFileBox_DropDown(object sender, EventArgs e)
-        {
-            UpdateFileLists();
-        }
-
-        private void lastFileBox_DropDown(object sender, EventArgs e)
         {
             UpdateFileLists();
         }
@@ -211,8 +197,19 @@ namespace Reviser
             {
                 fileList.AddRange(GetFiles(tranFilesBox.Text));
 
-                firstFileBox.Items.AddRange(fileList.ToArray());
-                lastFileBox.Items.AddRange(fileList.ToArray());
+                if (fileList.Count > 0)
+                {
+                    firstFileBox.Enabled = true;
+                    lastFileBox.Enabled = true;
+
+                    firstFileBox.Items.AddRange(fileList.ToArray());
+                    lastFileBox.Items.AddRange(fileList.ToArray());
+                }
+                else
+                {
+                    firstFileBox.Enabled = false;
+                    lastFileBox.Enabled = false;
+                }
             }
             else
             {

@@ -184,7 +184,6 @@
             this.firstFileBox.Name = "firstFileBox";
             this.firstFileBox.Size = new System.Drawing.Size(188, 21);
             this.firstFileBox.TabIndex = 22;
-            this.firstFileBox.DropDown += new System.EventHandler(this.firstFileBox_DropDown);
             // 
             // lastFileBox
             // 
@@ -194,7 +193,6 @@
             this.lastFileBox.Name = "lastFileBox";
             this.lastFileBox.Size = new System.Drawing.Size(188, 21);
             this.lastFileBox.TabIndex = 23;
-            this.lastFileBox.DropDown += new System.EventHandler(this.lastFileBox_DropDown);
             // 
             // ProjectSettings
             // 
