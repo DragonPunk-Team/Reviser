@@ -55,8 +55,11 @@ namespace Reviser
         {
             List<string> files = new List<string>();
 
-            foreach (string file in Directory.GetFiles(path))
-                files.Add(Path.GetFileName(file));
+            if (Directory.Exists(path))
+                foreach (string file in Directory.GetFiles(path))
+                    files.Add(Path.GetFileName(file));
+            else
+                return new string[0];
 
             return files.ToArray();
         }
