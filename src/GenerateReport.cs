@@ -139,7 +139,7 @@ namespace Reviser
 
                         proposal = Replace(@"(\r\n)<n>", proposal, "_\r\n");
                         proposal = Replace(@"</n>_", proposal);
-                        proposal = MatchReplace(@"^_<n>(.*)</n>\r\n", proposal, afterRepl: "\r\n_");
+                        proposal = MatchReplace(@"^_<n>(.*)</n>\r\n", proposal, "", "\r\n_");
                         proposal = Replace(@"</n>(\r\n)", proposal, "\r\n_");
                         proposal = MatchReplace(@" (\`.*\`)[\r\n|]_", proposal, "_ ", "\r\n");
                         proposal = Replace(@"__", proposal);
@@ -194,7 +194,7 @@ namespace Reviser
             return rx.Replace(line, repl);
         }
 
-        private string MatchReplace(string regex, string line, string beforeRepl = "", string afterRepl = "")
+        private string MatchReplace(string regex, string line, string beforeRepl, string afterRepl)
         {
             Regex rx = new Regex(regex, RegexOptions.Compiled);
             Match match = rx.Match(line);
