@@ -10,11 +10,8 @@ namespace Reviser
 
         public int Compare(object x, object y)
         {
-            MatchCollection matchX = rx.Matches((x as ListViewItem).Tag as string);
-            MatchCollection matchY = rx.Matches((y as ListViewItem).Tag as string);
-
-            var intX = int.Parse(matchX[0].Value);
-            var intY = int.Parse(matchY[0].Value);
+            var intX = int.Parse(rx.Match((x as ListViewItem).Tag as string).Value);
+            var intY = int.Parse(rx.Match((y as ListViewItem).Tag as string).Value);
 
             if (intX < intY)
                 return -1;
