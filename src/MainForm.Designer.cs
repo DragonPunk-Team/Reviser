@@ -41,7 +41,7 @@
             this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
             this.infoBtn = new System.Windows.Forms.ToolStripButton();
             this.fileListBox = new System.Windows.Forms.CheckedListBox();
-            this.listView = new System.Windows.Forms.ListView();
+            this.listView = new BufferedListView();
             this.lineId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.proposal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -312,7 +312,7 @@
         private System.Windows.Forms.ToolStripButton openProjBtn;
         private System.Windows.Forms.CheckedListBox fileListBox;
         private System.Windows.Forms.ToolStripButton projSettingsBtn;
-        private System.Windows.Forms.ListView listView;
+        private BufferedListView listView;
         private System.Windows.Forms.ColumnHeader lineId;
         private System.Windows.Forms.ColumnHeader proposal;
         private System.Windows.Forms.ColumnHeader comment;
