@@ -6,10 +6,10 @@ namespace Reviser
 {
     class CustomListSort : IComparer
     {
+        Regex rx = new Regex(@"[0-9]*", RegexOptions.Compiled);
+
         public int Compare(object x, object y)
         {
-            Regex rx = new Regex(@"[0-9]*", RegexOptions.Compiled);
-
             MatchCollection matchX = rx.Matches((x as ListViewItem).Tag as string);
             MatchCollection matchY = rx.Matches((y as ListViewItem).Tag as string);
 
