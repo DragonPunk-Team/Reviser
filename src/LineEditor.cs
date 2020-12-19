@@ -209,13 +209,13 @@ namespace Reviser
         {
             if (commentCheckBox.Checked)
             {
-                normalTextBtn.Enabled = true;
+                plainTextBtn.Enabled = true;
                 insertLineIdBtn.Enabled = true;
                 insertFileLineIdBtn.Enabled = true;
             }
             else
             {
-                normalTextBtn.Enabled = false;
+                plainTextBtn.Enabled = false;
                 insertLineIdBtn.Enabled = false;
                 insertFileLineIdBtn.Enabled = false;
             }

@@ -37,7 +37,7 @@ namespace Reviser
             this.insertLineIdBtn = new System.Windows.Forms.ToolStripButton();
             this.insertFileLineIdBtn = new System.Windows.Forms.ToolStripButton();
             this.prevLinesBtn = new System.Windows.Forms.ToolStripButton();
-            this.normalTextBtn = new System.Windows.Forms.ToolStripButton();
+            this.plainTextBtn = new System.Windows.Forms.ToolStripButton();
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.lineBox = new System.Windows.Forms.TextBox();
@@ -106,13 +106,13 @@ namespace Reviser
             this.insertLineIdBtn,
             this.insertFileLineIdBtn,
             this.prevLinesBtn,
-            this.normalTextBtn});
+            this.plainTextBtn});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip1.Size = new System.Drawing.Size(399, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(147, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // copyLineBtn
@@ -162,16 +162,16 @@ namespace Reviser
             this.prevLinesBtn.ToolTipText = "Add previous lines";
             this.prevLinesBtn.Click += new System.EventHandler(this.prevLinesBtn_Click);
             // 
-            // normalTextBtn
+            // plainTextBtn
             // 
-            this.normalTextBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.normalTextBtn.Enabled = false;
-            this.normalTextBtn.Image = global::Reviser.Properties.Resources.Normal_text;
-            this.normalTextBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.normalTextBtn.Name = "normalTextBtn";
-            this.normalTextBtn.Size = new System.Drawing.Size(23, 22);
-            this.normalTextBtn.ToolTipText = "Normal text";
-            this.normalTextBtn.Click += new System.EventHandler(this.normalTextBtn_Click);
+            this.plainTextBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.plainTextBtn.Enabled = false;
+            this.plainTextBtn.Image = global::Reviser.Properties.Resources.Normal_text;
+            this.plainTextBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.plainTextBtn.Name = "plainTextBtn";
+            this.plainTextBtn.Size = new System.Drawing.Size(23, 22);
+            this.plainTextBtn.ToolTipText = "Plain text";
+            this.plainTextBtn.Click += new System.EventHandler(this.normalTextBtn_Click);
             // 
             // saveBtn
             // 
@@ -292,7 +292,7 @@ namespace Reviser
         private System.Windows.Forms.CheckBox colorCheckBox;
         private System.Windows.Forms.ToolStripButton copyLineBtn;
         private System.Windows.Forms.ToolStripButton insertLineIdBtn;
-        private System.Windows.Forms.ToolStripButton normalTextBtn;
+        private System.Windows.Forms.ToolStripButton plainTextBtn;
         private System.Windows.Forms.ToolStripButton insertFileLineIdBtn;
         private System.Windows.Forms.ToolStripButton prevLinesBtn;
     }
