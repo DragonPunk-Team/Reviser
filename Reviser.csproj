@@ -78,6 +78,7 @@
     <Compile Include="src\tweaks\BufferedListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="src\tweaks\CustomListSort.cs" />
     <Compile Include="src\tweaks\CustomListViewSort.cs" />
     <Compile Include="src\tweaks\FileAssociation.cs" />
     <Compile Include="src\GenerateReport.cs">

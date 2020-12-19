@@ -58,67 +58,28 @@ namespace Reviser
             statusLabel.Text = "Ordering files...";
             progressBar.Style = ProgressBarStyle.Marquee;
 
-            var copy = new ProjectFile.Project()
-            {
-                files = new Dictionary<string, ProjectFile.RevisedFile>()
-            };
-
             if (pf.project.files.Count > 1)
+            {
+                var files = new Dictionary<string, ProjectFile.RevisedFile>();
+
                 foreach (string filename in pf.project.file_list)
                     foreach (var file in pf.project.files)
                         if (filename == file.Key)
-                            copy.files.Add(file.Key, file.Value);
- 
-            pf.project.files.Clear();
+                            files.Add(file.Key, file.Value);
+
+                pf.project.files = files;
+            }
 
             progressBar.Style = ProgressBarStyle.Continuous;
 
-            foreach (var file in copy.files)
+            foreach (var file in pf.project.files)
             {
                 statusLabel.Text = "Ordering " + file.Key + "...";
 
                 if (file.Value.content.Count > 1)
-                {
-                    GMD gmd = new GMD();
-                    gmd.ReadGMD(pf.project.tran_path + "\\" + file.Key);
+                    file.Value.content.Sort(new CustomListSort());
 
-                    List<int> ids = new List<int>();
-
-                    foreach (var content in file.Value.content)
-                    {
-                        ids.Add(gmd.GetIdList(content.lineId)[0]);
-                    }
-
-                    ids.Sort();
-
-                    var fileCopy = file;
-
-                    var rf = new ProjectFile.RevisedFile
-                    {
-                        complete = fileCopy.Value.complete,
-                        note = fileCopy.Value.note,
-                        content = new List<ProjectFile.FileContent>()
-                    };
-
-                    foreach (int index in ids)
-                    {
-                        foreach (var content in file.Value.content)
-                        {
-                            if (gmd.GetIdList(content.lineId)[0] == index)
-                            {
-                                rf.content.Add(content);
-                            }
-                        }
-                    }
-
-                    pf.project.files.Add(fileCopy.Key, rf);
-                }
-                else
-                {
-                    pf.project.files.Add(file.Key, file.Value);
-                }
-
-                progressBar.Value = (Array.IndexOf(copy.files.ToArray(), file) + 1 ) / copy.files.Count;
+                progressBar.Value = (Array.IndexOf(pf.project.files.ToArray(), file) + 1 ) / pf.project.files.Count;
             }
         }
 
