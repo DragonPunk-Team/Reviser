@@ -112,7 +112,7 @@ namespace Reviser
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip1.Size = new System.Drawing.Size(147, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(399, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // copyLineBtn
