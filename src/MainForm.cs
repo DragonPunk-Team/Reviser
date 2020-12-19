@@ -267,7 +267,7 @@ namespace Reviser
                 }
             }
 
-            listView.ListViewItemSorter = new CustomListSort();
+            listView.ListViewItemSorter = new CustomListViewSort();
 
             listView.EndUpdate();
         }

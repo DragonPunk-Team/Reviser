@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Reviser
 {
-    class CustomListSort : IComparer
+    class CustomListViewSort : IComparer
     {
         Regex rx = new Regex(@"[0-9]*", RegexOptions.Compiled);
 
