@@ -214,7 +214,8 @@ namespace Reviser
             else
             {
                 fileList.Clear();
-                UpdateFileLists();
+                firstFileBox.Items.Clear();
+                UpdateFileList();
             }
         }
     }
