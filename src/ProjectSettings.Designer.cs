@@ -178,6 +178,7 @@
             // 
             // firstFileBox
             // 
+            this.firstFileBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.firstFileBox.Enabled = false;
             this.firstFileBox.FormattingEnabled = true;
             this.firstFileBox.Location = new System.Drawing.Point(102, 157);
@@ -187,6 +188,7 @@
             // 
             // lastFileBox
             // 
+            this.lastFileBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lastFileBox.Enabled = false;
             this.lastFileBox.FormattingEnabled = true;
             this.lastFileBox.Location = new System.Drawing.Point(102, 184);
