@@ -40,7 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.SaveBtn = new System.Windows.Forms.Button();
+            this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.firstFileBox = new System.Windows.Forms.ComboBox();
             this.lastFileBox = new System.Windows.Forms.ComboBox();
@@ -60,7 +60,7 @@
             this.projNameBox.Location = new System.Drawing.Point(102, 12);
             this.projNameBox.Name = "projNameBox";
             this.projNameBox.Size = new System.Drawing.Size(188, 20);
-            this.projNameBox.TabIndex = 1;
+            this.projNameBox.TabIndex = 0;
             // 
             // label2
             // 
@@ -81,7 +81,7 @@
             this.projTypeBox.Location = new System.Drawing.Point(102, 38);
             this.projTypeBox.Name = "projTypeBox";
             this.projTypeBox.Size = new System.Drawing.Size(54, 21);
-            this.projTypeBox.TabIndex = 3;
+            this.projTypeBox.TabIndex = 1;
             this.projTypeBox.Text = "SoJ";
             // 
             // label3
@@ -98,14 +98,14 @@
             this.origFilesBox.Location = new System.Drawing.Point(102, 85);
             this.origFilesBox.Name = "origFilesBox";
             this.origFilesBox.Size = new System.Drawing.Size(157, 20);
-            this.origFilesBox.TabIndex = 5;
+            this.origFilesBox.TabIndex = 2;
             // 
             // origFilesBtn
             // 
             this.origFilesBtn.Location = new System.Drawing.Point(265, 85);
             this.origFilesBtn.Name = "origFilesBtn";
             this.origFilesBtn.Size = new System.Drawing.Size(25, 20);
-            this.origFilesBtn.TabIndex = 6;
+            this.origFilesBtn.TabIndex = 3;
             this.origFilesBtn.Text = "...";
             this.origFilesBtn.UseVisualStyleBackColor = true;
             this.origFilesBtn.Click += new System.EventHandler(this.origFilesBtn_Click);
@@ -115,7 +115,7 @@
             this.tranFilesBtn.Location = new System.Drawing.Point(265, 111);
             this.tranFilesBtn.Name = "tranFilesBtn";
             this.tranFilesBtn.Size = new System.Drawing.Size(25, 20);
-            this.tranFilesBtn.TabIndex = 9;
+            this.tranFilesBtn.TabIndex = 5;
             this.tranFilesBtn.Text = "...";
             this.tranFilesBtn.UseVisualStyleBackColor = true;
             this.tranFilesBtn.Click += new System.EventHandler(this.tranFilesBtn_Click);
@@ -125,7 +125,7 @@
             this.tranFilesBox.Location = new System.Drawing.Point(102, 111);
             this.tranFilesBox.Name = "tranFilesBox";
             this.tranFilesBox.Size = new System.Drawing.Size(157, 20);
-            this.tranFilesBox.TabIndex = 8;
+            this.tranFilesBox.TabIndex = 4;
             this.tranFilesBox.TextChanged += new System.EventHandler(this.tranFilesBox_TextChanged);
             // 
             // label4
@@ -155,15 +155,16 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "Last File:";
             // 
-            // SaveBtn
+            // saveBtn
             // 
-            this.SaveBtn.Location = new System.Drawing.Point(215, 222);
-            this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(75, 23);
-            this.SaveBtn.TabIndex = 17;
-            this.SaveBtn.Text = "Save";
-            this.SaveBtn.UseVisualStyleBackColor = true;
-            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            this.saveBtn.Enabled = false;
+            this.saveBtn.Location = new System.Drawing.Point(215, 222);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.TabIndex = 8;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // cancelBtn
             // 
@@ -171,7 +172,7 @@
             this.cancelBtn.Location = new System.Drawing.Point(134, 222);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
-            this.cancelBtn.TabIndex = 18;
+            this.cancelBtn.TabIndex = 9;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
@@ -184,7 +185,8 @@
             this.firstFileBox.Location = new System.Drawing.Point(102, 157);
             this.firstFileBox.Name = "firstFileBox";
             this.firstFileBox.Size = new System.Drawing.Size(188, 21);
-            this.firstFileBox.TabIndex = 22;
+            this.firstFileBox.TabIndex = 6;
+            this.firstFileBox.SelectedIndexChanged += new System.EventHandler(this.firstFileBox_SelectedIndexChanged);
             // 
             // lastFileBox
             // 
@@ -194,7 +196,8 @@
             this.lastFileBox.Location = new System.Drawing.Point(102, 184);
             this.lastFileBox.Name = "lastFileBox";
             this.lastFileBox.Size = new System.Drawing.Size(188, 21);
-            this.lastFileBox.TabIndex = 23;
+            this.lastFileBox.TabIndex = 7;
+            this.lastFileBox.SelectedIndexChanged += new System.EventHandler(this.lastFileBox_SelectedIndexChanged);
             // 
             // ProjectSettings
             // 
@@ -205,7 +208,7 @@
             this.Controls.Add(this.lastFileBox);
             this.Controls.Add(this.firstFileBox);
             this.Controls.Add(this.cancelBtn);
-            this.Controls.Add(this.SaveBtn);
+            this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tranFilesBtn);
@@ -244,7 +247,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button SaveBtn;
+        private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.ComboBox firstFileBox;
         private System.Windows.Forms.ComboBox lastFileBox;

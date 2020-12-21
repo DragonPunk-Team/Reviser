@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -103,10 +104,23 @@ namespace Reviser
 
         private void tranFilesBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateFileLists();
+            UpdateFirstFileList();
         }
 
-        private void SaveBtn_Click(object sender, EventArgs e)
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(projNameBox.Text))
+            {
+                SystemSounds.Beep.Play();
+                MessageBox.Show("Project must have a name!", "Error", MessageBoxButtons.OK);
+            }
+            else
+            {
+                Save();
+            }
+        }
+
+        private void Save()
         {
             ProjectFile newpf = new ProjectFile();
 
@@ -191,7 +205,7 @@ namespace Reviser
             }
         }
 
-        private void UpdateFileLists()
+        private void UpdateFirstFileList()
         {
             if (fileList.Count == 0)
             {
@@ -200,23 +214,57 @@ namespace Reviser
                 if (fileList.Count > 0)
                 {
                     firstFileBox.Enabled = true;
-                    lastFileBox.Enabled = true;
-
                     firstFileBox.Items.AddRange(fileList.ToArray());
-                    lastFileBox.Items.AddRange(fileList.ToArray());
                 }
                 else
                 {
                     firstFileBox.Enabled = false;
-                    lastFileBox.Enabled = false;
                 }
             }
             else
             {
                 fileList.Clear();
                 firstFileBox.Items.Clear();
-                UpdateFileList();
+                UpdateFirstFileList();
             }
+        }
+
+        private void UpdateLastFileList()
+        {
+            var index = this.fileList.IndexOf(firstFileBox.SelectedItem.ToString());
+            var fileList = new ArraySegment<string>(this.fileList.ToArray(), index, this.fileList.Count - index);
+            
+            if (lastFileBox.Items.Count == 0)
+            {
+                lastFileBox.Items.AddRange(fileList.ToArray());
+            }
+            else
+            {
+                lastFileBox.Items.Clear();
+                saveBtn.Enabled = false;
+                UpdateLastFileList();
+            }
+        }
+
+        private void firstFileBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(firstFileBox.SelectedText))
+            {
+                UpdateLastFileList();
+                lastFileBox.Enabled = true;
+            }
+            else
+            {
+                lastFileBox.Enabled = false;
+            }
+        }
+
+        private void lastFileBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(lastFileBox.Text))
+                saveBtn.Enabled = false;
+            else
+                saveBtn.Enabled = true;
         }
     }
 }
