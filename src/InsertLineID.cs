@@ -18,8 +18,8 @@ namespace Reviser
             if (lineIdBox.Text.Length != 0)
             {
                 lineId = lineIdBox.Text;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
             else
             {
@@ -31,8 +31,8 @@ namespace Reviser
                 }
                 else if (dr == DialogResult.Cancel)
                 {
-                    this.DialogResult = dr;
-                    this.Close();
+                    DialogResult = dr;
+                    Close();
                 }
             }
         }
@@ -50,8 +50,8 @@ namespace Reviser
 
         private void closeButton_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Reviser
         {
             if (lineId != "-1")
             {
-                this.Text = this.Text.Replace("Add", "Edit");
+                Text = Text.Replace("Add", "Edit");
                 idBox.Text = lineId;
                 removeBtn.Enabled = true;
 
@@ -103,13 +103,13 @@ namespace Reviser
         private void CloseForm(bool save = false, bool remove = false)
         {
             if (save)
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
             else if (remove)
-                this.DialogResult = DialogResult.Abort;
+                DialogResult = DialogResult.Abort;
             else
-                this.DialogResult = DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
 
-            this.Close();
+            Close();
         }
 
         private void lineBox_TextChanged(object sender, EventArgs e)
@@ -119,7 +119,7 @@ namespace Reviser
 
         private void CheckAddBtn()
         {
-            if (lineBox.Text.Contains("[Error]") || 
+            if (lineBox.Text.Contains("[Error]") ||
                 string.IsNullOrWhiteSpace(lineBox.Text))
                 addBtn.Enabled = false;
             else

@@ -69,7 +69,7 @@ namespace Reviser
                     e.Graphics.FillRectangle(br, dropdown);
 
                 e.Graphics.DrawRectangle(Pens.Olive, dropdown);
-                
+
                 OnRenderArrow(new ToolStripArrowRenderEventArgs(e.Graphics, e.Item, sb.DropDownButtonBounds, e.Item.ForeColor, ArrowDirection.Down));
             }
         }

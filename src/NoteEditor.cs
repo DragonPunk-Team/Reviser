@@ -11,7 +11,7 @@ namespace Reviser
         {
             InitializeComponent();
 
-            this.Text += file;
+            Text += file;
             this.note = note;
         }
 
@@ -19,7 +19,7 @@ namespace Reviser
         {
             if (!string.IsNullOrWhiteSpace(note))
             {
-                this.Text = this.Text.Replace("Add", "Edit");
+                Text = Text.Replace("Add", "Edit");
                 noteBox.Text = note;
                 removeBtn.Enabled = true;
             }
@@ -38,13 +38,13 @@ namespace Reviser
         private void CloseForm(bool save = false, bool remove = false)
         {
             if (save)
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
             else if (remove)
-                this.DialogResult = DialogResult.Abort;
+                DialogResult = DialogResult.Abort;
             else
-                this.DialogResult = DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
 
-            this.Close();
+            Close();
         }
 
         private void lineBox_TextChanged(object sender, EventArgs e)

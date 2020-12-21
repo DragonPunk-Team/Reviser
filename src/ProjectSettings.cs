@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -48,7 +48,7 @@ namespace Reviser
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private string[] GetFiles(string path)
@@ -138,12 +138,12 @@ namespace Reviser
 
                     mf.Open(sfd.FileName);
 
-                    this.Close();
+                    Close();
                 }
             }
             else
             {
-                IEnumerable<string> diff = pf.project.file_list.Except(newpf.project.file_list);
+                var diff = pf.project.file_list.Except(newpf.project.file_list);
 
                 if (diff.Count() > 0)
                 {
@@ -187,7 +187,7 @@ namespace Reviser
 
                 mf.Open(pf.path);
 
-                this.Close();
+                Close();
             }
         }
 

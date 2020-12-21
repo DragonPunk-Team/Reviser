@@ -79,7 +79,7 @@ namespace Reviser
                 if (file.Value.content.Count > 1)
                     file.Value.content.Sort(new CustomListSort());
 
-                progressBar.Value = (Array.IndexOf(pf.project.files.ToArray(), file) + 1 ) / pf.project.files.Count;
+                progressBar.Value = (Array.IndexOf(pf.project.files.ToArray(), file) + 1) / pf.project.files.Count;
             }
         }
 
@@ -182,10 +182,10 @@ namespace Reviser
 
             File.WriteAllText(path, sb.ToString());
 
-            this.Hide();
+            Hide();
             SystemSounds.Beep.Play();
             MessageBox.Show("Report generated successfully.", "Done!", MessageBoxButtons.OK);
-            this.Close();
+            Close();
         }
 
         private string Replace(string regex, string line, string repl = "")

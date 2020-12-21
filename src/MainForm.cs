@@ -314,7 +314,7 @@ namespace Reviser
                 pf.WriteProject();
 
                 if (MessageBox.Show("Do you want to open the new copy of the project now?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    this.Open(sfd.FileName);
+                    Open(sfd.FileName);
                 else
                     pf.path = currentPath;
             }

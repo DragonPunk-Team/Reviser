@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Media;
@@ -173,11 +172,11 @@ namespace Reviser
         private void CloseForm(bool save)
         {
             if (save)
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
             else
-                this.DialogResult = DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
 
-            this.Close();
+            Close();
         }
 
         private void commentBox_TextChanged(object sender, EventArgs e)
@@ -197,8 +196,8 @@ namespace Reviser
 
         private void CheckSaveBtn()
         {
-            if (lineBox.Text.Contains("[Error]") || 
-                string.IsNullOrWhiteSpace(commentBox.Text) || 
+            if (lineBox.Text.Contains("[Error]") ||
+                string.IsNullOrWhiteSpace(commentBox.Text) ||
                 string.IsNullOrWhiteSpace(lineBox.Text))
                 saveBtn.Enabled = false;
             else
@@ -288,7 +287,7 @@ namespace Reviser
         private void insertLineIdBtn_Click(object sender, EventArgs e)
         {
             InsertLineID ilid = new InsertLineID();
-            
+
             if (ilid.ShowDialog() == DialogResult.OK)
             {
                 StringBuilder sb = new StringBuilder();
@@ -317,7 +316,7 @@ namespace Reviser
                     StringBuilder sb = new StringBuilder();
 
                     if (!commentBox.Text.EndsWith(" ") && commentBox.Text.Length > 0)
-                       sb.Append(" ");
+                        sb.Append(" ");
 
                     sb.Append("`");
                     sb.Append(ifn.filename);

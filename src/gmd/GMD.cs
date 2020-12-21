@@ -96,7 +96,7 @@ namespace Reviser
             return characterName;
         }
 
-        private string GetColor (string line)
+        private string GetColor(string line)
         {
             string coloredLine;
 

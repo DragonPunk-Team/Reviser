@@ -4,6 +4,6 @@ class BufferedListView : ListView
 {
     public BufferedListView()
     {
-        this.DoubleBuffered = true;
+        DoubleBuffered = true;
     }
 }
