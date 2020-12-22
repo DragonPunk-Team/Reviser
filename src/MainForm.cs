@@ -9,6 +9,7 @@ namespace Reviser
     public partial class MainForm : Form
     {
         private ProjectFile pf;
+        private bool fileChanged;
 
         public MainForm()
         {
@@ -91,10 +92,14 @@ namespace Reviser
             }
 
             fileListBox.ItemCheck += fileListBox_ItemCheck;
+
+            fileChanged = false;
         }
 
         private void openProjBtn_Click(object sender, EventArgs e)
         {
+            CheckUnsaved();
+
             OpenFileDialog ofd = new OpenFileDialog
             {
                 Title = "Open Project",
@@ -132,6 +137,8 @@ namespace Reviser
 
         private void newProjBtn_Click(object sender, EventArgs e)
         {
+            CheckUnsaved();
+
             ProjectSettings projectSettings = new ProjectSettings(true, mainf: this);
             projectSettings.ShowDialog();
         }
@@ -247,6 +254,8 @@ namespace Reviser
                 pf.project.files[currentItem].content.Add(fc);
 
                 ListViewUpdate();
+
+                fileChanged = true;
             }
         }
 
@@ -274,7 +283,9 @@ namespace Reviser
 
         private void delLineBtn_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this line?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            var dr = MessageBox.Show("Are you sure you want to delete this line?", "Warning", MessageBoxButtons.YesNo);
+
+            if (dr == DialogResult.Yes)
             {
                 string currentItem = fileListBox.SelectedItem.ToString();
                 string lineId = listView.SelectedItems[0].SubItems[0].Text;
@@ -288,13 +299,24 @@ namespace Reviser
                 ListViewUpdate();
 
                 listView_SelectedIndexChanged(sender, e);
+
+                fileChanged = true;
             }
         }
 
         private void saveProjBtn_ButtonClick(object sender, EventArgs e)
         {
-            pf.WriteProject();
-            SystemSounds.Beep.Play();
+            Save();
+        }
+
+        private void Save()
+        {
+            if (fileChanged)
+            {
+                pf.WriteProject();
+                SystemSounds.Beep.Play();
+                fileChanged = false;
+            }
         }
 
         private void saveProjectAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -424,6 +446,8 @@ namespace Reviser
             {
                 pf.project.files[currentFile].note = "";
             }
+
+            fileChanged = true;
         }
 
         private void infoBtn_Click(object sender, EventArgs e)
@@ -438,6 +462,22 @@ namespace Reviser
             var commentWidth = listView.Columns[2].Width;
 
             listView.Columns[1].Width = listView.Width - (lineWidth + commentWidth + 5);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CheckUnsaved();
+        }
+
+        private void CheckUnsaved()
+        {
+            if (fileChanged)
+            {
+                var dr = MessageBox.Show("You have unsaved changes in your project. Save?", "Warning", MessageBoxButtons.YesNo);
+
+                if (dr == DialogResult.Yes)
+                    Save();
+            }
         }
     }
 }
