@@ -14,7 +14,6 @@ namespace Reviser
         ProjectFile pf;
         public string path;
 
-        string lastChar = "";
         GMD origGMD;
         GMD tranGMD;
 
@@ -204,7 +203,7 @@ namespace Reviser
         private string FormatLine(string origLine, string tranLine, string character, string file, int contentId)
         {
             StringBuilder sb = new StringBuilder();
-            lastChar = "";
+            string lastChar = "";
 
             if (character == lastChar)
             {
