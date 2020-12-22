@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -352,6 +353,19 @@ namespace Reviser
                 prevLinesBtn.Image = Properties.Resources.Add_previous_lines___no_lines;
                 prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.Image;
             }
+        }
+
+        private void idBox_TextChanged(object sender, EventArgs e)
+        {
+            Regex rx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
+
+            foreach (Match match in rx.Matches(idBox.Text))
+            {
+                if (string.IsNullOrWhiteSpace(match.Value))
+                    idBox.Text = rx.Replace(idBox.Text, "");
+            }
+
+            idBox.Select(idBox.Text.Length, 0);
         }
     }
 }

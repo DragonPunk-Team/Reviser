@@ -65,6 +65,7 @@ namespace Reviser
             this.idBox.Name = "idBox";
             this.idBox.Size = new System.Drawing.Size(67, 20);
             this.idBox.TabIndex = 0;
+            this.idBox.TextChanged += new System.EventHandler(this.idBox_TextChanged);
             // 
             // toolStripContainer1
             // 

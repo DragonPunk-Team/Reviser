@@ -46,6 +46,8 @@ namespace Reviser
                 if (string.IsNullOrWhiteSpace(match.Value))
                     lineIdBox.Text = rx.Replace(lineIdBox.Text, "");
             }
+
+            lineIdBox.Select(lineIdBox.Text.Length, 0);
         }
 
         private void closeButton_Click(object sender, EventArgs e)
