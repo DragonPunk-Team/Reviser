@@ -26,6 +26,7 @@ namespace Reviser
 
         private void GenerateReport_Load(object sender, EventArgs e)
         {
+            Show();
             OrderProjectFile();
             Generate();
         }
@@ -56,6 +57,7 @@ namespace Reviser
         {
             statusLabel.Text = "Ordering files...";
             progressBar.Style = ProgressBarStyle.Marquee;
+            Refresh();
 
             if (pf.project.files.Count > 1)
             {
@@ -74,11 +76,13 @@ namespace Reviser
             foreach (var file in pf.project.files)
             {
                 statusLabel.Text = "Ordering " + file.Key + "...";
+                Refresh();
 
                 if (file.Value.content.Count > 1)
                     file.Value.content.Sort(new CustomListSort());
 
-                progressBar.Value = (Array.IndexOf(pf.project.files.ToArray(), file) + 1) / pf.project.files.Count;
+                progressBar.Value = ((Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1) * 100) / pf.project.files.Count;
+                Refresh();
             }
         }
 
@@ -86,6 +90,7 @@ namespace Reviser
         {
             progressBar.Value = 0;
             statusLabel.Text = "Generating report...";
+            Refresh();
 
             StringBuilder sb = new StringBuilder();
 
@@ -174,7 +179,8 @@ namespace Reviser
                     sb.Append("\n\n\n");
                 }
 
-                progressBar.Value = (Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1) / pf.project.files.Count;
+                progressBar.Value = ((Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1) * 100) / pf.project.files.Count;
+                Refresh();
             }
 
             sb.Length -= 3;
