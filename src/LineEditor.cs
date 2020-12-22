@@ -305,7 +305,7 @@ namespace Reviser
 
         private void insertFileLineIdBtn_Click(object sender, EventArgs e)
         {
-            InsertFileName ifn = new InsertFileName(ld.filelist);
+            InsertFileName ifn = new InsertFileName(ld.filelist, ld.tranPath);
 
             if (ifn.ShowDialog() == DialogResult.OK)
             {

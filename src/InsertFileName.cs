@@ -1,19 +1,22 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Reviser
 {
     public partial class InsertFileName : Form
     {
-        public InsertFileName(string[] fl)
+        public string filename;
+        string[] filelist;
+        string path;
+
+        public InsertFileName(string[] filelist, string path)
         {
             InitializeComponent();
 
-            filelist = fl;
+            this.filelist = filelist;
+            this.path = path;
         }
-
-        public string filename;
-        string[] filelist;
 
         private void okButton_Click(object sender, EventArgs e)
         {
@@ -48,6 +51,22 @@ namespace Reviser
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void allFilesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            fileComboBox.Items.Clear();
+
+            if (allFilesCheckBox.Checked)
+                foreach (string file in Directory.GetFiles(path))
+                    fileComboBox.Items.Add(Path.GetFileName(file));
+            else
+                fileComboBox.Items.AddRange(filelist);
+
+            if (fileComboBox.Items.Count > 0)
+                fileComboBox.Enabled = true;
+            else
+                fileComboBox.Enabled = false;
         }
     }
 }

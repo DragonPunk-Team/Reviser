@@ -33,6 +33,7 @@ namespace Reviser
             this.okButton = new System.Windows.Forms.Button();
             this.fileComboBox = new System.Windows.Forms.ComboBox();
             this.closeButton = new System.Windows.Forms.Button();
+            this.allFilesCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -46,7 +47,7 @@ namespace Reviser
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(12, 51);
+            this.okButton.Location = new System.Drawing.Point(12, 57);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(182, 23);
             this.okButton.TabIndex = 2;
@@ -56,8 +57,9 @@ namespace Reviser
             // 
             // fileComboBox
             // 
+            this.fileComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fileComboBox.FormattingEnabled = true;
-            this.fileComboBox.Location = new System.Drawing.Point(12, 25);
+            this.fileComboBox.Location = new System.Drawing.Point(12, 31);
             this.fileComboBox.Name = "fileComboBox";
             this.fileComboBox.Size = new System.Drawing.Size(182, 21);
             this.fileComboBox.TabIndex = 3;
@@ -73,13 +75,26 @@ namespace Reviser
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
+            // allFilesCheckBox
+            // 
+            this.allFilesCheckBox.AutoSize = true;
+            this.allFilesCheckBox.Location = new System.Drawing.Point(136, 8);
+            this.allFilesCheckBox.Name = "allFilesCheckBox";
+            this.allFilesCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.allFilesCheckBox.Size = new System.Drawing.Size(58, 17);
+            this.allFilesCheckBox.TabIndex = 5;
+            this.allFilesCheckBox.Text = "All files";
+            this.allFilesCheckBox.UseVisualStyleBackColor = true;
+            this.allFilesCheckBox.CheckedChanged += new System.EventHandler(this.allFilesCheckBox_CheckedChanged);
+            // 
             // InsertFileName
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeButton;
-            this.ClientSize = new System.Drawing.Size(206, 83);
+            this.ClientSize = new System.Drawing.Size(206, 90);
+            this.Controls.Add(this.allFilesCheckBox);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.fileComboBox);
             this.Controls.Add(this.okButton);
@@ -103,5 +118,6 @@ namespace Reviser
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.ComboBox fileComboBox;
         private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.CheckBox allFilesCheckBox;
     }
 }
