@@ -21,7 +21,7 @@ namespace Reviser
         {
             FileAssociations.EnsureAssociationsSet();
 
-            string[] args = System.Environment.GetCommandLineArgs();
+            string[] args = Environment.GetCommandLineArgs();
 
             if (args.Length > 1)
                 Open(args[1]);

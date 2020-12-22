@@ -122,14 +122,15 @@ namespace Reviser
 
         private void Save()
         {
-            ProjectFile newpf = new ProjectFile();
-
-            newpf.project = new ProjectFile.Project()
+            var newpf = new ProjectFile
             {
-                name = projNameBox.Text,
-                type = projTypeBox.SelectedItem.ToString(),
-                orig_path = origFilesBox.Text,
-                tran_path = tranFilesBox.Text
+                project = new ProjectFile.Project()
+                {
+                    name = projNameBox.Text,
+                    type = projTypeBox.SelectedItem.ToString(),
+                    orig_path = origFilesBox.Text,
+                    tran_path = tranFilesBox.Text
+                }
             };
 
             newpf.project.file_list = MakeFileList(firstFileBox.Text, lastFileBox.Text);
