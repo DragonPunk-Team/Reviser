@@ -388,6 +388,8 @@ namespace Reviser
                     addLineBtn.Enabled = false;
                     addNoteBtn.Enabled = false;
                     completeLabel.Visible = true;
+
+                    fileChanged = true;
                 }
                 else
                 {
@@ -411,6 +413,8 @@ namespace Reviser
                     addLineBtn.Enabled = true;
                     addNoteBtn.Enabled = true;
                     completeLabel.Visible = false;
+
+                    fileChanged = true;
                 }
                 else
                 {
