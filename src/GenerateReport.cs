@@ -140,13 +140,22 @@ namespace Reviser
                     if (fc.comment)
                     {
                         var proposal = "_" + fc.proposal + "_";
+                        proposal = proposal.Replace("\r\n", "\n");
 
-                        proposal = Replace(@"(\r\n)<n>", proposal, "_\r\n");
-                        proposal = Replace(@"</n>_", proposal);
-                        proposal = MatchReplace(@"^_<n>(.*)</n>\r\n", proposal, "", "\r\n_");
-                        proposal = Replace(@"</n>(\r\n)", proposal, "\r\n_");
-                        proposal = MatchReplace(@" (\`.*\`)[\r\n|]_", proposal, "_ ", "\r\n");
-                        proposal = Replace(@"__", proposal);
+                        proposal = Regex.Replace(proposal, @"(\n)<n>", "_\n");
+                        proposal = Regex.Replace(proposal, @"</n>_", "");
+                        proposal = MatchReplace(@"^_<n>(.*)</n>\n", proposal, "", "\n_");
+                        proposal = Regex.Replace(proposal, @"</n>(\n)", "\n_");
+                        proposal = MatchReplace(@" (`.*`)[\n|]*_?", proposal, "_ ", "");
+                        proposal = Regex.Replace(proposal, @"__", "");
+                        proposal = MatchReplaceTwo(@"(`.*`)([^\n])", proposal, "_");
+                        proposal = MatchReplace(@"(:)\n", proposal, "", "_\n");
+
+                        foreach (string line in proposal.Split('\n'))
+                            if (line.Length > 0 && !line.StartsWith("_"))
+                                proposal = proposal.Replace(line, MatchReplace(@"^_?(.*)_$", line, "", ""));
+
+                        proposal = MatchReplace(@"\n_\n(.)", proposal, "\n\n", "");
 
                         sb.AppendLine(proposal);
                     }
@@ -193,17 +202,18 @@ namespace Reviser
             Close();
         }
 
-        private string Replace(string regex, string line, string repl = "")
-        {
-            Regex rx = new Regex(regex, RegexOptions.Compiled);
-            return rx.Replace(line, repl);
-        }
-
         private string MatchReplace(string regex, string line, string beforeRepl, string afterRepl)
         {
             Regex rx = new Regex(regex, RegexOptions.Compiled);
             Match match = rx.Match(line);
             return rx.Replace(line, beforeRepl + match.Groups[1].Value + afterRepl);
+        }
+
+        private string MatchReplaceTwo(string regex, string line, string betweenRepl)
+        {
+            Regex rx = new Regex(regex, RegexOptions.Compiled);
+            Match match = rx.Match(line);
+            return rx.Replace(line, match.Groups[1].Value + betweenRepl + match.Groups[2].Value);
         }
 
         private string FormatLine(string origLine, string tranLine, string character, string file, int contentId)
