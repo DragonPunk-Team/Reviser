@@ -47,7 +47,7 @@ namespace Reviser
             origGMD.ReadGMD(ld.origPath + filePath);
             tranGMD.ReadGMD(ld.tranPath + filePath);
 
-            if (ld.fc.prevLineId != "-1")
+            if (ld.fc != null && ld.fc.prevLineId != "-1")
             {
                 prevLinesBtn.Text = ld.fc.prevLineId;
                 prevLinesBtn.Image = Properties.Resources.Add_previous_lines;
