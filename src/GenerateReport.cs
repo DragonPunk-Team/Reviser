@@ -97,8 +97,13 @@ namespace Reviser
             sb.AppendLine("# " + pf.project.name);
             sb.AppendLine();
 
+            int totalPBValue = 0;
+
             foreach (string file in pf.project.files.Keys)
             {
+                int fileIndex = Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1;
+                int filePBValue = fileIndex * 100 / pf.project.files.Count;
+
                 statusLabel.Text = "Adding file " + file + "...";
 
                 origGMD = new GMD();
@@ -186,9 +191,15 @@ namespace Reviser
                     }
 
                     sb.Append("\n\n\n");
+
+                    int fcIndex = Array.IndexOf(pf.project.files[file].content.ToArray(), fc) + 1;
+                    totalPBValue += fcIndex / pf.project.files[file].content.Count;
+                    progressBar.Value = totalPBValue;
+                    Application.DoEvents();
                 }
 
-                progressBar.Value = ((Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1) * 100) / pf.project.files.Count;
+                totalPBValue = filePBValue;
+                progressBar.Value = totalPBValue;
                 Application.DoEvents();
             }
 
