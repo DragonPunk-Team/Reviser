@@ -243,7 +243,7 @@ namespace Reviser
 
             int[] idList = GetIdList(lineIds);
 
-            Tuple<string, string> lastTuple = null;
+            Tuple<string, string> lastTuple = new Tuple<string, string>("", "");
 
             foreach (int id in idList)
             {
@@ -252,11 +252,11 @@ namespace Reviser
 
                 var line = GetLine(id);
 
-                if (line != null && !string.IsNullOrEmpty(line.Item2) && line != lastTuple)
-                {
-                    lastTuple = line;
+                if (line != null && !string.IsNullOrEmpty(line.Item2) &&
+                    line.Item1 != lastTuple.Item1 && line.Item2 != lastTuple.Item2)
                     lines.Add(line);
-                }
+
+                lastTuple = line;
             }
 
             if (lines.Count == 0)
