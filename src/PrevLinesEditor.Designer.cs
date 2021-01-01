@@ -127,6 +127,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PrevLinesEditor";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add previous line";
             this.Load += new System.EventHandler(this.PrevLinesEditor_Load);

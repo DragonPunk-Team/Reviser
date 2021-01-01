@@ -1,4 +1,4 @@
-﻿namespace Reviser
+namespace Reviser
 {
     partial class InfoForm
     {
@@ -133,6 +133,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InfoForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Info";
             this.Load += new System.EventHandler(this.InfoForm_Load);

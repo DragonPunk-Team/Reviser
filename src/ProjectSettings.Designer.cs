@@ -225,6 +225,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProjectSettings";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ProjectSettings";
             this.Load += new System.EventHandler(this.ProjectSettings_Load);
