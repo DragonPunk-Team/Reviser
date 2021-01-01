@@ -33,6 +33,9 @@ namespace Reviser
             // Split contents
             var contentBlob = SplitBytes(br.ReadBytes(SectionSize));
             Content = SplitStrings(Sections, contentBlob);
+
+            br.Close();
+            fstr.Close();
         }
 
         private string[] SplitBytes(byte[] blob)
