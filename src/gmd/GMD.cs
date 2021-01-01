@@ -232,9 +232,7 @@ namespace Reviser
                 if (index >= 0 && index < section.Length)
                     return section[index];
                 else
-                    totalLength++;
-
-                totalLength += 1 + section.Length;
+                    totalLength += section.Length + 2;
             }
 
             return null;
@@ -255,8 +253,7 @@ namespace Reviser
 
                 var line = GetLine(id);
 
-                if (line != null && !string.IsNullOrEmpty(line.Item2) &&
-                    line.Item1 != lastTuple.Item1 && line.Item2 != lastTuple.Item2)
+                if (line != null && !string.IsNullOrEmpty(line.Item2) && line.Item2 != lastTuple.Item2)
                     lines.Add(line);
 
                 lastTuple = line;
