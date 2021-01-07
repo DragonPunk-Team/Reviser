@@ -288,8 +288,8 @@ namespace Reviser
                     sb.Remove(0, sb.ToString().Split('\n').FirstOrDefault().Length + 1);
             }
 
-            commentBox.Text += sb.ToString();
-            commentBox.Select(commentBox.Text.Length, 0);
+            commentBox.SelectedText = sb.ToString();
+            commentBox.Select(commentBox.SelectionStart - 4, 0);
         }
 
         private void insertLineIdBtn_Click(object sender, EventArgs e)
@@ -307,7 +307,7 @@ namespace Reviser
                 sb.Append(ilid.lineId);
                 sb.Append("`");
 
-                commentBox.Text += sb.ToString();
+                commentBox.SelectedText = sb.ToString();
             }
         }
 
@@ -332,15 +332,15 @@ namespace Reviser
                     sb.Append(ilid.lineId);
                     sb.Append("`");
 
-                    commentBox.Text += sb.ToString();
+                    commentBox.SelectedText = sb.ToString();
                 }
             }
         }
 
         private void normalTextBtn_Click(object sender, EventArgs e)
         {
-            commentBox.Text += "<n></n>";
-            commentBox.Select(commentBox.Text.Length - 4, 0);
+            commentBox.SelectedText = "<n></n>";
+            commentBox.Select(commentBox.SelectionStart - 4, 0);
         }
 
         private void prevLinesBtn_Click(object sender, EventArgs e)
