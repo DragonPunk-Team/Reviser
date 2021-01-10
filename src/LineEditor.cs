@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Media;
@@ -24,10 +24,11 @@ namespace Reviser
         public ProjectFile.FileContent newfc;
 
         LineData ld;
-        GMD origGMD;
-        GMD tranGMD;
         int contentId;
         Tuple<string, string>[] tranLines;
+
+        GMD origGMD = new GMD();
+        GMD tranGMD = new GMD();
 
         public LineEditor(LineData lineData)
         {
@@ -40,10 +41,7 @@ namespace Reviser
 
             ld = lineData;
             var filePath = "\\" + ld.currentFile;
-
-            origGMD = new GMD();
-            tranGMD = new GMD();
-
+            
             origGMD.ReadGMD(ld.origPath + filePath);
             tranGMD.ReadGMD(ld.tranPath + filePath);
 
