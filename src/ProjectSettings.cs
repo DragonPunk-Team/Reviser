@@ -137,7 +137,7 @@ namespace Reviser
 
             if (newProj)
             {
-                newpf.project.files = new Dictionary<string, ProjectFile.RevisedFile>();
+                newpf.project.files = new SortedDictionary<string, ProjectFile.RevisedFile>();
 
                 SaveFileDialog sfd = new SaveFileDialog()
                 {

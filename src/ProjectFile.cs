@@ -33,7 +33,7 @@ namespace Reviser
             public string[] file_list { get; set; }
             public string orig_path { get; set; }
             public string tran_path { get; set; }
-            public Dictionary<string, RevisedFile> files { get; set; }
+            public SortedDictionary<string, RevisedFile> files { get; set; }
         }
 
         public Project project;

@@ -56,43 +56,13 @@ namespace Reviser
 
         private void OrderProjectFile()
         {
-            statusLabel.Text = "Ordering files...";
-            progressBar.Style = ProgressBarStyle.Marquee;
-            Application.DoEvents();
-
-            if (pf.project.files.Count > 1)
-            {
-                var files = new Dictionary<string, ProjectFile.RevisedFile>();
-
-                foreach (string filename in pf.project.file_list)
-                    foreach (var file in pf.project.files)
-                        if (filename == file.Key)
-                            files.Add(file.Key, file.Value);
-
-                pf.project.files = files;
-            }
-
-            progressBar.Style = ProgressBarStyle.Continuous;
-
             foreach (var file in pf.project.files)
-            {
-                statusLabel.Text = "Ordering " + file.Key + "...";
-                Application.DoEvents();
-
                 if (file.Value.content.Count > 1)
                     file.Value.content.Sort(new CustomListSort());
-
-                progressBar.Value = ((Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1) * 100) / pf.project.files.Count;
-                Application.DoEvents();
-            }
         }
 
         private void Generate()
         {
-            progressBar.Value = 0;
-            statusLabel.Text = "Generating report...";
-            Application.DoEvents();
-
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("# " + pf.project.name);
