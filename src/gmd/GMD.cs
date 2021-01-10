@@ -10,9 +10,11 @@ namespace Reviser
     {
         Tuple<string, string>[][] Content;
 
-        public void ReadGMD(string filepath)
+        public void ReadGMD(object filepath)
         {
-            var fstr = File.OpenRead(filepath);
+            var path = filepath.ToString();
+
+            var fstr = File.OpenRead(path);
             var br = new BinaryReader(fstr);
 
             // Skip first 24 bytes: we don't need those

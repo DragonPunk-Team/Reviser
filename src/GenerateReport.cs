@@ -5,6 +5,7 @@ using System.Linq;
 using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -111,8 +112,23 @@ namespace Reviser
 
                 var filePath = "\\" + file;
 
-                origGMD.ReadGMD(pf.project.orig_path + filePath);
-                tranGMD.ReadGMD(pf.project.tran_path + filePath);
+                Thread t;
+
+                t = new Thread(origGMD.ReadGMD);
+                t.Start(pf.project.orig_path + filePath);
+
+                while (t.ThreadState == ThreadState.Running)
+                    Application.DoEvents();
+
+                t.Join();
+
+                t = new Thread(tranGMD.ReadGMD);
+                t.Start(pf.project.tran_path + filePath);
+
+                while (t.ThreadState == ThreadState.Running)
+                    Application.DoEvents();
+
+                t.Join();
 
                 sb.AppendLine("## `" + file + "`");
                 sb.AppendLine();
