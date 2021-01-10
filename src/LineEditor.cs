@@ -4,6 +4,7 @@ using System.Linq;
 using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -40,10 +41,8 @@ namespace Reviser
             toolStrip1.Size = new Size(toolStrip1.Size.Width + 3, toolStrip1.Size.Height);
 
             ld = lineData;
-            var filePath = "\\" + ld.currentFile;
-            
-            origGMD.ReadGMD(ld.origPath + filePath);
-            tranGMD.ReadGMD(ld.tranPath + filePath);
+
+            ReadFiles("\\" + ld.currentFile);
 
             if (ld.fc != null && ld.fc.prevLineId != "-1")
             {
@@ -51,6 +50,18 @@ namespace Reviser
                 prevLinesBtn.Image = Properties.Resources.Add_previous_lines;
                 prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
             }
+        }
+
+        private void ReadFiles(string filePath)
+        {
+            Thread orig = new Thread(origGMD.ReadGMD);
+            Thread tran = new Thread(tranGMD.ReadGMD);
+
+            orig.Start(ld.origPath + filePath);
+            tran.Start(ld.tranPath + filePath);
+
+            while (orig.ThreadState == ThreadState.Running || tran.ThreadState == ThreadState.Running)
+                Application.DoEvents();
         }
 
         private void LineEditor_Load(object sender, EventArgs e)

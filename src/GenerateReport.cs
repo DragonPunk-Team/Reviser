@@ -15,8 +15,8 @@ namespace Reviser
         ProjectFile pf;
         public string path;
 
-        GMD origGMD;
-        GMD tranGMD;
+        private GMD origGMD = new GMD();
+        private GMD tranGMD = new GMD();
 
         public GenerateReport(ProjectFile project)
         {
@@ -107,28 +107,16 @@ namespace Reviser
 
                 statusLabel.Text = "Adding file " + file + "...";
 
-                origGMD = new GMD();
-                tranGMD = new GMD();
-
                 var filePath = "\\" + file;
 
-                Thread t;
+                Thread orig = new Thread(origGMD.ReadGMD);
+                Thread tran = new Thread(tranGMD.ReadGMD);
 
-                t = new Thread(origGMD.ReadGMD);
-                t.Start(pf.project.orig_path + filePath);
+                orig.Start(pf.project.orig_path + filePath);
+                tran.Start(pf.project.tran_path + filePath);
 
-                while (t.ThreadState == ThreadState.Running)
+                while (orig.ThreadState == ThreadState.Running || tran.ThreadState == ThreadState.Running)
                     Application.DoEvents();
-
-                t.Join();
-
-                t = new Thread(tranGMD.ReadGMD);
-                t.Start(pf.project.tran_path + filePath);
-
-                while (t.ThreadState == ThreadState.Running)
-                    Application.DoEvents();
-
-                t.Join();
 
                 sb.AppendLine("## `" + file + "`");
                 sb.AppendLine();
