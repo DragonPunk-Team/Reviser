@@ -32,7 +32,6 @@ namespace Reviser
         {
             addLineBtn.Enabled = true;
             addNoteBtn.Enabled = true;
-            listView.Enabled = true;
             projSettingsBtn.Enabled = true;
             saveProjBtn.Enabled = true;
             generateReportBtn.Enabled = true;
@@ -77,19 +76,9 @@ namespace Reviser
             fileListBox.EndUpdate();
 
             if (fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
-            {
-                listView.Enabled = false;
-                addLineBtn.Enabled = false;
-                addNoteBtn.Enabled = false;
-                completeLabel.Visible = true;
-            }
+                CompleteToggle(true);
             else
-            {
-                listView.Enabled = true;
-                addLineBtn.Enabled = true;
-                addNoteBtn.Enabled = true;
-                completeLabel.Visible = false;
-            }
+                CompleteToggle(false);
 
             fileListBox.ItemCheck += fileListBox_ItemCheck;
 
@@ -116,19 +105,9 @@ namespace Reviser
             delLineBtn.Enabled = false;
 
             if (fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
-            {
-                listView.Enabled = false;
-                addLineBtn.Enabled = false;
-                addNoteBtn.Enabled = false;
-                completeLabel.Visible = true;
-            }
+                CompleteToggle(true);
             else
-            {
-                listView.Enabled = true;
-                addLineBtn.Enabled = true;
-                addNoteBtn.Enabled = true;
-                completeLabel.Visible = false;
-            }
+                CompleteToggle(false);
 
             ListViewUpdate();
 
@@ -151,15 +130,18 @@ namespace Reviser
 
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView.SelectedItems.Count <= 0 || listView.Items.Count <= 0)
+            if (!fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
             {
-                editLineBtn.Enabled = false;
-                delLineBtn.Enabled = false;
-            }
-            else
-            {
-                editLineBtn.Enabled = true;
-                delLineBtn.Enabled = true;
+                if (listView.SelectedItems.Count <= 0 || listView.Items.Count <= 0)
+                {
+                    editLineBtn.Enabled = false;
+                    delLineBtn.Enabled = false;
+                }
+                else
+                {
+                    editLineBtn.Enabled = true;
+                    delLineBtn.Enabled = true;
+                }
             }
         }
 
@@ -384,10 +366,7 @@ namespace Reviser
                     if (pf.project.files.ContainsKey(item))
                         pf.project.files[item].complete = true;
 
-                    listView.Enabled = false;
-                    addLineBtn.Enabled = false;
-                    addNoteBtn.Enabled = false;
-                    completeLabel.Visible = true;
+                    CompleteToggle(true);
 
                     fileChanged = true;
                 }
@@ -409,10 +388,7 @@ namespace Reviser
                     if (pf.project.files.ContainsKey(item))
                         pf.project.files[item].complete = false;
 
-                    listView.Enabled = true;
-                    addLineBtn.Enabled = true;
-                    addNoteBtn.Enabled = true;
-                    completeLabel.Visible = false;
+                    CompleteToggle(false);
 
                     fileChanged = true;
                 }
@@ -488,6 +464,26 @@ namespace Reviser
 
                 if (dr == DialogResult.Yes)
                     Save();
+            }
+        }
+
+        private void CompleteToggle(bool complete)
+        {
+            listView.DoubleClick -= listView_DoubleClick;
+
+            if (complete)
+            {
+                addNoteBtn.Enabled = false;
+
+                completeLabel.Visible = true;
+            }
+            else
+            {
+                listView.DoubleClick += listView_DoubleClick;
+
+                addNoteBtn.Enabled = true;
+
+                completeLabel.Visible = false;
             }
         }
     }
