@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Media;
@@ -117,31 +116,9 @@ namespace Reviser
                     sb.AppendLine("**Proposta:**");
 
                     if (fc.comment)
-                    {
-                        var proposal = "_" + fc.proposal + "_";
-                        proposal = proposal.Replace("\r\n", "\n");
-
-                        proposal = Regex.Replace(proposal, @"(\n)<n>", "_\n");
-                        proposal = Regex.Replace(proposal, @"</n>_", "");
-                        proposal = MatchReplace(@"^_<n>(.*)</n>\n", proposal, "", "\n_");
-                        proposal = Regex.Replace(proposal, @"</n>(\n)", "\n_");
-                        proposal = MatchReplace(@" (`.*`)[\n|]*_?", proposal, "_ ", "");
-                        proposal = Regex.Replace(proposal, @"__", "");
-                        proposal = MatchReplaceTwo(@"(`.*`)([^\n])", proposal, "_");
-                        proposal = MatchReplace(@"(:)\n", proposal, "", "_\n");
-
-                        foreach (string line in proposal.Split('\n'))
-                            if (line.Length > 0 && !line.StartsWith("_"))
-                                proposal = proposal.Replace(line, MatchReplace(@"^_?(.*)_$", line, "", ""));
-
-                        proposal = MatchReplace(@"\n_\n(.)", proposal, "\n\n", "");
-
-                        sb.AppendLine(proposal);
-                    }
+                        sb.AppendLine(FormatProposal(fc.proposal));
                     else
-                    {
                         sb.AppendLine(fc.proposal);
-                    }
 
                     if (fc.prevLineId != "-1")
                     {
@@ -185,6 +162,29 @@ namespace Reviser
             SystemSounds.Beep.Play();
             MessageBox.Show("Report generated successfully.", "Done!", MessageBoxButtons.OK);
             Close();
+        }
+
+        private string FormatProposal(string proposal)
+        {
+            proposal = "_" + proposal + "_";
+            proposal = proposal.Replace("\r\n", "\n");
+
+            proposal = Regex.Replace(proposal, @"(\n)<n>", "_\n");
+            proposal = Regex.Replace(proposal, @"</n>_", "");
+            proposal = MatchReplace(@"^_<n>(.*)</n>\n", proposal, "", "\n_");
+            proposal = Regex.Replace(proposal, @"</n>(\n)", "\n_");
+            proposal = MatchReplace(@" (`.*`)[\n|]*_?", proposal, "_ ", "");
+            proposal = Regex.Replace(proposal, @"__", "");
+            proposal = MatchReplaceTwo(@"(`.*`)([^\n])", proposal, "_");
+            proposal = MatchReplace(@"(:)\n", proposal, "", "_\n");
+
+            foreach (string line in proposal.Split('\n'))
+                if (line.Length > 0 && !line.StartsWith("_"))
+                    proposal = proposal.Replace(line, MatchReplace(@"^_?(.*)_$", line, "", ""));
+
+            proposal = MatchReplace(@"\n_\n(.)", proposal, "\n\n", "");
+
+            return proposal;
         }
 
         private string MatchReplace(string regex, string line, string beforeRepl, string afterRepl)
