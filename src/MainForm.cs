@@ -107,9 +107,7 @@ namespace Reviser
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
-            {
                 Open(ofd.FileName);
-            }
         }
 
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,6 +131,8 @@ namespace Reviser
             }
 
             ListViewUpdate();
+
+            ResizeListView();
         }
 
         private void newProjBtn_Click(object sender, EventArgs e)
@@ -443,13 +443,9 @@ namespace Reviser
             DialogResult dr = ne.ShowDialog();
 
             if (dr == DialogResult.OK)
-            {
                 pf.project.files[currentFile].note = ne.note;
-            }
             else if (dr == DialogResult.Abort)
-            {
                 pf.project.files[currentFile].note = "";
-            }
 
             fileChanged = true;
         }
@@ -462,10 +458,21 @@ namespace Reviser
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
+            ResizeListView();
+        }
+
+        private void ResizeListView()
+        {
             var lineWidth = listView.Columns[0].Width;
             var commentWidth = listView.Columns[2].Width;
 
-            listView.Columns[1].Width = listView.Width - (lineWidth + commentWidth + 5);
+            var largeOffset = 21;
+            var smallOffset = 4;
+
+            if (listView.Items.Count > 0 && listView.ClientSize.Height < (listView.Items.Count + 1) * listView.Items[0].Bounds.Height)
+                listView.Columns[1].Width = listView.Width - (lineWidth + commentWidth + largeOffset);
+            else
+                listView.Columns[1].Width = listView.Width - (lineWidth + commentWidth + smallOffset);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -41,15 +41,15 @@
             this.projSettingsBtn = new System.Windows.Forms.ToolStripButton();
             this.infoBtn = new System.Windows.Forms.ToolStripButton();
             this.fileListBox = new System.Windows.Forms.CheckedListBox();
-            this.listView = new BufferedListView();
-            this.lineId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.proposal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.comment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editLineBtn = new System.Windows.Forms.Button();
             this.delLineBtn = new System.Windows.Forms.Button();
             this.completeLabel = new System.Windows.Forms.Label();
             this.addNoteTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.addNoteBtn = new System.Windows.Forms.Button();
+            this.listView = new BufferedListView();
+            this.lineId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.proposal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.comment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -185,46 +185,6 @@
             this.fileListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.fileListBox_ItemCheck);
             this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             // 
-            // listView
-            // 
-            this.listView.Activation = System.Windows.Forms.ItemActivation.TwoClick;
-            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView.AutoArrange = false;
-            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.lineId,
-            this.proposal,
-            this.comment});
-            this.listView.FullRowSelect = true;
-            this.listView.GridLines = true;
-            this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(228, 32);
-            this.listView.MultiSelect = false;
-            this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(854, 418);
-            this.listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.listView.TabIndex = 5;
-            this.listView.UseCompatibleStateImageBehavior = false;
-            this.listView.View = System.Windows.Forms.View.Details;
-            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
-            this.listView.DoubleClick += new System.EventHandler(this.listView_DoubleClick);
-            // 
-            // lineId
-            // 
-            this.lineId.Text = "Line";
-            this.lineId.Width = 50;
-            // 
-            // proposal
-            // 
-            this.proposal.Text = "Proposal";
-            this.proposal.Width = 720;
-            // 
-            // comment
-            // 
-            this.comment.Text = "Comment";
-            // 
             // editLineBtn
             // 
             this.editLineBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -278,6 +238,46 @@
             this.addNoteTooltip.SetToolTip(this.addNoteBtn, "Add Note");
             this.addNoteBtn.UseVisualStyleBackColor = true;
             this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
+            // 
+            // listView
+            // 
+            this.listView.Activation = System.Windows.Forms.ItemActivation.TwoClick;
+            this.listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView.AutoArrange = false;
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lineId,
+            this.proposal,
+            this.comment});
+            this.listView.FullRowSelect = true;
+            this.listView.GridLines = true;
+            this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView.HideSelection = false;
+            this.listView.Location = new System.Drawing.Point(228, 32);
+            this.listView.MultiSelect = false;
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(854, 418);
+            this.listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.listView.TabIndex = 5;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
+            this.listView.DoubleClick += new System.EventHandler(this.listView_DoubleClick);
+            // 
+            // lineId
+            // 
+            this.lineId.Text = "Line";
+            this.lineId.Width = 50;
+            // 
+            // proposal
+            // 
+            this.proposal.Text = "Proposal";
+            this.proposal.Width = 740;
+            // 
+            // comment
+            // 
+            this.comment.Text = "Comment";
             // 
             // MainForm
             // 
