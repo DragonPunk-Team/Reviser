@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.addLineBtn = new System.Windows.Forms.Button();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.newProjBtn = new System.Windows.Forms.ToolStripButton();
             this.openProjBtn = new System.Windows.Forms.ToolStripButton();
             this.saveProjBtn = new System.Windows.Forms.ToolStripSplitButton();
@@ -50,7 +50,7 @@
             this.lineId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.proposal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toolStrip1.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // addLineBtn
@@ -66,13 +66,13 @@
             this.addLineBtn.UseVisualStyleBackColor = true;
             this.addLineBtn.Click += new System.EventHandler(this.addLineBtn_Click);
             // 
-            // toolStrip1
+            // toolStrip
             // 
-            this.toolStrip1.AutoSize = false;
-            this.toolStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip.AutoSize = false;
+            this.toolStrip.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newProjBtn,
             this.openProjBtn,
             this.saveProjBtn,
@@ -80,13 +80,13 @@
             this.generateReportBtn,
             this.projSettingsBtn,
             this.infoBtn});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(1082, 32);
-            this.toolStrip1.TabIndex = 3;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
+            this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip.Size = new System.Drawing.Size(1082, 32);
+            this.toolStrip.TabIndex = 3;
+            this.toolStrip.Text = "toolStrip1";
             // 
             // newProjBtn
             // 
@@ -264,6 +264,7 @@
             this.listView.View = System.Windows.Forms.View.Details;
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
             this.listView.DoubleClick += new System.EventHandler(this.listView_DoubleClick);
+            this.listView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
             // 
             // lineId
             // 
@@ -289,7 +290,7 @@
             this.Controls.Add(this.delLineBtn);
             this.Controls.Add(this.fileListBox);
             this.Controls.Add(this.listView);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.editLineBtn);
             this.Controls.Add(this.addLineBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -300,15 +301,15 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Button addLineBtn;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton newProjBtn;
         private System.Windows.Forms.ToolStripButton openProjBtn;
         private System.Windows.Forms.CheckedListBox fileListBox;

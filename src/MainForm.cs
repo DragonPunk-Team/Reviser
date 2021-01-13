@@ -15,7 +15,7 @@ namespace Reviser
         {
             InitializeComponent();
 
-            toolStrip1.Renderer = new ToolStripOverride();
+            toolStrip.Renderer = new ToolStripOverride();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
