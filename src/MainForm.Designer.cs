@@ -1,4 +1,4 @@
-namespace Reviser
+﻿namespace Reviser
 {
     partial class MainForm
     {
@@ -46,11 +46,17 @@ namespace Reviser
             this.completeLabel = new System.Windows.Forms.Label();
             this.addNoteTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.addNoteBtn = new System.Windows.Forms.Button();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.commentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listView = new BufferedListView();
             this.lineId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.proposal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.comment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip.SuspendLayout();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // addLineBtn
@@ -239,6 +245,42 @@ namespace Reviser
             this.addNoteBtn.UseVisualStyleBackColor = true;
             this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editSelectedToolStripMenuItem,
+            this.deleteSelectedToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.commentToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(163, 76);
+            // 
+            // editSelectedToolStripMenuItem
+            // 
+            this.editSelectedToolStripMenuItem.Name = "editSelectedToolStripMenuItem";
+            this.editSelectedToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.editSelectedToolStripMenuItem.Text = "Edit selected...";
+            this.editSelectedToolStripMenuItem.Click += new System.EventHandler(this.editSelectedToolStripMenuItem_Click);
+            // 
+            // deleteSelectedToolStripMenuItem
+            // 
+            this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
+            this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.deleteSelectedToolStripMenuItem.Text = "Delete selected...";
+            this.deleteSelectedToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(159, 6);
+            // 
+            // commentToolStripMenuItem
+            // 
+            this.commentToolStripMenuItem.Name = "commentToolStripMenuItem";
+            this.commentToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.commentToolStripMenuItem.Text = "Comment";
+            this.commentToolStripMenuItem.Click += new System.EventHandler(this.commentToolStripMenuItem_Click);
+            // 
             // listView
             // 
             this.listView.Activation = System.Windows.Forms.ItemActivation.TwoClick;
@@ -303,6 +345,7 @@ namespace Reviser
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -328,6 +371,11 @@ namespace Reviser
         private System.Windows.Forms.ToolStripMenuItem saveProjectAsToolStripMenuItem;
         private System.Windows.Forms.ToolTip addNoteTooltip;
         private System.Windows.Forms.ToolStripButton infoBtn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem editSelectedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteSelectedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem commentToolStripMenuItem;
     }
 }
 

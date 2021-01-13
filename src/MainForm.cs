@@ -272,18 +272,27 @@ namespace Reviser
 
         private void delLineBtn_Click(object sender, EventArgs e)
         {
-            var dr = MessageBox.Show("Are you sure you want to delete this line?", "Warning", MessageBoxButtons.YesNo);
+            DialogResult dr;
+
+            if (listView.SelectedItems.Count > 1)
+                dr = MessageBox.Show("Are you sure you want to delete these lines?", "Warning", MessageBoxButtons.YesNo);
+            else
+                dr = MessageBox.Show("Are you sure you want to delete this line?", "Warning", MessageBoxButtons.YesNo);
 
             if (dr == DialogResult.Yes)
             {
                 string currentItem = fileListBox.SelectedItem.ToString();
-                string lineId = listView.SelectedItems[0].SubItems[0].Text;
-                var item = pf.project.files[currentItem].content.Single(line => line.lineId == lineId);
 
-                pf.project.files[currentItem].content.Remove(item);
+                foreach (ListViewItem lvi in listView.SelectedItems)
+                {
+                    string lineId = lvi.SubItems[0].Text;
+                    var item = pf.project.files[currentItem].content.Single(fc => fc.lineId == lineId);
 
-                if (pf.project.files[currentItem].content.Count == 0)
-                    pf.project.files.Remove(currentItem);
+                    pf.project.files[currentItem].content.Remove(item);
+
+                    if (pf.project.files[currentItem].content.Count == 0)
+                        pf.project.files.Remove(currentItem);
+                }
 
                 ListViewUpdate();
 
@@ -492,6 +501,70 @@ namespace Reviser
 
                 completeLabel.Visible = false;
             }
+        }
+
+        private void listView_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && listView.FocusedItem.Bounds.Contains(e.Location))
+            {
+                if (!fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
+                {
+                    if (listView.SelectedItems.Count == 1)
+                    {
+                        editSelectedToolStripMenuItem.Enabled = true;
+
+                        if (listView.SelectedItems[0].SubItems[2].Text == "Yes")
+                            commentToolStripMenuItem.Checked = true;
+                        else
+                            commentToolStripMenuItem.Checked = false;
+                    }
+                    else
+                    {
+                        editSelectedToolStripMenuItem.Enabled = false;
+
+                        bool check = true;
+
+                        foreach (ListViewItem item in listView.SelectedItems)
+                            if (item.SubItems[2].Text == "No")
+                                check = false;
+
+                        commentToolStripMenuItem.Checked = check;
+                    }
+
+                    contextMenuStrip.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void editSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            editLineBtn_Click(sender, e);
+        }
+
+        private void deleteSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            delLineBtn_Click(sender, e);
+        }
+
+        private void commentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var currentFile = fileListBox.SelectedItem.ToString();
+
+            foreach (ListViewItem item in listView.SelectedItems)
+            {
+                if (item.SubItems[2].Text == "Yes")
+                {
+                    pf.project.files[currentFile].content.Find(fc => fc.lineId == item.SubItems[0].Text).comment = false;
+                    item.SubItems[2].Text = "No";
+                }
+                else if (item.SubItems[2].Text == "No")
+                {
+                    pf.project.files[currentFile].content.Find(fc => fc.lineId == item.SubItems[0].Text).comment = true;
+                    item.SubItems[2].Text = "Yes";
+                }
+            }
+
+            commentToolStripMenuItem.Checked = !commentToolStripMenuItem.Checked;
         }
     }
 }
