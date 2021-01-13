@@ -1,4 +1,4 @@
-﻿namespace Reviser
+namespace Reviser
 {
     partial class MainForm
     {
@@ -255,7 +255,6 @@
             this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView.HideSelection = false;
             this.listView.Location = new System.Drawing.Point(228, 32);
-            this.listView.MultiSelect = false;
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(854, 418);
             this.listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
@@ -265,6 +264,7 @@
             this.listView.SelectedIndexChanged += new System.EventHandler(this.listView_SelectedIndexChanged);
             this.listView.DoubleClick += new System.EventHandler(this.listView_DoubleClick);
             this.listView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_MouseClick);
+            this.listView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listView_MouseUp);
             // 
             // lineId
             // 

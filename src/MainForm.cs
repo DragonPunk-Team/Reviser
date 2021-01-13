@@ -10,6 +10,7 @@ namespace Reviser
     {
         private ProjectFile pf;
         private bool fileChanged;
+        private MouseButtons mouse;
 
         public MainForm()
         {
@@ -132,12 +133,12 @@ namespace Reviser
         {
             if (!fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
             {
-                if (listView.SelectedItems.Count <= 0 || listView.Items.Count <= 0)
+                if (listView.SelectedItems.Count <= 0 || listView.Items.Count <= 0 || listView.SelectedItems.Count > 1)
                 {
                     editLineBtn.Enabled = false;
                     delLineBtn.Enabled = false;
                 }
-                else
+                else if (listView.SelectedItems.Count == 1)
                 {
                     editLineBtn.Enabled = true;
                     delLineBtn.Enabled = true;
@@ -188,9 +189,15 @@ namespace Reviser
             OpenLineEditor(ld);
         }
 
+        private void listView_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouse = e.Button;
+        }
+
         private void listView_DoubleClick(object sender, EventArgs e)
         {
-            editLineBtn_Click(sender, e);
+            if (mouse == MouseButtons.Left)
+                editLineBtn_Click(sender, e);
         }
 
         private void OpenLineEditor(LineEditor.LineData ld)
