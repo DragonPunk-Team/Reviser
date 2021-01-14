@@ -56,7 +56,7 @@ namespace Reviser
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(237, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "DragonPunk Reviser 1.0.1";
+            this.label1.Text = "DragonPunk Reviser 1.0.2";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
@@ -75,6 +75,7 @@ namespace Reviser
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(238, 16);
             this.linkLabel1.TabIndex = 3;
+            this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Program icon by Freepik on Flaticon";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkLabel1.UseCompatibleTextRendering = true;
@@ -87,6 +88,7 @@ namespace Reviser
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(238, 16);
             this.linkLabel2.TabIndex = 4;
+            this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Color icons by Icons8.";
             this.linkLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkLabel2.UseCompatibleTextRendering = true;
@@ -99,6 +101,7 @@ namespace Reviser
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(238, 16);
             this.linkLabel3.TabIndex = 6;
+            this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "JSON Parser by NewtonSoft.";
             this.linkLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkLabel3.UseCompatibleTextRendering = true;
