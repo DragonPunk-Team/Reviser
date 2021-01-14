@@ -565,6 +565,7 @@ namespace Reviser
             }
 
             commentToolStripMenuItem.Checked = !commentToolStripMenuItem.Checked;
+            fileChanged = true;
         }
     }
 }
