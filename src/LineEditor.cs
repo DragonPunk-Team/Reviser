@@ -298,7 +298,7 @@ namespace Reviser
             }
 
             commentBox.SelectedText = sb.ToString();
-            commentBox.Select(commentBox.SelectionStart - 4, 0);
+            commentBox.Select(commentBox.SelectionStart + sb.Length, 0);
         }
 
         private void insertLineIdBtn_Click(object sender, EventArgs e)
