@@ -342,6 +342,9 @@ namespace Reviser
 
         private void generateReportBtn_Click(object sender, EventArgs e)
         {
+            if (fileChanged)
+                CheckUnsaved();
+
             GenerateReport gr = new GenerateReport(pf);
 
             if (!gr.ProjectEmpty())
