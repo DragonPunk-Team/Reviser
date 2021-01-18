@@ -57,6 +57,9 @@
   <PropertyGroup>
     <StartupObject>Reviser.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -256,4 +259,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\ILMerge.3.0.41\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ILMerge.3.0.41\build\ILMerge.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)ILMerge.bat</PostBuildEvent>
+  </PropertyGroup>
 </Project>
