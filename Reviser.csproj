@@ -78,6 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\FileSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\FileSelector.Designer.cs">
+      <DependentUpon>FileSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\tweaks\BufferedListView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\tweaks\ui\CustomColorTable.cs" />
     <Compile Include="src\tweaks\ui\ToolStripOverride.cs" />
+    <EmbeddedResource Include="src\FileSelector.resx">
+      <DependentUpon>FileSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\GenerateReport.resx">
       <DependentUpon>GenerateReport.cs</DependentUpon>
     </EmbeddedResource>

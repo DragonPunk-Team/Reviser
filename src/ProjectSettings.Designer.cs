@@ -44,12 +44,13 @@
             this.cancelBtn = new System.Windows.Forms.Button();
             this.firstFileBox = new System.Windows.Forms.ComboBox();
             this.lastFileBox = new System.Windows.Forms.ComboBox();
+            this.fileSelectBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Location = new System.Drawing.Point(9, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 0;
@@ -65,7 +66,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 41);
+            this.label2.Location = new System.Drawing.Point(9, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 2;
@@ -87,7 +88,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 88);
+            this.label3.Location = new System.Drawing.Point(9, 88);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 4;
@@ -131,7 +132,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 114);
+            this.label4.Location = new System.Drawing.Point(9, 115);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 7;
@@ -140,7 +141,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 161);
+            this.label5.Location = new System.Drawing.Point(9, 160);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 13);
             this.label5.TabIndex = 12;
@@ -149,7 +150,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 187);
+            this.label6.Location = new System.Drawing.Point(9, 187);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
             this.label6.TabIndex = 13;
@@ -161,7 +162,7 @@
             this.saveBtn.Location = new System.Drawing.Point(215, 222);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
-            this.saveBtn.TabIndex = 8;
+            this.saveBtn.TabIndex = 9;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
@@ -172,7 +173,7 @@
             this.cancelBtn.Location = new System.Drawing.Point(134, 222);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
-            this.cancelBtn.TabIndex = 9;
+            this.cancelBtn.TabIndex = 10;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
@@ -199,12 +200,24 @@
             this.lastFileBox.TabIndex = 7;
             this.lastFileBox.SelectedIndexChanged += new System.EventHandler(this.lastFileBox_SelectedIndexChanged);
             // 
+            // fileSelectBtn
+            // 
+            this.fileSelectBtn.Enabled = false;
+            this.fileSelectBtn.Location = new System.Drawing.Point(12, 222);
+            this.fileSelectBtn.Name = "fileSelectBtn";
+            this.fileSelectBtn.Size = new System.Drawing.Size(75, 23);
+            this.fileSelectBtn.TabIndex = 8;
+            this.fileSelectBtn.Text = "Select files...";
+            this.fileSelectBtn.UseVisualStyleBackColor = true;
+            this.fileSelectBtn.Click += new System.EventHandler(this.fileSelectBtn_Click);
+            // 
             // ProjectSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
             this.ClientSize = new System.Drawing.Size(302, 257);
+            this.Controls.Add(this.fileSelectBtn);
             this.Controls.Add(this.lastFileBox);
             this.Controls.Add(this.firstFileBox);
             this.Controls.Add(this.cancelBtn);
@@ -253,5 +266,6 @@
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.ComboBox firstFileBox;
         private System.Windows.Forms.ComboBox lastFileBox;
+        private System.Windows.Forms.Button fileSelectBtn;
     }
 }

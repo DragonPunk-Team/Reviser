@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +13,7 @@ namespace Reviser
         ProjectFile pf;
         MainForm mf;
         List<string> fileList = new List<string>();
+        string[] projectFilesList = null;
 
         public ProjectSettings(bool newp, ProjectFile projf = null, MainForm mainf = null)
         {
@@ -133,7 +134,10 @@ namespace Reviser
                 }
             };
 
-            newpf.project.file_list = MakeFileList(firstFileBox.Text, lastFileBox.Text);
+            if (projectFilesList == null)
+                newpf.project.file_list = MakeFileList(firstFileBox.Text, lastFileBox.Text);
+            else
+                newpf.project.file_list = projectFilesList.ToArray();
 
             if (newProj)
             {
@@ -263,9 +267,24 @@ namespace Reviser
         private void lastFileBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(lastFileBox.Text))
+            {
+                fileSelectBtn.Enabled = false;
                 saveBtn.Enabled = false;
+            }
             else
+            {
+                fileSelectBtn.Enabled = true;
                 saveBtn.Enabled = true;
+            }
+        }
+
+        private void fileSelectBtn_Click(object sender, EventArgs e)
+        {
+            FileSelector fs = new FileSelector(MakeFileList(firstFileBox.Text, lastFileBox.Text));
+            var dr = fs.ShowDialog();
+
+            if (dr == DialogResult.OK)
+                projectFilesList = fs.newFileList;
         }
     }
 }
