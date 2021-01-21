@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -50,6 +50,7 @@ namespace Reviser
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             Close();
         }
 
@@ -205,6 +206,8 @@ namespace Reviser
                 newpf.WriteProject();
 
                 mf.Open(pf.path);
+
+                DialogResult = DialogResult.OK;
 
                 Close();
             }

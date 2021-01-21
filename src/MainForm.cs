@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Windows.Forms;
@@ -47,6 +48,11 @@ namespace Reviser
 
             pf.ReadProject();
 
+            CheckDirectories(pf.project.orig_path, pf.project.tran_path);
+        }
+
+        private void LoadProject()
+        {
             Text = "DragonPunk Reviser - " + pf.project.name;
 
             fileListBox.BeginUpdate();
@@ -84,6 +90,49 @@ namespace Reviser
             fileListBox.ItemCheck += fileListBox_ItemCheck;
 
             fileChanged = false;
+        }
+
+        private string PathError(bool orig, bool tran)
+        {
+            var err = "";
+
+            if (!orig && !tran)
+                err = "Original files path and translated files path do ";
+            else if (!orig)
+                err = "Original files path does ";
+            else if (!tran)
+                err = "Translated files path does ";
+            
+            return err + " not exist.\nCheck project settings before continuing.";
+        }
+
+        private void CheckDirectories(string origPath, string tranPath)
+        {
+            var orig = Directory.Exists(origPath);
+            var tran = Directory.Exists(tranPath);
+
+            if (orig && tran)
+            {
+                LoadProject();
+            }
+            else
+            {
+                var msgdr = MessageBox.Show(PathError(orig, tran), "Error", MessageBoxButtons.OKCancel);
+
+                if (msgdr == DialogResult.OK)
+                {
+                    ProjectSettings projectSettings = new ProjectSettings(false, pf, this);
+                    var psdr = projectSettings.ShowDialog();
+
+                    if (psdr == DialogResult.OK)
+                    {
+                        LoadProject();
+                        return;
+                    }
+                }
+
+                pf = null;
+            }
         }
 
         private void openProjBtn_Click(object sender, EventArgs e)
