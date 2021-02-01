@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Media;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -114,6 +115,7 @@ namespace Reviser
 
         private void lineBox_TextChanged(object sender, EventArgs e)
         {
+            lineBox.Text = Regex.Replace(idBox.Text, @"[^0-9-, ]*", "");
             CheckAddBtn();
         }
 
