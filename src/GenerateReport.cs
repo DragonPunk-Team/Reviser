@@ -169,39 +169,44 @@ namespace Reviser
 
         private string FormatProposal(string proposal)
         {
-            proposal = "_" + proposal + "_";
             proposal = proposal.Replace("\r\n", "\n");
+            var lines = proposal.Split('\n');
 
-            proposal = Regex.Replace(proposal, @"(\n)<n>", "_\n");
-            proposal = Regex.Replace(proposal, @"</n>_", "");
-            proposal = MatchReplace(@"^_<n>(.*)</n>\n", proposal, "", "\n_");
-            proposal = Regex.Replace(proposal, @"</n>(\n)", "\n_");
-            proposal = MatchReplace(@" (`.*`)[\n|]*_?", proposal, "_ ", "");
-            proposal = Regex.Replace(proposal, @"__", "");
-            proposal = MatchReplaceTwo(@"(`.*`)([^\n])", proposal, "_");
-            proposal = MatchReplace(@"(:)\n", proposal, "", "_\n");
+            Regex codeRx = new Regex(@"(.*)([ ?])(\`.*\`)(.*)", RegexOptions.Compiled);
+            Regex normRx = new Regex(@"<n>(.*)</n>", RegexOptions.Compiled);
 
-            foreach (string line in proposal.Split('\n'))
-                if (line.Length > 0 && !line.StartsWith("_"))
-                    proposal = proposal.Replace(line, MatchReplace(@"^_?(.*)_$", line, "", ""));
+            StringBuilder sb = new StringBuilder();
 
-            proposal = MatchReplace(@"\n_\n(.)", proposal, "\n\n", "");
+            foreach (string line in lines)
+            {
+                if (line.Length > 0)
+                {
+                    if (line.Contains("`"))
+                    {
+                        foreach (Match match in codeRx.Matches(line))
+                        {
+                            sb.Append("_" + match.Groups[1].Value + "_" + match.Groups[2].Value + match.Groups[3].Value);
 
-            return proposal;
-        }
+                            if (match.Groups[4].Length > 0)
+                                sb.Append("_" + match.Groups[4].Value + "_");
+                        }
+                    }
 
-        private string MatchReplace(string regex, string line, string beforeRepl, string afterRepl)
-        {
-            Regex rx = new Regex(regex, RegexOptions.Compiled);
-            Match match = rx.Match(line);
-            return rx.Replace(line, beforeRepl + match.Groups[1].Value + afterRepl);
-        }
+                    if (line.Contains("<n>") && line.Contains("</n>"))
+                        foreach (Match match in normRx.Matches(line))
+                            sb.Append(match.Groups[1].Value);
 
-        private string MatchReplaceTwo(string regex, string line, string betweenRepl)
-        {
-            Regex rx = new Regex(regex, RegexOptions.Compiled);
-            Match match = rx.Match(line);
-            return rx.Replace(line, match.Groups[1].Value + betweenRepl + match.Groups[2].Value);
+                    if (!line.Contains("`") && !line.Contains("<n>") && !line.Contains("</n>"))
+                        sb.Append("_" + line + "_");
+                }
+
+                sb.AppendLine();
+            }
+
+            if (sb.ToString().EndsWith("\n"))
+                sb.Length -= 2;
+
+            return sb.ToString();
         }
 
         private string FormatLine(string origLine, string tranLine, string character, string file, int contentId)
