@@ -104,16 +104,16 @@
     <Compile Include="src\InfoForm.Designer.cs">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\InsertFileName.cs">
+    <Compile Include="src\le\InsertFileName.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\InsertFileName.Designer.cs">
+    <Compile Include="src\le\InsertFileName.Designer.cs">
       <DependentUpon>InsertFileName.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\InsertLineID.cs">
+    <Compile Include="src\le\InsertLineID.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\InsertLineID.Designer.cs">
+    <Compile Include="src\le\InsertLineID.Designer.cs">
       <DependentUpon>InsertLineID.cs</DependentUpon>
     </Compile>
     <Compile Include="src\MainForm.cs">
@@ -122,10 +122,10 @@
     <Compile Include="src\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\LineEditor.cs">
+    <Compile Include="src\le\LineEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\LineEditor.Designer.cs">
+    <Compile Include="src\le\LineEditor.Designer.cs">
       <DependentUpon>LineEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -135,10 +135,10 @@
     <Compile Include="src\NoteEditor.Designer.cs">
       <DependentUpon>NoteEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\PrevLinesEditor.cs">
+    <Compile Include="src\le\PrevLinesEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\PrevLinesEditor.Designer.cs">
+    <Compile Include="src\le\PrevLinesEditor.Designer.cs">
       <DependentUpon>PrevLinesEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="src\ProjectFile.cs" />
@@ -160,13 +160,13 @@
     <EmbeddedResource Include="src\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\InsertFileName.resx">
+    <EmbeddedResource Include="src\le\InsertFileName.resx">
       <DependentUpon>InsertFileName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\InsertLineID.resx">
+    <EmbeddedResource Include="src\le\InsertLineID.resx">
       <DependentUpon>InsertLineID.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\LineEditor.resx">
+    <EmbeddedResource Include="src\le\LineEditor.resx">
       <DependentUpon>LineEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\MainForm.resx">
@@ -175,7 +175,7 @@
     <EmbeddedResource Include="src\NoteEditor.resx">
       <DependentUpon>NoteEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\PrevLinesEditor.resx">
+    <EmbeddedResource Include="src\le\PrevLinesEditor.resx">
       <DependentUpon>PrevLinesEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\ProjectSettings.resx">
@@ -261,6 +261,7 @@
     <None Include="Resources\Reviser.png" />
     <Content Include="Reviser.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
