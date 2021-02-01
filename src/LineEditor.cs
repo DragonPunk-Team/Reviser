@@ -373,14 +373,7 @@ namespace Reviser
 
         private void idBox_TextChanged(object sender, EventArgs e)
         {
-            Regex rx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
-
-            foreach (Match match in rx.Matches(idBox.Text))
-            {
-                if (string.IsNullOrWhiteSpace(match.Value))
-                    idBox.Text = rx.Replace(idBox.Text, "");
-            }
-
+            idBox.Text = Regex.Replace(idBox.Text, @"[^0-9-, ]*", "");
             idBox.Select(idBox.Text.Length, 0);
         }
     }
