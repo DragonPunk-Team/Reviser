@@ -121,7 +121,7 @@ namespace Reviser
 
                 if (msgdr == DialogResult.OK)
                 {
-                    ProjectSettings projectSettings = new ProjectSettings(false, pf, this);
+                    ProjectSettings projectSettings = new ProjectSettings(false, pf, this) { StartPosition = FormStartPosition.CenterScreen };
                     var psdr = projectSettings.ShowDialog();
 
                     if (psdr == DialogResult.OK)
