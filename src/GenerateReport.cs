@@ -17,6 +17,12 @@ namespace Reviser
         private GMD origGMD = new GMD();
         private GMD tranGMD = new GMD();
 
+        #region Regex
+        // Used in FormatProposal()
+        private Regex codeRx = new Regex(@"(.*)([ ?])(\`.*\`)(.*)", RegexOptions.Compiled);
+        private Regex normRx = new Regex(@"<n>(.*)</n>", RegexOptions.Compiled);
+        #endregion
+
         public GenerateReport(ProjectFile project)
         {
             InitializeComponent();
@@ -38,9 +44,7 @@ namespace Reviser
                 int count = 0;
 
                 foreach (string file in pf.project.files.Keys)
-                {
                     count += pf.project.files[file].content.Count;
-                }
 
                 if (count > 0)
                     return false;
@@ -171,9 +175,6 @@ namespace Reviser
         {
             proposal = proposal.Replace("\r\n", "\n");
             var lines = proposal.Split('\n');
-
-            Regex codeRx = new Regex(@"(.*)([ ?])(\`.*\`)(.*)", RegexOptions.Compiled);
-            Regex normRx = new Regex(@"<n>(.*)</n>", RegexOptions.Compiled);
 
             StringBuilder sb = new StringBuilder();
 
