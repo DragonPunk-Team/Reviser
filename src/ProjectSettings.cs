@@ -34,6 +34,8 @@ namespace Reviser
             if (newProj)
             {
                 Text = "New Project";
+
+                projTypeBox.SelectedItem = "SoJ";
             }
             else
             {

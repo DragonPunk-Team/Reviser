@@ -74,16 +74,17 @@
             // 
             // projTypeBox
             // 
+            this.projTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.projTypeBox.Enabled = false;
             this.projTypeBox.FormattingEnabled = true;
             this.projTypeBox.Items.AddRange(new object[] {
+            "DD",
             "SoJ",
-            "Trilogy"});
+            "AAT"});
             this.projTypeBox.Location = new System.Drawing.Point(102, 38);
             this.projTypeBox.Name = "projTypeBox";
             this.projTypeBox.Size = new System.Drawing.Size(54, 21);
             this.projTypeBox.TabIndex = 1;
-            this.projTypeBox.Text = "SoJ";
             // 
             // label3
             // 
