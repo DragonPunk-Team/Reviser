@@ -8,7 +8,22 @@ namespace Reviser
 {
     public class GMD
     {
-        Tuple<string, string>[][] Content;
+        private Tuple<string, string>[][] Content;
+
+        #region Regex
+        // Used in GetCharacter()
+        private Regex charRx = new Regex(@"<E041 [0-9]* ([0-9]*)>", RegexOptions.Compiled);
+
+        // Used in GetColor()
+        private Regex redRx = new Regex(@"<E006>", RegexOptions.Compiled);
+        private Regex endRx = new Regex(@"<E00(5|7|8)>", RegexOptions.Compiled);
+
+        // Used in RemoveColors()
+        private Regex colRx = new Regex(@"<(|\/)red>", RegexOptions.Compiled);
+
+        // Used to remove tags.
+        private Regex tagRx = new Regex(@"<[A-Z 0-9]*>", RegexOptions.Compiled);
+        #endregion
 
         public void ReadGMD(object filepath)
         {
@@ -89,11 +104,9 @@ namespace Reviser
 
         private string GetCharacter(string line)
         {
-            string characterName = "";
+            var characterName = "";
             Cast cast = new Cast();
-
-            Regex rx = new Regex(@"<E041 [0-9]* ([0-9]*)>", RegexOptions.Compiled);
-            MatchCollection matches = rx.Matches(line);
+            MatchCollection matches = charRx.Matches(line);
 
             foreach (Match match in matches)
                 characterName = cast.GS6[int.Parse(match.Groups[1].Value)];
@@ -103,45 +116,30 @@ namespace Reviser
 
         private string GetColor(string line)
         {
-            string coloredLine;
-
-            Regex redRx = new Regex(@"<E006>", RegexOptions.Compiled);
-            Regex endRx = new Regex(@"<E00(5|7|8)>", RegexOptions.Compiled);
-
-            coloredLine = redRx.Replace(line, "<red>");
+            var coloredLine = redRx.Replace(line, "<red>");
 
             if (coloredLine == line)
             {
-                return RemoveTags(line);
+                return tagRx.Replace(line, "");
             }
             else
             {
                 coloredLine = endRx.Replace(coloredLine, "</red>");
-                coloredLine = RemoveTags(coloredLine);
+                coloredLine = tagRx.Replace(coloredLine, "");
 
                 if (coloredLine.StartsWith("</red>"))
                 {
-                    coloredLine = ReplaceRemove(coloredLine, @"<\/red>", 1);
+                    Regex rx = new Regex(@"<\/red>", RegexOptions.Compiled);
+                    return rx.Replace(line, "", 1);
                 }
 
                 return coloredLine;
             }
         }
 
-        private string RemoveTags(string line)
-        {
-            return ReplaceRemove(line, @"<[A-Z 0-9]*>");
-        }
-
         public string RemoveColors(string line)
         {
-            return ReplaceRemove(line, @"<(|\/)red>");
-        }
-
-        private string ReplaceRemove(string line, string regex, int count = -1)
-        {
-            Regex rx = new Regex(regex, RegexOptions.Compiled);
-            return rx.Replace(line, "", count);
+            return colRx.Replace(line, "");
         }
 
         public int[] GetIdList(string lineIds)
