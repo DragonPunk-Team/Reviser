@@ -223,6 +223,9 @@ namespace Reviser
                 {
                     firstFileBox.Enabled = true;
                     firstFileBox.Items.AddRange(fileList.ToArray());
+
+                    if (pf.project.file_list.Length > 0)
+                        firstFileBox.SelectedItem = pf.project.file_list[0];
                 }
                 else
                 {
@@ -245,6 +248,9 @@ namespace Reviser
             if (lastFileBox.Items.Count == 0)
             {
                 lastFileBox.Items.AddRange(fileList.ToArray());
+
+                if (pf.project.file_list.Length > 0)
+                    lastFileBox.SelectedItem = pf.project.file_list[pf.project.file_list.Length - 1];
             }
             else
             {
