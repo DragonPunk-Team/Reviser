@@ -97,11 +97,11 @@ namespace Reviser
             var err = "";
 
             if (!orig && !tran)
-                err = "Original files path and translated files path do ";
+                err = "Original files path and translated files path do";
             else if (!orig)
-                err = "Original files path does ";
+                err = "Original files path does";
             else if (!tran)
-                err = "Translated files path does ";
+                err = "Translated files path does";
             
             return err + " not exist.\nCheck project settings before continuing.";
         }
