@@ -22,7 +22,7 @@ namespace Reviser
         private Regex colRx = new Regex(@"<(|\/)red>", RegexOptions.Compiled);
 
         // Used to remove tags.
-        private Regex tagRx = new Regex(@"<[A-Z 0-9]*>", RegexOptions.Compiled);
+        private Regex tagRx = new Regex(@"<[A-Z 0-9_]*>", RegexOptions.Compiled);
         #endregion
 
         public void ReadGMD(object filepath)
