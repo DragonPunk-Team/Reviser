@@ -431,8 +431,21 @@ namespace Reviser
 
                 if (dr == DialogResult.Yes)
                 {
-                    if (pf.project.files.ContainsKey(item))
+                    if (!pf.project.files.ContainsKey(item))
+                    {
+                        ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                        {
+                            complete = true,
+                            note = "",
+                            content = new List<ProjectFile.FileContent>(),
+                        };
+
+                        pf.project.files.Add(item, rf);
+                    }
+                    else
+                    {
                         pf.project.files[item].complete = true;
+                    }
 
                     CompleteToggle(true);
 
@@ -453,8 +466,21 @@ namespace Reviser
 
                 if (dr == DialogResult.Yes)
                 {
-                    if (pf.project.files.ContainsKey(item))
+                    if (!pf.project.files.ContainsKey(item))
+                    {
+                        ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                        {
+                            complete = false,
+                            note = "",
+                            content = new List<ProjectFile.FileContent>(),
+                        };
+
+                        pf.project.files.Add(item, rf);
+                    }
+                    else
+                    {
                         pf.project.files[item].complete = false;
+                    }
 
                     CompleteToggle(false);
 
