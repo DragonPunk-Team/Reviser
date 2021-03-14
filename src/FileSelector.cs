@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Reviser
@@ -7,20 +8,25 @@ namespace Reviser
     public partial class FileSelector : Form
     {
         private string[] partialFileList;
+        private string[] originalFileList;
         public string[] newFileList;
 
-        public FileSelector(string[] pfl)
+        public FileSelector(string[] pfl, string[] ofl = null)
         {
             InitializeComponent();
 
             partialFileList = pfl;
+            originalFileList = ofl;
         }
 
         private void FileSelector_Load(object sender, EventArgs e)
         {
             fileListBox.Items.AddRange(partialFileList);
 
-            CheckAll(true);
+            if (originalFileList == null)
+                CheckAll(true);
+            else
+                CheckOriginalFiles();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -48,7 +54,19 @@ namespace Reviser
             }
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private void CheckOriginalFiles()
+        {
+            foreach (string item in partialFileList)
+            {
+                if (originalFileList.Contains(item))
+                {
+                    var index = fileListBox.Items.IndexOf(item);
+                    fileListBox.SetItemChecked(index, true);
+                }
+            }
+        }
+
+        private void okBtn_Click(object sender, EventArgs e)
         {
             List<string> fileList = new List<string>();
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace Reviser
         bool newProj;
         ProjectFile pf;
         MainForm mf;
-        List<string> fileList = new List<string>();
+
         string[] projectFilesList = null;
 
         public ProjectSettings(bool newp, ProjectFile projf = null, MainForm mainf = null)
@@ -45,8 +45,6 @@ namespace Reviser
                 projTypeBox.SelectedItem = pf.project.type;
                 origFilesBox.Text = pf.project.orig_path;
                 tranFilesBox.Text = pf.project.tran_path;
-                firstFileBox.Text = pf.project.file_list[0];
-                lastFileBox.Text = pf.project.file_list[pf.project.file_list.Length - 1];
             }
         }
 
@@ -73,8 +71,10 @@ namespace Reviser
         {
             List<string> files = new List<string>();
 
-            int firstIndex = fileList.IndexOf(first);
-            int lastIndex = fileList.IndexOf(last);
+            var fileList = GetFiles(tranFilesBox.Text);
+
+            int firstIndex = Array.IndexOf(fileList, first);
+            int lastIndex = Array.IndexOf(fileList, last);
             files.AddRange(new ArraySegment<string>(fileList.ToArray(), firstIndex, lastIndex - firstIndex + 1));
 
             return files.ToArray();
@@ -82,33 +82,40 @@ namespace Reviser
 
         private void origFilesBtn_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog()
-            {
-                Description = "Select Original Files Folder"
-            };
-
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                origFilesBox.Text = fbd.SelectedPath;
-            }
+            origFilesBox.Text = FolderSelect("Original");
         }
 
         private void tranFilesBtn_Click(object sender, EventArgs e)
         {
+            tranFilesBox.Text = FolderSelect("Translated");
+        }
+
+        private string FolderSelect(string fileType)
+        {
             FolderBrowserDialog fbd = new FolderBrowserDialog()
             {
-                Description = "Select Translated Files Folder"
+                Description = String.Format("Select {0} Files Folder", fileType)
             };
 
             if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                tranFilesBox.Text = fbd.SelectedPath;
-            }
+                return fbd.SelectedPath;
+            else
+                return "";
         }
 
         private void tranFilesBox_TextChanged(object sender, EventArgs e)
         {
-            UpdateFirstFileList();
+            if (Directory.Exists(tranFilesBox.Text))
+            {
+                UpdateFirstFileList();
+            }
+            else
+            {
+                firstFileBox.Enabled = false;
+                lastFileBox.Enabled = false;
+                fileSelectBtn.Enabled = false;
+                saveBtn.Enabled = false;
+            }
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -215,64 +222,83 @@ namespace Reviser
             }
         }
 
+        private string[] GetPartialList()
+        {
+            var firstSelection = firstFileBox.SelectedItem.ToString();
+
+            if (string.IsNullOrWhiteSpace(firstSelection))
+            {
+                return new string[0];
+            }
+            else
+            {
+                var files = GetFiles(tranFilesBox.Text);
+                var index = Array.IndexOf(files, firstSelection);
+                return new ArraySegment<string>(files, index, files.Length - index).ToArray();
+            }
+        }
+
         private void UpdateFirstFileList()
         {
-            if (fileList.Count == 0)
+            if (firstFileBox.Items.Count > 0)
             {
-                fileList.AddRange(GetFiles(tranFilesBox.Text));
+                firstFileBox.Items.Clear();
+                lastFileBox.Items.Clear();
 
-                if (fileList.Count > 0)
+                UpdateFirstFileList();
+            }
+            else
+            {
+                var files = GetFiles(tranFilesBox.Text);
+
+                if (files.Length > 0)
                 {
-                    firstFileBox.Enabled = true;
-                    firstFileBox.Items.AddRange(fileList.ToArray());
+                    firstFileBox.Items.AddRange(files);
 
-                    if (pf.project.file_list.Length > 0)
+                    if (pf.project.file_list != null && pf.project.file_list.Length > 0)
                         firstFileBox.SelectedItem = pf.project.file_list[0];
+
+                    firstFileBox.Enabled = true;
                 }
                 else
                 {
                     firstFileBox.Enabled = false;
                 }
             }
-            else
-            {
-                fileList.Clear();
-                firstFileBox.Items.Clear();
-                UpdateFirstFileList();
-            }
         }
 
         private void UpdateLastFileList()
         {
-            var index = this.fileList.IndexOf(firstFileBox.SelectedItem.ToString());
-            var fileList = new ArraySegment<string>(this.fileList.ToArray(), index, this.fileList.Count - index);
-            
-            if (lastFileBox.Items.Count == 0)
+            if (lastFileBox.Items.Count > 0)
             {
-                lastFileBox.Items.AddRange(fileList.ToArray());
+                lastFileBox.Items.Clear();
 
-                if (pf.project.file_list.Length > 0)
-                    lastFileBox.SelectedItem = pf.project.file_list[pf.project.file_list.Length - 1];
+                UpdateLastFileList();
             }
             else
             {
-                lastFileBox.Items.Clear();
-                saveBtn.Enabled = false;
-                UpdateLastFileList();
+                var files = GetPartialList();
+
+                if (files.Length > 0)
+                {
+                    lastFileBox.Items.AddRange(files);
+
+                    if (pf.project.file_list != null && pf.project.file_list.Length > 0)
+                        lastFileBox.SelectedItem = pf.project.file_list[pf.project.file_list.Length - 1];
+
+                    lastFileBox.Enabled = true;
+                }
+                else
+                {
+                    lastFileBox.Enabled = false;
+                }
             }
         }
 
         private void firstFileBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(firstFileBox.SelectedText))
-            {
+            if (!string.IsNullOrWhiteSpace(firstFileBox.SelectedItem.ToString()))
                 UpdateLastFileList();
-                lastFileBox.Enabled = true;
-            }
-            else
-            {
-                lastFileBox.Enabled = false;
-            }
         }
 
         private void lastFileBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -291,7 +317,13 @@ namespace Reviser
 
         private void fileSelectBtn_Click(object sender, EventArgs e)
         {
-            FileSelector fs = new FileSelector(MakeFileList(firstFileBox.Text, lastFileBox.Text));
+            FileSelector fs;
+
+            if (pf.project.file_list != null && pf.project.file_list.Length > 0)
+                fs = new FileSelector(MakeFileList(firstFileBox.Text, lastFileBox.Text), pf.project.file_list);
+            else
+                fs = new FileSelector(MakeFileList(firstFileBox.Text, lastFileBox.Text));
+
             var dr = fs.ShowDialog();
 
             if (dr == DialogResult.OK)
