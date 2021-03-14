@@ -425,23 +425,23 @@ namespace Reviser
             {
                 DialogResult dr = DialogResult.Yes;
 
-                if (pf.project.files.ContainsKey(item))
-                    if (pf.project.files[item].content.Count > 0)
-                        dr = MessageBox.Show("Are you sure you want to mark this file as complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+                if (!pf.project.files.ContainsKey(item))
+                {
+                    ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                    {
+                        complete = false,
+                        note = "",
+                        content = new List<ProjectFile.FileContent>(),
+                    };
+
+                    pf.project.files.Add(item, rf);
+                }
+
+                if (pf.project.files[item].content.Count > 0)
+                    dr = MessageBox.Show("Are you sure you want to mark this file as complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
 
                 if (dr == DialogResult.Yes)
                 {
-                    if (!pf.project.files.ContainsKey(item))
-                    {
-                        ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
-                        {
-                            note = "",
-                            content = new List<ProjectFile.FileContent>(),
-                        };
-
-                        pf.project.files.Add(item, rf);
-                    }
-
                     pf.project.files[item].complete = true;
                     CompleteToggle(true);
                     fileChanged = true;
@@ -455,23 +455,23 @@ namespace Reviser
             {
                 DialogResult dr = DialogResult.Yes;
 
-                if (pf.project.files.ContainsKey(item))
-                    if (pf.project.files[item].content.Count > 0)
-                        dr = MessageBox.Show("Are you sure you want to mark this file as not complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+                if (!pf.project.files.ContainsKey(item))
+                {
+                    ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                    {
+                        complete = true,
+                        note = "",
+                        content = new List<ProjectFile.FileContent>(),
+                    };
+
+                    pf.project.files.Add(item, rf);
+                }
+
+                if (pf.project.files[item].content.Count > 0)
+                    dr = MessageBox.Show("Are you sure you want to mark this file as not complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
 
                 if (dr == DialogResult.Yes)
                 {
-                    if (!pf.project.files.ContainsKey(item))
-                    {
-                        ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
-                        {
-                            note = "",
-                            content = new List<ProjectFile.FileContent>(),
-                        };
-
-                        pf.project.files.Add(item, rf);
-                    }
-
                     pf.project.files[item].complete = false;
                     CompleteToggle(false);
                     fileChanged = true;
