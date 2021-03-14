@@ -142,70 +142,29 @@ namespace Reviser
             return colRx.Replace(line, "");
         }
 
-        public int[] GetIdList(string lineIds)
+        private int[] GetIdList(string lineIds)
         {
             var idList = new List<int>();
 
-            Regex mainRx = new Regex(@"[0-9]*", RegexOptions.Compiled);
-            Regex sepRx = new Regex(@"-|,", RegexOptions.Compiled);
+            Regex rx = new Regex(@"([0-9]*-?)*", RegexOptions.Compiled);
 
-            // Check for ids separated by a dash (-),
-            // multiple different lines.
-            bool multiline = false;
+            MatchCollection ids = rx.Matches(lineIds);
 
-            // Check for ids separated by a comma (,),
-            // they may be two different lines.
-            bool diffLines = false;
-
-            MatchCollection ids = mainRx.Matches(lineIds);
-            MatchCollection seps = sepRx.Matches(lineIds);
-
-            foreach (Match sep in seps)
+            foreach (Match id in ids)
             {
-                if (sep.Value == "-")
-                    multiline = true;
-
-                if (sep.Value == ",")
-                    diffLines = true;
-            }
-
-            int startLine;
-
-            if (int.TryParse(ids[0].Value, out _))
-                startLine = int.Parse(ids[0].Value);
-            else
-                return new int[0];
-
-            int endLine = 0;
-
-            if (multiline || diffLines)
-            {
-                foreach (Match id in ids)
+                if (!string.IsNullOrWhiteSpace(id.Value))
                 {
-                    if (id.Value != ids[0].Value && id.Value != "" && int.TryParse(id.Value, out _))
+                    if (id.Value.Contains("-"))
                     {
-                        endLine = int.Parse(id.Value);
-                        break;
+                        var split = id.Value.Split('-');
+                        var limits = new int[] { int.Parse(split[0]), int.Parse(split[1]) };
+
+                        for (int i = limits[0]; i <= limits[1]; i++)
+                            idList.Add(i);
                     }
-                }
-            }
-
-            idList.Add(startLine);
-
-            if (endLine != 0)
-            {
-                if (diffLines)
-                {
-                    idList.Add(endLine);
-                }
-                else
-                {
-                    int lineCount = startLine;
-
-                    while (lineCount < endLine)
+                    else
                     {
-                        lineCount++;
-                        idList.Add(lineCount);
+                        idList.Add(int.Parse(id.Value));
                     }
                 }
             }
