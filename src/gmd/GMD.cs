@@ -244,19 +244,15 @@ namespace Reviser
 
             int[] idList = GetIdList(lineIds);
 
-            Tuple<string, string> lastTuple = new Tuple<string, string>("", "");
-
             foreach (int id in idList)
             {
-                if (id < 1)
-                    break;
+                if (id > 0)
+                {
+                    var line = GetLine(id);
 
-                var line = GetLine(id);
-
-                if (line != null && !string.IsNullOrEmpty(line.Item2) && line.Item2 != lastTuple.Item2)
-                    lines.Add(line);
-
-                lastTuple = line;
+                    if (line != null && !string.IsNullOrEmpty(line.Item2) && !lines.Contains(line))
+                        lines.Add(line);
+                }
             }
 
             if (lines.Count == 0)
