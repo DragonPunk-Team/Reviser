@@ -75,89 +75,92 @@ namespace Reviser
 
             foreach (string file in pf.project.files.Keys)
             {
-                int fileIndex = Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1;
-                int filePBValue = fileIndex * 100 / pf.project.files.Count;
-
-                statusLabel.Text = "Adding file " + file + "...";
-
-                var filePath = "\\" + file;
-
-                Thread orig = new Thread(origGMD.ReadGMD);
-                Thread tran = new Thread(tranGMD.ReadGMD);
-
-                orig.Start(pf.project.orig_path + filePath);
-                tran.Start(pf.project.tran_path + filePath);
-
-                while (orig.ThreadState == ThreadState.Running || tran.ThreadState == ThreadState.Running)
-                    Application.DoEvents();
-
-                if (pf.project.files[file].content.Count > 0)
+                if (pf.project.files[file].complete)
                 {
-                    sb.AppendLine("## `" + file + "`");
-                    sb.AppendLine();
+                    int fileIndex = Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1;
+                    int filePBValue = fileIndex * 100 / pf.project.files.Count;
 
-                    if (!string.IsNullOrWhiteSpace(pf.project.files[file].note))
+                    statusLabel.Text = "Adding file " + file + "...";
+
+                    var filePath = "\\" + file;
+
+                    Thread orig = new Thread(origGMD.ReadGMD);
+                    Thread tran = new Thread(tranGMD.ReadGMD);
+
+                    orig.Start(pf.project.orig_path + filePath);
+                    tran.Start(pf.project.tran_path + filePath);
+
+                    while (orig.ThreadState == ThreadState.Running || tran.ThreadState == ThreadState.Running)
+                        Application.DoEvents();
+
+                    if (pf.project.files[file].content.Count > 0)
                     {
-                        sb.AppendLine("### " + pf.project.files[file].note);
-                        sb.AppendLine();
-                    }
-
-                    foreach (ProjectFile.FileContent fc in pf.project.files[file].content)
-                    {
-                        sb.AppendLine("### " + fc.lineId);
+                        sb.AppendLine("## `" + file + "`");
                         sb.AppendLine();
 
-                        var origLines = origGMD.GetLines(fc.lineId);
-                        var tranLines = tranGMD.GetLines(fc.lineId);
-
-                        foreach (var line in origLines)
+                        if (!string.IsNullOrWhiteSpace(pf.project.files[file].note))
                         {
-                            if (line.Item1.Length == 0)
-                                sb.Length -= 4;
-
-                            int index = Array.IndexOf(origLines, line);
-                            sb.AppendLine(FormatLine(line.Item2, tranLines[index].Item2, line.Item1, file, fc.contentId));
+                            sb.AppendLine("### " + pf.project.files[file].note);
+                            sb.AppendLine();
                         }
 
-                        sb.AppendLine("**Proposta:**");
-
-                        if (fc.comment)
-                            sb.AppendLine(FormatProposal(fc.proposal));
-                        else
-                            sb.AppendLine(fc.proposal);
-
-                        if (fc.prevLineId != "-1")
+                        foreach (ProjectFile.FileContent fc in pf.project.files[file].content)
                         {
-                            var origPrevLines = origGMD.GetLines(fc.prevLineId);
-                            var tranPrevLines = tranGMD.GetLines(fc.prevLineId);
+                            sb.AppendLine("### " + fc.lineId);
+                            sb.AppendLine();
 
-                            sb.Append("\n\n");
+                            var origLines = origGMD.GetLines(fc.lineId);
+                            var tranLines = tranGMD.GetLines(fc.lineId);
 
-                            if (origPrevLines.Length > 1)
-                                sb.AppendLine("**Frasi precedenti:**");
-                            else
-                                sb.AppendLine("**Frase precedente:**");
-
-                            sb.Append("\n\n");
-
-                            foreach (var prevLine in origPrevLines)
+                            foreach (var line in origLines)
                             {
-                                int prevIndex = Array.IndexOf(origPrevLines, prevLine);
-                                sb.AppendLine(FormatLine(prevLine.Item2, tranPrevLines[prevIndex].Item2, prevLine.Item1, file, fc.contentId));
+                                if (line.Item1.Length == 0)
+                                    sb.Length -= 4;
+
+                                int index = Array.IndexOf(origLines, line);
+                                sb.AppendLine(FormatLine(line.Item2, tranLines[index].Item2, line.Item1, file, fc.contentId));
                             }
+
+                            sb.AppendLine("**Proposta:**");
+
+                            if (fc.comment)
+                                sb.AppendLine(FormatProposal(fc.proposal));
+                            else
+                                sb.AppendLine(fc.proposal);
+
+                            if (fc.prevLineId != "-1")
+                            {
+                                var origPrevLines = origGMD.GetLines(fc.prevLineId);
+                                var tranPrevLines = tranGMD.GetLines(fc.prevLineId);
+
+                                sb.Append("\n\n");
+
+                                if (origPrevLines.Length > 1)
+                                    sb.AppendLine("**Frasi precedenti:**");
+                                else
+                                    sb.AppendLine("**Frase precedente:**");
+
+                                sb.Append("\n\n");
+
+                                foreach (var prevLine in origPrevLines)
+                                {
+                                    int prevIndex = Array.IndexOf(origPrevLines, prevLine);
+                                    sb.AppendLine(FormatLine(prevLine.Item2, tranPrevLines[prevIndex].Item2, prevLine.Item1, file, fc.contentId));
+                                }
+                            }
+
+                            sb.Append("\n\n\n");
+
+                            int fcIndex = Array.IndexOf(pf.project.files[file].content.ToArray(), fc) + 1;
+                            totalPBValue += fcIndex / pf.project.files[file].content.Count;
+                            progressBar.Value = totalPBValue;
+                            Application.DoEvents();
                         }
 
-                        sb.Append("\n\n\n");
-
-                        int fcIndex = Array.IndexOf(pf.project.files[file].content.ToArray(), fc) + 1;
-                        totalPBValue += fcIndex / pf.project.files[file].content.Count;
+                        totalPBValue = filePBValue;
                         progressBar.Value = totalPBValue;
                         Application.DoEvents();
                     }
-
-                    totalPBValue = filePBValue;
-                    progressBar.Value = totalPBValue;
-                    Application.DoEvents();
                 }
             }
 
