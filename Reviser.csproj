@@ -233,9 +233,6 @@
     <None Include="Resources\Save Project.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Add Note.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Add previous lines.png" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +256,8 @@
   <ItemGroup>
     <None Include="Resources\Info.png" />
     <None Include="Resources\Reviser.png" />
+    <None Include="Resources\Add Note.png" />
+    <None Include="Resources\Edit Note.png" />
     <Content Include="Reviser.ico" />
   </ItemGroup>
   <ItemGroup />

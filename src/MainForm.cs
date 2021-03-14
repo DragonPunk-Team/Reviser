@@ -151,16 +151,18 @@ namespace Reviser
 
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var item = fileListBox.SelectedItem;
+
             editLineBtn.Enabled = false;
             delLineBtn.Enabled = false;
 
-            if (fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
+            if (fileListBox.CheckedItems.Contains(item))
                 CompleteToggle(true);
             else
                 CompleteToggle(false);
-
+            
+            ChangeNoteIcon(item.ToString());
             ListViewUpdate();
-
             ResizeListView();
         }
 
@@ -507,6 +509,8 @@ namespace Reviser
             else if (dr == DialogResult.Abort)
                 pf.project.files[currentFile].note = "";
 
+            ChangeNoteIcon(currentFile);
+
             fileChanged = true;
         }
 
@@ -634,6 +638,17 @@ namespace Reviser
 
             commentToolStripMenuItem.Checked = !commentToolStripMenuItem.Checked;
             fileChanged = true;
+        }
+
+        private void ChangeNoteIcon(string item)
+        {
+            if (pf.project.files.ContainsKey(item))
+                if (string.IsNullOrWhiteSpace(pf.project.files[item].note))
+                    addNoteBtn.Image = Properties.Resources.Add_Note;
+                else
+                    addNoteBtn.Image = Properties.Resources.Edit_Note;
+            else
+                addNoteBtn.Image = Properties.Resources.Add_Note;
         }
     }
 }

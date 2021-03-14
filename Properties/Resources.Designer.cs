@@ -103,6 +103,16 @@ namespace Reviser.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Edit_Note {
+            get {
+                object obj = ResourceManager.GetObject("Edit Note", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Generate_Report {
             get {
                 object obj = ResourceManager.GetObject("Generate Report", resourceCulture);
