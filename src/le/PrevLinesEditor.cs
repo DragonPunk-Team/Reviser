@@ -13,6 +13,8 @@ namespace Reviser
         bool color;
         public string lineId;
 
+        Regex idRx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
+
         public PrevLinesEditor(GMD origGMD, GMD tranGMD, bool color, string lineId)
         {
             InitializeComponent();
@@ -115,7 +117,7 @@ namespace Reviser
 
         private void lineBox_TextChanged(object sender, EventArgs e)
         {
-            lineBox.Text = Regex.Replace(idBox.Text, @"[^0-9-, ]*", "");
+            lineBox.Text = idRx.Replace(idBox.Text, "");
             CheckAddBtn();
         }
 

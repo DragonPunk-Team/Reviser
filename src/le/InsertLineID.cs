@@ -6,6 +6,7 @@ namespace Reviser
 {
     public partial class InsertLineID : Form
     {
+        Regex idRx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
         public InsertLineID()
         {
             InitializeComponent();
@@ -39,7 +40,7 @@ namespace Reviser
 
         private void lineIdBox_TextChanged(object sender, EventArgs e)
         {
-            lineIdBox.Text = Regex.Replace(lineIdBox.Text, @"[^0-9-, ]*", "");
+            lineIdBox.Text = idRx.Replace(lineIdBox.Text, "");
             lineIdBox.Select(lineIdBox.Text.Length, 0);
         }
 
