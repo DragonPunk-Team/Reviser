@@ -393,29 +393,37 @@ namespace Reviser
 
         private void generateReportBtn_Click(object sender, EventArgs e)
         {
+            DialogResult dr = DialogResult.Yes;
+
             if (fileChanged)
                 CheckUnsaved();
 
-            GenerateReport gr = new GenerateReport(pf);
+            if (fileListBox.CheckedItems.Count != fileListBox.Items.Count)
+                dr = MessageBox.Show("Some files weren't marked as complete.\nThese files will NOT be included in the final report.\nAre you sure you want to continue?", "Warning", MessageBoxButtons.YesNo);
 
-            if (!gr.ProjectEmpty())
+            if (dr == DialogResult.Yes)
             {
-                SaveFileDialog sfd = new SaveFileDialog()
-                {
-                    Title = "Select report destination",
-                    Filter = "Markdown File (*.md)|*.md",
-                    FileName = pf.project.name
-                };
+                GenerateReport gr = new GenerateReport(pf);
 
-                if (sfd.ShowDialog() == DialogResult.OK)
+                if (!gr.ProjectEmpty())
                 {
-                    gr.path = sfd.FileName;
-                    gr.ShowDialog();
+                    SaveFileDialog sfd = new SaveFileDialog()
+                    {
+                        Title = "Select report destination",
+                        Filter = "Markdown File (*.md)|*.md",
+                        FileName = pf.project.name
+                    };
+
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        gr.path = sfd.FileName;
+                        gr.ShowDialog();
+                    }
                 }
-            }
-            else
-            {
-                MessageBox.Show("You can't generate a report right now, since the project is empty.", "Error", MessageBoxButtons.OK);
+                else
+                {
+                    MessageBox.Show("You can't generate a report right now, since the project is empty.", "Error", MessageBoxButtons.OK);
+                }
             }
         }
 
