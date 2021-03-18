@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -91,6 +91,7 @@ namespace Reviser
         private void searchBtn_Click(object sender, EventArgs e)
         {
             lineBox.Text = FormatLines();
+            CheckAddBtn();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -115,16 +116,9 @@ namespace Reviser
             Close();
         }
 
-        private void lineBox_TextChanged(object sender, EventArgs e)
-        {
-            lineBox.Text = idRx.Replace(idBox.Text, "");
-            CheckAddBtn();
-        }
-
         private void CheckAddBtn()
         {
-            if (lineBox.Text.Contains("[Error]") ||
-                string.IsNullOrWhiteSpace(lineBox.Text))
+            if (lineBox.Text.Contains("[Error]") || string.IsNullOrWhiteSpace(lineBox.Text))
                 addBtn.Enabled = false;
             else
                 addBtn.Enabled = true;
@@ -134,6 +128,11 @@ namespace Reviser
         {
             lineId = idBox.Text;
             CloseForm(save: true);
+        }
+
+        private void idBox_TextChanged(object sender, EventArgs e)
+        {
+            idBox.Text = idRx.Replace(idBox.Text, "");
         }
     }
 }

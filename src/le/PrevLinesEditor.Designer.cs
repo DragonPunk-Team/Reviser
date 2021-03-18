@@ -52,6 +52,7 @@
             this.idBox.Name = "idBox";
             this.idBox.Size = new System.Drawing.Size(67, 20);
             this.idBox.TabIndex = 0;
+            this.idBox.TextChanged += new System.EventHandler(this.idBox_TextChanged);
             // 
             // searchBtn
             // 
@@ -85,7 +86,6 @@
             this.lineBox.Size = new System.Drawing.Size(402, 178);
             this.lineBox.TabIndex = 0;
             this.lineBox.TabStop = false;
-            this.lineBox.TextChanged += new System.EventHandler(this.lineBox_TextChanged);
             // 
             // cancelBtn
             // 
