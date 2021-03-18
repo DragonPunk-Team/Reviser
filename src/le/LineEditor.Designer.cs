@@ -93,6 +93,7 @@ namespace Reviser
             this.commentBox.Location = new System.Drawing.Point(0, 0);
             this.commentBox.Multiline = true;
             this.commentBox.Name = "commentBox";
+            this.commentBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.commentBox.Size = new System.Drawing.Size(402, 181);
             this.commentBox.TabIndex = 1;
             this.commentBox.TextChanged += new System.EventHandler(this.commentBox_TextChanged);
