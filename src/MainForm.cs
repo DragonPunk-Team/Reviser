@@ -184,7 +184,7 @@ namespace Reviser
         {
             if (!fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
             {
-                if (listView.SelectedItems.Count <= 0 || listView.Items.Count <= 0 || listView.SelectedItems.Count > 1)
+                if (listView.SelectedItems.Count <= 0 || listView.Items.Count <= 0)
                 {
                     editLineBtn.Enabled = false;
                     delLineBtn.Enabled = false;
@@ -192,6 +192,11 @@ namespace Reviser
                 else if (listView.SelectedItems.Count == 1)
                 {
                     editLineBtn.Enabled = true;
+                    delLineBtn.Enabled = true;
+                }
+                else if (listView.SelectedItems.Count > 1)
+                {
+                    editLineBtn.Enabled = false;
                     delLineBtn.Enabled = true;
                 }
             }
