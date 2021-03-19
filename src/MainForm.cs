@@ -328,14 +328,12 @@ namespace Reviser
 
         private void delLineBtn_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
+            var msg = "Are you sure you want to delete this line?";
 
             if (listView.SelectedItems.Count > 1)
-                dr = MessageBox.Show("Are you sure you want to delete these lines?", "Warning", MessageBoxButtons.YesNo);
-            else
-                dr = MessageBox.Show("Are you sure you want to delete this line?", "Warning", MessageBoxButtons.YesNo);
+                msg = msg.Replace("this line", "these lines");
 
-            if (dr == DialogResult.Yes)
+            if (MessageBox.Show(msg, "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 string currentItem = fileListBox.SelectedItem.ToString();
 
