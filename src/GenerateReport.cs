@@ -41,15 +41,11 @@ namespace Reviser
         {
             if (pf.project.files.Count > 0)
             {
-                int count = 0;
-
                 foreach (string file in pf.project.files.Keys)
-                    count += pf.project.files[file].content.Count;
+                    if (pf.project.files[file].content.Count > 0)
+                        return false;
 
-                if (count > 0)
-                    return false;
-                else
-                    return true;
+                return true;
             }
             else
             {
