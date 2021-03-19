@@ -37,10 +37,10 @@ namespace Reviser
         {
             InitializeComponent();
 
-            toolStrip1.Renderer = new ToolStripOverride();
+            toolStrip.Renderer = new ToolStripOverride();
             toolStripContainer1.TopToolStripPanel.RowMargin = new Padding(0);
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Size = new Size(toolStrip1.Size.Width + 3, toolStrip1.Size.Height);
+            toolStrip.Location = new Point(0, 0);
+            toolStrip.Size = new Size(toolStrip.Size.Width + 3, toolStrip.Size.Height);
 
             ld = lineData;
 
@@ -301,6 +301,7 @@ namespace Reviser
 
             commentBox.SelectedText = sb.ToString();
             commentBox.Select(commentBox.SelectionStart + sb.Length, 0);
+            commentBox.Focus();
         }
 
         private void insertLineIdBtn_Click(object sender, EventArgs e)
@@ -320,6 +321,8 @@ namespace Reviser
 
                 commentBox.SelectedText = sb.ToString();
             }
+
+            commentBox.Focus();
         }
 
         private void insertFileLineIdBtn_Click(object sender, EventArgs e)
@@ -346,12 +349,15 @@ namespace Reviser
                     commentBox.SelectedText = sb.ToString();
                 }
             }
+
+            commentBox.Focus();
         }
 
         private void normalTextBtn_Click(object sender, EventArgs e)
         {
             commentBox.SelectedText = "<n></n>";
             commentBox.Select(commentBox.SelectionStart - 4, 0);
+            commentBox.Focus();
         }
 
         private void prevLinesBtn_Click(object sender, EventArgs e)
@@ -371,6 +377,8 @@ namespace Reviser
                 prevLinesBtn.Image = Properties.Resources.Add_previous_lines___no_lines;
                 prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.Image;
             }
+
+            commentBox.Focus();
         }
 
         private void idBox_TextChanged(object sender, EventArgs e)
