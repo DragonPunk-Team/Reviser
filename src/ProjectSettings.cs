@@ -82,12 +82,19 @@ namespace Reviser
 
         private void origFilesBtn_Click(object sender, EventArgs e)
         {
-            origFilesBox.Text = FolderSelect("Original");
+            var path = FolderSelect("Original");
+            Console.WriteLine("Original: [" + path + "]");
+
+            if (!string.IsNullOrWhiteSpace(path))
+                origFilesBox.Text = path;
         }
 
         private void tranFilesBtn_Click(object sender, EventArgs e)
         {
-            tranFilesBox.Text = FolderSelect("Translated");
+            var path = FolderSelect("Translated");
+
+            if (!string.IsNullOrWhiteSpace(path))
+                tranFilesBox.Text = path;
         }
 
         private string FolderSelect(string fileType)
