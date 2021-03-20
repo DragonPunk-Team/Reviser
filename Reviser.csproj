@@ -84,6 +84,7 @@
     <Compile Include="src\FileSelector.Designer.cs">
       <DependentUpon>FileSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\le\Utils.cs" />
     <Compile Include="src\tweaks\BufferedListView.cs">
       <SubType>Component</SubType>
     </Compile>

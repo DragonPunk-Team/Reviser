@@ -126,7 +126,7 @@ namespace Reviser
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            lineId = idBox.Text;
+            lineId = LEUtils.CleanIds(idBox.Text);
             CloseForm(save: true);
         }
 

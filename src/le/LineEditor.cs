@@ -168,7 +168,7 @@ namespace Reviser
         {
             newfc = new ProjectFile.FileContent
             {
-                lineId = idBox.Text,
+                lineId = LEUtils.CleanIds(idBox.Text),
                 proposal = commentBox.Text,
                 comment = commentCheckBox.Checked,
                 prevLineId = prevLinesBtn.Text,
