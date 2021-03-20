@@ -128,10 +128,8 @@ namespace Reviser
                 coloredLine = tagRx.Replace(coloredLine, "");
 
                 if (coloredLine.StartsWith("</red>"))
-                {
-                    Regex rx = new Regex(@"<\/red>", RegexOptions.Compiled);
-                    return rx.Replace(line, "", 1);
-                }
+                    // The string "</red>" is 6 characters long.
+                    coloredLine = coloredLine.Remove(0, 6);
 
                 return coloredLine;
             }
