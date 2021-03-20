@@ -313,6 +313,9 @@ namespace Reviser
                 fileSelectBtn.Enabled = true;
                 saveBtn.Enabled = true;
             }
+
+            if (lastFileBox.Text == firstFileBox.Text)
+                fileSelectBtn.Enabled = false;
         }
 
         private void fileSelectBtn_Click(object sender, EventArgs e)
