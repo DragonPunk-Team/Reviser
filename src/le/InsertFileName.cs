@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace Reviser
+namespace Reviser.LE
 {
     public partial class InsertFileName : Form
     {

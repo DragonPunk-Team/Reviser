@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Reviser
+namespace Reviser.LE
 {
-    class LEUtils
+    class Utils
     {
         #region Regex
         static Regex commaRx = new Regex(@",([^ ])", RegexOptions.Compiled);

@@ -4,12 +4,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace Reviser
+using Reviser.SoJ;
+
+namespace Reviser.LE
 {
     public partial class PrevLinesEditor : Form
     {
-        GMD origGMD;
-        GMD tranGMD;
+        GMDv2 origGMD;
+        GMDv2 tranGMD;
         bool color;
         public string lineId;
 
@@ -18,7 +20,7 @@ namespace Reviser
         Regex sepRx = new Regex(@"(-|,| )+", RegexOptions.Compiled);
         #endregion
 
-        public PrevLinesEditor(GMD origGMD, GMD tranGMD, bool color, string lineId)
+        public PrevLinesEditor(GMDv2 origGMD, GMDv2 tranGMD, bool color, string lineId)
         {
             InitializeComponent();
 
@@ -129,13 +131,13 @@ namespace Reviser
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            lineId = LEUtils.CleanIds(idBox.Text);
+            lineId = Utils.CleanIds(idBox.Text);
             CloseForm(save: true);
         }
 
         private void idBox_TextChanged(object sender, EventArgs e)
         {
-            var format = LEUtils.FormatIds(idBox.Text, idBox.SelectionStart);
+            var format = Utils.FormatIds(idBox.Text, idBox.SelectionStart);
 
             idBox.Text = format.Item1;
             idBox.Select(format.Item2, 0);

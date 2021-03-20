@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace Reviser
+namespace Reviser.Tweaks
 {
     public class ToolStripOverride : ToolStripProfessionalRenderer
     {

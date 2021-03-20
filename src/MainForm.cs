@@ -5,6 +5,9 @@ using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 
+using Reviser.LE;
+using Reviser.Tweaks;
+
 namespace Reviser
 {
     public partial class MainForm : Form

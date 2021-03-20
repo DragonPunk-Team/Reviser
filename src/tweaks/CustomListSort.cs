@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Reviser
+namespace Reviser.Tweaks
 {
     class CustomListSort : IComparer<ProjectFile.FileContent>
     {

@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace Reviser
+namespace Reviser.LE
 {
     public partial class InsertLineID : Form
     {

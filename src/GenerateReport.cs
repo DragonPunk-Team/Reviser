@@ -7,6 +7,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
+using Reviser.SoJ;
+using Reviser.Tweaks;
+
 namespace Reviser
 {
     public partial class GenerateReport : Form
@@ -14,8 +17,8 @@ namespace Reviser
         ProjectFile pf;
         public string path;
 
-        private GMD origGMD = new GMD();
-        private GMD tranGMD = new GMD();
+        private GMDv2 origGMD = new GMDv2();
+        private GMDv2 tranGMD = new GMDv2();
 
         #region Regex
         // Used in FormatProposal()

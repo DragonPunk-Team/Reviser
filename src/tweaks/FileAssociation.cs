@@ -2,7 +2,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Reviser
+namespace Reviser.Tweaks
 {
     public class FileAssociation
     {

@@ -1,5 +1,5 @@
 
-namespace Reviser
+namespace Reviser.LE
 {
     partial class InsertLineID
     {

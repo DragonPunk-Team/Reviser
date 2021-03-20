@@ -3,11 +3,13 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Reviser
+using Reviser.SoJ;
+using Reviser.Tweaks;
+
+namespace Reviser.LE
 {
     public partial class LineEditor : Form
     {
@@ -28,8 +30,8 @@ namespace Reviser
         int contentId;
         Tuple<string, string>[] tranLines;
 
-        GMD origGMD = new GMD();
-        GMD tranGMD = new GMD();
+        GMDv2 origGMD = new GMDv2();
+        GMDv2 tranGMD = new GMDv2();
 
         public LineEditor(LineData lineData)
         {
@@ -166,7 +168,7 @@ namespace Reviser
         {
             newfc = new ProjectFile.FileContent
             {
-                lineId = LEUtils.CleanIds(idBox.Text),
+                lineId = Utils.CleanIds(idBox.Text),
                 proposal = commentBox.Text,
                 comment = commentCheckBox.Checked,
                 prevLineId = prevLinesBtn.Text,
@@ -241,7 +243,7 @@ namespace Reviser
         {
             StringBuilder sb = new StringBuilder();
             string currentLine;
-            GMD gmd = new GMD();
+            GMDv2 gmd = new GMDv2();
 
             if (tranLines.Count() == 1)
             {
@@ -381,7 +383,7 @@ namespace Reviser
 
         private void idBox_TextChanged(object sender, EventArgs e)
         {
-            var format = LEUtils.FormatIds(idBox.Text, idBox.SelectionStart);
+            var format = Utils.FormatIds(idBox.Text, idBox.SelectionStart);
 
             idBox.Text = format.Item1;
             idBox.Select(format.Item2, 0);
