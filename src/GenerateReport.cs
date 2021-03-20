@@ -193,8 +193,30 @@ namespace Reviser
                     }
 
                     if (line.Contains("<n>") && line.Contains("</n>"))
+                    {
                         foreach (Match match in normRx.Matches(line))
-                            sb.Append(match.Groups[1].Value);
+                        {
+                            var plain = match.Groups[1].Value;
+                            var text = line.Replace("<n>" + plain + "</n>", "");
+
+                            if (!string.IsNullOrWhiteSpace(text))
+                            {
+                                sb.Append("_" + text);
+
+                                if (sb[sb.Length - 1] == ' ')
+                                {
+                                    sb.Remove(sb.Length - 1, 1);
+                                    sb.Append("_ ");
+                                }
+                                else
+                                {
+                                    sb.Append("_");
+                                }
+                            }
+
+                            sb.Append(plain);
+                        }
+                    }
 
                     if (!line.Contains("`") && !line.Contains("<n>") && !line.Contains("</n>"))
                         sb.Append("_" + line + "_");
