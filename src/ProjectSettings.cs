@@ -319,7 +319,7 @@ namespace Reviser
         {
             FileSelector fs;
 
-            if (pf.project.file_list != null && pf.project.file_list.Length > 0)
+            if (pf.project != null && pf.project.file_list != null && pf.project.file_list.Length > 0)
                 fs = new FileSelector(MakeFileList(firstFileBox.Text, lastFileBox.Text), pf.project.file_list);
             else
                 fs = new FileSelector(MakeFileList(firstFileBox.Text, lastFileBox.Text));
