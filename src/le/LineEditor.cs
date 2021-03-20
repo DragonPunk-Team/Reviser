@@ -31,8 +31,6 @@ namespace Reviser
         GMD origGMD = new GMD();
         GMD tranGMD = new GMD();
 
-        Regex idRx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
-
         public LineEditor(LineData lineData)
         {
             InitializeComponent();
@@ -383,14 +381,10 @@ namespace Reviser
 
         private void idBox_TextChanged(object sender, EventArgs e)
         {
-            var cursorPos = idBox.SelectionStart;
-            var newText = idRx.Replace(idBox.Text, "");
+            var format = LEUtils.FormatIds(idBox.Text, idBox.SelectionStart);
 
-            if (idBox.Text != newText)
-                cursorPos--;
-
-            idBox.Text = newText;
-            idBox.Select(cursorPos, 0);
+            idBox.Text = format.Item1;
+            idBox.Select(format.Item2, 0);
         }
     }
 }

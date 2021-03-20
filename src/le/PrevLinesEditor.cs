@@ -13,7 +13,10 @@ namespace Reviser
         bool color;
         public string lineId;
 
+        #region Regex
         Regex idRx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
+        Regex sepRx = new Regex(@"(-|,| )+", RegexOptions.Compiled);
+        #endregion
 
         public PrevLinesEditor(GMD origGMD, GMD tranGMD, bool color, string lineId)
         {
@@ -132,14 +135,10 @@ namespace Reviser
 
         private void idBox_TextChanged(object sender, EventArgs e)
         {
-            var cursorPos = idBox.SelectionStart;
-            var newText = idRx.Replace(idBox.Text, "");
+            var format = LEUtils.FormatIds(idBox.Text, idBox.SelectionStart);
 
-            if (idBox.Text != newText)
-                cursorPos--;
-
-            idBox.Text = newText;
-            idBox.Select(cursorPos, 0);
+            idBox.Text = format.Item1;
+            idBox.Select(format.Item2, 0);
         }
     }
 }
