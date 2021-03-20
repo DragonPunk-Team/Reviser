@@ -383,8 +383,14 @@ namespace Reviser
 
         private void idBox_TextChanged(object sender, EventArgs e)
         {
-            idBox.Text = idRx.Replace(idBox.Text, "");
-            idBox.Select(idBox.Text.Length, 0);
+            var cursorPos = idBox.SelectionStart;
+            var newText = idRx.Replace(idBox.Text, "");
+
+            if (idBox.Text != newText)
+                cursorPos--;
+
+            idBox.Text = newText;
+            idBox.Select(cursorPos, 0);
         }
     }
 }
