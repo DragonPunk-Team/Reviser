@@ -1,7 +1,6 @@
 using System;
 using System.Drawing;
 using System.Linq;
-using System.Media;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -88,60 +87,10 @@ namespace Reviser.LE
             }
         }
 
-        private string FormatLines()
-        {
-            StringBuilder sb = new StringBuilder();
-
-            var origLines = origGMD.GetLines(idBox.Text);
-            tranLines = tranGMD.GetLines(idBox.Text);
-
-            string lastChar = "";
-
-            foreach (var line in origLines)
-            {
-                int index = Array.IndexOf(origLines, line);
-
-                if (line.Item1 == lastChar)
-                {
-                    sb.Append("\n\n");
-                }
-                else
-                {
-                    lastChar = line.Item1;
-                    sb.AppendLine("[" + line.Item1 + "]");
-                }
-
-                var origLine = line.Item2;
-
-                if (!colorCheckBox.Checked)
-                    origLine = origGMD.RemoveColors(origLine);
-
-                sb.AppendLine(origLine);
-
-                if (line.Item1 == "Error")
-                {
-                    SystemSounds.Beep.Play();
-                    break;
-                }
-                else
-                {
-                    var tranLine = tranLines[index].Item2;
-
-                    if (!colorCheckBox.Checked)
-                        tranLine = tranGMD.RemoveColors(tranLine);
-
-                    sb.AppendLine(tranLine);
-                }
-
-                sb.AppendLine();
-            }
-
-            return sb.ToString();
-        }
-
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            lineBox.Text = FormatLines();
+            tranLines = tranGMD.GetLines(idBox.Text);
+            lineBox.Text = Utils.FormatLines(origGMD, tranGMD, idBox.Text, colorCheckBox.Checked);
 
             if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains("[Error]"))
             {
@@ -185,7 +134,7 @@ namespace Reviser.LE
 
         private void colorCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            lineBox.Text = FormatLines();
+            lineBox.Text = Utils.FormatLines(origGMD, tranGMD, idBox.Text, colorCheckBox.Checked);
         }
 
         private void CloseForm(bool save)
