@@ -219,46 +219,46 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Generate Report.png" />
+    <None Include="res\img\Generate Report.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\New Project.png" />
+    <None Include="res\img\New Project.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Open Project.png" />
+    <None Include="res\img\Open Project.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Project Settings.png" />
+    <None Include="res\img\Project Settings.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Save Project.png" />
+    <None Include="res\img\Save Project.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Add previous lines.png" />
+    <None Include="res\img\Add previous lines.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Copy line from above.png" />
+    <None Include="res\img\Copy line from above.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Insert filename and line ID.png" />
+    <None Include="res\img\Insert filename and line ID.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Insert line ID.png" />
+    <None Include="res\img\Insert line ID.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Normal text.png" />
+    <None Include="res\img\Normal text.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Search.png" />
+    <None Include="res\img\Search.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Add previous lines - no lines.png" />
+    <None Include="res\img\Add previous lines - no lines.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Info.png" />
-    <None Include="Resources\Reviser.png" />
-    <None Include="Resources\Add Note.png" />
-    <None Include="Resources\Edit Note.png" />
+    <None Include="res\img\Info.png" />
+    <None Include="res\img\Reviser.png" />
+    <None Include="res\img\Add Note.png" />
+    <None Include="res\img\Edit Note.png" />
     <Content Include="Reviser.ico" />
   </ItemGroup>
   <ItemGroup />
