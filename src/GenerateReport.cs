@@ -123,9 +123,9 @@ namespace Reviser
                             sb.AppendLine("**Proposta:**");
 
                             if (fc.comment)
-                                sb.AppendLine(FormatProposal(fc.proposal));
+                                sb.AppendLine(FormatProposal(fc.proposal).Replace("*", "\\*"));
                             else
-                                sb.AppendLine(fc.proposal);
+                                sb.AppendLine(fc.proposal.Replace("*", "\\*"));
 
                             if (fc.prevLineId != "-1")
                             {
@@ -254,12 +254,12 @@ namespace Reviser
             if (!item.color)
                 origLine = origGMD.RemoveColors(origLine);
 
-            sb.AppendLine(origLine);
+            sb.AppendLine(origLine.Replace("*", "\\*"));
 
             if (!item.color)
                 tranLine = tranGMD.RemoveColors(tranLine);
 
-            sb.AppendLine(tranLine);
+            sb.AppendLine(tranLine.Replace("*", "\\*"));
 
             return sb.ToString();
         }
