@@ -332,10 +332,10 @@ namespace Reviser.LE
 
         private void idBox_TextChanged(object sender, EventArgs e)
         {
-            var format = Utils.FormatIds(idBox.Text, idBox.SelectionStart);
+            var f = Utils.FormatIds(idBox.Text, idBox.SelectionStart);
 
-            idBox.Text = format.Item1;
-            idBox.Select(format.Item2, 0);
+            idBox.Text = f.text;
+            idBox.Select(f.cursor, 0);
         }
     }
 }

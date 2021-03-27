@@ -15,15 +15,15 @@ namespace Reviser.LE
         static Regex sepRx = new Regex(@"(-|,| )+", RegexOptions.Compiled);
         #endregion
 
-        public static Tuple<string, int> FormatIds(string ids, int cursor)
+        public static (string text, int cursor) FormatIds(string ids, int cursor)
         {
-            var newText = idRx.Replace(ids, "");
-            newText = sepRx.Replace(newText, "$1");
+            var text = idRx.Replace(ids, "");
+            text = sepRx.Replace(text, "$1");
 
-            if (ids != newText)
+            if (ids != text)
                 cursor--;
 
-            return new Tuple<string, int>(newText, cursor);
+            return (text, cursor);
         }
 
         public static string CleanIds(string ids)

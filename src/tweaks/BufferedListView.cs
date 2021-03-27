@@ -2,8 +2,5 @@
 
 class BufferedListView : ListView
 {
-    public BufferedListView()
-    {
-        DoubleBuffered = true;
-    }
+    public BufferedListView() { DoubleBuffered = true; }
 }

@@ -44,10 +44,7 @@ namespace Reviser
 
         public void Open(string filename)
         {
-            pf = new ProjectFile()
-            {
-                path = filename
-            };
+            pf = new ProjectFile() { path = filename };
 
             pf.ReadProject();
 
@@ -576,15 +573,12 @@ namespace Reviser
             if (complete)
             {
                 addNoteBtn.Enabled = false;
-
                 completeLabel.Visible = true;
             }
             else
             {
                 listView.DoubleClick += listView_DoubleClick;
-
                 addNoteBtn.Enabled = true;
-
                 completeLabel.Visible = false;
             }
         }

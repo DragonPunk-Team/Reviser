@@ -8,17 +8,8 @@ namespace Reviser.Tweaks
         // ToolStrip gradient background color.
         Color bgColor = SystemColors.Control;
 
-        public override Color ToolStripGradientBegin
-        {
-            get { return bgColor; }
-        }
-        public override Color ToolStripGradientMiddle
-        {
-            get { return bgColor; }
-        }
-        public override Color ToolStripGradientEnd
-        {
-            get { return bgColor; }
-        }
+        public override Color ToolStripGradientBegin { get { return bgColor; } }
+        public override Color ToolStripGradientMiddle { get { return bgColor; } }
+        public override Color ToolStripGradientEnd { get { return bgColor; } }
     }
 }
