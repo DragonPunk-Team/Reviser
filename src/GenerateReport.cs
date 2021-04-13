@@ -14,16 +14,16 @@ namespace Reviser
 {
     public partial class GenerateReport : Form
     {
-        ProjectFile pf;
+        private readonly ProjectFile pf;
         public string path;
 
-        private GMDv2 origGMD = new GMDv2();
-        private GMDv2 tranGMD = new GMDv2();
+        private readonly GMDv2 origGMD = new GMDv2();
+        private readonly GMDv2 tranGMD = new GMDv2();
 
         #region Regex
         // Used in FormatProposal()
-        private Regex codeRx = new Regex(@"(.*)([ ?])(\`.*\`)(.*)", RegexOptions.Compiled);
-        private Regex normRx = new Regex(@"<n>(.*)</n>", RegexOptions.Compiled);
+        private readonly Regex codeRx = new Regex(@"(.*)([ ?])(\`.*\`)(.*)", RegexOptions.Compiled);
+        private readonly Regex normRx = new Regex(@"<n>(.*)</n>", RegexOptions.Compiled);
         #endregion
 
         public GenerateReport(ProjectFile project)

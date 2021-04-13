@@ -10,9 +10,9 @@ namespace Reviser.LE
     public class Utils
     {
         #region Regex
-        static Regex commaRx = new Regex(@",([^ ])", RegexOptions.Compiled);
-        static Regex idRx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
-        static Regex sepRx = new Regex(@"(-|,| )+", RegexOptions.Compiled);
+        static readonly Regex commaRx = new Regex(@",([^ ])", RegexOptions.Compiled);
+        static readonly Regex idRx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
+        static readonly Regex sepRx = new Regex(@"(-|,| )+", RegexOptions.Compiled);
         #endregion
 
         public static (string text, int cursor) FormatIds(string ids, int cursor)

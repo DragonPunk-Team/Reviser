@@ -25,12 +25,12 @@ namespace Reviser.LE
 
         public ProjectFile.FileContent newfc;
 
-        LineData ld;
+        private LineData ld;
         int contentId;
         Tuple<string, string>[] tranLines;
 
-        GMDv2 origGMD = new GMDv2();
-        GMDv2 tranGMD = new GMDv2();
+        private readonly GMDv2 origGMD = new GMDv2();
+        private readonly GMDv2 tranGMD = new GMDv2();
 
         public LineEditor(LineData lineData)
         {
@@ -332,10 +332,10 @@ namespace Reviser.LE
 
         private void idBox_TextChanged(object sender, EventArgs e)
         {
-            var f = Utils.FormatIds(idBox.Text, idBox.SelectionStart);
+            var (text, cursor) = Utils.FormatIds(idBox.Text, idBox.SelectionStart);
 
-            idBox.Text = f.text;
-            idBox.Select(f.cursor, 0);
+            idBox.Text = text;
+            idBox.Select(cursor, 0);
         }
     }
 }

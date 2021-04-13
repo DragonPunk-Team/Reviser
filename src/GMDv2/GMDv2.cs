@@ -12,17 +12,17 @@ namespace Reviser.SoJ
 
         #region Regex
         // Used in GetCharacter()
-        private Regex charRx = new Regex(@"<E041 [0-9]* ([0-9]*)>", RegexOptions.Compiled);
+        private readonly Regex charRx = new Regex(@"<E041 [0-9]* ([0-9]*)>", RegexOptions.Compiled);
 
         // Used in GetColor()
-        private Regex redRx = new Regex(@"<E006>", RegexOptions.Compiled);
-        private Regex endRx = new Regex(@"<E00(5|7|8)>", RegexOptions.Compiled);
+        private readonly Regex redRx = new Regex(@"<E006>", RegexOptions.Compiled);
+        private readonly Regex endRx = new Regex(@"<E00(5|7|8)>", RegexOptions.Compiled);
 
         // Used in RemoveColors()
-        private Regex colRx = new Regex(@"<(|\/)red>", RegexOptions.Compiled);
+        private readonly Regex colRx = new Regex(@"<(|\/)red>", RegexOptions.Compiled);
 
         // Used to remove tags.
-        private Regex tagRx = new Regex(@"<[A-Z 0-9_]*>", RegexOptions.Compiled);
+        private readonly Regex tagRx = new Regex(@"<[A-Z 0-9_]*>", RegexOptions.Compiled);
         #endregion
 
         public void ReadFile(object filepath)
