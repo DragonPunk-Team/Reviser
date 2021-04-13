@@ -55,8 +55,8 @@ namespace Reviser.LE
 
         private void ReadFiles(string filePath)
         {
-            Thread orig = new Thread(origGMD.ReadGMD);
-            Thread tran = new Thread(tranGMD.ReadGMD);
+            Thread orig = new Thread(origGMD.ReadFile);
+            Thread tran = new Thread(tranGMD.ReadFile);
 
             orig.Start(ld.origPath + filePath);
             tran.Start(ld.tranPath + filePath);

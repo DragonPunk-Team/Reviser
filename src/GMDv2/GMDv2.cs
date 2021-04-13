@@ -25,7 +25,7 @@ namespace Reviser.SoJ
         private Regex tagRx = new Regex(@"<[A-Z 0-9_]*>", RegexOptions.Compiled);
         #endregion
 
-        public void ReadGMD(object filepath)
+        public void ReadFile(object filepath)
         {
             var path = filepath.ToString();
 

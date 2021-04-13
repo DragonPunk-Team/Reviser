@@ -83,8 +83,8 @@ namespace Reviser
 
                     var filePath = "\\" + file;
 
-                    Thread orig = new Thread(origGMD.ReadGMD);
-                    Thread tran = new Thread(tranGMD.ReadGMD);
+                    Thread orig = new Thread(origGMD.ReadFile);
+                    Thread tran = new Thread(tranGMD.ReadFile);
 
                     orig.Start(pf.project.orig_path + filePath);
                     tran.Start(pf.project.tran_path + filePath);
