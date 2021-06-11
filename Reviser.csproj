@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\ILMerge.3.0.41\build\ILMerge.props" Condition="Exists('packages\ILMerge.3.0.41\build\ILMerge.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -84,6 +84,8 @@
     <Compile Include="src\FileSelector.Designer.cs">
       <DependentUpon>FileSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\files\GameFile.cs" />
+    <Compile Include="src\files\IFile.cs" />
     <Compile Include="src\LE\Utils.cs" />
     <Compile Include="src\tweaks\BufferedListView.cs">
       <SubType>Component</SubType>
@@ -97,8 +99,8 @@
     <Compile Include="src\GenerateReport.Designer.cs">
       <DependentUpon>GenerateReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\GMDv2\Cast.cs" />
-    <Compile Include="src\GMDv2\GMDv2.cs" />
+    <Compile Include="src\files\GMDv2\Cast.cs" />
+    <Compile Include="src\files\GMDv2\GMDv2.cs" />
     <Compile Include="src\InfoForm.cs">
       <SubType>Form</SubType>
     </Compile>

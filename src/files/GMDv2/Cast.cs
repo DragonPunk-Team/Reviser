@@ -1,4 +1,4 @@
-namespace Reviser.SoJ
+namespace Reviser.Files.SoJ
 
 {
     public class Cast

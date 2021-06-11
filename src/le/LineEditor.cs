@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-using Reviser.SoJ;
+using Reviser.Files;
 using Reviser.Tweaks;
 
 namespace Reviser.LE
@@ -26,13 +26,14 @@ namespace Reviser.LE
         public ProjectFile.FileContent newfc;
 
         private LineData ld;
+        private string projectType;
         int contentId;
         Tuple<string, string>[] tranLines;
 
-        private readonly GMDv2 origGMD = new GMDv2();
-        private readonly GMDv2 tranGMD = new GMDv2();
+        private IFile origFile;
+        private IFile tranFile;
 
-        public LineEditor(LineData lineData)
+        public LineEditor(LineData lineData, string projectType)
         {
             InitializeComponent();
 
@@ -42,7 +43,10 @@ namespace Reviser.LE
             toolStrip.Size = new Size(toolStrip.Size.Width + 3, toolStrip.Size.Height);
 
             ld = lineData;
+            this.projectType = projectType;
 
+            origFile = GameFile.Get(projectType);
+            tranFile = GameFile.Get(projectType);
             ReadFiles("\\" + ld.currentFile);
 
             if (ld.fc != null && ld.fc.prevLineId != "-1")
@@ -55,8 +59,8 @@ namespace Reviser.LE
 
         private void ReadFiles(string filePath)
         {
-            Thread orig = new Thread(origGMD.ReadFile);
-            Thread tran = new Thread(tranGMD.ReadFile);
+            Thread orig = new Thread(origFile.ReadFile);
+            Thread tran = new Thread(tranFile.ReadFile);
 
             orig.Start(ld.origPath + filePath);
             tran.Start(ld.tranPath + filePath);
@@ -89,8 +93,8 @@ namespace Reviser.LE
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            tranLines = tranGMD.GetLines(idBox.Text);
-            lineBox.Text = Utils.FormatLines(origGMD, tranGMD, idBox.Text, colorCheckBox.Checked);
+            tranLines = tranFile.GetLines(idBox.Text);
+            lineBox.Text = Utils.FormatLines(origFile, tranFile, idBox.Text, colorCheckBox.Checked);
 
             if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains("[Error]"))
             {
@@ -134,7 +138,7 @@ namespace Reviser.LE
 
         private void colorCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            lineBox.Text = Utils.FormatLines(origGMD, tranGMD, idBox.Text, colorCheckBox.Checked);
+            lineBox.Text = Utils.FormatLines(origFile, tranFile, idBox.Text, colorCheckBox.Checked);
         }
 
         private void CloseForm(bool save)
@@ -192,7 +196,7 @@ namespace Reviser.LE
         {
             StringBuilder sb = new StringBuilder();
             string currentLine;
-            GMDv2 gmd = new GMDv2();
+            IFile gmd = GameFile.Get(projectType);
 
             if (tranLines.Count() == 1)
             {
@@ -311,7 +315,7 @@ namespace Reviser.LE
 
         private void prevLinesBtn_Click(object sender, EventArgs e)
         {
-            PrevLinesEditor ple = new PrevLinesEditor(origGMD, tranGMD, colorCheckBox.Checked, prevLinesBtn.Text);
+            PrevLinesEditor ple = new PrevLinesEditor(origFile, tranFile, colorCheckBox.Checked, prevLinesBtn.Text);
             DialogResult dr = ple.ShowDialog();
 
             if (dr == DialogResult.OK)

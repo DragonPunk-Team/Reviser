@@ -3,7 +3,7 @@ using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using Reviser.SoJ;
+using Reviser.Files;
 
 namespace Reviser.LE
 {
@@ -28,10 +28,9 @@ namespace Reviser.LE
 
         public static string CleanIds(string ids)
         {
-            string clean;
             var chars = new char[] { ',', '-' };
 
-            clean = ids.TrimStart(chars);
+            var clean = ids.TrimStart(chars);
             clean = clean.TrimEnd(chars);
 
             MatchCollection matches = commaRx.Matches(ids);
@@ -42,12 +41,12 @@ namespace Reviser.LE
             return clean;
         }
 
-        public static string FormatLines(GMDv2 origGMD, GMDv2 tranGMD, string ids, bool color)
+        public static string FormatLines(IFile origFile, IFile tranFile, string ids, bool color)
         {
             StringBuilder sb = new StringBuilder();
 
-            var origLines = origGMD.GetLines(ids);
-            var tranLines = tranGMD.GetLines(ids);
+            var origLines = origFile.GetLines(ids);
+            var tranLines = tranFile.GetLines(ids);
 
             string lastChar = "";
 
@@ -68,7 +67,7 @@ namespace Reviser.LE
                 var origLine = line.Item2;
 
                 if (!color)
-                    origLine = origGMD.RemoveColors(origLine);
+                    origLine = origFile.RemoveColors(origLine);
 
                 sb.AppendLine(origLine);
 
@@ -82,7 +81,7 @@ namespace Reviser.LE
                     var tranLine = tranLines[index].Item2;
 
                     if (!color)
-                        tranLine = tranGMD.RemoveColors(tranLine);
+                        tranLine = tranFile.RemoveColors(tranLine);
 
                     sb.AppendLine(tranLine);
                 }

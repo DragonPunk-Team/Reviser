@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
-using Reviser.SoJ;
+using Reviser.Files;
 using Reviser.Tweaks;
 
 namespace Reviser
@@ -17,8 +17,8 @@ namespace Reviser
         private readonly ProjectFile pf;
         public string path;
 
-        private readonly GMDv2 origGMD = new GMDv2();
-        private readonly GMDv2 tranGMD = new GMDv2();
+        private IFile origFile;
+        private IFile tranFile;
 
         #region Regex
         // Used in FormatProposal()
@@ -36,6 +36,10 @@ namespace Reviser
         private void GenerateReport_Load(object sender, EventArgs e)
         {
             Show();
+
+            origFile = GameFile.Get(pf.project.type);
+            tranFile = GameFile.Get(pf.project.type);
+
             OrderProjectFile();
             Generate();
         }
@@ -83,8 +87,8 @@ namespace Reviser
 
                     var filePath = "\\" + file;
 
-                    Thread orig = new Thread(origGMD.ReadFile);
-                    Thread tran = new Thread(tranGMD.ReadFile);
+                    Thread orig = new Thread(origFile.ReadFile);
+                    Thread tran = new Thread(tranFile.ReadFile);
 
                     orig.Start(pf.project.orig_path + filePath);
                     tran.Start(pf.project.tran_path + filePath);
@@ -108,8 +112,8 @@ namespace Reviser
                             sb.AppendLine("### " + fc.lineId);
                             sb.AppendLine();
 
-                            var origLines = origGMD.GetLines(fc.lineId);
-                            var tranLines = tranGMD.GetLines(fc.lineId);
+                            var origLines = origFile.GetLines(fc.lineId);
+                            var tranLines = tranFile.GetLines(fc.lineId);
 
                             foreach (var line in origLines)
                             {
@@ -129,8 +133,8 @@ namespace Reviser
 
                             if (fc.prevLineId != "-1")
                             {
-                                var origPrevLines = origGMD.GetLines(fc.prevLineId);
-                                var tranPrevLines = tranGMD.GetLines(fc.prevLineId);
+                                var origPrevLines = origFile.GetLines(fc.prevLineId);
+                                var tranPrevLines = tranFile.GetLines(fc.prevLineId);
 
                                 sb.Append("\n\n");
 
@@ -252,12 +256,12 @@ namespace Reviser
             var item = pf.project.files[file].content.Single(line => line.contentId == contentId);
 
             if (!item.color)
-                origLine = origGMD.RemoveColors(origLine);
+                origLine = origFile.RemoveColors(origLine);
 
             sb.AppendLine(origLine.Replace("*", "\\*"));
 
             if (!item.color)
-                tranLine = tranGMD.RemoveColors(tranLine);
+                tranLine = tranFile.RemoveColors(tranLine);
 
             sb.AppendLine(tranLine.Replace("*", "\\*"));
 

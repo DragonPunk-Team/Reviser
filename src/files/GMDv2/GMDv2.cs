@@ -4,9 +4,9 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Reviser.SoJ
+namespace Reviser.Files.SoJ
 {
-    public class GMDv2
+    public class GMDv2 : IFile
     {
         private Tuple<string, string>[][] Content;
 

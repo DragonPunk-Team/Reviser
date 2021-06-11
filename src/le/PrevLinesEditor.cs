@@ -2,14 +2,14 @@ using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-using Reviser.SoJ;
+using Reviser.Files;
 
 namespace Reviser.LE
 {
     public partial class PrevLinesEditor : Form
     {
-        GMDv2 origGMD;
-        GMDv2 tranGMD;
+        IFile origFile;
+        IFile tranFile;
         bool color;
         public string lineId;
 
@@ -18,12 +18,12 @@ namespace Reviser.LE
         Regex sepRx = new Regex(@"(-|,| )+", RegexOptions.Compiled);
         #endregion
 
-        public PrevLinesEditor(GMDv2 origGMD, GMDv2 tranGMD, bool color, string lineId)
+        public PrevLinesEditor(IFile origFile, IFile tranFile, bool color, string lineId)
         {
             InitializeComponent();
 
-            this.origGMD = origGMD;
-            this.tranGMD = tranGMD;
+            this.origFile = origFile;
+            this.tranFile = tranFile;
             this.color = color;
             this.lineId = lineId;
         }
@@ -42,7 +42,7 @@ namespace Reviser.LE
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            lineBox.Text = Utils.FormatLines(origGMD, tranGMD, idBox.Text, false);
+            lineBox.Text = Utils.FormatLines(origFile, tranFile, idBox.Text, false);
             CheckAddBtn();
         }
 

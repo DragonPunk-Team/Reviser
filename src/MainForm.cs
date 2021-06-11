@@ -258,7 +258,7 @@ namespace Reviser
 
         private void OpenLineEditor(LineEditor.LineData ld)
         {
-            LineEditor lineEditor = new LineEditor(ld);
+            LineEditor lineEditor = new LineEditor(ld, pf.project.type);
 
             if (lineEditor.ShowDialog() == DialogResult.OK)
             {
