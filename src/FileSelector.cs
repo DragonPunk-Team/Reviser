@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -47,7 +46,7 @@ namespace Reviser
 
         private void CheckAll(bool value)
         {
-            foreach (string item in partialFileList)
+            foreach (var item in partialFileList)
             {
                 var index = fileListBox.Items.IndexOf(item);
                 fileListBox.SetItemChecked(index, value);
@@ -56,7 +55,7 @@ namespace Reviser
 
         private void CheckOriginalFiles()
         {
-            foreach (string item in partialFileList)
+            foreach (var item in partialFileList)
             {
                 if (originalFileList.Contains(item))
                 {
@@ -68,15 +67,8 @@ namespace Reviser
 
         private void okBtn_Click(object sender, EventArgs e)
         {
-            List<string> fileList = new List<string>();
-
-            foreach (string item in fileListBox.CheckedItems)
-                fileList.Add(item);
-
-            newFileList = fileList.ToArray();
-
+            newFileList = fileListBox.CheckedItems.Cast<string>().ToArray();
             DialogResult = DialogResult.OK;
-
             Close();
         }
     }

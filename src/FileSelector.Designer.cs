@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 
 namespace Reviser
 {
@@ -39,9 +39,9 @@ namespace Reviser
             // 
             // selectAllBtn
             // 
-            this.selectAllBtn.Location = new System.Drawing.Point(13, 226);
+            this.selectAllBtn.Location = new System.Drawing.Point(12, 226);
             this.selectAllBtn.Name = "selectAllBtn";
-            this.selectAllBtn.Size = new System.Drawing.Size(45, 23);
+            this.selectAllBtn.Size = new System.Drawing.Size(65, 23);
             this.selectAllBtn.TabIndex = 0;
             this.selectAllBtn.Text = "All";
             this.selectAllBtn.UseVisualStyleBackColor = true;
@@ -49,9 +49,9 @@ namespace Reviser
             // 
             // okBtn
             // 
-            this.okBtn.Location = new System.Drawing.Point(215, 226);
+            this.okBtn.Location = new System.Drawing.Point(225, 226);
             this.okBtn.Name = "okBtn";
-            this.okBtn.Size = new System.Drawing.Size(75, 23);
+            this.okBtn.Size = new System.Drawing.Size(65, 23);
             this.okBtn.TabIndex = 2;
             this.okBtn.Text = "OK";
             this.okBtn.UseVisualStyleBackColor = true;
@@ -59,9 +59,9 @@ namespace Reviser
             // 
             // selectNoneBtn
             // 
-            this.selectNoneBtn.Location = new System.Drawing.Point(64, 226);
+            this.selectNoneBtn.Location = new System.Drawing.Point(83, 226);
             this.selectNoneBtn.Name = "selectNoneBtn";
-            this.selectNoneBtn.Size = new System.Drawing.Size(45, 23);
+            this.selectNoneBtn.Size = new System.Drawing.Size(65, 23);
             this.selectNoneBtn.TabIndex = 3;
             this.selectNoneBtn.Text = "None";
             this.selectNoneBtn.UseVisualStyleBackColor = true;
@@ -70,9 +70,9 @@ namespace Reviser
             // cancelBtn
             // 
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(134, 226);
+            this.cancelBtn.Location = new System.Drawing.Point(154, 226);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelBtn.Size = new System.Drawing.Size(65, 23);
             this.cancelBtn.TabIndex = 4;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
