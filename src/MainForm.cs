@@ -20,13 +20,13 @@ namespace Reviser
         {
             InitializeComponent();
 
+            FileAssociations.EnsureAssociationsSet();
+
             toolStrip.Renderer = new ToolStripOverride();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            FileAssociations.EnsureAssociationsSet();
-
             string[] args = Environment.GetCommandLineArgs();
 
             if (args.Length > 1)
@@ -82,10 +82,7 @@ namespace Reviser
 
             fileListBox.EndUpdate();
 
-            if (fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
-                CompleteToggle(true);
-            else
-                CompleteToggle(false);
+            CompleteToggle(fileListBox.CheckedItems.Contains(fileListBox.SelectedItem));
 
             fileListBox.ItemCheck += fileListBox_ItemCheck;
 
@@ -121,7 +118,7 @@ namespace Reviser
 
                 if (msgdr == DialogResult.OK)
                 {
-                    ProjectSettings projectSettings = new ProjectSettings(false, pf, this) { StartPosition = FormStartPosition.CenterScreen };
+                    var projectSettings = new ProjectSettings(false, pf, this) { StartPosition = FormStartPosition.CenterScreen };
                     var psdr = projectSettings.ShowDialog();
 
                     if (psdr == DialogResult.OK)
@@ -139,7 +136,7 @@ namespace Reviser
         {
             CheckUnsaved();
 
-            OpenFileDialog ofd = new OpenFileDialog
+            var ofd = new OpenFileDialog
             {
                 Title = "Open Project",
                 Filter = "DragonPunk Reviser Project (*.drpj)|*.drpj"
@@ -156,11 +153,8 @@ namespace Reviser
             editLineBtn.Enabled = false;
             delLineBtn.Enabled = false;
 
-            if (fileListBox.CheckedItems.Contains(item))
-                CompleteToggle(true);
-            else
-                CompleteToggle(false);
-            
+            CompleteToggle(fileListBox.CheckedItems.Contains(item));
+
             ChangeNoteIcon(item.ToString());
             ListViewUpdate();
             ResizeListView();
@@ -170,13 +164,13 @@ namespace Reviser
         {
             CheckUnsaved();
 
-            ProjectSettings projectSettings = new ProjectSettings(true, mainf: this);
+            var projectSettings = new ProjectSettings(true, mainf: this);
             projectSettings.ShowDialog();
         }
 
         private void projSettingsBtn_Click(object sender, EventArgs e)
         {
-            ProjectSettings projectSettings = new ProjectSettings(false, pf, this);
+            var projectSettings = new ProjectSettings(false, pf, this);
             projectSettings.ShowDialog();
         }
 
@@ -204,15 +198,13 @@ namespace Reviser
 
         private void addLineBtn_Click(object sender, EventArgs e)
         {
-            string currentFile = fileListBox.SelectedItem.ToString();
-            int currentId = -1;
+            var currentFile = fileListBox.SelectedItem.ToString();
+            var currentId = -1;
 
             if (pf.project.files.ContainsKey(currentFile))
-                foreach (var content in pf.project.files[currentFile].content)
-                    if (content.contentId > currentId)
-                        currentId = content.contentId;
+                currentId = pf.project.files[currentFile].content.Select(content => content.contentId).Prepend(currentId).Max();
 
-            LineEditor.LineData ld = new LineEditor.LineData()
+            var ld = new LineEditor.LineData()
             {
                 newLine = true,
                 origPath = pf.project.orig_path,
@@ -227,11 +219,11 @@ namespace Reviser
 
         private void editLineBtn_Click(object sender, EventArgs e)
         {
-            string currentFile = fileListBox.SelectedItem.ToString();
-            string lineId = listView.SelectedItems[0].SubItems[0].Text;
+            var currentFile = fileListBox.SelectedItem.ToString();
+            var lineId = listView.SelectedItems[0].SubItems[0].Text;
             var item = pf.project.files[currentFile].content.Single(line => line.lineId == lineId);
 
-            LineEditor.LineData ld = new LineEditor.LineData()
+            var ld = new LineEditor.LineData()
             {
                 newLine = false,
                 origPath = pf.project.orig_path,
@@ -258,25 +250,25 @@ namespace Reviser
 
         private void OpenLineEditor(LineEditor.LineData ld)
         {
-            LineEditor lineEditor = new LineEditor(ld, pf.project.type);
+            var lineEditor = new LineEditor(ld, pf.project.type);
 
             if (lineEditor.ShowDialog() == DialogResult.OK)
             {
-                string currentItem = fileListBox.SelectedItem.ToString();
+                var currentItem = fileListBox.SelectedItem.ToString();
 
                 if (!pf.project.files.ContainsKey(currentItem))
                 {
-                    ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                    var rf = new ProjectFile.RevisedFile
                     {
                         complete = false,
-                        note = "",
+                        note = string.Empty,
                         content = new List<ProjectFile.FileContent>(),
                     };
 
                     pf.project.files.Add(currentItem, rf);
                 }
 
-                int contentId = lineEditor.newfc.contentId;
+                var contentId = lineEditor.newfc.contentId;
 
                 if (pf.project.files[currentItem].content.FindIndex(line => line.contentId == contentId) != -1)
                 {
@@ -286,7 +278,7 @@ namespace Reviser
                         pf.project.files[currentItem].content.Remove(item);
                 }
 
-                ProjectFile.FileContent fc = new ProjectFile.FileContent
+                var fc = new ProjectFile.FileContent
                 {
                     contentId = lineEditor.newfc.contentId,
                     lineId = lineEditor.newfc.lineId,
@@ -335,11 +327,11 @@ namespace Reviser
 
             if (MessageBox.Show(msg, "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                string currentItem = fileListBox.SelectedItem.ToString();
+                var currentItem = fileListBox.SelectedItem.ToString();
 
                 foreach (ListViewItem lvi in listView.SelectedItems)
                 {
-                    string lineId = lvi.SubItems[0].Text;
+                    var lineId = lvi.SubItems[0].Text;
                     var item = pf.project.files[currentItem].content.Single(fc => fc.lineId == lineId);
 
                     pf.project.files[currentItem].content.Remove(item);
@@ -373,7 +365,7 @@ namespace Reviser
 
         private void saveProjectAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog()
+            var sfd = new SaveFileDialog()
             {
                 Title = "Save Project",
                 Filter = "DragonPunk Reviser Project (*.drpj)|*.drpj",
@@ -396,7 +388,7 @@ namespace Reviser
 
         private void generateReportBtn_Click(object sender, EventArgs e)
         {
-            DialogResult dr = DialogResult.Yes;
+            var dr = DialogResult.Yes;
 
             if (fileChanged)
                 CheckUnsaved();
@@ -406,11 +398,11 @@ namespace Reviser
 
             if (dr == DialogResult.Yes)
             {
-                GenerateReport gr = new GenerateReport(pf);
+                var gr = new GenerateReport(pf);
 
                 if (!gr.ProjectEmpty())
                 {
-                    SaveFileDialog sfd = new SaveFileDialog()
+                    var sfd = new SaveFileDialog()
                     {
                         Title = "Select report destination",
                         Filter = "Markdown File (*.md)|*.md",
@@ -436,14 +428,14 @@ namespace Reviser
 
             if (e.NewValue == CheckState.Checked)
             {
-                DialogResult dr = DialogResult.Yes;
+                var dr = DialogResult.Yes;
 
                 if (!pf.project.files.ContainsKey(item))
                 {
-                    ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                    var rf = new ProjectFile.RevisedFile
                     {
                         complete = false,
-                        note = "",
+                        note = string.Empty,
                         content = new List<ProjectFile.FileContent>(),
                     };
 
@@ -466,14 +458,14 @@ namespace Reviser
             }
             else
             {
-                DialogResult dr = DialogResult.Yes;
+                var dr = DialogResult.Yes;
 
                 if (!pf.project.files.ContainsKey(item))
                 {
-                    ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                    var rf = new ProjectFile.RevisedFile
                     {
                         complete = true,
-                        note = "",
+                        note = string.Empty,
                         content = new List<ProjectFile.FileContent>(),
                     };
 
@@ -498,27 +490,27 @@ namespace Reviser
 
         private void addNoteBtn_Click(object sender, EventArgs e)
         {
-            string currentFile = fileListBox.SelectedItem.ToString();
+            var currentFile = fileListBox.SelectedItem.ToString();
 
             if (!pf.project.files.ContainsKey(currentFile))
             {
-                ProjectFile.RevisedFile rf = new ProjectFile.RevisedFile
+                var rf = new ProjectFile.RevisedFile
                 {
                     complete = false,
-                    note = "",
+                    note = string.Empty,
                     content = new List<ProjectFile.FileContent>(),
                 };
 
                 pf.project.files.Add(currentFile, rf);
             }
 
-            NoteEditor ne = new NoteEditor(currentFile, pf.project.files[currentFile].note);
-            DialogResult dr = ne.ShowDialog();
+            var ne = new NoteEditor(currentFile, pf.project.files[currentFile].note);
+            var dr = ne.ShowDialog();
 
             if (dr == DialogResult.OK)
                 pf.project.files[currentFile].note = ne.note;
             else if (dr == DialogResult.Abort)
-                pf.project.files[currentFile].note = "";
+                pf.project.files[currentFile].note = string.Empty;
 
             ChangeNoteIcon(currentFile);
 
@@ -527,7 +519,7 @@ namespace Reviser
 
         private void infoBtn_Click(object sender, EventArgs e)
         {
-            InfoForm info = new InfoForm();
+            var info = new InfoForm();
             info.ShowDialog();
         }
 
@@ -541,8 +533,8 @@ namespace Reviser
             var lineWidth = listView.Columns[0].Width;
             var commentWidth = listView.Columns[2].Width;
 
-            var largeOffset = 21;
-            var smallOffset = 4;
+            const int largeOffset = 21;
+            const int smallOffset = 4;
 
             if (listView.Items.Count > 0 && listView.ClientSize.Height < (listView.Items.Count + 1) * listView.Items[0].Bounds.Height)
                 listView.Columns[1].Width = listView.Width - (lineWidth + commentWidth + largeOffset);
@@ -602,7 +594,7 @@ namespace Reviser
                     {
                         editSelectedToolStripMenuItem.Enabled = false;
 
-                        bool check = true;
+                        var check = true;
 
                         foreach (ListViewItem item in listView.SelectedItems)
                             if (item.SubItems[2].Text == "No")
