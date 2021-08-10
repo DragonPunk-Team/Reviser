@@ -46,37 +46,25 @@ namespace Reviser
 
         public bool ProjectEmpty()
         {
-            if (pf.project.files.Count > 0)
-            {
-                foreach (string file in pf.project.files.Keys)
-                    if (pf.project.files[file].content.Count > 0)
-                        return false;
-
-                return true;
-            }
-            else
-            {
-                return true;
-            }
+            return pf.project.files.Count <= 0 || pf.project.files.Keys.All(file => pf.project.files[file].content.Count <= 0);
         }
 
         private void OrderProjectFile()
         {
-            foreach (var file in pf.project.files)
-                if (file.Value.content.Count > 1)
-                    file.Value.content.Sort(new CustomListSort());
+            foreach (var file in pf.project.files.Where(file => file.Value.content.Count > 1))
+                file.Value.content.Sort(new CustomListSort());
         }
 
         private void Generate()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.AppendLine("# " + pf.project.name);
             sb.AppendLine();
 
-            int totalPBValue = 0;
+            var totalPBValue = 0;
 
-            foreach (string file in pf.project.files.Keys)
+            foreach (var file in pf.project.files.Keys)
             {
                 if (pf.project.files[file].complete)
                 {
@@ -182,9 +170,9 @@ namespace Reviser
             proposal = proposal.Replace("\r\n", "\n");
             var lines = proposal.Split('\n');
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
                 if (line.Length > 0)
                 {
@@ -240,8 +228,8 @@ namespace Reviser
 
         private string FormatLine(string origLine, string tranLine, string character, string file, int contentId)
         {
-            StringBuilder sb = new StringBuilder();
-            string lastChar = "";
+            var sb = new StringBuilder();
+            var lastChar = "";
 
             if (character == lastChar)
             {
