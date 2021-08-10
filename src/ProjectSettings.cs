@@ -5,6 +5,8 @@ using System.Linq;
 using System.Media;
 using System.Windows.Forms;
 
+using Ookii.Dialogs.WinForms;
+
 namespace Reviser
 {
     public partial class ProjectSettings : Form
@@ -83,7 +85,6 @@ namespace Reviser
         private void origFilesBtn_Click(object sender, EventArgs e)
         {
             var path = FolderSelect("Original");
-            Console.WriteLine("Original: [" + path + "]");
 
             if (!string.IsNullOrWhiteSpace(path))
                 origFilesBox.Text = path;
@@ -99,9 +100,10 @@ namespace Reviser
 
         private string FolderSelect(string fileType)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog()
+            var fbd = new VistaFolderBrowserDialog()
             {
-                Description = String.Format("Select {0} Files Folder", fileType)
+                Description = string.Format(@$"Select {fileType} Files Folder"),
+                UseDescriptionForTitle = true
             };
 
             if (fbd.ShowDialog() == DialogResult.OK)
