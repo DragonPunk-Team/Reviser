@@ -27,8 +27,8 @@ echo Merging %APP_NAME%...
   /ndebug:false ^
   /out:"..\%APP_NAME%" ^
   "Reviser.exe" ^
-  "Newtonsoft.Json.dll"
-
+  "Newtonsoft.Json.dll" ^
+  "Ookii.Dialogs.WinForms.dll"
 
 :Done
 echo Merged %APP_NAME%.
