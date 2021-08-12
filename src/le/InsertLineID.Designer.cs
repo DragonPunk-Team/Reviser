@@ -29,24 +29,15 @@ namespace Reviser.LE
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.lineIdBox = new System.Windows.Forms.TextBox();
             this.closeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Insert Line ID:";
-            // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(12, 51);
+            this.okButton.Enabled = false;
+            this.okButton.Location = new System.Drawing.Point(12, 38);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(119, 23);
             this.okButton.TabIndex = 2;
@@ -56,7 +47,7 @@ namespace Reviser.LE
             // 
             // lineIdBox
             // 
-            this.lineIdBox.Location = new System.Drawing.Point(12, 25);
+            this.lineIdBox.Location = new System.Drawing.Point(12, 12);
             this.lineIdBox.Name = "lineIdBox";
             this.lineIdBox.Size = new System.Drawing.Size(119, 20);
             this.lineIdBox.TabIndex = 1;
@@ -68,7 +59,6 @@ namespace Reviser.LE
             this.closeButton.Location = new System.Drawing.Point(200, 0);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(16, 16);
-            this.closeButton.TabIndex = 3;
             this.closeButton.TabStop = false;
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
@@ -79,11 +69,10 @@ namespace Reviser.LE
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeButton;
-            this.ClientSize = new System.Drawing.Size(143, 83);
+            this.ClientSize = new System.Drawing.Size(143, 72);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.lineIdBox);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -97,8 +86,6 @@ namespace Reviser.LE
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.TextBox lineIdBox;
         private System.Windows.Forms.Button closeButton;
