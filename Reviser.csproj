@@ -71,6 +71,7 @@
       <HintPath>packages\Ookii.Dialogs.WinForms.1.2.0\lib\net45\Ookii.Dialogs.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Security" />
@@ -93,6 +94,12 @@
     </Compile>
     <Compile Include="src\files\GameFile.cs" />
     <Compile Include="src\files\IFile.cs" />
+    <Compile Include="src\files\Utils.cs" />
+    <Compile Include="src\lang\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="src\LE\Utils.cs" />
     <Compile Include="src\tweaks\BufferedListView.cs">
       <SubType>Component</SubType>
@@ -169,6 +176,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\lang\Strings.it.resx" />
+    <EmbeddedResource Include="src\lang\Strings.resx">
+      <CustomToolNamespace>Reviser.Language</CustomToolNamespace>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="src\LE\InsertFileName.resx">
       <DependentUpon>InsertFileName.cs</DependentUpon>
@@ -269,6 +282,9 @@
     <None Include="res\img\Add Note.png" />
     <None Include="res\img\Edit Note.png" />
     <Content Include="Reviser.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

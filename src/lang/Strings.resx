@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MainForm_addLineBtn" xml:space="preserve">
+    <value>Add Line</value>
+  </data>
+  <data name="Generic_NewProject" xml:space="preserve">
+    <value>New Project</value>
+  </data>
+  <data name="MainForm_OpenProject" xml:space="preserve">
+    <value>Open Project</value>
+    <comment>Used in MainForm.openProjBtn_Click() and MainForm.openProjBtn.Text</comment>
+  </data>
+  <data name="Generic_SaveProject" xml:space="preserve">
+    <value>Save Project</value>
+    
+  </data>
+  <data name="MainForm_saveProjectAsToolStripMenuItem" xml:space="preserve">
+    <value>Save Project As...</value>
+    
+  </data>
+  <data name="MainForm_generateReportBtn" xml:space="preserve">
+    <value>Generate Report</value>
+  </data>
+  <data name="Generic_ProjectSettings" xml:space="preserve">
+    <value>Project Settings</value>
+  </data>
+  <data name="MainForm_infoBtn" xml:space="preserve">
+    <value>Info on Reviser</value>
+  </data>
+  <data name="MainForm_editLineBtn" xml:space="preserve">
+    <value>Edit Line</value>
+  </data>
+  <data name="MainForm_delLineBtn" xml:space="preserve">
+    <value>Delete Line</value>
+  </data>
+  <data name="MainForm_completeLabel" xml:space="preserve">
+    <value>This file was marked as complete.
+If you want to edit it, untick it from the file list.</value>
+  </data>
+  <data name="MainForm_addNoteBtn" xml:space="preserve">
+    <value>Add Note</value>
+  </data>
+  <data name="MainForm_editSelectedToolStripMenuItem" xml:space="preserve">
+    <value>Edit selected...</value>
+  </data>
+  <data name="MainForm_deleteSelectedToolStripMenuItem" xml:space="preserve">
+    <value>Delete selected...</value>
+  </data>
+  <data name="MainForm_deleteSelectedToolStripMenuItem_Plural" xml:space="preserve">
+    <value>Delete selected...</value>
+    <comment>Plural alternative for deleteSelectedToolStripMenu</comment>
+  </data>
+  <data name="MainForm_line" xml:space="preserve">
+    <value>Line</value>
+    <comment>Used as a column name in MainForm.listView</comment>
+  </data>
+  <data name="Generic_Comment" xml:space="preserve">
+    <value>Comment</value>
+    
+  </data>
+  <data name="MainForm_proposal" xml:space="preserve">
+    <value>Proposal</value>
+    <comment>Used as a column name in MainForm.listView</comment>
+  </data>
+  <data name="MainForm_WindowTitle" xml:space="preserve">
+    <value>DragonPunk Reviser</value>
+    <comment>Program name - DO NOT CHANGE</comment>
+  </data>
+  <data name="MainForm_PathErrorOrigTran" xml:space="preserve">
+    <value>Original files path and translated files path do not exist.
+Check project settings before continuing.</value>
+    <comment>Used in MainForm.PathError()</comment>
+  </data>
+  <data name="MainForm_PathErrorOrig" xml:space="preserve">
+    <value>Original files path does not exist.
+Check project settings before continuing.</value>
+    <comment>Used in MainForm.PathError()</comment>
+  </data>
+  <data name="MainForm_PathErrorTran" xml:space="preserve">
+    <value>Translated files path does not exist.
+Check project settings before continuing.</value>
+    <comment>Used in MainForm.PathError()</comment>
+  </data>
+  <data name="Generic_Error" xml:space="preserve">
+    <value>Error</value>
+    <comment>"Error" window title used while showing an error</comment>
+  </data>
+  <data name="Generic_ProjectFileType" xml:space="preserve">
+    <value>DragonPunk Reviser Project</value>
+    <comment>Used in MainForm.openProjBtn_Click()</comment>
+  </data>
+  <data name="Generic_Warning" xml:space="preserve">
+    <value>Warning</value>
+    <comment>"Error" window title used while showing a warning</comment>
+  </data>
+  <data name="MainForm_DeleteLineWarning" xml:space="preserve">
+    <value>Are you sure you want to delete this line?</value>
+    <comment>Used in MainForm.delLineBtn_Click()</comment>
+  </data>
+  <data name="MainForm_DeleteLineWarning_Plural" xml:space="preserve">
+    <value>Are you sure you want to delete these lines?</value>
+    <comment>Plural alternative for DeleteLineWarning</comment>
+  </data>
+  <data name="MainForm_OpenNewProjectCopy" xml:space="preserve">
+    <value>Do you want to open the new copy of the project now?</value>
+    <comment>Used in MainForm.saveProjectAsToolStripMenuItem_Click()</comment>
+  </data>
+  <data name="MainForm_IncompleteFiles" xml:space="preserve">
+    <value>Some files weren't marked as complete.
+These files will NOT be included in the final report.
+Are you sure you want to continue?</value>
+    <comment>Used in MainForm.generateReportBtn_Click() when trying to generate a report while not all of the files are marked as complete</comment>
+  </data>
+  <data name="Generic_MarkdownFileType" xml:space="preserve">
+    <value>Markdown File</value>
+    <comment>Used in MainForm.generateReportBtn_Click()</comment>
+  </data>
+  <data name="MainForm_ReportDestination" xml:space="preserve">
+    <value>Select report destination</value>
+    <comment>Used in MainForm.generateReportBtn_Click(), shown when selecting where to save a report</comment>
+  </data>
+  <data name="MainForm_EmptyProjectError" xml:space="preserve">
+    <value>You can't generate a report right now, since the project is empty.</value>
+    <comment>Used in MainForm.generateReportBtn_Click(), error that shows up when trying to generate a report for an empty project.</comment>
+  </data>
+  <data name="MainForm_MarkAsCompleteWarning" xml:space="preserve">
+    <value>Are you sure you want to mark this file as complete?
+This operation CAN be undone.</value>
+    <comment>Used in MainForm.fileListBox_ItemCheck(), warning shown when trying to mark a file as complete</comment>
+  </data>
+  <data name="MainForm_MarkAsNotCompleteWarning" xml:space="preserve">
+    <value>Are you sure you want to mark this file as not complete?
+This operation CAN be undone.</value>
+    <comment>Used in MainForm.fileListBox_ItemCheck(), warning shown when trying to mark a file as not complete</comment>
+  </data>
+  <data name="MainForm_UnsavedChanges" xml:space="preserve">
+    <value>You have unsaved changes in your project. Save?</value>
+    <comment>Used in MainForm.CheckUnsaved(), shown when trying to
+- close the program
+- trying to open a new project
+- creating a new project while another one is open
+while there are unsaved changes in the project.</comment>
+  </data>
+  <data name="Generic_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Generic_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="GenerateReport_AddingFile" xml:space="preserve">
+    <value>Adding file {0}...</value>
+    <comment>Used in GenerateFile.Generate(), shown while generating a report</comment>
+  </data>
+  <data name="GenerateReport_Proposal" xml:space="preserve">
+    <value>Proposal</value>
+    <comment>Used in GenerateFile.Generate(), written to final report</comment>
+  </data>
+  <data name="GenerateReport_PreviousLine" xml:space="preserve">
+    <value>Previous line</value>
+    <comment>Used in GenerateFile.Generate(), written to final report</comment>
+  </data>
+  <data name="GenerateReport_PreviousLine_Plural" xml:space="preserve">
+    <value>Previous lines</value>
+    <comment>Used in GenerateFile.Generate(), written to final report</comment>
+  </data>
+  <data name="GenerateReport_Done" xml:space="preserve">
+    <value>Done!</value>
+    <comment>Used in GenerateFile.Generate(), title of window shown after generating a report</comment>
+  </data>
+  <data name="GenerateReport_DoneMsg" xml:space="preserve">
+    <value>Report generated successfully.</value>
+    <comment>Used in GenerateFile.Generate(), shown after generating a report</comment>
+  </data>
+  <data name="FileSelector_selectAllBtn" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Generic_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="FileSelector_selectNoneBtn" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Generic_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FileSelector_WindowTitle" xml:space="preserve">
+    <value>Select files</value>
+  </data>
+  <data name="ProjectSettings_projNameLabel" xml:space="preserve">
+    <value>Project Name:</value>
+    <comment>KEEP THE COLON AFTER THE STRING</comment>
+  </data>
+  <data name="ProjectSettings_projTypeLabel" xml:space="preserve">
+    <value>Project Type:</value>
+    <comment>KEEP THE COLON AFTER THE STRING</comment>
+  </data>
+  <data name="ProjectSettings_origFilesLabel" xml:space="preserve">
+    <value>Original Files:</value>
+    <comment>KEEP THE COLON AFTER THE STRING</comment>
+  </data>
+  <data name="ProjectSettings_tranFilesLabel" xml:space="preserve">
+    <value>Translated Files:</value>
+    <comment>KEEP THE COLON AFTER THE STRING</comment>
+  </data>
+  <data name="ProjectSettings_firstFileLabel" xml:space="preserve">
+    <value>First File:</value>
+    <comment>KEEP THE COLON AFTER THE STRING</comment>
+  </data>
+  <data name="ProjectSettings_lastFileLabel" xml:space="preserve">
+    <value>Last File:</value>
+    <comment>KEEP THE COLON AFTER THE STRING</comment>
+  </data>
+  <data name="Generic_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ProjectSettings_fileSelectBtn" xml:space="preserve">
+    <value>Select files...</value>
+    <comment>KEEP THE THREE DOTS AFTER THE STRING</comment>
+  </data>
+  <data name="ProjectSettings_OrigFolderSelect" xml:space="preserve">
+    <value>Select Original Files Folder</value>
+  </data>
+  <data name="ProjectSettings_TranFolderSelect" xml:space="preserve">
+    <value>Select Translated Files Folder</value>
+  </data>
+  <data name="ProjectSettings_EmptyProjNameError" xml:space="preserve">
+    <value>Project must have a name!</value>
+    <comment>Used in ProjectSettings.saveBtn_Click(), error shown when trying to save a project with an empty name</comment>
+  </data>
+  <data name="ProjectSettings_ChangedFileListWarning" xml:space="preserve">
+    <value>The file list has changed.
+By saving the project right now, you will lose the comments related to the files which are not in the file list anymore.
+Are you sure you want to continue?
+
+Clicking "No" will ignore the new file list and the new file paths.</value>
+    <comment>Used in ProjectSettings.Save(), warning shown after changing the file list</comment>
+  </data>
+  <data name="Generic_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="NoteEditor_WindowTitle_Add" xml:space="preserve">
+    <value>Add note to</value>
+    <comment>Window title for NoteEditor, shown when adding a new note</comment>
+  </data>
+  <data name="NoteEditor_WindowTitle_Edit" xml:space="preserve">
+    <value>Edit note for</value>
+    <comment>Window title for NoteEditor, shown when editing an existing note</comment>
+  </data>
+  <data name="InsertFileName_WindowTitle" xml:space="preserve">
+    <value>Insert File Name</value>
+  </data>
+  <data name="InsertFileName_allFilesCheckBox" xml:space="preserve">
+    <value>All Files</value>
+  </data>
+  <data name="InsertLineID_WindowTitle" xml:space="preserve">
+    <value>Insert Line ID</value>
+  </data>
+  <data name="Generic_LineID_Colon" xml:space="preserve">
+    <value>Line ID:</value>
+    <comment>KEEP THE COLON AFTER THE STRING</comment>
+  </data>
+  <data name="PrevLinesEditor_WindowTitle_Add" xml:space="preserve">
+    <value>Add Previous Lines</value>
+    <comment>Window title for PrevLinesEditor, shown when adding new previous lines</comment>
+  </data>
+  <data name="PrevLinesEditor_WindowTitle_Edit" xml:space="preserve">
+    <value>Edit Previous Lines</value>
+    <comment>Window title for PrevLinesEditor, shown when editing existing previous lines</comment>
+  </data>
+  <data name="Generic_NoLinesFoundError" xml:space="preserve">
+    <value>No lines found!</value>
+  </data>
+  <data name="PrevLinesEditor_addBtn" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="LineEditor_WindowTitle_Add" xml:space="preserve">
+    <value>Add New Line</value>
+    <comment>Window title for LineEditor, shown when adding a new line</comment>
+  </data>
+  <data name="LineEditor_WindowTitle_Edit" xml:space="preserve">
+    <value>Edit Line</value>
+    <comment>Window title for LineEditor, shown when editing a line</comment>
+  </data>
+  <data name="LineEditor_copyLineBtn" xml:space="preserve">
+    <value>Copy translated lines from above</value>
+  </data>
+  <data name="LineEditor_insertLineIDBtn" xml:space="preserve">
+    <value>Insert Line ID</value>
+  </data>
+  <data name="LineEditor_insertFileLineIDBtn" xml:space="preserve">
+    <value>Insert filename and line ID</value>
+  </data>
+  <data name="LineEditor_prevLinesBtn" xml:space="preserve">
+    <value>Add previous lines</value>
+  </data>
+  <data name="LineEditor_plainTextBtn" xml:space="preserve">
+    <value>Plain text</value>
+  </data>
+  <data name="LineEditor_colorCheckBox" xml:space="preserve">
+    <value>Include colors</value>
+  </data>
+</root>
