@@ -139,35 +139,6 @@ namespace Reviser.Files.SoJ
             return colRx.Replace(line, string.Empty);
         }
 
-        private int[] GetIdList(string lineIds)
-        {
-            var idList = new List<int>();
-
-            var rx = new Regex(@"([0-9]*-?)*", RegexOptions.Compiled);
-
-            var ids = rx.Matches(lineIds);
-
-            foreach (Match id in ids)
-            {
-                if (string.IsNullOrWhiteSpace(id.Value)) continue;
-
-                if (id.Value.Contains("-"))
-                {
-                    var split = id.Value.Split('-');
-                    var limits = new int[] { int.Parse(split[0]), int.Parse(split[1]) };
-
-                    for (var i = limits[0]; i <= limits[1]; i++)
-                        idList.Add(i);
-                }
-                else
-                {
-                    idList.Add(int.Parse(id.Value));
-                }
-            }
-
-            return idList.ToArray();
-        }
-
         private Tuple<string, string> GetLine(int lineId)
         {
             // First line is always 5, but since we are going to
@@ -193,11 +164,11 @@ namespace Reviser.Files.SoJ
             return null;
         }
 
-        public Tuple<string, string>[] GetLines(string lineIds)
+        public Tuple<string, string>[] GetLines(string lineIDs)
         {
             var lines = new List<Tuple<string, string>>();
 
-            var idList = GetIdList(lineIds);
+            var idList = Utils.GetIDList(lineIDs);
 
             foreach (var id in idList)
             {
