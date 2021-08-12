@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.projNameLabel = new System.Windows.Forms.Label();
             this.projNameBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.projTypeLabel = new System.Windows.Forms.Label();
             this.projTypeBox = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.origFilesLabel = new System.Windows.Forms.Label();
             this.origFilesBox = new System.Windows.Forms.TextBox();
             this.origFilesBtn = new System.Windows.Forms.Button();
             this.tranFilesBtn = new System.Windows.Forms.Button();
             this.tranFilesBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.tranFilesLabel = new System.Windows.Forms.Label();
+            this.firstFileLabel = new System.Windows.Forms.Label();
+            this.lastFileLabel = new System.Windows.Forms.Label();
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.firstFileBox = new System.Windows.Forms.ComboBox();
@@ -47,14 +47,14 @@
             this.fileSelectBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // projNameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Project Name:";
+            this.projNameLabel.AutoSize = true;
+            this.projNameLabel.Location = new System.Drawing.Point(9, 15);
+            this.projNameLabel.Name = "projNameLabel";
+            this.projNameLabel.Size = new System.Drawing.Size(74, 13);
+            this.projNameLabel.TabIndex = 0;
+            this.projNameLabel.Text = Language.Strings.ProjectSettings_projNameLabel;
             // 
             // projNameBox
             // 
@@ -63,14 +63,14 @@
             this.projNameBox.Size = new System.Drawing.Size(188, 20);
             this.projNameBox.TabIndex = 0;
             // 
-            // label2
+            // projTypeLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Project Type:";
+            this.projTypeLabel.AutoSize = true;
+            this.projTypeLabel.Location = new System.Drawing.Point(9, 41);
+            this.projTypeLabel.Name = "projTypeLabel";
+            this.projTypeLabel.Size = new System.Drawing.Size(70, 13);
+            this.projTypeLabel.TabIndex = 2;
+            this.projTypeLabel.Text = Language.Strings.ProjectSettings_projTypeLabel;
             // 
             // projTypeBox
             // 
@@ -86,14 +86,14 @@
             this.projTypeBox.Size = new System.Drawing.Size(54, 21);
             this.projTypeBox.TabIndex = 1;
             // 
-            // label3
+            // origFilesLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 88);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Original Files:";
+            this.origFilesLabel.AutoSize = true;
+            this.origFilesLabel.Location = new System.Drawing.Point(9, 88);
+            this.origFilesLabel.Name = "origFilesLabel";
+            this.origFilesLabel.Size = new System.Drawing.Size(69, 13);
+            this.origFilesLabel.TabIndex = 4;
+            this.origFilesLabel.Text = Language.Strings.ProjectSettings_origFilesLabel;
             // 
             // origFilesBox
             // 
@@ -130,32 +130,32 @@
             this.tranFilesBox.TabIndex = 4;
             this.tranFilesBox.TextChanged += new System.EventHandler(this.tranFilesBox_TextChanged);
             // 
-            // label4
+            // tranFilesLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 115);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Translated Files:";
+            this.tranFilesLabel.AutoSize = true;
+            this.tranFilesLabel.Location = new System.Drawing.Point(9, 115);
+            this.tranFilesLabel.Name = "tranFilesLabel";
+            this.tranFilesLabel.Size = new System.Drawing.Size(84, 13);
+            this.tranFilesLabel.TabIndex = 7;
+            this.tranFilesLabel.Text = Language.Strings.ProjectSettings_tranFilesLabel;
             // 
-            // label5
+            // firstFileLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 160);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "First File:";
+            this.firstFileLabel.AutoSize = true;
+            this.firstFileLabel.Location = new System.Drawing.Point(9, 160);
+            this.firstFileLabel.Name = "firstFileLabel";
+            this.firstFileLabel.Size = new System.Drawing.Size(48, 13);
+            this.firstFileLabel.TabIndex = 12;
+            this.firstFileLabel.Text = Language.Strings.ProjectSettings_firstFileLabel;
             // 
-            // label6
+            // lastFileLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 187);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Last File:";
+            this.lastFileLabel.AutoSize = true;
+            this.lastFileLabel.Location = new System.Drawing.Point(9, 187);
+            this.lastFileLabel.Name = "lastFileLabel";
+            this.lastFileLabel.Size = new System.Drawing.Size(49, 13);
+            this.lastFileLabel.TabIndex = 13;
+            this.lastFileLabel.Text = Language.Strings.ProjectSettings_lastFileLabel;
             // 
             // saveBtn
             // 
@@ -164,7 +164,7 @@
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 23);
             this.saveBtn.TabIndex = 9;
-            this.saveBtn.Text = "Save";
+            this.saveBtn.Text = Language.Strings.Generic_Save;
             this.saveBtn.UseVisualStyleBackColor = true;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
@@ -175,7 +175,7 @@
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 10;
-            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.Text = Language.Strings.Generic_Cancel;
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
@@ -208,7 +208,7 @@
             this.fileSelectBtn.Name = "fileSelectBtn";
             this.fileSelectBtn.Size = new System.Drawing.Size(75, 23);
             this.fileSelectBtn.TabIndex = 8;
-            this.fileSelectBtn.Text = "Select files...";
+            this.fileSelectBtn.Text = Language.Strings.ProjectSettings_fileSelectBtn;
             this.fileSelectBtn.UseVisualStyleBackColor = true;
             this.fileSelectBtn.Click += new System.EventHandler(this.fileSelectBtn_Click);
             // 
@@ -223,18 +223,18 @@
             this.Controls.Add(this.firstFileBox);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.saveBtn);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lastFileLabel);
+            this.Controls.Add(this.firstFileLabel);
             this.Controls.Add(this.tranFilesBtn);
             this.Controls.Add(this.tranFilesBox);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tranFilesLabel);
             this.Controls.Add(this.origFilesBtn);
             this.Controls.Add(this.origFilesBox);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.origFilesLabel);
             this.Controls.Add(this.projTypeBox);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.projTypeLabel);
             this.Controls.Add(this.projNameBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.projNameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -242,7 +242,6 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ProjectSettings";
             this.Load += new System.EventHandler(this.ProjectSettings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -251,18 +250,18 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label projNameLabel;
         private System.Windows.Forms.TextBox projNameBox;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label projTypeLabel;
         private System.Windows.Forms.ComboBox projTypeBox;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label origFilesLabel;
         private System.Windows.Forms.TextBox origFilesBox;
         private System.Windows.Forms.Button origFilesBtn;
         private System.Windows.Forms.Button tranFilesBtn;
         private System.Windows.Forms.TextBox tranFilesBox;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label tranFilesLabel;
+        private System.Windows.Forms.Label firstFileLabel;
+        private System.Windows.Forms.Label lastFileLabel;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.ComboBox firstFileBox;

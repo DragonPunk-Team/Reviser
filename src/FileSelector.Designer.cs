@@ -1,4 +1,4 @@
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Reviser
 {
@@ -43,7 +43,7 @@ namespace Reviser
             this.selectAllBtn.Name = "selectAllBtn";
             this.selectAllBtn.Size = new System.Drawing.Size(65, 23);
             this.selectAllBtn.TabIndex = 0;
-            this.selectAllBtn.Text = "All";
+            this.selectAllBtn.Text = Language.Strings.FileSelector_selectAllBtn;
             this.selectAllBtn.UseVisualStyleBackColor = true;
             this.selectAllBtn.Click += new System.EventHandler(this.selectAllBtn_Click);
             // 
@@ -53,7 +53,7 @@ namespace Reviser
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(65, 23);
             this.okBtn.TabIndex = 2;
-            this.okBtn.Text = "OK";
+            this.okBtn.Text = Language.Strings.Generic_OK;
             this.okBtn.UseVisualStyleBackColor = true;
             this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
             // 
@@ -63,7 +63,7 @@ namespace Reviser
             this.selectNoneBtn.Name = "selectNoneBtn";
             this.selectNoneBtn.Size = new System.Drawing.Size(65, 23);
             this.selectNoneBtn.TabIndex = 3;
-            this.selectNoneBtn.Text = "None";
+            this.selectNoneBtn.Text = Language.Strings.FileSelector_selectNoneBtn;
             this.selectNoneBtn.UseVisualStyleBackColor = true;
             this.selectNoneBtn.Click += new System.EventHandler(this.selectNoneBtn_Click);
             // 
@@ -74,7 +74,7 @@ namespace Reviser
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(65, 23);
             this.cancelBtn.TabIndex = 4;
-            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.Text = Language.Strings.Generic_Cancel;
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
@@ -106,7 +106,7 @@ namespace Reviser
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Select files";
+            this.Text = Language.Strings.FileSelector_WindowTitle;
             this.Load += new System.EventHandler(this.FileSelector_Load);
             this.ResumeLayout(false);
 

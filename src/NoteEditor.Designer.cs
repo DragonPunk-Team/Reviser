@@ -28,37 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.addBtn = new System.Windows.Forms.Button();
+            this.saveBtn = new System.Windows.Forms.Button();
             this.noteBox = new System.Windows.Forms.TextBox();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.removeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // saveBtn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Insert note:";
-            // 
-            // addBtn
-            // 
-            this.addBtn.Enabled = false;
-            this.addBtn.Location = new System.Drawing.Point(339, 216);
-            this.addBtn.Name = "addBtn";
-            this.addBtn.Size = new System.Drawing.Size(75, 23);
-            this.addBtn.TabIndex = 1;
-            this.addBtn.Text = "Add";
-            this.addBtn.UseVisualStyleBackColor = true;
-            this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
+            this.saveBtn.Enabled = false;
+            this.saveBtn.Location = new System.Drawing.Point(339, 196);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.TabIndex = 1;
+            this.saveBtn.Text = Language.Strings.Generic_Save;
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // noteBox
             // 
             this.noteBox.AcceptsReturn = true;
-            this.noteBox.Location = new System.Drawing.Point(12, 32);
+            this.noteBox.Location = new System.Drawing.Point(12, 12);
             this.noteBox.Multiline = true;
             this.noteBox.Name = "noteBox";
             this.noteBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -69,22 +59,22 @@
             // cancelBtn
             // 
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(258, 216);
+            this.cancelBtn.Location = new System.Drawing.Point(258, 196);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 2;
-            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.Text = Language.Strings.Generic_Cancel;
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // removeBtn
             // 
             this.removeBtn.Enabled = false;
-            this.removeBtn.Location = new System.Drawing.Point(12, 216);
+            this.removeBtn.Location = new System.Drawing.Point(12, 196);
             this.removeBtn.Name = "removeBtn";
             this.removeBtn.Size = new System.Drawing.Size(75, 23);
             this.removeBtn.TabIndex = 7;
-            this.removeBtn.Text = "Remove";
+            this.removeBtn.Text = Language.Strings.Generic_Remove;
             this.removeBtn.UseVisualStyleBackColor = true;
             this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
             // 
@@ -93,12 +83,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
-            this.ClientSize = new System.Drawing.Size(430, 245);
+            this.ClientSize = new System.Drawing.Size(430, 226);
             this.Controls.Add(this.removeBtn);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.noteBox);
-            this.Controls.Add(this.addBtn);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.saveBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -106,7 +95,6 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add note for ";
             this.Load += new System.EventHandler(this.NoteEditor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -114,9 +102,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button addBtn;
+        private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.TextBox noteBox;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button removeBtn;

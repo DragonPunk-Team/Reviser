@@ -181,7 +181,7 @@ namespace Reviser.Files.SoJ
             }
 
             if (lines.Count == 0)
-                lines.Add(new Tuple<string, string>("Error", "No lines found!"));
+                lines.Add(new Tuple<string, string>(Language.Strings.Generic_Error, Language.Strings.Generic_NoLinesFoundError));
 
             return lines.ToArray();
         }

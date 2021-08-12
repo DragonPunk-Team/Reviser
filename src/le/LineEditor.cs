@@ -27,7 +27,7 @@ namespace Reviser.LE
 
         private LineData ld;
         private string projectType;
-        int contentId;
+        int contentID;
         Tuple<string, string>[] tranLines;
 
         private IFile origFile;
@@ -59,8 +59,8 @@ namespace Reviser.LE
 
         private void ReadFiles(string filePath)
         {
-            Thread orig = new Thread(origFile.ReadFile);
-            Thread tran = new Thread(tranFile.ReadFile);
+            var orig = new Thread(origFile.ReadFile);
+            var tran = new Thread(tranFile.ReadFile);
 
             orig.Start(ld.origPath + filePath);
             tran.Start(ld.tranPath + filePath);
@@ -73,13 +73,13 @@ namespace Reviser.LE
         {
             if (ld.newLine)
             {
-                contentId = ld.lastContentId + 1;
+                contentID = ld.lastContentId + 1;
 
-                Text = "Add New Line";
+                Text = Language.Strings.LineEditor_WindowTitle_Add;
             }
             else
             {
-                Text = "Edit Line";
+                Text = Language.Strings.LineEditor_WindowTitle_Edit;
 
                 idBox.Text = ld.fc.lineId;
                 commentBox.Text = ld.fc.proposal;
@@ -96,7 +96,7 @@ namespace Reviser.LE
             tranLines = tranFile.GetLines(idBox.Text);
             lineBox.Text = Utils.FormatLines(origFile, tranFile, idBox.Text, colorCheckBox.Checked);
 
-            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains("[Error]"))
+            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains($@"[{Language.Strings.Generic_Error}]"))
             {
                 copyLineBtn.Enabled = false;
                 commentBox.Enabled = false;
@@ -129,7 +129,7 @@ namespace Reviser.LE
             };
 
             if (ld.newLine)
-                newfc.contentId = contentId;
+                newfc.contentId = contentID;
             else
                 newfc.contentId = ld.fc.contentId;
 
@@ -158,7 +158,7 @@ namespace Reviser.LE
 
         private void lineBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains("[Error]"))
+            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains(@$"[{Language.Strings.Generic_Error}]"))
                 colorCheckBox.Enabled = false;
             else
                 colorCheckBox.Enabled = true;
@@ -168,7 +168,7 @@ namespace Reviser.LE
 
         private void CheckSaveBtn()
         {
-            if (lineBox.Text.Contains("[Error]") ||
+            if (lineBox.Text.Contains($@"[{Language.Strings.Generic_Error}]") ||
                 string.IsNullOrWhiteSpace(commentBox.Text) ||
                 string.IsNullOrWhiteSpace(lineBox.Text))
                 saveBtn.Enabled = false;
@@ -181,22 +181,22 @@ namespace Reviser.LE
             if (commentCheckBox.Checked)
             {
                 plainTextBtn.Enabled = true;
-                insertLineIdBtn.Enabled = true;
-                insertFileLineIdBtn.Enabled = true;
+                insertLineIDBtn.Enabled = true;
+                insertFileLineIDBtn.Enabled = true;
             }
             else
             {
                 plainTextBtn.Enabled = false;
-                insertLineIdBtn.Enabled = false;
-                insertFileLineIdBtn.Enabled = false;
+                insertLineIDBtn.Enabled = false;
+                insertFileLineIDBtn.Enabled = false;
             }
         }
 
         private void copyLineBtn_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             string currentLine;
-            IFile gmd = GameFile.Get(projectType);
+            var gmd = GameFile.Get(projectType);
 
             if (tranLines.Count() == 1)
             {
@@ -212,8 +212,8 @@ namespace Reviser.LE
             }
             else
             {
-                string lastChar = "";
-                bool sameChar = false;
+                var lastChar = string.Empty;
+                var sameChar = false;
 
                 foreach (var line in tranLines)
                 {
@@ -259,11 +259,11 @@ namespace Reviser.LE
 
         private void insertLineIdBtn_Click(object sender, EventArgs e)
         {
-            InsertLineID ilid = new InsertLineID();
+            var ilid = new InsertLineID();
 
             if (ilid.ShowDialog() == DialogResult.OK)
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
 
                 if (!commentBox.Text.EndsWith(" ") && commentBox.Text.Length > 0)
                     sb.Append(" ");
@@ -280,15 +280,15 @@ namespace Reviser.LE
 
         private void insertFileLineIdBtn_Click(object sender, EventArgs e)
         {
-            InsertFileName ifn = new InsertFileName(ld.filelist, ld.tranPath);
+            var ifn = new InsertFileName(ld.filelist, ld.tranPath);
 
             if (ifn.ShowDialog() == DialogResult.OK)
             {
-                InsertLineID ilid = new InsertLineID();
+                var ilid = new InsertLineID();
 
                 if (ilid.ShowDialog() == DialogResult.OK)
                 {
-                    StringBuilder sb = new StringBuilder();
+                    var sb = new StringBuilder();
 
                     if (!commentBox.Text.EndsWith(" ") && commentBox.Text.Length > 0)
                         sb.Append(" ");
@@ -315,8 +315,8 @@ namespace Reviser.LE
 
         private void prevLinesBtn_Click(object sender, EventArgs e)
         {
-            PrevLinesEditor ple = new PrevLinesEditor(origFile, tranFile, colorCheckBox.Checked, prevLinesBtn.Text);
-            DialogResult dr = ple.ShowDialog();
+            var ple = new PrevLinesEditor(origFile, tranFile, prevLinesBtn.Text);
+            var dr = ple.ShowDialog();
 
             if (dr == DialogResult.OK)
             {

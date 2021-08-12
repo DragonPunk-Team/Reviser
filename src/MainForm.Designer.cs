@@ -68,7 +68,7 @@
             this.addLineBtn.Name = "addLineBtn";
             this.addLineBtn.Size = new System.Drawing.Size(128, 42);
             this.addLineBtn.TabIndex = 2;
-            this.addLineBtn.Text = "Add Line";
+            this.addLineBtn.Text = Language.Strings.MainForm_addLineBtn;
             this.addLineBtn.UseVisualStyleBackColor = true;
             this.addLineBtn.Click += new System.EventHandler(this.addLineBtn_Click);
             // 
@@ -92,28 +92,27 @@
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip.Size = new System.Drawing.Size(1082, 32);
             this.toolStrip.TabIndex = 3;
-            this.toolStrip.Text = "toolStrip1";
             // 
             // newProjBtn
             // 
             this.newProjBtn.AutoSize = false;
             this.newProjBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.newProjBtn.Image = global::Reviser.Properties.Resources.New_Project;
+            this.newProjBtn.Image = Properties.Resources.New_Project;
             this.newProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newProjBtn.Name = "newProjBtn";
             this.newProjBtn.Size = new System.Drawing.Size(32, 32);
-            this.newProjBtn.Text = "New Project";
+            this.newProjBtn.Text = Language.Strings.Generic_NewProject;
             this.newProjBtn.Click += new System.EventHandler(this.newProjBtn_Click);
             // 
             // openProjBtn
             // 
             this.openProjBtn.AutoSize = false;
             this.openProjBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.openProjBtn.Image = global::Reviser.Properties.Resources.Open_Project;
+            this.openProjBtn.Image = Properties.Resources.Open_Project;
             this.openProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openProjBtn.Name = "openProjBtn";
             this.openProjBtn.Size = new System.Drawing.Size(32, 32);
-            this.openProjBtn.Text = "Open Project";
+            this.openProjBtn.Text = Language.Strings.MainForm_OpenProject;
             this.openProjBtn.Click += new System.EventHandler(this.openProjBtn_Click);
             // 
             // saveProjBtn
@@ -123,18 +122,18 @@
             this.saveProjBtn.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveProjectAsToolStripMenuItem});
             this.saveProjBtn.Enabled = false;
-            this.saveProjBtn.Image = global::Reviser.Properties.Resources.Save_Project;
+            this.saveProjBtn.Image = Properties.Resources.Save_Project;
             this.saveProjBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveProjBtn.Name = "saveProjBtn";
             this.saveProjBtn.Size = new System.Drawing.Size(43, 32);
-            this.saveProjBtn.Text = "Save Project";
+            this.saveProjBtn.Text = Language.Strings.Generic_SaveProject;
             this.saveProjBtn.ButtonClick += new System.EventHandler(this.saveProjBtn_ButtonClick);
             // 
             // saveProjectAsToolStripMenuItem
             // 
             this.saveProjectAsToolStripMenuItem.Name = "saveProjectAsToolStripMenuItem";
             this.saveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.saveProjectAsToolStripMenuItem.Text = "Save Project As...";
+            this.saveProjectAsToolStripMenuItem.Text = Language.Strings.MainForm_saveProjectAsToolStripMenuItem;
             this.saveProjectAsToolStripMenuItem.Click += new System.EventHandler(this.saveProjectAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
@@ -148,11 +147,11 @@
             this.generateReportBtn.AutoSize = false;
             this.generateReportBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.generateReportBtn.Enabled = false;
-            this.generateReportBtn.Image = global::Reviser.Properties.Resources.Generate_Report;
+            this.generateReportBtn.Image = Properties.Resources.Generate_Report;
             this.generateReportBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.generateReportBtn.Name = "generateReportBtn";
             this.generateReportBtn.Size = new System.Drawing.Size(32, 32);
-            this.generateReportBtn.Text = "Generate Report";
+            this.generateReportBtn.Text = Language.Strings.MainForm_generateReportBtn;
             this.generateReportBtn.Click += new System.EventHandler(this.generateReportBtn_Click);
             // 
             // projSettingsBtn
@@ -160,11 +159,11 @@
             this.projSettingsBtn.AutoSize = false;
             this.projSettingsBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.projSettingsBtn.Enabled = false;
-            this.projSettingsBtn.Image = global::Reviser.Properties.Resources.Project_Settings;
+            this.projSettingsBtn.Image = Properties.Resources.Project_Settings;
             this.projSettingsBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.projSettingsBtn.Name = "projSettingsBtn";
             this.projSettingsBtn.Size = new System.Drawing.Size(32, 32);
-            this.projSettingsBtn.Text = "Project Settings";
+            this.projSettingsBtn.Text = Language.Strings.Generic_ProjectSettings;
             this.projSettingsBtn.Click += new System.EventHandler(this.projSettingsBtn_Click);
             // 
             // infoBtn
@@ -172,11 +171,11 @@
             this.infoBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.infoBtn.AutoSize = false;
             this.infoBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.infoBtn.Image = global::Reviser.Properties.Resources.Info;
+            this.infoBtn.Image = Properties.Resources.Info;
             this.infoBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.infoBtn.Name = "infoBtn";
             this.infoBtn.Size = new System.Drawing.Size(32, 32);
-            this.infoBtn.ToolTipText = "Info";
+            this.infoBtn.Text = Language.Strings.MainForm_infoBtn;
             this.infoBtn.Click += new System.EventHandler(this.infoBtn_Click);
             // 
             // fileListBox
@@ -200,7 +199,7 @@
             this.editLineBtn.Name = "editLineBtn";
             this.editLineBtn.Size = new System.Drawing.Size(128, 42);
             this.editLineBtn.TabIndex = 6;
-            this.editLineBtn.Text = "Edit Line";
+            this.editLineBtn.Text = Language.Strings.MainForm_editLineBtn;
             this.editLineBtn.UseVisualStyleBackColor = true;
             this.editLineBtn.Click += new System.EventHandler(this.editLineBtn_Click);
             // 
@@ -213,7 +212,7 @@
             this.delLineBtn.Name = "delLineBtn";
             this.delLineBtn.Size = new System.Drawing.Size(128, 42);
             this.delLineBtn.TabIndex = 7;
-            this.delLineBtn.Text = "Delete Line";
+            this.delLineBtn.Text = Language.Strings.MainForm_delLineBtn;
             this.delLineBtn.UseVisualStyleBackColor = true;
             this.delLineBtn.Click += new System.EventHandler(this.delLineBtn_Click);
             // 
@@ -236,12 +235,12 @@
             // 
             this.addNoteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.addNoteBtn.Enabled = false;
-            this.addNoteBtn.Image = global::Reviser.Properties.Resources.Add_Note;
+            this.addNoteBtn.Image = Properties.Resources.Add_Note;
             this.addNoteBtn.Location = new System.Drawing.Point(228, 460);
             this.addNoteBtn.Name = "addNoteBtn";
             this.addNoteBtn.Size = new System.Drawing.Size(42, 42);
             this.addNoteBtn.TabIndex = 9;
-            this.addNoteTooltip.SetToolTip(this.addNoteBtn, "Add Note");
+            this.addNoteTooltip.SetToolTip(this.addNoteBtn, Language.Strings.MainForm_addNoteBtn);
             this.addNoteBtn.UseVisualStyleBackColor = true;
             this.addNoteBtn.Click += new System.EventHandler(this.addNoteBtn_Click);
             // 
@@ -259,14 +258,14 @@
             // 
             this.editSelectedToolStripMenuItem.Name = "editSelectedToolStripMenuItem";
             this.editSelectedToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.editSelectedToolStripMenuItem.Text = "Edit selected...";
+            this.editSelectedToolStripMenuItem.Text = Language.Strings.MainForm_editSelectedToolStripMenuItem;
             this.editSelectedToolStripMenuItem.Click += new System.EventHandler(this.editSelectedToolStripMenuItem_Click);
             // 
             // deleteSelectedToolStripMenuItem
             // 
             this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
             this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.deleteSelectedToolStripMenuItem.Text = "Delete selected...";
+            this.deleteSelectedToolStripMenuItem.Text = Language.Strings.MainForm_deleteSelectedToolStripMenuItem;
             this.deleteSelectedToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
@@ -278,7 +277,7 @@
             // 
             this.commentToolStripMenuItem.Name = "commentToolStripMenuItem";
             this.commentToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.commentToolStripMenuItem.Text = "Comment";
+            this.commentToolStripMenuItem.Text = Language.Strings.Generic_Comment;
             this.commentToolStripMenuItem.Click += new System.EventHandler(this.commentToolStripMenuItem_Click);
             // 
             // listView
@@ -310,17 +309,18 @@
             // 
             // lineId
             // 
-            this.lineId.Text = "Line";
+            this.lineId.Text = Language.Strings.MainForm_line;
             this.lineId.Width = 50;
             // 
             // proposal
             // 
-            this.proposal.Text = "Proposal";
-            this.proposal.Width = 740;
+            this.proposal.Text = Language.Strings.MainForm_proposal;
+            this.proposal.Width = 720;
             // 
             // comment
             // 
-            this.comment.Text = "Comment";
+            this.comment.Text = Language.Strings.Generic_Comment;
+            this.comment.Width = 75;
             // 
             // MainForm
             // 

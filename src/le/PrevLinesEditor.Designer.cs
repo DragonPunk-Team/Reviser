@@ -1,4 +1,4 @@
-namespace Reviser.LE
+﻿namespace Reviser.LE
 {
     partial class PrevLinesEditor
     {
@@ -44,7 +44,7 @@ namespace Reviser.LE
             this.lineIDLabel.Name = "lineIDLabel";
             this.lineIDLabel.Size = new System.Drawing.Size(44, 13);
             this.lineIDLabel.TabIndex = 0;
-            this.lineIDLabel.Text = "Insert Line ID:";
+            this.lineIDLabel.Text = Language.Strings.Generic_LineID_Colon;
             // 
             // idBox
             // 
@@ -72,7 +72,7 @@ namespace Reviser.LE
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(75, 23);
             this.addBtn.TabIndex = 4;
-            this.addBtn.Text = "Add";
+            this.addBtn.Text = Language.Strings.PrevLinesEditor_addBtn;
             this.addBtn.UseVisualStyleBackColor = true;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
@@ -94,7 +94,7 @@ namespace Reviser.LE
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 5;
-            this.cancelBtn.Text = "Cancel";
+            this.cancelBtn.Text = global::Reviser.Language.Strings.Generic_Cancel;
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
@@ -105,7 +105,7 @@ namespace Reviser.LE
             this.removeBtn.Name = "removeBtn";
             this.removeBtn.Size = new System.Drawing.Size(75, 23);
             this.removeBtn.TabIndex = 6;
-            this.removeBtn.Text = "Remove";
+            this.removeBtn.Text = global::Reviser.Language.Strings.Generic_Remove;
             this.removeBtn.UseVisualStyleBackColor = true;
             this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
             // 
@@ -130,7 +130,6 @@ namespace Reviser.LE
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add previous line";
             this.Load += new System.EventHandler(this.PrevLinesEditor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

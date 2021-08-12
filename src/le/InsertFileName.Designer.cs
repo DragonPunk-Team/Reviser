@@ -1,4 +1,4 @@
-
+﻿
 namespace Reviser.LE
 {
     partial class InsertFileName
@@ -42,7 +42,7 @@ namespace Reviser.LE
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(83, 23);
             this.okButton.TabIndex = 2;
-            this.okButton.Text = "OK";
+            this.okButton.Text = Language.Strings.Generic_OK;
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
@@ -73,7 +73,7 @@ namespace Reviser.LE
             this.allFilesCheckBox.Name = "allFilesCheckBox";
             this.allFilesCheckBox.Size = new System.Drawing.Size(58, 17);
             this.allFilesCheckBox.TabIndex = 5;
-            this.allFilesCheckBox.Text = "All files";
+            this.allFilesCheckBox.Text = Language.Strings.InsertFileName_allFilesCheckBox;
             this.allFilesCheckBox.UseVisualStyleBackColor = true;
             this.allFilesCheckBox.CheckedChanged += new System.EventHandler(this.allFilesCheckBox_CheckedChanged);
             // 
@@ -95,6 +95,7 @@ namespace Reviser.LE
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = Language.Strings.InsertFileName_WindowTitle;
             this.Load += new System.EventHandler(this.InsertFileName_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

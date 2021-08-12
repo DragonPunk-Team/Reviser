@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -70,7 +70,7 @@ namespace Reviser.LE
 
                 sb.AppendLine(origLine);
 
-                if (line.Item1 == "Error")
+                if (line.Item1 == Language.Strings.Generic_Error)
                 {
                     SystemSounds.Beep.Play();
                     break;

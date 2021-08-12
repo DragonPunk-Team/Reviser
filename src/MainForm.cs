@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Threading;
 using System.Windows.Forms;
-
+using Ookii.Dialogs.WinForms;
 using Reviser.LE;
 using Reviser.Tweaks;
 
@@ -21,6 +23,7 @@ namespace Reviser
             InitializeComponent();
 
             FileAssociations.EnsureAssociationsSet();
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
 
             toolStrip.Renderer = new ToolStripOverride();
         }
@@ -53,7 +56,7 @@ namespace Reviser
 
         private void LoadProject()
         {
-            Text = "DragonPunk Reviser - " + pf.project.name;
+            Text = string.Format($@"{Language.Strings.MainForm_WindowTitle} - {pf.project.name}");
 
             fileListBox.BeginUpdate();
 
@@ -91,16 +94,16 @@ namespace Reviser
 
         private string PathError(bool orig, bool tran)
         {
-            var err = "";
-
             if (!orig && !tran)
-                err = "Original files path and translated files path do";
-            else if (!orig)
-                err = "Original files path does";
-            else if (!tran)
-                err = "Translated files path does";
+                return Language.Strings.MainForm_PathErrorOrigTran;
             
-            return err + " not exist.\nCheck project settings before continuing.";
+            if (!orig)
+                return Language.Strings.MainForm_PathErrorOrig;
+            
+            if (!tran)
+                return Language.Strings.MainForm_PathErrorTran;
+
+            return string.Empty;
         }
 
         private void CheckDirectories(string origPath, string tranPath)
@@ -114,7 +117,7 @@ namespace Reviser
             }
             else
             {
-                var msgdr = MessageBox.Show(PathError(orig, tran), "Error", MessageBoxButtons.OKCancel);
+                var msgdr = MessageBox.Show(PathError(orig, tran), Language.Strings.Generic_Error, MessageBoxButtons.OKCancel);
 
                 if (msgdr == DialogResult.OK)
                 {
@@ -138,8 +141,8 @@ namespace Reviser
 
             var ofd = new OpenFileDialog
             {
-                Title = "Open Project",
-                Filter = "DragonPunk Reviser Project (*.drpj)|*.drpj"
+                Title = Language.Strings.MainForm_OpenProject,
+                Filter = $@"{Language.Strings.Generic_ProjectFileType} (*.drpj)|*.drpj"
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -320,12 +323,12 @@ namespace Reviser
 
         private void delLineBtn_Click(object sender, EventArgs e)
         {
-            var msg = "Are you sure you want to delete this line?";
+            var msg = Language.Strings.MainForm_DeleteLineWarning;
 
             if (listView.SelectedItems.Count > 1)
-                msg = msg.Replace("this line", "these lines");
+                msg = Language.Strings.MainForm_DeleteLineWarning_Plural;
 
-            if (MessageBox.Show(msg, "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(msg, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 var currentItem = fileListBox.SelectedItem.ToString();
 
@@ -367,8 +370,8 @@ namespace Reviser
         {
             var sfd = new SaveFileDialog()
             {
-                Title = "Save Project",
-                Filter = "DragonPunk Reviser Project (*.drpj)|*.drpj",
+                Title = Language.Strings.Generic_SaveProject,
+                Filter = $@"{Language.Strings.Generic_ProjectFileType} (*.drpj)|*.drpj",
                 FileName = pf.project.name
             };
 
@@ -379,7 +382,7 @@ namespace Reviser
 
                 pf.WriteProject();
 
-                if (MessageBox.Show("Do you want to open the new copy of the project now?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(Language.Strings.MainForm_OpenNewProjectCopy, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo) == DialogResult.Yes)
                     Open(sfd.FileName);
                 else
                     pf.path = currentPath;
@@ -394,7 +397,7 @@ namespace Reviser
                 CheckUnsaved();
 
             if (fileListBox.CheckedItems.Count != fileListBox.Items.Count)
-                dr = MessageBox.Show("Some files weren't marked as complete.\nThese files will NOT be included in the final report.\nAre you sure you want to continue?", "Warning", MessageBoxButtons.YesNo);
+                dr = MessageBox.Show(Language.Strings.MainForm_IncompleteFiles, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo);
 
             if (dr == DialogResult.Yes)
             {
@@ -404,8 +407,8 @@ namespace Reviser
                 {
                     var sfd = new SaveFileDialog()
                     {
-                        Title = "Select report destination",
-                        Filter = "Markdown File (*.md)|*.md",
+                        Title = Language.Strings.MainForm_ReportDestination,
+                        Filter = $@"{Language.Strings.Generic_MarkdownFileType} (*.md)|*.md",
                         FileName = pf.project.name
                     };
 
@@ -417,7 +420,7 @@ namespace Reviser
                 }
                 else
                 {
-                    MessageBox.Show("You can't generate a report right now, since the project is empty.", "Error", MessageBoxButtons.OK);
+                    MessageBox.Show(Language.Strings.MainForm_EmptyProjectError, Language.Strings.Generic_Error, MessageBoxButtons.OK);
                 }
             }
         }
@@ -443,7 +446,7 @@ namespace Reviser
                 }
 
                 if (pf.project.files[item].content.Count > 0)
-                    dr = MessageBox.Show("Are you sure you want to mark this file as complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+                    dr = MessageBox.Show(Language.Strings.MainForm_MarkAsCompleteWarning, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo);
 
                 if (dr == DialogResult.Yes)
                 {
@@ -473,7 +476,7 @@ namespace Reviser
                 }
 
                 if (pf.project.files[item].content.Count > 0)
-                    dr = MessageBox.Show("Are you sure you want to mark this file as not complete?\nThis operation CAN be undone.", "Warning", MessageBoxButtons.YesNo);
+                    dr = MessageBox.Show(Language.Strings.MainForm_MarkAsNotCompleteWarning, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo);
 
                 if (dr == DialogResult.Yes)
                 {
@@ -549,13 +552,12 @@ namespace Reviser
 
         private void CheckUnsaved()
         {
-            if (fileChanged)
-            {
-                var dr = MessageBox.Show("You have unsaved changes in your project. Save?", "Warning", MessageBoxButtons.YesNo);
+            if (!fileChanged) return;
 
-                if (dr == DialogResult.Yes)
-                    Save();
-            }
+            var dr = MessageBox.Show(Language.Strings.MainForm_UnsavedChanges, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo);
+
+            if (dr == DialogResult.Yes)
+                Save();
         }
 
         private void CompleteToggle(bool complete)
@@ -585,10 +587,9 @@ namespace Reviser
                     {
                         editSelectedToolStripMenuItem.Enabled = true;
 
-                        if (listView.SelectedItems[0].SubItems[2].Text == "Yes")
-                            commentToolStripMenuItem.Checked = true;
-                        else
-                            commentToolStripMenuItem.Checked = false;
+                        commentToolStripMenuItem.Checked = listView.SelectedItems[0].SubItems[2].Text == Language.Strings.Generic_Yes;
+
+                        deleteSelectedToolStripMenuItem.Text = Language.Strings.MainForm_deleteSelectedToolStripMenuItem;
                     }
                     else
                     {
@@ -597,10 +598,11 @@ namespace Reviser
                         var check = true;
 
                         foreach (ListViewItem item in listView.SelectedItems)
-                            if (item.SubItems[2].Text == "No")
-                                check = false;
+                            check = item.SubItems[2].Text != Language.Strings.Generic_No;
 
                         commentToolStripMenuItem.Checked = check;
+
+                        deleteSelectedToolStripMenuItem.Text = Language.Strings.MainForm_deleteSelectedToolStripMenuItem_Plural;
                     }
 
                     contextMenuStrip.Show(Cursor.Position);
@@ -624,15 +626,15 @@ namespace Reviser
 
             foreach (ListViewItem item in listView.SelectedItems)
             {
-                if (item.SubItems[2].Text == "Yes")
+                if (item.SubItems[2].Text == Language.Strings.Generic_Yes)
                 {
                     pf.project.files[currentFile].content.Find(fc => fc.lineId == item.SubItems[0].Text).comment = false;
-                    item.SubItems[2].Text = "No";
+                    item.SubItems[2].Text = Language.Strings.Generic_No;
                 }
-                else if (item.SubItems[2].Text == "No")
+                else if (item.SubItems[2].Text == Language.Strings.Generic_No)
                 {
                     pf.project.files[currentFile].content.Find(fc => fc.lineId == item.SubItems[0].Text).comment = true;
-                    item.SubItems[2].Text = "Yes";
+                    item.SubItems[2].Text = Language.Strings.Generic_Yes;
                 }
             }
 

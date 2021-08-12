@@ -35,13 +35,13 @@ namespace Reviser
         {
             if (newProj)
             {
-                Text = "New Project";
+                Text = Language.Strings.Generic_NewProject;
 
                 projTypeBox.SelectedItem = "SoJ";
             }
             else
             {
-                Text = "Project Settings";
+                Text = Language.Strings.Generic_ProjectSettings;
 
                 projNameBox.Text = pf.project.name;
                 projTypeBox.SelectedItem = pf.project.type;
@@ -82,7 +82,7 @@ namespace Reviser
 
         private void origFilesBtn_Click(object sender, EventArgs e)
         {
-            var path = FolderSelect("Original");
+            var path = FolderSelect(Language.Strings.ProjectSettings_OrigFolderSelect);
 
             if (!string.IsNullOrWhiteSpace(path))
                 origFilesBox.Text = path;
@@ -90,17 +90,17 @@ namespace Reviser
 
         private void tranFilesBtn_Click(object sender, EventArgs e)
         {
-            var path = FolderSelect("Translated");
+            var path = FolderSelect(Language.Strings.ProjectSettings_TranFolderSelect);
 
             if (!string.IsNullOrWhiteSpace(path))
                 tranFilesBox.Text = path;
         }
 
-        private string FolderSelect(string fileType)
+        private string FolderSelect(string desc)
         {
             var fbd = new VistaFolderBrowserDialog()
             {
-                Description = string.Format(@$"Select {fileType} Files Folder"),
+                Description = string.Format(desc),
                 UseDescriptionForTitle = true
             };
 
@@ -130,7 +130,7 @@ namespace Reviser
             if (string.IsNullOrWhiteSpace(projNameBox.Text))
             {
                 SystemSounds.Beep.Play();
-                MessageBox.Show("Project must have a name!", "Error", MessageBoxButtons.OK);
+                MessageBox.Show(Language.Strings.ProjectSettings_EmptyProjNameError, Language.Strings.Generic_Error, MessageBoxButtons.OK);
             }
             else
             {
@@ -162,8 +162,8 @@ namespace Reviser
 
                 SaveFileDialog sfd = new SaveFileDialog()
                 {
-                    Title = "Save Project",
-                    Filter = "DragonPunk Reviser Project (*.drpj)|*.drpj",
+                    Title = Language.Strings.Generic_SaveProject,
+                    Filter = $@"{Language.Strings.Generic_ProjectFileType} (*.drpj)|*.drpj",
                     FileName = newpf.project.name
                 };
 
@@ -196,10 +196,7 @@ namespace Reviser
 
                     if (lines)
                     {
-                        if (MessageBox.Show("Looks like the file list has changed." +
-                                                "\nBy saving the project right now, you will lose the comments related to the files which are not in the file list anymore." +
-                                                "\nAre you sure you want to continue?" +
-                                                "\n\n(clicking \"No\" will ignore the new file list and the new file paths.)", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        if (MessageBox.Show(Language.Strings.ProjectSettings_ChangedFileListWarning, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
                             foreach (var file in diff)
                             {

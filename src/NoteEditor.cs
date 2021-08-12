@@ -11,7 +11,6 @@ namespace Reviser
         {
             InitializeComponent();
 
-            Text += file;
             this.note = note;
         }
 
@@ -19,9 +18,13 @@ namespace Reviser
         {
             if (!string.IsNullOrWhiteSpace(note))
             {
-                Text = Text.Replace("Add", "Edit");
+                Text = Language.Strings.NoteEditor_WindowTitle_Edit;
                 noteBox.Text = note;
                 removeBtn.Enabled = true;
+            }
+            else
+            {
+                Text = Language.Strings.NoteEditor_WindowTitle_Add;
             }
         }
 
@@ -54,13 +57,10 @@ namespace Reviser
 
         private void CheckAddBtn()
         {
-            if (string.IsNullOrWhiteSpace(noteBox.Text))
-                addBtn.Enabled = false;
-            else
-                addBtn.Enabled = true;
+            saveBtn.Enabled = !string.IsNullOrWhiteSpace(noteBox.Text);
         }
 
-        private void addBtn_Click(object sender, EventArgs e)
+        private void saveBtn_Click(object sender, EventArgs e)
         {
             note = noteBox.Text;
             CloseForm(save: true);

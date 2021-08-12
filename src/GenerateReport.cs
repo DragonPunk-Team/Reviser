@@ -22,8 +22,8 @@ namespace Reviser
 
         #region Regex
         // Used in FormatProposal()
-        private readonly Regex codeRx = new Regex(@"(.*)([ ?])(\`.*\`)(.*)", RegexOptions.Compiled);
-        private readonly Regex normRx = new Regex(@"<n>(.*)</n>", RegexOptions.Compiled);
+        private readonly Regex codeRx = new (@"(.*)([ ?])(\`.*\`)(.*)", RegexOptions.Compiled);
+        private readonly Regex normRx = new (@"<n>(.*)</n>", RegexOptions.Compiled);
         #endregion
 
         public GenerateReport(ProjectFile project)
@@ -66,93 +66,91 @@ namespace Reviser
 
             foreach (var file in pf.project.files.Keys)
             {
-                if (pf.project.files[file].complete)
+                if (!pf.project.files[file].complete) continue;
+
+                var fileIndex = Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1;
+                var filePBValue = fileIndex * 100 / pf.project.files.Count;
+
+                statusLabel.Text = string.Format(Language.Strings.GenerateReport_AddingFile, file);
+
+                var filePath = "\\" + file;
+
+                var orig = new Thread(origFile.ReadFile);
+                var tran = new Thread(tranFile.ReadFile);
+
+                orig.Start(pf.project.orig_path + filePath);
+                tran.Start(pf.project.tran_path + filePath);
+
+                while (orig.ThreadState == ThreadState.Running || tran.ThreadState == ThreadState.Running)
+                    Application.DoEvents();
+
+                if (pf.project.files[file].content.Count <= 0) continue;
+
+                sb.AppendLine("## `" + file + "`");
+                sb.AppendLine();
+
+                if (!string.IsNullOrWhiteSpace(pf.project.files[file].note))
                 {
-                    int fileIndex = Array.IndexOf(pf.project.files.Keys.ToArray(), file) + 1;
-                    int filePBValue = fileIndex * 100 / pf.project.files.Count;
-
-                    statusLabel.Text = "Adding file " + file + "...";
-
-                    var filePath = "\\" + file;
-
-                    Thread orig = new Thread(origFile.ReadFile);
-                    Thread tran = new Thread(tranFile.ReadFile);
-
-                    orig.Start(pf.project.orig_path + filePath);
-                    tran.Start(pf.project.tran_path + filePath);
-
-                    while (orig.ThreadState == ThreadState.Running || tran.ThreadState == ThreadState.Running)
-                        Application.DoEvents();
-
-                    if (pf.project.files[file].content.Count > 0)
-                    {
-                        sb.AppendLine("## `" + file + "`");
-                        sb.AppendLine();
-
-                        if (!string.IsNullOrWhiteSpace(pf.project.files[file].note))
-                        {
-                            sb.AppendLine("### " + pf.project.files[file].note);
-                            sb.AppendLine();
-                        }
-
-                        foreach (ProjectFile.FileContent fc in pf.project.files[file].content)
-                        {
-                            sb.AppendLine("### " + fc.lineId);
-                            sb.AppendLine();
-
-                            var origLines = origFile.GetLines(fc.lineId);
-                            var tranLines = tranFile.GetLines(fc.lineId);
-
-                            foreach (var line in origLines)
-                            {
-                                if (line.Item1.Length == 0)
-                                    sb.Length -= 4;
-
-                                int index = Array.IndexOf(origLines, line);
-                                sb.AppendLine(FormatLine(line.Item2, tranLines[index].Item2, line.Item1, file, fc.contentId));
-                            }
-
-                            sb.AppendLine("**Proposta:**");
-
-                            if (fc.comment)
-                                sb.AppendLine(FormatProposal(fc.proposal).Replace("*", "\\*"));
-                            else
-                                sb.AppendLine(fc.proposal.Replace("*", "\\*"));
-
-                            if (fc.prevLineId != "-1")
-                            {
-                                var origPrevLines = origFile.GetLines(fc.prevLineId);
-                                var tranPrevLines = tranFile.GetLines(fc.prevLineId);
-
-                                sb.Append("\n\n");
-
-                                if (origPrevLines.Length > 1)
-                                    sb.AppendLine("**Frasi precedenti:**");
-                                else
-                                    sb.AppendLine("**Frase precedente:**");
-
-                                sb.Append("\n\n");
-
-                                foreach (var prevLine in origPrevLines)
-                                {
-                                    int prevIndex = Array.IndexOf(origPrevLines, prevLine);
-                                    sb.AppendLine(FormatLine(prevLine.Item2, tranPrevLines[prevIndex].Item2, prevLine.Item1, file, fc.contentId));
-                                }
-                            }
-
-                            sb.Append("\n\n\n");
-
-                            int fcIndex = Array.IndexOf(pf.project.files[file].content.ToArray(), fc) + 1;
-                            totalPBValue += fcIndex / pf.project.files[file].content.Count;
-                            progressBar.Value = totalPBValue;
-                            Application.DoEvents();
-                        }
-
-                        totalPBValue = filePBValue;
-                        progressBar.Value = totalPBValue;
-                        Application.DoEvents();
-                    }
+                    sb.AppendLine("### " + pf.project.files[file].note);
+                    sb.AppendLine();
                 }
+
+                foreach (var fc in pf.project.files[file].content)
+                {
+                    sb.AppendLine("### " + fc.lineId);
+                    sb.AppendLine();
+
+                    var origLines = origFile.GetLines(fc.lineId);
+                    var tranLines = tranFile.GetLines(fc.lineId);
+
+                    foreach (var line in origLines)
+                    {
+                        if (line.Item1.Length == 0)
+                            sb.Length -= 4;
+
+                        var index = Array.IndexOf(origLines, line);
+                        sb.AppendLine(FormatLine(line.Item2, tranLines[index].Item2, line.Item1, file, fc.contentId));
+                    }
+
+                    sb.AppendLine($@"**{Language.Strings.GenerateReport_Proposal}:**");
+
+                    if (fc.comment)
+                        sb.AppendLine(FormatProposal(fc.proposal).Replace("*", "\\*"));
+                    else
+                        sb.AppendLine(fc.proposal.Replace("*", "\\*"));
+
+                    if (fc.prevLineId != "-1")
+                    {
+                        var origPrevLines = origFile.GetLines(fc.prevLineId);
+                        var tranPrevLines = tranFile.GetLines(fc.prevLineId);
+
+                        sb.Append("\n\n");
+
+                        if (origPrevLines.Length > 1)
+                            sb.AppendLine($@"**{Language.Strings.GenerateReport_PreviousLine_Plural}:**");
+                        else
+                            sb.AppendLine($@"**{Language.Strings.GenerateReport_PreviousLine}:**");
+
+                        sb.Append("\n\n");
+
+                        foreach (var prevLine in origPrevLines)
+                        {
+                            var prevIndex = Array.IndexOf(origPrevLines, prevLine);
+                            sb.AppendLine(FormatLine(prevLine.Item2, tranPrevLines[prevIndex].Item2, prevLine.Item1, file, fc.contentId));
+                        }
+                    }
+
+                    sb.Append("\n\n\n");
+
+                    var fcIndex = Array.IndexOf(pf.project.files[file].content.ToArray(), fc) + 1;
+                    totalPBValue += fcIndex / pf.project.files[file].content.Count;
+                    progressBar.Value = totalPBValue;
+                    Application.DoEvents();
+                }
+
+                totalPBValue = filePBValue;
+                progressBar.Value = totalPBValue;
+                Application.DoEvents();
             }
 
             sb.Length -= 3;
@@ -161,7 +159,7 @@ namespace Reviser
 
             Hide();
             SystemSounds.Beep.Play();
-            MessageBox.Show("Report generated successfully.", "Done!", MessageBoxButtons.OK);
+            MessageBox.Show(Language.Strings.GenerateReport_DoneMsg, Language.Strings.GenerateReport_Done, MessageBoxButtons.OK);
             Close();
         }
 

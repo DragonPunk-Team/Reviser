@@ -13,8 +13,8 @@ namespace Reviser.LE
         public string lineId;
 
         #region Regex
-        Regex idRx = new (@"[^0-9-, ]*", RegexOptions.Compiled);
-        Regex sepRx = new (@"(-|,| )+", RegexOptions.Compiled);
+        private readonly Regex idRx = new(@"[^0-9-, ]*", RegexOptions.Compiled);
+        private readonly Regex sepRx = new(@"(-|,| )+", RegexOptions.Compiled);
         #endregion
 
         public PrevLinesEditor(IFile origFile, IFile tranFile, string lineId)
@@ -30,11 +30,15 @@ namespace Reviser.LE
         {
             if (lineId != "-1")
             {
-                Text = Text.Replace("Add", "Edit");
+                Text = Language.Strings.PrevLinesEditor_WindowTitle_Edit;
                 idBox.Text = lineId;
                 removeBtn.Enabled = true;
 
                 searchBtn_Click(sender, e);
+            }
+            else
+            {
+                Text = Language.Strings.PrevLinesEditor_WindowTitle_Add;
             }
         }
 
@@ -68,7 +72,7 @@ namespace Reviser.LE
 
         private void CheckAddBtn()
         {
-            if (lineBox.Text.Contains("[Error]") || string.IsNullOrWhiteSpace(lineBox.Text))
+            if (lineBox.Text.Contains($@"[{Language.Strings.Generic_Error}]") || string.IsNullOrWhiteSpace(lineBox.Text))
                 addBtn.Enabled = false;
             else
                 addBtn.Enabled = true;
