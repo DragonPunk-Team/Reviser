@@ -1,4 +1,4 @@
-﻿namespace Reviser.LE
+namespace Reviser.LE
 {
     partial class PrevLinesEditor
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lineIDLabel = new System.Windows.Forms.Label();
             this.idBox = new System.Windows.Forms.TextBox();
             this.searchBtn = new System.Windows.Forms.Button();
             this.addBtn = new System.Windows.Forms.Button();
@@ -37,14 +37,14 @@
             this.removeBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lineIDLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Insert line ID:";
+            this.lineIDLabel.AutoSize = true;
+            this.lineIDLabel.Location = new System.Drawing.Point(12, 9);
+            this.lineIDLabel.Name = "lineIDLabel";
+            this.lineIDLabel.Size = new System.Drawing.Size(44, 13);
+            this.lineIDLabel.TabIndex = 0;
+            this.lineIDLabel.Text = "Insert Line ID:";
             // 
             // idBox
             // 
@@ -56,12 +56,12 @@
             // 
             // searchBtn
             // 
+            this.searchBtn.Image = global::Reviser.Properties.Resources.Search;
             this.searchBtn.Location = new System.Drawing.Point(160, 6);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(50, 20);
+            this.searchBtn.Size = new System.Drawing.Size(20, 20);
             this.searchBtn.TabIndex = 0;
             this.searchBtn.TabStop = false;
-            this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = true;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
@@ -122,7 +122,7 @@
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.idBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lineIDLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -139,7 +139,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lineIDLabel;
         private System.Windows.Forms.TextBox idBox;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button addBtn;

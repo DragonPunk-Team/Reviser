@@ -10,21 +10,19 @@ namespace Reviser.LE
     {
         IFile origFile;
         IFile tranFile;
-        bool color;
         public string lineId;
 
         #region Regex
-        Regex idRx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
-        Regex sepRx = new Regex(@"(-|,| )+", RegexOptions.Compiled);
+        Regex idRx = new (@"[^0-9-, ]*", RegexOptions.Compiled);
+        Regex sepRx = new (@"(-|,| )+", RegexOptions.Compiled);
         #endregion
 
-        public PrevLinesEditor(IFile origFile, IFile tranFile, bool color, string lineId)
+        public PrevLinesEditor(IFile origFile, IFile tranFile, string lineId)
         {
             InitializeComponent();
 
             this.origFile = origFile;
             this.tranFile = tranFile;
-            this.color = color;
             this.lineId = lineId;
         }
 
