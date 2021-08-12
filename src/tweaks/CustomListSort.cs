@@ -5,7 +5,7 @@ namespace Reviser.Tweaks
 {
     class CustomListSort : IComparer<ProjectFile.FileContent>
     {
-        Regex rx = new Regex(@"[0-9]*", RegexOptions.Compiled);
+        Regex rx = new (@"[0-9]*", RegexOptions.Compiled);
 
         public int Compare(ProjectFile.FileContent x, ProjectFile.FileContent y)
         {

@@ -6,7 +6,7 @@ namespace Reviser.Tweaks
 {
     class CustomListViewSort : IComparer
     {
-        Regex rx = new Regex(@"[0-9]*", RegexOptions.Compiled);
+        Regex rx = new (@"[0-9]*", RegexOptions.Compiled);
 
         public int Compare(object x, object y)
         {
