@@ -12,17 +12,17 @@ namespace Reviser.Files.SoJ
 
         #region Regex
         // Used in GetCharacter()
-        private readonly Regex charRx = new Regex(@"<E041 [0-9]* ([0-9]*)>", RegexOptions.Compiled);
+        private readonly Regex charRx = new (@"<E041 [0-9]* ([0-9]*)>", RegexOptions.Compiled);
 
         // Used in GetColor()
-        private readonly Regex redRx = new Regex(@"<E006>", RegexOptions.Compiled);
-        private readonly Regex endRx = new Regex(@"<E00(5|7|8)>", RegexOptions.Compiled);
+        private readonly Regex redRx = new (@"<E006>", RegexOptions.Compiled);
+        private readonly Regex endRx = new (@"<E00(5|7|8)>", RegexOptions.Compiled);
 
         // Used in RemoveColors()
-        private readonly Regex colRx = new Regex(@"<(|\/)red>", RegexOptions.Compiled);
+        private readonly Regex colRx = new (@"<(|\/)red>", RegexOptions.Compiled);
 
         // Used to remove tags.
-        private readonly Regex tagRx = new Regex(@"<[A-Z 0-9_]*>", RegexOptions.Compiled);
+        private readonly Regex tagRx = new (@"<[A-Z 0-9_]*>", RegexOptions.Compiled);
         #endregion
 
         public void ReadFile(object filepath)
@@ -36,13 +36,13 @@ namespace Reviser.Files.SoJ
             fstr.Seek(24, SeekOrigin.Begin);
 
             // Get amount of sections
-            int Sections = br.ReadInt32();
+            var Sections = br.ReadInt32();
 
             // Skip next 4 bytes: we don't need those
             fstr.Seek(4, SeekOrigin.Current);
 
             // Get total size of sections
-            int SectionSize = br.ReadInt32();
+            var SectionSize = br.ReadInt32();
 
             // Seek the content from the end of the file
             fstr.Seek(-SectionSize, SeekOrigin.End);
@@ -57,10 +57,10 @@ namespace Reviser.Files.SoJ
 
         private string[] SplitBytes(byte[] blob)
         {
-            List<string> content = new List<string>();
-            List<byte> bytes = new List<byte>();
+            var content = new List<string>();
+            var bytes = new List<byte>();
 
-            foreach (byte ch in blob)
+            foreach (var ch in blob)
             {
                 if (ch == 0)
                 {
@@ -79,18 +79,17 @@ namespace Reviser.Files.SoJ
         private Tuple<string, string>[][] SplitStrings(int sections, string[] blob)
         {
             var content = new Tuple<string, string>[sections][];
-            int section = 0;
+            var section = 0;
 
             foreach (string str in blob)
             {
-                int labelIndex = Array.IndexOf(blob, str);
-                string[] strContent = str.Split(new string[] { "<PAGE>" }, StringSplitOptions.None);
+                var strContent = str.Split(new[] { "<PAGE>" }, StringSplitOptions.None);
                 var sectionData = new List<Tuple<string, string>>();
 
-                foreach (string strC in strContent)
+                foreach (var strC in strContent)
                 {
-                    string line = strC.Trim().Replace("\r\n", " ");
-                    string characterName = GetCharacter(line);
+                    var line = strC.Trim().Replace("\r\n", " ");
+                    var characterName = GetCharacter(line);
                     line = GetColor(line);
                     sectionData.Add(new Tuple<string, string>(characterName, line));
                 }
@@ -104,9 +103,9 @@ namespace Reviser.Files.SoJ
 
         private string GetCharacter(string line)
         {
-            var characterName = "";
-            Cast cast = new Cast();
-            MatchCollection matches = charRx.Matches(line);
+            var characterName = string.Empty;
+            var cast = new Cast();
+            var matches = charRx.Matches(line);
 
             foreach (Match match in matches)
                 characterName = cast.GS6[int.Parse(match.Groups[1].Value)];
@@ -137,33 +136,32 @@ namespace Reviser.Files.SoJ
 
         public string RemoveColors(string line)
         {
-            return colRx.Replace(line, "");
+            return colRx.Replace(line, string.Empty);
         }
 
         private int[] GetIdList(string lineIds)
         {
             var idList = new List<int>();
 
-            Regex rx = new Regex(@"([0-9]*-?)*", RegexOptions.Compiled);
+            var rx = new Regex(@"([0-9]*-?)*", RegexOptions.Compiled);
 
-            MatchCollection ids = rx.Matches(lineIds);
+            var ids = rx.Matches(lineIds);
 
             foreach (Match id in ids)
             {
-                if (!string.IsNullOrWhiteSpace(id.Value))
-                {
-                    if (id.Value.Contains("-"))
-                    {
-                        var split = id.Value.Split('-');
-                        var limits = new int[] { int.Parse(split[0]), int.Parse(split[1]) };
+                if (string.IsNullOrWhiteSpace(id.Value)) continue;
 
-                        for (int i = limits[0]; i <= limits[1]; i++)
-                            idList.Add(i);
-                    }
-                    else
-                    {
-                        idList.Add(int.Parse(id.Value));
-                    }
+                if (id.Value.Contains("-"))
+                {
+                    var split = id.Value.Split('-');
+                    var limits = new int[] { int.Parse(split[0]), int.Parse(split[1]) };
+
+                    for (var i = limits[0]; i <= limits[1]; i++)
+                        idList.Add(i);
+                }
+                else
+                {
+                    idList.Add(int.Parse(id.Value));
                 }
             }
 
@@ -176,15 +174,15 @@ namespace Reviser.Files.SoJ
             // use lineId as an array index, we need to add 1,
             // since we are going to subtract this value to
             // obtain the actual index.
-            int firstLine = 6;
+            const int firstLine = 6;
 
             // Also, keep count of the sections and headers/footers
             // length to be able to find the requested line in the file.
-            int totalLength = 0;
+            var totalLength = 0;
 
             foreach (var section in Content)
             {
-                int index = lineId - totalLength - firstLine;
+                var index = lineId - totalLength - firstLine;
 
                 if (index >= 0 && index < section.Length)
                     return section[index];
@@ -199,17 +197,16 @@ namespace Reviser.Files.SoJ
         {
             var lines = new List<Tuple<string, string>>();
 
-            int[] idList = GetIdList(lineIds);
+            var idList = GetIdList(lineIds);
 
-            foreach (int id in idList)
+            foreach (var id in idList)
             {
-                if (id > 0)
-                {
-                    var line = GetLine(id);
+                if (id <= 0) continue;
 
-                    if (line != null && !string.IsNullOrEmpty(line.Item2) && !lines.Contains(line))
-                        lines.Add(line);
-                }
+                var line = GetLine(id);
+
+                if (line != null && !string.IsNullOrEmpty(line.Item2) && !lines.Contains(line))
+                    lines.Add(line);
             }
 
             if (lines.Count == 0)
