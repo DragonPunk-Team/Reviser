@@ -10,15 +10,18 @@ namespace Reviser.LE
     public class Utils
     {
         #region Regex
-        static readonly Regex commaRx = new (@",([^ ])", RegexOptions.Compiled);
-        static readonly Regex idRx = new (@"[^0-9-, ]*", RegexOptions.Compiled);
-        static readonly Regex sepRx = new (@"(-|,| )+", RegexOptions.Compiled);
+        private static readonly Regex commaRx = new (@",([^ ])", RegexOptions.Compiled);
+        private static readonly Regex idRx = new (@"[^0-9-, ]*", RegexOptions.Compiled);
+        private static readonly Regex sepRx = new (@"(-|,)+", RegexOptions.Compiled);
+        private static readonly Regex spaceRx = new(@" +", RegexOptions.Compiled);
         #endregion
 
         public static (string text, int cursor) FormatIds(string ids, int cursor)
         {
             var text = idRx.Replace(ids, "");
             text = sepRx.Replace(text, "$1");
+            text = spaceRx.Replace(text, " ");
+            text = text.Replace(" - ", "-");
 
             if (ids != text)
                 cursor--;
@@ -32,6 +35,7 @@ namespace Reviser.LE
 
             var clean = ids.TrimStart(chars);
             clean = clean.TrimEnd(chars);
+            clean = clean.Replace(" ", string.Empty);
 
             return commaRx.Replace(clean, ", $1");
         }
