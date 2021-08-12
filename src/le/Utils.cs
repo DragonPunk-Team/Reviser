@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,9 +10,9 @@ namespace Reviser.LE
     public class Utils
     {
         #region Regex
-        static readonly Regex commaRx = new Regex(@",([^ ])", RegexOptions.Compiled);
-        static readonly Regex idRx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
-        static readonly Regex sepRx = new Regex(@"(-|,| )+", RegexOptions.Compiled);
+        static readonly Regex commaRx = new (@",([^ ])", RegexOptions.Compiled);
+        static readonly Regex idRx = new (@"[^0-9-, ]*", RegexOptions.Compiled);
+        static readonly Regex sepRx = new (@"(-|,| )+", RegexOptions.Compiled);
         #endregion
 
         public static (string text, int cursor) FormatIds(string ids, int cursor)
@@ -28,31 +28,26 @@ namespace Reviser.LE
 
         public static string CleanIds(string ids)
         {
-            var chars = new char[] { ',', '-' };
+            var chars = new[] { ',', '-' };
 
             var clean = ids.TrimStart(chars);
             clean = clean.TrimEnd(chars);
 
-            MatchCollection matches = commaRx.Matches(ids);
-
-            foreach (Match match in matches)
-                clean = commaRx.Replace(clean, ", $1");
-
-            return clean;
+            return commaRx.Replace(clean, ", $1");
         }
 
         public static string FormatLines(IFile origFile, IFile tranFile, string ids, bool color)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             var origLines = origFile.GetLines(ids);
             var tranLines = tranFile.GetLines(ids);
 
-            string lastChar = "";
+            var lastChar = string.Empty;
 
             foreach (var line in origLines)
             {
-                int index = Array.IndexOf(origLines, line);
+                var index = Array.IndexOf(origLines, line);
 
                 if (line.Item1 == lastChar)
                 {
@@ -76,15 +71,13 @@ namespace Reviser.LE
                     SystemSounds.Beep.Play();
                     break;
                 }
-                else
-                {
-                    var tranLine = tranLines[index].Item2;
+                
+                var tranLine = tranLines[index].Item2;
 
-                    if (!color)
-                        tranLine = tranFile.RemoveColors(tranLine);
+                if (!color)
+                    tranLine = tranFile.RemoveColors(tranLine);
 
-                    sb.AppendLine(tranLine);
-                }
+                sb.AppendLine(tranLine);
 
                 sb.AppendLine();
             }
