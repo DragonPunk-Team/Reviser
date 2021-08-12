@@ -6,6 +6,6 @@ namespace Reviser.Files
     {
         void ReadFile(object filepath);
         string RemoveColors(string line);
-        Tuple<string, string>[] GetLines(string lineIds);
+        Tuple<string, string>[] GetLines(string lineIDs);
     }
 }

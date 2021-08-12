@@ -81,7 +81,7 @@ namespace Reviser.Files.SoJ
             var content = new Tuple<string, string>[sections][];
             var section = 0;
 
-            foreach (string str in blob)
+            foreach (var str in blob)
             {
                 var strContent = str.Split(new[] { "<PAGE>" }, StringSplitOptions.None);
                 var sectionData = new List<Tuple<string, string>>();
@@ -139,10 +139,10 @@ namespace Reviser.Files.SoJ
             return colRx.Replace(line, string.Empty);
         }
 
-        private Tuple<string, string> GetLine(int lineId)
+        private Tuple<string, string> GetLine(int lineID)
         {
             // First line is always 5, but since we are going to
-            // use lineId as an array index, we need to add 1,
+            // use lineID as an array index, we need to add 1,
             // since we are going to subtract this value to
             // obtain the actual index.
             const int firstLine = 6;
@@ -153,7 +153,7 @@ namespace Reviser.Files.SoJ
 
             foreach (var section in Content)
             {
-                var index = lineId - totalLength - firstLine;
+                var index = lineID - totalLength - firstLine;
 
                 if (index >= 0 && index < section.Length)
                     return section[index];
