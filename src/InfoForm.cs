@@ -12,7 +12,7 @@ namespace Reviser
 
         private void InfoForm_Load(object sender, EventArgs e)
         {
-            linkLabel1.Links.Add(27, 8, "Flaticon");
+            programIconLinkLabel.Links.Add(27, 8, "Flaticon");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
