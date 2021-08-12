@@ -58,11 +58,10 @@ namespace Reviser
 
         private string[] GetFiles(string path)
         {
-            List<string> files = new List<string>();
+            var files = new List<string>();
 
             if (Directory.Exists(path))
-                foreach (string file in Directory.GetFiles(path))
-                    files.Add(Path.GetFileName(file));
+                files.AddRange(Directory.GetFiles(path).Select(Path.GetFileName));
             else
                 return new string[0];
 
@@ -71,12 +70,11 @@ namespace Reviser
 
         private string[] MakeFileList(string first, string last)
         {
-            List<string> files = new List<string>();
-
+            var files = new List<string>();
             var fileList = GetFiles(tranFilesBox.Text);
+            var firstIndex = Array.IndexOf(fileList, first);
+            var lastIndex = Array.IndexOf(fileList, last);
 
-            int firstIndex = Array.IndexOf(fileList, first);
-            int lastIndex = Array.IndexOf(fileList, last);
             files.AddRange(new ArraySegment<string>(fileList.ToArray(), firstIndex, lastIndex - firstIndex + 1));
 
             return files.ToArray();
@@ -183,11 +181,11 @@ namespace Reviser
             {
                 var diff = pf.project.file_list.Except(newpf.project.file_list);
 
-                if (diff.Count() > 0)
+                if (diff.Any())
                 {
-                    bool lines = false;
+                    var lines = false;
 
-                    foreach (string file in diff)
+                    foreach (var file in diff)
                     {
                         if (pf.project.files.ContainsKey(file) && pf.project.files[file].content.Count > 0)
                         {
@@ -203,7 +201,7 @@ namespace Reviser
                                                 "\nAre you sure you want to continue?" +
                                                 "\n\n(clicking \"No\" will ignore the new file list and the new file paths.)", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            foreach (string file in diff)
+                            foreach (var file in diff)
                             {
                                 if (pf.project.files.ContainsKey(file))
                                     pf.project.files.Remove(file);
