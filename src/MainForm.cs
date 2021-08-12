@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Media;
-using System.Threading;
 using System.Windows.Forms;
-using Ookii.Dialogs.WinForms;
 using Reviser.LE;
 using Reviser.Tweaks;
 
@@ -23,14 +20,13 @@ namespace Reviser
             InitializeComponent();
 
             FileAssociations.EnsureAssociationsSet();
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
 
             toolStrip.Renderer = new ToolStripOverride();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            string[] args = Environment.GetCommandLineArgs();
+            var args = Environment.GetCommandLineArgs();
 
             if (args.Length > 1)
                 Open(args[1]);
@@ -223,8 +219,8 @@ namespace Reviser
         private void editLineBtn_Click(object sender, EventArgs e)
         {
             var currentFile = fileListBox.SelectedItem.ToString();
-            var lineId = listView.SelectedItems[0].SubItems[0].Text;
-            var item = pf.project.files[currentFile].content.Single(line => line.lineId == lineId);
+            var lineID = listView.SelectedItems[0].SubItems[0].Text;
+            var item = pf.project.files[currentFile].content.Single(line => line.lineId == lineID);
 
             var ld = new LineEditor.LineData()
             {
@@ -305,11 +301,11 @@ namespace Reviser
 
             listView.Items.Clear();
 
-            string currentItem = fileListBox.SelectedItem.ToString();
+            var currentItem = fileListBox.SelectedItem.ToString();
 
             if (pf.project.files.ContainsKey(currentItem))
             {
-                foreach (ProjectFile.FileContent content in pf.project.files[currentItem].content)
+                foreach (var content in pf.project.files[currentItem].content)
                 {
                     string[] row = { content.lineId, content.proposal.Replace("\r\n", " "), pf.Comment(content.comment) };
                     listView.Items.Add(new ListViewItem(row) { Tag = content.lineId });
@@ -334,8 +330,8 @@ namespace Reviser
 
                 foreach (ListViewItem lvi in listView.SelectedItems)
                 {
-                    var lineId = lvi.SubItems[0].Text;
-                    var item = pf.project.files[currentItem].content.Single(fc => fc.lineId == lineId);
+                    var lineID = lvi.SubItems[0].Text;
+                    var item = pf.project.files[currentItem].content.Single(fc => fc.lineId == lineID);
 
                     pf.project.files[currentItem].content.Remove(item);
 
