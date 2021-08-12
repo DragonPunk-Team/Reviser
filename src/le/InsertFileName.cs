@@ -20,25 +20,11 @@ namespace Reviser.LE
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            if (fileComboBox.Text.Length != 0)
+            if (!string.IsNullOrEmpty(fileComboBox.Text))
             {
                 filename = fileComboBox.Text;
                 DialogResult = DialogResult.OK;
                 Close();
-            }
-            else
-            {
-                DialogResult dr = MessageBox.Show("Select a file to continue.", null, MessageBoxButtons.OKCancel);
-
-                if (dr == DialogResult.OK)
-                {
-                    fileComboBox.Text = "";
-                }
-                else if (dr == DialogResult.Cancel)
-                {
-                    DialogResult = dr;
-                    Close();
-                }
             }
         }
 
@@ -58,15 +44,18 @@ namespace Reviser.LE
             fileComboBox.Items.Clear();
 
             if (allFilesCheckBox.Checked)
-                foreach (string file in Directory.GetFiles(path))
+                foreach (var file in Directory.GetFiles(path))
                     fileComboBox.Items.Add(Path.GetFileName(file));
             else
                 fileComboBox.Items.AddRange(filelist);
 
-            if (fileComboBox.Items.Count > 0)
-                fileComboBox.Enabled = true;
-            else
-                fileComboBox.Enabled = false;
+            fileComboBox.Enabled = fileComboBox.Items.Count > 0;
+            okButton.Enabled = false;
+        }
+
+        private void fileComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            okButton.Enabled = !string.IsNullOrEmpty(fileComboBox.Text);
         }
     }
 }
