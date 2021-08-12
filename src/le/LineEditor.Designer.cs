@@ -36,8 +36,8 @@ namespace Reviser.LE
             this.copyLineBtn = new System.Windows.Forms.ToolStripButton();
             this.insertLineIDBtn = new System.Windows.Forms.ToolStripButton();
             this.insertFileLineIDBtn = new System.Windows.Forms.ToolStripButton();
-            this.prevLinesBtn = new System.Windows.Forms.ToolStripButton();
             this.plainTextBtn = new System.Windows.Forms.ToolStripButton();
+            this.prevLinesBtn = new System.Windows.Forms.ToolStripButton();
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.lineBox = new System.Windows.Forms.TextBox();
@@ -57,7 +57,7 @@ namespace Reviser.LE
             this.lineIDLabel.Name = "lineIDLabel";
             this.lineIDLabel.Size = new System.Drawing.Size(44, 13);
             this.lineIDLabel.TabIndex = 0;
-            this.lineIDLabel.Text = "Line ID:";
+            this.lineIDLabel.Text = Language.Strings.Generic_LineID_Colon;
             // 
             // idBox
             // 
@@ -106,14 +106,14 @@ namespace Reviser.LE
             this.copyLineBtn,
             this.insertLineIDBtn,
             this.insertFileLineIDBtn,
-            this.prevLinesBtn,
-            this.plainTextBtn});
+            this.plainTextBtn,
+            this.prevLinesBtn});
             this.toolStrip.Location = new System.Drawing.Point(3, 0);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStrip.Size = new System.Drawing.Size(147, 25);
+            this.toolStrip.Size = new System.Drawing.Size(399, 25);
             this.toolStrip.TabIndex = 0;
             // 
             // copyLineBtn
@@ -149,6 +149,17 @@ namespace Reviser.LE
             this.insertFileLineIDBtn.ToolTipText = Language.Strings.LineEditor_insertFileLineIDBtn;
             this.insertFileLineIDBtn.Click += new System.EventHandler(this.insertFileLineIdBtn_Click);
             // 
+            // plainTextBtn
+            // 
+            this.plainTextBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.plainTextBtn.Enabled = false;
+            this.plainTextBtn.Image = global::Reviser.Properties.Resources.Normal_text;
+            this.plainTextBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.plainTextBtn.Name = "plainTextBtn";
+            this.plainTextBtn.Size = new System.Drawing.Size(23, 22);
+            this.plainTextBtn.ToolTipText = global::Reviser.Language.Strings.LineEditor_plainTextBtn;
+            this.plainTextBtn.Click += new System.EventHandler(this.normalTextBtn_Click);
+            // 
             // prevLinesBtn
             // 
             this.prevLinesBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -162,17 +173,6 @@ namespace Reviser.LE
             this.prevLinesBtn.Text = "-1";
             this.prevLinesBtn.ToolTipText = Language.Strings.LineEditor_prevLinesBtn;
             this.prevLinesBtn.Click += new System.EventHandler(this.prevLinesBtn_Click);
-            // 
-            // plainTextBtn
-            // 
-            this.plainTextBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.plainTextBtn.Enabled = false;
-            this.plainTextBtn.Image = global::Reviser.Properties.Resources.Normal_text;
-            this.plainTextBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.plainTextBtn.Name = "plainTextBtn";
-            this.plainTextBtn.Size = new System.Drawing.Size(23, 22);
-            this.plainTextBtn.ToolTipText = Language.Strings.LineEditor_plainTextBtn;
-            this.plainTextBtn.Click += new System.EventHandler(this.normalTextBtn_Click);
             // 
             // saveBtn
             // 
@@ -238,6 +238,7 @@ namespace Reviser.LE
             this.searchBtn.Location = new System.Drawing.Point(164, 6);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(20, 20);
+            this.searchBtn.TabIndex = 6;
             this.searchBtn.TabStop = false;
             this.searchBtn.UseVisualStyleBackColor = true;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
