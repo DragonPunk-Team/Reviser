@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actor" xml:space="preserve">
+    <value>Actor</value>
+  </data>
+  <data name="Ahlbi" xml:space="preserve">
+    <value>Ahlbi</value>
+  </data>
+  <data name="Amara" xml:space="preserve">
+    <value>Amara</value>
+  </data>
+  <data name="Andistandhin" xml:space="preserve">
+    <value>Andistan'dhin</value>
+  </data>
+  <data name="Apollo" xml:space="preserve">
+    <value>Apollo</value>
+  </data>
+  <data name="Armie" xml:space="preserve">
+    <value>Armie</value>
+  </data>
+  <data name="Athena" xml:space="preserve">
+    <value>Athena</value>
+  </data>
+  <data name="Atishon" xml:space="preserve">
+    <value>Atishon</value>
+  </data>
+  <data name="Bailiff" xml:space="preserve">
+    <value>Bailiff</value>
+  </data>
+  <data name="Behleeb" xml:space="preserve">
+    <value>Beh'leeb</value>
+  </data>
+  <data name="Betty" xml:space="preserve">
+    <value>Betty</value>
+  </data>
+  <data name="Blackquill" xml:space="preserve">
+    <value>Blackquill</value>
+  </data>
+  <data name="Bonny" xml:space="preserve">
+    <value>Bonny</value>
+  </data>
+  <data name="Bucky" xml:space="preserve">
+    <value>Bucky</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>Child</value>
+  </data>
+  <data name="Datz" xml:space="preserve">
+    <value>Datz</value>
+  </data>
+  <data name="Dhurke" xml:space="preserve">
+    <value>Dhurke</value>
+  </data>
+  <data name="DrBuff" xml:space="preserve">
+    <value>Dr. Buff</value>
+  </data>
+  <data name="Edgeworth" xml:space="preserve">
+    <value>Edgeworth</value>
+  </data>
+  <data name="Ellen" xml:space="preserve">
+    <value>Ellen</value>
+  </data>
+  <data name="Ema" xml:space="preserve">
+    <value>Ema</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Gallery</value>
+  </data>
+  <data name="Garan" xml:space="preserve">
+    <value>Ga'ran</value>
+  </data>
+  <data name="Geiru" xml:space="preserve">
+    <value>Geiru</value>
+  </data>
+  <data name="Gloomsbury" xml:space="preserve">
+    <value>Gloomsbury</value>
+  </data>
+  <data name="Guard" xml:space="preserve">
+    <value>Guard</value>
+  </data>
+  <data name="Ihmus" xml:space="preserve">
+    <value>Ihmus</value>
+  </data>
+  <data name="Inga" xml:space="preserve">
+    <value>Inga</value>
+  </data>
+  <data name="Jinxie" xml:space="preserve">
+    <value>Jinxie</value>
+  </data>
+  <data name="Jove" xml:space="preserve">
+    <value>Jove</value>
+  </data>
+  <data name="Judge" xml:space="preserve">
+    <value>Judge</value>
+  </data>
+  <data name="Kisegawa" xml:space="preserve">
+    <value>Kisegawa</value>
+  </data>
+  <data name="Klavier" xml:space="preserve">
+    <value>Klavier</value>
+  </data>
+  <data name="Lady" xml:space="preserve">
+    <value>Lady</value>
+  </data>
+  <data name="Larry" xml:space="preserve">
+    <value>Larry</value>
+  </data>
+  <data name="Maid" xml:space="preserve">
+    <value>Maid</value>
+  </data>
+  <data name="Man" xml:space="preserve">
+    <value>Man</value>
+  </data>
+  <data name="Maya" xml:space="preserve">
+    <value>Maya</value>
+  </data>
+  <data name="MrHat" xml:space="preserve">
+    <value>Mr. Hat</value>
+  </data>
+  <data name="MrReus" xml:space="preserve">
+    <value>Mr. Reus</value>
+  </data>
+  <data name="Nahyuta" xml:space="preserve">
+    <value>Nahyuta</value>
+  </data>
+  <data name="Nayna" xml:space="preserve">
+    <value>Nayna</value>
+  </data>
+  <data name="Nichody" xml:space="preserve">
+    <value>Nichody</value>
+  </data>
+  <data name="Oldbag" xml:space="preserve">
+    <value>Oldbag</value>
+  </data>
+  <data name="OldMan" xml:space="preserve">
+    <value>Old Man</value>
+  </data>
+  <data name="Owen" xml:space="preserve">
+    <value>Owen</value>
+  </data>
+  <data name="Patches" xml:space="preserve">
+    <value>Patches</value>
+  </data>
+  <data name="Payne" xml:space="preserve">
+    <value>Payne</value>
+  </data>
+  <data name="Pearl" xml:space="preserve">
+    <value>Pearl</value>
+  </data>
+  <data name="Phoenix" xml:space="preserve">
+    <value>Phoenix</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Policeman" xml:space="preserve">
+    <value>Policeman</value>
+  </data>
+  <data name="Rayfa" xml:space="preserve">
+    <value>Rayfa</value>
+  </data>
+  <data name="Rebel" xml:space="preserve">
+    <value>Rebel</value>
+  </data>
+  <data name="Relative" xml:space="preserve">
+    <value>Relative</value>
+  </data>
+  <data name="Reporter" xml:space="preserve">
+    <value>Reporter</value>
+  </data>
+  <data name="Retinz" xml:space="preserve">
+    <value>Retinz</value>
+  </data>
+  <data name="Rohl" xml:space="preserve">
+    <value>Rohl</value>
+  </data>
+  <data name="RoyalGuard" xml:space="preserve">
+    <value>Royal Guard</value>
+  </data>
+  <data name="Sarge" xml:space="preserve">
+    <value>Sarge</value>
+  </data>
+  <data name="Scuttlebutt" xml:space="preserve">
+    <value>Scuttlebutt</value>
+  </data>
+  <data name="Shahdo" xml:space="preserve">
+    <value>Shah'do</value>
+  </data>
+  <data name="Sorin" xml:space="preserve">
+    <value>Sorin</value>
+  </data>
+  <data name="Staff" xml:space="preserve">
+    <value>Staff</value>
+  </data>
+  <data name="Tahrust" xml:space="preserve">
+    <value>Tahrust</value>
+  </data>
+  <data name="Taifu" xml:space="preserve">
+    <value>Taifu</value>
+  </data>
+  <data name="Taka" xml:space="preserve">
+    <value>Taka</value>
+  </data>
+  <data name="Trucy" xml:space="preserve">
+    <value>Trucy</value>
+  </data>
+  <data name="TV" xml:space="preserve">
+    <value>TV</value>
+  </data>
+  <data name="U3ND0" xml:space="preserve">
+    <value>U.3.N.D.0.</value>
+  </data>
+  <data name="Uendo" xml:space="preserve">
+    <value>Uendo</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>???</value>
+  </data>
+  <data name="Villager" xml:space="preserve">
+    <value>Villager</value>
+  </data>
+  <data name="Warbaad" xml:space="preserve">
+    <value>Warbaa'd</value>
+  </data>
+  <data name="Widget" xml:space="preserve">
+    <value>Widget</value>
+  </data>
+  <data name="Woods" xml:space="preserve">
+    <value>Woods</value>
+  </data>
+  <data name="Youth" xml:space="preserve">
+    <value>Youth</value>
+  </data>
+  <data name="Zehlot" xml:space="preserve">
+    <value>Zeh'lot</value>
+  </data>
+</root>

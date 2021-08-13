@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -91,29 +91,34 @@
     <Compile Include="src\FileSelector.Designer.cs">
       <DependentUpon>FileSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\files\GameFile.cs" />
-    <Compile Include="src\files\IFile.cs" />
-    <Compile Include="src\files\Utils.cs" />
-    <Compile Include="src\lang\Strings.Designer.cs">
+    <Compile Include="src\Files\GameFile.cs" />
+    <Compile Include="src\Files\GMDv2\GS6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GS6.resx</DependentUpon>
+    </Compile>
+    <Compile Include="src\Files\IFile.cs" />
+    <Compile Include="src\Files\Utils.cs" />
+    <Compile Include="src\Language\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="src\LE\Utils.cs" />
-    <Compile Include="src\tweaks\BufferedListView.cs">
+    <Compile Include="src\Tweaks\BufferedListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="src\tweaks\CustomListSort.cs" />
-    <Compile Include="src\tweaks\CustomListViewSort.cs" />
-    <Compile Include="src\tweaks\FileAssociation.cs" />
+    <Compile Include="src\Tweaks\CustomListSort.cs" />
+    <Compile Include="src\Tweaks\CustomListViewSort.cs" />
+    <Compile Include="src\Tweaks\FileAssociation.cs" />
     <Compile Include="src\GenerateReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\GenerateReport.Designer.cs">
       <DependentUpon>GenerateReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\files\GMDv2\Cast.cs" />
-    <Compile Include="src\files\GMDv2\GMDv2.cs" />
+    <Compile Include="src\Files\GMDv2\Cast.cs" />
+    <Compile Include="src\Files\GMDv2\GMDv2.cs" />
     <Compile Include="src\InfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,10 +170,16 @@
       <DependentUpon>ProjectSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\tweaks\CustomColorTable.cs" />
-    <Compile Include="src\tweaks\ToolStripOverride.cs" />
+    <Compile Include="src\Tweaks\CustomColorTable.cs" />
+    <Compile Include="src\Tweaks\ToolStripOverride.cs" />
     <EmbeddedResource Include="src\FileSelector.resx">
       <DependentUpon>FileSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Files\GMDv2\GS6.it.resx" />
+    <EmbeddedResource Include="src\Files\GMDv2\GS6.resx">
+      <CustomToolNamespace>Reviser.Files.SoJ</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GS6.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="src\GenerateReport.resx">
       <DependentUpon>GenerateReport.cs</DependentUpon>
@@ -176,11 +187,11 @@
     <EmbeddedResource Include="src\InfoForm.resx">
       <DependentUpon>InfoForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\lang\Strings.it.resx" />
-    <EmbeddedResource Include="src\lang\Strings.resx">
+    <EmbeddedResource Include="src\Language\Strings.it.resx" />
+    <EmbeddedResource Include="src\Language\Strings.resx">
       <CustomToolNamespace>Reviser.Language</CustomToolNamespace>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="src\LE\InsertFileName.resx">
       <DependentUpon>InsertFileName.cs</DependentUpon>
