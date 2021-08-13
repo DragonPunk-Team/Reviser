@@ -27,7 +27,7 @@ namespace Reviser.LE
 
         private LineData ld;
         private string projectType;
-        int contentID;
+        private int contentID;
         Tuple<string, string>[] tranLines;
 
         private IFile origFile;
@@ -45,9 +45,7 @@ namespace Reviser.LE
             ld = lineData;
             this.projectType = projectType;
 
-            origFile = GameFile.Get(projectType);
-            tranFile = GameFile.Get(projectType);
-            ReadFiles("\\" + ld.currentFile);
+            PrepareGameFiles("\\" + ld.currentFile);
 
             if (ld.fc != null && ld.fc.prevLineId != "-1")
             {
@@ -57,13 +55,24 @@ namespace Reviser.LE
             }
         }
 
-        private void ReadFiles(string filePath)
+        private void PrepareGameFiles(string path)
+        {
+            origFile = GameFile.Get(projectType);
+            tranFile = GameFile.Get(projectType);
+
+            origFile.SetGame(projectType);
+            tranFile.SetGame(projectType);
+
+            ReadFiles(path);
+        }
+
+        private void ReadFiles(string path)
         {
             var orig = new Thread(origFile.ReadFile);
             var tran = new Thread(tranFile.ReadFile);
 
-            orig.Start(ld.origPath + filePath);
-            tran.Start(ld.tranPath + filePath);
+            orig.Start(ld.origPath + path);
+            tran.Start(ld.tranPath + path);
 
             while (orig.ThreadState == ThreadState.Running || tran.ThreadState == ThreadState.Running)
                 Application.DoEvents();

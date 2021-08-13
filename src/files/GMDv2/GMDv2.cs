@@ -9,6 +9,7 @@ namespace Reviser.Files.SoJ
     public class GMDv2 : IFile
     {
         private Tuple<string, string>[][] Content;
+        private string Game;
 
         #region Regex
         // Used in GetCharacter()
@@ -24,6 +25,11 @@ namespace Reviser.Files.SoJ
         // Used to remove tags.
         private readonly Regex tagRx = new (@"<[A-Z 0-9_]*>", RegexOptions.Compiled);
         #endregion
+
+        public void SetGame(string game)
+        {
+            Game = game;
+        }
 
         public void ReadFile(object filepath)
         {
@@ -108,7 +114,7 @@ namespace Reviser.Files.SoJ
             var matches = charRx.Matches(line);
 
             foreach (Match match in matches)
-                characterName = cast.GS6[int.Parse(match.Groups[1].Value)];
+                characterName = cast.Get(Game, int.Parse(match.Groups[1].Value));
 
             return characterName;
         }

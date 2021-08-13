@@ -37,11 +37,18 @@ namespace Reviser
         {
             Show();
 
+            PrepareGameFiles();
+            OrderProjectFile();
+            Generate();
+        }
+
+        private void PrepareGameFiles()
+        {
             origFile = GameFile.Get(pf.project.type);
             tranFile = GameFile.Get(pf.project.type);
 
-            OrderProjectFile();
-            Generate();
+            origFile.SetGame(pf.project.type);
+            tranFile.SetGame(pf.project.type);
         }
 
         public bool ProjectEmpty()
