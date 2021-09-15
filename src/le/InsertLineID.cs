@@ -28,6 +28,7 @@ namespace Reviser.LE
         {
             lineIdBox.Text = idRx.Replace(lineIdBox.Text, string.Empty);
             lineIdBox.Select(lineIdBox.Text.Length, 0);
+            okButton.Enabled = lineIdBox.Text.Length > 0;
         }
 
         private void closeButton_Click(object sender, EventArgs e)
