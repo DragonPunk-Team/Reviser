@@ -58,9 +58,9 @@ namespace Reviser
         public string Comment(bool comment)
         {
             if (comment)
-                return "Yes";
-            else
-                return "No";
+                return Language.Strings.Generic_Yes;
+
+            return Language.Strings.Generic_No;
         }
 
         public byte[] Compress(byte[] input)
