@@ -52,7 +52,7 @@ namespace Reviser
 
         private void LoadProject()
         {
-            Text = string.Format($@"{Language.Strings.MainForm_WindowTitle} - {pf.project.name}");
+            Text = string.Format($@"{pf.project.name} - {Language.Strings.MainForm_WindowTitle}");
 
             fileListBox.BeginUpdate();
 
@@ -85,7 +85,7 @@ namespace Reviser
 
             fileListBox.ItemCheck += fileListBox_ItemCheck;
 
-            fileChanged = false;
+            SetFileChanged(false);
         }
 
         private string PathError(bool orig, bool tran)
@@ -291,7 +291,7 @@ namespace Reviser
 
                 ListViewUpdate();
 
-                fileChanged = true;
+                SetFileChanged(true);
             }
         }
 
@@ -343,7 +343,7 @@ namespace Reviser
 
                 listView_SelectedIndexChanged(sender, e);
 
-                fileChanged = true;
+                SetFileChanged(true);
             }
         }
 
@@ -358,7 +358,7 @@ namespace Reviser
             {
                 pf.WriteProject();
                 SystemSounds.Beep.Play();
-                fileChanged = false;
+                SetFileChanged(false);
             }
         }
 
@@ -448,7 +448,7 @@ namespace Reviser
                 {
                     pf.project.files[item].complete = true;
                     CompleteToggle(true);
-                    fileChanged = true;
+                    SetFileChanged(true);
                 }
                 else
                 {
@@ -478,7 +478,7 @@ namespace Reviser
                 {
                     pf.project.files[item].complete = false;
                     CompleteToggle(false);
-                    fileChanged = true;
+                    SetFileChanged(true);
                 }
                 else
                 {
@@ -513,7 +513,7 @@ namespace Reviser
 
             ChangeNoteIcon(currentFile);
 
-            fileChanged = true;
+            SetFileChanged(true);
         }
 
         private void infoBtn_Click(object sender, EventArgs e)
@@ -635,7 +635,7 @@ namespace Reviser
             }
 
             commentToolStripMenuItem.Checked = !commentToolStripMenuItem.Checked;
-            fileChanged = true;
+            SetFileChanged(true);
         }
 
         private void ChangeNoteIcon(string item)
@@ -647,6 +647,24 @@ namespace Reviser
                     addNoteBtn.Image = Properties.Resources.Edit_Note;
             else
                 addNoteBtn.Image = Properties.Resources.Add_Note;
+        }
+
+        private void SetFileChanged(bool hasChanged)
+        {
+            var titleChanged = Text[0] == '*';
+
+            switch (hasChanged)
+            {
+                case true:
+                    fileChanged = true;
+                    if (!titleChanged) Text = "*" + Text;
+                    break;
+
+                case false:
+                    fileChanged = false;
+                    if (titleChanged) Text = Text.Substring(1);
+                    break;
+            }
         }
     }
 }
