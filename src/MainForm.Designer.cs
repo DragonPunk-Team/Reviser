@@ -226,8 +226,7 @@
             this.completeLabel.Name = "completeLabel";
             this.completeLabel.Size = new System.Drawing.Size(396, 42);
             this.completeLabel.TabIndex = 8;
-            this.completeLabel.Text = "This file was marked as complete.\r\nIf you want to edit it, untick it from the fil" +
-    "e list.";
+            this.completeLabel.Text = Language.Strings.MainForm_completeLabel;
             this.completeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.completeLabel.Visible = false;
             // 
