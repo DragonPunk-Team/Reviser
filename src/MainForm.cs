@@ -66,7 +66,7 @@ namespace Reviser
 
             fileListBox.ItemCheck -= fileListBox_ItemCheck;
 
-            foreach (string file in pf.project.file_list)
+            foreach (var file in pf.project.file_list)
                 if (pf.project.files.ContainsKey(file) && pf.project.files[file].complete)
                     fileListBox.SetItemChecked(Array.IndexOf(pf.project.file_list, file), true);
 

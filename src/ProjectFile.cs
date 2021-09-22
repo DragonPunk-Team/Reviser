@@ -63,7 +63,7 @@ namespace Reviser
             return Language.Strings.Generic_No;
         }
 
-        public byte[] Compress(byte[] input)
+        private static byte[] Compress(byte[] input)
         {
             using (var result = new MemoryStream())
             {
@@ -80,7 +80,7 @@ namespace Reviser
             }
         }
 
-        public static byte[] Decompress(byte[] input)
+        private static byte[] Decompress(byte[] input)
         {
             using (var source = new MemoryStream(input))
             {

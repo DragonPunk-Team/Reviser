@@ -15,7 +15,7 @@ namespace Reviser
         ProjectFile pf;
         MainForm mf;
 
-        string[] projectFilesList = null;
+        string[] projectFilesList;
 
         public ProjectSettings(bool newp, ProjectFile projf = null, MainForm mainf = null)
         {
