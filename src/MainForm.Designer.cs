@@ -1,4 +1,6 @@
-﻿namespace Reviser
+﻿using Reviser.Tweaks;
+
+namespace Reviser
 {
     partial class MainForm
     {

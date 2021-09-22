@@ -6,10 +6,10 @@ namespace Reviser.Tweaks
     public class CustomColorTable : ProfessionalColorTable
     {
         // ToolStrip gradient background color.
-        Color bgColor = SystemColors.Control;
+        private readonly Color bgColor = SystemColors.Control;
 
-        public override Color ToolStripGradientBegin { get { return bgColor; } }
-        public override Color ToolStripGradientMiddle { get { return bgColor; } }
-        public override Color ToolStripGradientEnd { get { return bgColor; } }
+        public override Color ToolStripGradientBegin => bgColor;
+        public override Color ToolStripGradientMiddle => bgColor;
+        public override Color ToolStripGradientEnd => bgColor;
     }
 }

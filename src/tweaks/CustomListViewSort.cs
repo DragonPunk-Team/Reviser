@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace Reviser.Tweaks
 {
-    class CustomListViewSort : IComparer
+    internal class CustomListViewSort : IComparer
     {
-        Regex rx = new (@"[0-9]*", RegexOptions.Compiled);
+        private readonly Regex rx = new (@"[0-9]*", RegexOptions.Compiled);
 
         public int Compare(object x, object y)
         {

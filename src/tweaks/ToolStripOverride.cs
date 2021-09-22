@@ -6,12 +6,12 @@ namespace Reviser.Tweaks
     public class ToolStripOverride : ToolStripProfessionalRenderer
     {
         // Background color for ToolStrip buttons.
-        Brush bgBtnColor = Brushes.White;
+        private readonly Brush bgBtnColor = Brushes.White;
 
         // Pressed button background color.
-        Brush bgPressedColor = Brushes.LightGray;
+        private readonly Brush bgPressedColor = Brushes.LightGray;
 
-        public ToolStripOverride() : base(new CustomColorTable()) { base.RoundedEdges = false; }
+        public ToolStripOverride() : base(new CustomColorTable()) { RoundedEdges = false; }
 
         protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e) { }
 
@@ -23,7 +23,7 @@ namespace Reviser.Tweaks
             }
             else
             {
-                Rectangle rectangle = new Rectangle(0, 0, e.Item.Size.Width - 1, e.Item.Size.Height - 1);
+                var rectangle = new Rectangle(0, 0, e.Item.Size.Width - 1, e.Item.Size.Height - 1);
 
                 if (e.Item.Pressed)
                     e.Graphics.FillRectangle(bgPressedColor, rectangle);
@@ -79,7 +79,7 @@ namespace Reviser.Tweaks
             }
             else
             {
-                Rectangle rectangle = new Rectangle(0, 0, e.Item.Size.Width - 1, e.Item.Size.Height - 1);
+                var rectangle = new Rectangle(0, 0, e.Item.Size.Width - 1, e.Item.Size.Height - 1);
 
                 if (e.Item.Pressed)
                     e.Graphics.FillRectangle(bgPressedColor, rectangle);

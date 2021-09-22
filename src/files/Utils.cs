@@ -6,7 +6,7 @@ namespace Reviser.Files
     public static class Utils
     {
         #region Regex
-        private static Regex idRx = new (@"([0-9]*-?)*", RegexOptions.Compiled);
+        private static readonly Regex idRx = new (@"([0-9]*-?)*", RegexOptions.Compiled);
         #endregion
 
         public static int[] GetIDList(string lineIDs)
@@ -22,7 +22,7 @@ namespace Reviser.Files
                 if (id.Value.Contains("-"))
                 {
                     var split = id.Value.Split('-');
-                    var limits = new int[] { int.Parse(split[0]), int.Parse(split[1]) };
+                    var limits = new[] { int.Parse(split[0]), int.Parse(split[1]) };
 
                     for (var i = limits[0]; i <= limits[1]; i++)
                         idList.Add(i);

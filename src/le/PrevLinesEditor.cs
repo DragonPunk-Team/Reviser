@@ -1,5 +1,4 @@
 using System;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 using Reviser.Files;
@@ -11,11 +10,6 @@ namespace Reviser.LE
         IFile origFile;
         IFile tranFile;
         public string lineId;
-
-        #region Regex
-        private readonly Regex idRx = new(@"[^0-9-, ]*", RegexOptions.Compiled);
-        private readonly Regex sepRx = new(@"(-|,| )+", RegexOptions.Compiled);
-        #endregion
 
         public PrevLinesEditor(IFile origFile, IFile tranFile, string lineId)
         {

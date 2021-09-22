@@ -59,13 +59,12 @@ namespace Reviser.Tweaks
 
         private static bool SetKeyDefaultValue(string keyPath, string value)
         {
-            using (var key = Registry.CurrentUser.CreateSubKey(keyPath))
+            var key = Registry.CurrentUser.CreateSubKey(keyPath);
+
+            if (key.GetValue(null) as string != value)
             {
-                if (key.GetValue(null) as string != value)
-                {
-                    key.SetValue(null, value);
-                    return true;
-                }
+                key.SetValue(null, value);
+                return true;
             }
 
             return false;

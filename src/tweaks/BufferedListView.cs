@@ -1,6 +1,9 @@
 ﻿using System.Windows.Forms;
 
-class BufferedListView : ListView
+namespace Reviser.Tweaks
 {
-    public BufferedListView() { DoubleBuffered = true; }
+    internal class BufferedListView : ListView
+    {
+        public BufferedListView() { DoubleBuffered = true; }
+    }
 }

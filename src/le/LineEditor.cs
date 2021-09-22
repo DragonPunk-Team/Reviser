@@ -207,7 +207,7 @@ namespace Reviser.LE
             string currentLine;
             var gmd = GameFile.Get(projectType);
 
-            if (tranLines.Count() == 1)
+            if (tranLines.Length == 1)
             {
                 currentLine = tranLines[0].Item2;
 

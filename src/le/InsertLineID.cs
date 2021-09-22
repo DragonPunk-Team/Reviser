@@ -6,7 +6,7 @@ namespace Reviser.LE
 {
     public partial class InsertLineID : Form
     {
-        private Regex idRx = new Regex(@"[^0-9-, ]*", RegexOptions.Compiled);
+        private readonly Regex idRx = new(@"[^0-9-, ]*", RegexOptions.Compiled);
         public InsertLineID()
         {
             InitializeComponent();
