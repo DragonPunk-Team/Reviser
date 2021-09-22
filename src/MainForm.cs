@@ -513,7 +513,8 @@ namespace Reviser
 
             ChangeNoteIcon(currentFile);
 
-            SetFileChanged(true);
+            if (dr != DialogResult.Cancel)
+                SetFileChanged(true);
         }
 
         private void infoBtn_Click(object sender, EventArgs e)
