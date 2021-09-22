@@ -11,17 +11,19 @@ namespace Reviser
 {
     public partial class ProjectSettings : Form
     {
-        bool newProj;
-        ProjectFile pf;
-        MainForm mf;
+        private bool newProj;
+        private bool notFound;
+        private ProjectFile pf;
+        private MainForm mf;
 
         string[] projectFilesList;
 
-        public ProjectSettings(bool newp, ProjectFile projf = null, MainForm mainf = null)
+        public ProjectSettings(bool newp, bool nf, ProjectFile projf = null, MainForm mainf = null)
         {
             InitializeComponent();
 
             newProj = newp;
+            notFound = nf;
 
             if (projf == null)
                 pf = new ProjectFile();
@@ -47,6 +49,19 @@ namespace Reviser
                 projTypeBox.SelectedItem = pf.project.type;
                 origFilesBox.Text = pf.project.orig_path;
                 tranFilesBox.Text = pf.project.tran_path;
+                if (notFound)
+                {
+                    firstFileBox.Items.Add(pf.project.file_list.First());
+                    lastFileBox.Items.Add(pf.project.file_list.Last());
+
+                    firstFileBox.SelectedIndex = 0;
+                    lastFileBox.SelectedIndex = 0;
+
+                    return;
+                }
+
+                fileSelectBtn.Enabled = true;
+                saveBtn.Enabled = true;
             }
         }
 
@@ -259,10 +274,10 @@ namespace Reviser
                 {
                     firstFileBox.Items.AddRange(files);
 
+                    firstFileBox.Enabled = true;
+
                     if (pf.project != null && pf.project.file_list != null && pf.project.file_list.Length > 0)
                         firstFileBox.SelectedItem = pf.project.file_list[0];
-
-                    firstFileBox.Enabled = true;
                 }
                 else
                 {
@@ -287,10 +302,10 @@ namespace Reviser
                 {
                     lastFileBox.Items.AddRange(files);
 
+                    lastFileBox.Enabled = true;
+
                     if (pf.project != null && pf.project.file_list != null && pf.project.file_list.Length > 0)
                         lastFileBox.SelectedItem = pf.project.file_list[pf.project.file_list.Length - 1];
-
-                    lastFileBox.Enabled = true;
                 }
                 else
                 {
@@ -301,13 +316,13 @@ namespace Reviser
 
         private void firstFileBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(firstFileBox.SelectedItem.ToString()))
+            if (firstFileBox.Enabled && !string.IsNullOrWhiteSpace(firstFileBox.SelectedItem.ToString()))
                 UpdateLastFileList();
         }
 
         private void lastFileBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(lastFileBox.Text))
+            if (!lastFileBox.Enabled || string.IsNullOrWhiteSpace(lastFileBox.Text))
             {
                 fileSelectBtn.Enabled = false;
                 saveBtn.Enabled = false;

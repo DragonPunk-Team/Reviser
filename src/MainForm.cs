@@ -117,7 +117,7 @@ namespace Reviser
 
                 if (msgdr == DialogResult.OK)
                 {
-                    var projectSettings = new ProjectSettings(false, pf, this) { StartPosition = FormStartPosition.CenterScreen };
+                    var projectSettings = new ProjectSettings(false, true, pf, this) { StartPosition = FormStartPosition.CenterScreen };
                     var psdr = projectSettings.ShowDialog();
 
                     if (psdr == DialogResult.OK)
@@ -163,13 +163,13 @@ namespace Reviser
         {
             CheckUnsaved();
 
-            var projectSettings = new ProjectSettings(true, mainf: this);
+            var projectSettings = new ProjectSettings(true, false, mainf: this);
             projectSettings.ShowDialog();
         }
 
         private void projSettingsBtn_Click(object sender, EventArgs e)
         {
-            var projectSettings = new ProjectSettings(false, pf, this);
+            var projectSettings = new ProjectSettings(false, false, pf, this);
             projectSettings.ShowDialog();
         }
 
