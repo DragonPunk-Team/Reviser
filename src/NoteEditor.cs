@@ -6,25 +6,27 @@ namespace Reviser
     public partial class NoteEditor : Form
     {
         public string note;
+        private string file;
 
         public NoteEditor(string file, string note)
         {
             InitializeComponent();
 
             this.note = note;
+            this.file = file;
         }
 
         private void NoteEditor_Load(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(note))
             {
-                Text = Language.Strings.NoteEditor_WindowTitle_Edit;
+                Text = @$"{Language.Strings.NoteEditor_WindowTitle_Edit} {file}";
                 noteBox.Text = note;
                 removeBtn.Enabled = true;
             }
             else
             {
-                Text = Language.Strings.NoteEditor_WindowTitle_Add;
+                Text = @$"{Language.Strings.NoteEditor_WindowTitle_Add} {file}";
             }
         }
 
