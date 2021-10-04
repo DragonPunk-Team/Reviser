@@ -36,7 +36,7 @@ namespace Reviser.Tweaks
 
         public static void EnsureAssociationsSet(FileAssociation association)
         {
-            bool madeChanges = false;
+            var madeChanges = false;
 
             madeChanges |= SetAssociation(
                     association.Extension,
@@ -50,7 +50,7 @@ namespace Reviser.Tweaks
 
         public static bool SetAssociation(string extension, string progId, string fileTypeDescription, string applicationFilePath)
         {
-            bool madeChanges = false;
+            var madeChanges = false;
             madeChanges |= SetKeyDefaultValue(@"Software\Classes\" + extension, progId);
             madeChanges |= SetKeyDefaultValue(@"Software\Classes\" + progId, fileTypeDescription);
             madeChanges |= SetKeyDefaultValue($@"Software\Classes\{progId}\shell\open\command", "\"" + applicationFilePath + "\" \"%1\"");

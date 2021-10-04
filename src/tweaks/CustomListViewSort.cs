@@ -19,9 +19,7 @@ namespace Reviser.Tweaks
             if (intX > intY)
                 return 1;
 
-            if (intX == intY)
-                return 0;
-
+            // if (intX == intY)
             return 0;
         }
     }

@@ -169,13 +169,13 @@ namespace Reviser
             if (projectFilesList == null)
                 newpf.project.file_list = MakeFileList(firstFileBox.Text, lastFileBox.Text);
             else
-                newpf.project.file_list = projectFilesList.ToArray();
+                newpf.project.file_list = projectFilesList;
 
             if (newProj)
             {
                 newpf.project.files = new SortedDictionary<string, ProjectFile.RevisedFile>();
 
-                SaveFileDialog sfd = new SaveFileDialog()
+                var sfd = new SaveFileDialog()
                 {
                     Title = Language.Strings.Generic_SaveProject,
                     Filter = $@"{Language.Strings.Generic_ProjectFileType} (*.drpj)|*.drpj",
@@ -194,7 +194,7 @@ namespace Reviser
             }
             else
             {
-                var diff = pf.project.file_list.Except(newpf.project.file_list);
+                var diff = pf.project.file_list.Except(newpf.project.file_list).ToArray();
 
                 if (diff.Any())
                 {
