@@ -60,7 +60,7 @@ namespace Reviser.LE
                 else
                 {
                     lastChar = line.Item1;
-                    sb.AppendLine("[" + line.Item1 + "]");
+                    sb.AppendLine($"[{line.Item1}]");
                 }
 
                 var origLine = line.Item2;

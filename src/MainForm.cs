@@ -658,7 +658,7 @@ namespace Reviser
             {
                 case true:
                     fileChanged = true;
-                    if (!titleChanged) Text = "*" + Text;
+                    if (!titleChanged) Text = $@"*{Text}";
                     break;
 
                 case false:

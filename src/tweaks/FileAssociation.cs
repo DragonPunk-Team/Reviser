@@ -51,9 +51,9 @@ namespace Reviser.Tweaks
         public static bool SetAssociation(string extension, string progId, string fileTypeDescription, string applicationFilePath)
         {
             var madeChanges = false;
-            madeChanges |= SetKeyDefaultValue(@"Software\Classes\" + extension, progId);
-            madeChanges |= SetKeyDefaultValue(@"Software\Classes\" + progId, fileTypeDescription);
-            madeChanges |= SetKeyDefaultValue($@"Software\Classes\{progId}\shell\open\command", "\"" + applicationFilePath + "\" \"%1\"");
+            madeChanges |= SetKeyDefaultValue($@"Software\Classes\{extension}", progId);
+            madeChanges |= SetKeyDefaultValue($@"Software\Classes\{progId}", fileTypeDescription);
+            madeChanges |= SetKeyDefaultValue($@"Software\Classes\{progId}\shell\open\command", $"\"{applicationFilePath}\" \"%1\"");
             return madeChanges;
         }
 
