@@ -291,6 +291,9 @@ namespace Reviser
 
                 ListViewUpdate();
 
+                var index = Array.IndexOf(pf.project.files[currentItem].content.ToArray(), fc);
+                listView.Items[index].EnsureVisible();
+
                 SetFileChanged(true);
             }
         }
