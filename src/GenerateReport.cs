@@ -66,8 +66,7 @@ namespace Reviser
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine("# " + pf.project.name);
-            sb.AppendLine();
+            sb.AppendLine($"# {pf.project.name}\n");
 
             var totalPBValue = 0;
 
@@ -80,7 +79,7 @@ namespace Reviser
 
                 statusLabel.Text = string.Format(Language.Strings.GenerateReport_AddingFile, file);
 
-                var filePath = "\\" + file;
+                var filePath = $"\\{file}";
 
                 var orig = new Thread(origFile.ReadFile);
                 var tran = new Thread(tranFile.ReadFile);
@@ -93,19 +92,14 @@ namespace Reviser
 
                 if (pf.project.files[file].content.Count <= 0) continue;
 
-                sb.AppendLine("## `" + file + "`");
-                sb.AppendLine();
+                sb.AppendLine($"## `{file}`\n");
 
                 if (!string.IsNullOrWhiteSpace(pf.project.files[file].note))
-                {
-                    sb.AppendLine("### " + pf.project.files[file].note);
-                    sb.AppendLine();
-                }
+                    sb.AppendLine($"### {pf.project.files[file].note}\n");
 
                 foreach (var fc in pf.project.files[file].content)
                 {
-                    sb.AppendLine("### " + fc.lineId);
-                    sb.AppendLine();
+                    sb.AppendLine($"### {fc.lineId}\n");
 
                     var origLines = origFile.GetLines(fc.lineId);
                     var tranLines = tranFile.GetLines(fc.lineId);
@@ -119,7 +113,7 @@ namespace Reviser
                         sb.AppendLine(FormatLine(line.Item2, tranLines[index].Item2, line.Item1, file, fc.contentId));
                     }
 
-                    sb.AppendLine($@"**{Language.Strings.GenerateReport_Proposal}:**");
+                    sb.AppendLine($"**{Language.Strings.GenerateReport_Proposal}:**");
 
                     if (fc.comment)
                         sb.AppendLine(FormatProposal(fc.proposal).Replace("*", "\\*"));
@@ -134,9 +128,9 @@ namespace Reviser
                         sb.Append("\n\n");
 
                         if (origPrevLines.Length > 1)
-                            sb.AppendLine($@"**{Language.Strings.GenerateReport_PreviousLine_Plural}:**");
+                            sb.AppendLine($"**{Language.Strings.GenerateReport_PreviousLine_Plural}:**");
                         else
-                            sb.AppendLine($@"**{Language.Strings.GenerateReport_PreviousLine}:**");
+                            sb.AppendLine($"**{Language.Strings.GenerateReport_PreviousLine}:**");
 
                         sb.Append("\n\n");
 
@@ -185,10 +179,10 @@ namespace Reviser
                     {
                         foreach (Match match in codeRx.Matches(line))
                         {
-                            sb.Append("_" + match.Groups[1].Value + "_" + match.Groups[2].Value + match.Groups[3].Value);
+                            sb.Append($"_{match.Groups[1].Value}_{match.Groups[2].Value}{match.Groups[3].Value}");
 
                             if (match.Groups[4].Length > 0)
-                                sb.Append("_" + match.Groups[4].Value + "_");
+                                sb.Append($"_{match.Groups[4].Value}_");
                         }
                     }
 
@@ -197,11 +191,11 @@ namespace Reviser
                         foreach (Match match in normRx.Matches(line))
                         {
                             var plain = match.Groups[1].Value;
-                            var text = line.Replace("<n>" + plain + "</n>", "");
+                            var text = line.Replace($"<n>{plain}</n>", "");
 
                             if (!string.IsNullOrWhiteSpace(text))
                             {
-                                sb.Append("_" + text);
+                                sb.Append($"_{text}");
 
                                 if (sb[sb.Length - 1] == ' ')
                                 {
@@ -219,7 +213,7 @@ namespace Reviser
                     }
 
                     if (!line.Contains("`") && !line.Contains("<n>") && !line.Contains("</n>"))
-                        sb.Append("_" + line + "_");
+                        sb.Append($"_{line}_");
                 }
 
                 sb.AppendLine();
@@ -243,7 +237,7 @@ namespace Reviser
             else if (character.Length > 0)
             {
                 lastChar = character;
-                sb.AppendLine("**" + character + ":**");
+                sb.AppendLine($"**{character}:**");
             }
 
             var item = pf.project.files[file].content.Single(line => line.contentId == contentId);
