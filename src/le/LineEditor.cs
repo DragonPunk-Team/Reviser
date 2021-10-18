@@ -317,7 +317,7 @@ namespace Reviser.LE
 
         private void normalTextBtn_Click(object sender, EventArgs e)
         {
-            commentBox.SelectedText = "<n></n>";
+            commentBox.SelectedText = "<n>" + commentBox.SelectedText + "</n>";
             commentBox.Select(commentBox.SelectionStart - 4, 0);
             commentBox.Focus();
         }
