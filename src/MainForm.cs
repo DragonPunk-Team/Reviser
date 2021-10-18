@@ -300,11 +300,11 @@ namespace Reviser
 
         private void ListViewUpdate()
         {
+            var currentItem = fileListBox.SelectedItem.ToString();
+
             listView.BeginUpdate();
 
             listView.Items.Clear();
-
-            var currentItem = fileListBox.SelectedItem.ToString();
 
             if (pf.project.files.ContainsKey(currentItem))
             {
@@ -343,9 +343,7 @@ namespace Reviser
                 }
 
                 ListViewUpdate();
-
                 listView_SelectedIndexChanged(sender, e);
-
                 SetFileChanged(true);
             }
         }
@@ -426,12 +424,11 @@ namespace Reviser
 
         private void fileListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            var dr = DialogResult.Yes;
             var item = fileListBox.SelectedItem.ToString();
 
             if (e.NewValue == CheckState.Checked)
             {
-                var dr = DialogResult.Yes;
-
                 if (!pf.project.files.ContainsKey(item))
                 {
                     var rf = new ProjectFile.RevisedFile
@@ -460,8 +457,6 @@ namespace Reviser
             }
             else
             {
-                var dr = DialogResult.Yes;
-
                 if (!pf.project.files.ContainsKey(item))
                 {
                     var rf = new ProjectFile.RevisedFile
@@ -644,30 +639,25 @@ namespace Reviser
 
         private void ChangeNoteIcon(string item)
         {
-            if (pf.project.files.ContainsKey(item))
-                if (string.IsNullOrWhiteSpace(pf.project.files[item].note))
-                    addNoteBtn.Image = Properties.Resources.Add_Note;
-                else
-                    addNoteBtn.Image = Properties.Resources.Edit_Note;
-            else
+            if (!pf.project.files.ContainsKey(item) || string.IsNullOrWhiteSpace(pf.project.files[item].note))
                 addNoteBtn.Image = Properties.Resources.Add_Note;
+            else
+                addNoteBtn.Image = Properties.Resources.Edit_Note;
         }
 
         private void SetFileChanged(bool hasChanged)
         {
             var titleChanged = Text[0] == '*';
 
-            switch (hasChanged)
+            if (hasChanged)
             {
-                case true:
-                    fileChanged = true;
-                    if (!titleChanged) Text = $@"*{Text}";
-                    break;
-
-                case false:
-                    fileChanged = false;
-                    if (titleChanged) Text = Text.Substring(1);
-                    break;
+                fileChanged = true; 
+                if (!titleChanged) Text = $@"*{Text}";
+            }
+            else
+            {
+                fileChanged = false;
+                if (titleChanged) Text = Text.Substring(1);
             }
         }
     }
