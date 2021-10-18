@@ -45,7 +45,7 @@ namespace Reviser.LE
             ld = lineData;
             this.projectType = projectType;
 
-            PrepareGameFiles("\\" + ld.currentFile);
+            PrepareGameFiles($"\\{ld.currentFile}");
 
             if (ld.fc != null && ld.fc.prevLineId != "-1")
             {
@@ -105,7 +105,7 @@ namespace Reviser.LE
             tranLines = tranFile.GetLines(idBox.Text);
             lineBox.Text = Utils.FormatLines(origFile, tranFile, idBox.Text, colorCheckBox.Checked);
 
-            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains($@"[{Language.Strings.Generic_Error}]"))
+            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains($"[{Language.Strings.Generic_Error}]"))
             {
                 copyLineBtn.Enabled = false;
                 commentBox.Enabled = false;
@@ -167,7 +167,7 @@ namespace Reviser.LE
 
         private void lineBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains(@$"[{Language.Strings.Generic_Error}]"))
+            if (string.IsNullOrWhiteSpace(lineBox.Text) || lineBox.Text.Contains($"[{Language.Strings.Generic_Error}]"))
                 colorCheckBox.Enabled = false;
             else
                 colorCheckBox.Enabled = true;
@@ -177,7 +177,7 @@ namespace Reviser.LE
 
         private void CheckSaveBtn()
         {
-            if (lineBox.Text.Contains($@"[{Language.Strings.Generic_Error}]") ||
+            if (lineBox.Text.Contains($"[{Language.Strings.Generic_Error}]") ||
                 string.IsNullOrWhiteSpace(commentBox.Text) ||
                 string.IsNullOrWhiteSpace(lineBox.Text))
                 saveBtn.Enabled = false;
@@ -215,7 +215,7 @@ namespace Reviser.LE
                     currentLine = gmd.RemoveColors(currentLine);
 
                 if (commentCheckBox.Checked)
-                    sb.Append("<n>" + currentLine + "</n>");
+                    sb.Append($"<n>{currentLine}</n>");
                 else
                     sb.Append(currentLine);
             }
@@ -238,9 +238,9 @@ namespace Reviser.LE
                         lastChar = line.Item1;
 
                         if (commentCheckBox.Checked)
-                            sb.AppendLine("<n>**" + line.Item1 + ":**</n>");
+                            sb.AppendLine($"<n>**{line.Item1}**</n>");
                         else
-                            sb.AppendLine("**" + line.Item1 + ":**");
+                            sb.AppendLine($"**{line.Item1}:**");
                     }
 
                     currentLine = line.Item2;
@@ -249,7 +249,7 @@ namespace Reviser.LE
                         currentLine = gmd.RemoveColors(currentLine);
 
                     if (commentCheckBox.Checked)
-                        sb.AppendLine("<n>" + currentLine + "</n>");
+                        sb.AppendLine($"<n>{currentLine}</n>");
                     else
                         sb.AppendLine(currentLine);
 
@@ -277,9 +277,7 @@ namespace Reviser.LE
                 if (!commentBox.Text.EndsWith(" ") && commentBox.Text.Length > 0)
                     sb.Append(" ");
 
-                sb.Append("`");
-                sb.Append(ilid.lineId);
-                sb.Append("`");
+                sb.Append($"`{ilid.lineId}`");
 
                 commentBox.SelectedText = sb.ToString();
             }
@@ -302,11 +300,7 @@ namespace Reviser.LE
                     if (!commentBox.Text.EndsWith(" ") && commentBox.Text.Length > 0)
                         sb.Append(" ");
 
-                    sb.Append("`");
-                    sb.Append(ifn.filename);
-                    sb.Append(":");
-                    sb.Append(ilid.lineId);
-                    sb.Append("`");
+                    sb.Append($"`{ifn.filename}:{ilid.lineId}`");
 
                     commentBox.SelectedText = sb.ToString();
                 }
@@ -317,7 +311,7 @@ namespace Reviser.LE
 
         private void normalTextBtn_Click(object sender, EventArgs e)
         {
-            commentBox.SelectedText = "<n>" + commentBox.SelectedText + "</n>";
+            commentBox.SelectedText = $"<n>{commentBox.SelectedText}</n>";
             commentBox.Select(commentBox.SelectionStart - 4, 0);
             commentBox.Focus();
         }
