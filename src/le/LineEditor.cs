@@ -253,7 +253,7 @@ namespace Reviser.LE
                     else
                         sb.AppendLine(currentLine);
 
-                    if (tranLines.Last() != line)
+                    if (!Equals(tranLines.Last(), line))
                         sb.AppendLine();
                 }
 

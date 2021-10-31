@@ -198,16 +198,7 @@ namespace Reviser
 
                 if (diff.Any())
                 {
-                    var lines = false;
-
-                    foreach (var file in diff)
-                    {
-                        if (pf.project.files.ContainsKey(file) && pf.project.files[file].content.Count > 0)
-                        {
-                            lines = true;
-                            break;
-                        }
-                    }
+                    var lines = diff.Any(file => pf.project.files.ContainsKey(file) && pf.project.files[file].content.Count > 0);
 
                     if (lines)
                     {
@@ -276,7 +267,7 @@ namespace Reviser
 
                     firstFileBox.Enabled = true;
 
-                    if (pf.project != null && pf.project.file_list != null && pf.project.file_list.Length > 0)
+                    if (pf.project?.file_list != null && pf.project.file_list.Length > 0)
                         firstFileBox.SelectedItem = pf.project.file_list[0];
                 }
                 else
@@ -304,7 +295,7 @@ namespace Reviser
 
                     lastFileBox.Enabled = true;
 
-                    if (pf.project != null && pf.project.file_list != null && pf.project.file_list.Length > 0)
+                    if (pf.project?.file_list != null && pf.project.file_list.Length > 0)
                         lastFileBox.SelectedItem = pf.project.file_list[pf.project.file_list.Length - 1];
                 }
                 else
@@ -341,7 +332,7 @@ namespace Reviser
         {
             FileSelector fs;
 
-            if (pf.project != null && pf.project.file_list != null && pf.project.file_list.Length > 0)
+            if (pf.project?.file_list != null && pf.project.file_list.Length > 0)
                 fs = new FileSelector(MakeFileList(firstFileBox.Text, lastFileBox.Text), pf.project.file_list);
             else
                 fs = new FileSelector(MakeFileList(firstFileBox.Text, lastFileBox.Text));

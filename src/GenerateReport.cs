@@ -79,13 +79,11 @@ namespace Reviser
 
                 statusLabel.Text = string.Format(Language.Strings.GenerateReport_AddingFile, file);
 
-                var filePath = $"\\{file}";
-
                 var orig = new Thread(origFile.ReadFile);
                 var tran = new Thread(tranFile.ReadFile);
 
-                orig.Start(pf.project.orig_path + filePath);
-                tran.Start(pf.project.tran_path + filePath);
+                orig.Start($"{pf.project.orig_path}\\{file}");
+                tran.Start($"{pf.project.tran_path}\\{file}");
 
                 while (orig.ThreadState == ThreadState.Running || tran.ThreadState == ThreadState.Running)
                     Application.DoEvents();
