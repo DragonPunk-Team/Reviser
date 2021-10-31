@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Reviser.Files.SoJ
+namespace Reviser.Files.GMDv2
 {
     public class GMDv2 : IFile
     {

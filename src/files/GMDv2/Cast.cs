@@ -1,4 +1,4 @@
-namespace Reviser.Files.SoJ
+namespace Reviser.Files.GMDv2
 {
     public class Cast
     {

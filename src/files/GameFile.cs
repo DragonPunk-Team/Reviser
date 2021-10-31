@@ -1,6 +1,4 @@
-﻿using Reviser.Files.SoJ;
-
-namespace Reviser.Files
+﻿namespace Reviser.Files
 {
     public static class GameFile
     {
@@ -8,7 +6,7 @@ namespace Reviser.Files
         {
             return projectType switch
             {
-                "SoJ" => new GMDv2(),
+                "SoJ" => new GMDv2.GMDv2(),
                 _ => null
             };
         }
