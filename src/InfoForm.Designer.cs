@@ -46,7 +46,7 @@ namespace Reviser
             this.titleVersionLabel.Name = "titleVersionLabel";
             this.titleVersionLabel.Size = new System.Drawing.Size(237, 23);
             this.titleVersionLabel.TabIndex = 1;
-            this.titleVersionLabel.Text = "DragonPunk Reviser 1.1.1";
+            this.titleVersionLabel.Text = "DragonPunk Reviser 1.1.2";
             this.titleVersionLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // authorLabel
