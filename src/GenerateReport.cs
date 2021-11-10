@@ -22,8 +22,11 @@ namespace Reviser
 
         #region Regex
         // Used in FormatProposal()
-        private readonly Regex codeRx = new (@"(.*)([ ?])(\`.*\`)(.*)", RegexOptions.Compiled);
-        private readonly Regex normRx = new (@"<n>(.*)</n>", RegexOptions.Compiled);
+        private readonly Regex codeRx = new (@"`([^`]*)`", RegexOptions.Compiled);
+        private readonly Regex normRx = new (@"<n>([^</>]*)</n>", RegexOptions.Compiled);
+
+        // Used in FormatPlainText()
+        private readonly Regex nonWordRx = new(@"\W", RegexOptions.Compiled);
         #endregion
 
         public GenerateReport(ProjectFile project)
@@ -164,8 +167,7 @@ namespace Reviser
 
         private string FormatProposal(string proposal)
         {
-            proposal = proposal.Replace("\r\n", "\n");
-            var lines = proposal.Split('\n');
+            var lines = proposal.Replace("\r\n", "\n").Split('\n');
 
             var sb = new StringBuilder();
 
@@ -173,45 +175,52 @@ namespace Reviser
             {
                 if (line.Length > 0)
                 {
-                    if (line.Contains("`"))
+                    var newLine = line;
+
+                    if (newLine.Contains("`"))
                     {
                         foreach (Match match in codeRx.Matches(line))
                         {
-                            sb.Append($"_{match.Groups[1].Value}_{match.Groups[2].Value}{match.Groups[3].Value}");
-
-                            if (match.Groups[4].Length > 0)
-                                sb.Append($"_{match.Groups[4].Value}_");
+                            var plain = match.Groups[1].Value;
+                            newLine = newLine.Replace($"`{plain}`", $"<n>`{plain}`</n>");
                         }
                     }
 
-                    if (line.Contains("<n>") && line.Contains("</n>"))
+                    if (newLine.Contains("<n>") && newLine.Contains("</n>"))
                     {
-                        foreach (Match match in normRx.Matches(line))
+                        var strIndex = 0;
+                        var matchIndex = 0;
+                        var matches = normRx.Matches(newLine);
+
+                        foreach (Match match in matches)
                         {
+                            matchIndex++;
+
                             var plain = match.Groups[1].Value;
-                            var text = line.Replace($"<n>{plain}</n>", "");
+                            var text = newLine.Substring(strIndex).Split(new[] { $"<n>{plain}</n>" }, StringSplitOptions.None);
 
-                            if (!string.IsNullOrWhiteSpace(text))
+                            if (text.Length > 0)
                             {
-                                sb.Append($"_{text}");
-
-                                if (sb[sb.Length - 1] == ' ')
+                                if (!string.IsNullOrEmpty(text[0]))
                                 {
-                                    sb.Remove(sb.Length - 1, 1);
-                                    sb.Append("_ ");
+                                    sb.Append(FormatPlainText(text[0]));
+                                    strIndex += text[0].Length;
                                 }
-                                else
+
+                                sb.Append(plain);
+                                strIndex += 7 + plain.Length;
+
+                                if (!string.IsNullOrEmpty(text[1]) && matchIndex == matches.Count)
                                 {
-                                    sb.Append("_");
+                                    sb.Append(FormatPlainText(text[1]));
+                                    strIndex += text[1].Length;
                                 }
                             }
-
-                            sb.Append(plain);
                         }
                     }
 
-                    if (!line.Contains("`") && !line.Contains("<n>") && !line.Contains("</n>"))
-                        sb.Append($"_{line}_");
+                    if (!newLine.Contains("`") && !newLine.Contains("<n>") && !newLine.Contains("</n>"))
+                        sb.Append($"_{newLine}_");
                 }
 
                 sb.AppendLine();
@@ -219,6 +228,49 @@ namespace Reviser
 
             if (sb.ToString().EndsWith("\n"))
                 sb.Length -= 2;
+
+            return sb.ToString();
+        }
+
+        private string FormatPlainText(string text)
+        {
+            var sb = new StringBuilder();
+
+            if (nonWordRx.IsMatch(text.Substring(0, 1)))
+            {
+                var ch = text[0];
+
+                if (ch == ' ')
+                    sb.Append(" _");
+                else
+                    sb.Append($"_{ch}");
+
+                text = text.Remove(0, 1);
+            }
+            else
+            {
+                sb.Append("_");
+            }
+
+            sb.Append(text);
+
+            var len = text.Length;
+
+            if (nonWordRx.IsMatch(text.Substring(len - 1, 1)))
+            {
+                var ch = text[len - 1];
+
+                sb.Remove(sb.Length - 1, 1);
+
+                if (ch == ' ')
+                    sb.Append("_ ");
+                else
+                    sb.Append($"{ch}_");
+            }
+            else
+            {
+                sb.Append("_");
+            }
 
             return sb.ToString();
         }
