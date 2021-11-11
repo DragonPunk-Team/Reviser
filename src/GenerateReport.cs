@@ -189,13 +189,10 @@ namespace Reviser
                     if (newLine.Contains("<n>") && newLine.Contains("</n>"))
                     {
                         var strIndex = 0;
-                        var matchIndex = 0;
                         var matches = normRx.Matches(newLine);
 
                         foreach (Match match in matches)
                         {
-                            matchIndex++;
-
                             var plain = match.Groups[1].Value;
                             var text = newLine.Substring(strIndex).Split(new[] { $"<n>{plain}</n>" }, StringSplitOptions.None);
 
@@ -209,14 +206,13 @@ namespace Reviser
 
                                 sb.Append(plain);
                                 strIndex += 7 + plain.Length;
-
-                                if (!string.IsNullOrEmpty(text[1]) && matchIndex == matches.Count)
-                                {
-                                    sb.Append(FormatPlainText(text[1]));
-                                    strIndex += text[1].Length;
-                                }
                             }
                         }
+
+                        var endLine = newLine.Substring(strIndex);
+
+                        if (!string.IsNullOrEmpty(endLine))
+                            sb.Append(FormatPlainText(endLine));
                     }
 
                     if (!newLine.Contains("`") && !newLine.Contains("<n>") && !newLine.Contains("</n>"))
