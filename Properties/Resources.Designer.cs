@@ -63,6 +63,26 @@ namespace Reviser.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_following_lines {
+            get {
+                object obj = ResourceManager.GetObject("Add following lines", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Add_following_lines___no_lines {
+            get {
+                object obj = ResourceManager.GetObject("Add following lines - no lines", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Add_Note {
             get {
                 object obj = ResourceManager.GetObject("Add Note", resourceCulture);

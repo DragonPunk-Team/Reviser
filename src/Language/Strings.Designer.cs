@@ -115,6 +115,24 @@ namespace Reviser.Language {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Next line.
+        /// </summary>
+        internal static string GenerateReport_NextLine {
+            get {
+                return ResourceManager.GetString("GenerateReport_NextLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Next lines.
+        /// </summary>
+        internal static string GenerateReport_NextLine_Plural {
+            get {
+                return ResourceManager.GetString("GenerateReport_NextLine_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Previous line.
         /// </summary>
         internal static string GenerateReport_PreviousLine {
@@ -345,6 +363,15 @@ namespace Reviser.Language {
         internal static string LineEditor_insertLineIDBtn {
             get {
                 return ResourceManager.GetString("LineEditor_insertLineIDBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Add following lines.
+        /// </summary>
+        internal static string LineEditor_nextLinesBtn {
+            get {
+                return ResourceManager.GetString("LineEditor_nextLinesBtn", resourceCulture);
             }
         }
         

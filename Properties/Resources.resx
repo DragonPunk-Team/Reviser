@@ -166,4 +166,10 @@
   <data name="Edit Note" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\img\Edit Note.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Add following lines" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\img\Add following lines.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Add following lines - no lines" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\res\img\Add following lines - no lines.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
