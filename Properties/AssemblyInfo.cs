@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // Le informazioni generali relative a un assembly sono controllate dal seguente 
@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DragonPunk Team")]
 [assembly: AssemblyProduct("DragonPunk Reviser")]
-[assembly: AssemblyCopyright("Copyright © Dj_Mike238 - DragonPunk Team 2020-2021")]
+[assembly: AssemblyCopyright("Copyright © Dj_Mike238 - DragonPunk Team 2020-2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
