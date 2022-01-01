@@ -219,8 +219,8 @@ namespace Reviser
         private void editLineBtn_Click(object sender, EventArgs e)
         {
             var currentFile = fileListBox.SelectedItem.ToString();
-            var lineID = listView.SelectedItems[0].SubItems[0].Text;
-            var item = pf.project.files[currentFile].content.Single(line => line.lineId == lineID);
+            var contentID = (int)listView.SelectedItems[0].Tag;
+            var item = pf.project.files[currentFile].content.Single(line => line.contentId == contentID);
 
             var ld = new LineEditor.LineData()
             {
@@ -311,7 +311,7 @@ namespace Reviser
                 foreach (var content in pf.project.files[currentItem].content)
                 {
                     string[] row = { content.lineId, content.proposal.Replace("\r\n", " "), pf.Comment(content.comment) };
-                    listView.Items.Add(new ListViewItem(row) { Tag = content.lineId });
+                    listView.Items.Add(new ListViewItem(row) { Tag = content.contentId });
                 }
             }
 
