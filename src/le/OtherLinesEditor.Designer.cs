@@ -1,6 +1,6 @@
 ﻿namespace Reviser.LE
 {
-    partial class PrevLinesEditor
+    partial class OtherLinesEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -109,7 +109,7 @@
             this.removeBtn.UseVisualStyleBackColor = true;
             this.removeBtn.Click += new System.EventHandler(this.removeBtn_Click);
             // 
-            // PrevLinesEditor
+            // OtherLinesEditor
             // 
             this.AcceptButton = this.searchBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,11 +126,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "PrevLinesEditor";
+            this.Name = "OtherLinesEditor";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Load += new System.EventHandler(this.PrevLinesEditor_Load);
+            this.Load += new System.EventHandler(this.OtherLinesEditor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

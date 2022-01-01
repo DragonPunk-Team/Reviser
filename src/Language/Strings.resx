@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
 		Microsoft ResX Schema
@@ -358,11 +358,11 @@ Clicking "No" will ignore the new file list and the new file paths.</value>
   </data>
   <data name="PrevLinesEditor_WindowTitle_Add" xml:space="preserve">
     <value>Add Previous Lines</value>
-    <comment>Window title for PrevLinesEditor, shown when adding new previous lines</comment>
+    <comment>Window title for OtherLinesEditor, shown when adding new previous lines</comment>
   </data>
   <data name="PrevLinesEditor_WindowTitle_Edit" xml:space="preserve">
     <value>Edit Previous Lines</value>
-    <comment>Window title for PrevLinesEditor, shown when editing existing previous lines</comment>
+    <comment>Window title for OtherLinesEditor, shown when editing existing previous lines</comment>
   </data>
   <data name="Generic_NoLinesFoundError" xml:space="preserve">
     <value>No lines found!</value>

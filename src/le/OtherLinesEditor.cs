@@ -5,13 +5,13 @@ using Reviser.Files;
 
 namespace Reviser.LE
 {
-    public partial class PrevLinesEditor : Form
+    public partial class OtherLinesEditor : Form
     {
         IFile origFile;
         IFile tranFile;
         public string lineId;
 
-        public PrevLinesEditor(IFile origFile, IFile tranFile, string lineId)
+        public OtherLinesEditor(IFile origFile, IFile tranFile, string lineId)
         {
             InitializeComponent();
 
@@ -20,7 +20,7 @@ namespace Reviser.LE
             this.lineId = lineId;
         }
 
-        private void PrevLinesEditor_Load(object sender, EventArgs e)
+        private void OtherLinesEditor_Load(object sender, EventArgs e)
         {
             if (lineId != "-1")
             {

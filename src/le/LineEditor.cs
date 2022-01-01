@@ -318,12 +318,12 @@ namespace Reviser.LE
 
         private void prevLinesBtn_Click(object sender, EventArgs e)
         {
-            var ple = new PrevLinesEditor(origFile, tranFile, prevLinesBtn.Text);
-            var dr = ple.ShowDialog();
+            var ole = new OtherLinesEditor(origFile, tranFile, prevLinesBtn.Text);
+            var dr = ole.ShowDialog();
 
             if (dr == DialogResult.OK)
             {
-                prevLinesBtn.Text = ple.lineId;
+                prevLinesBtn.Text = ole.lineId;
                 prevLinesBtn.Image = Properties.Resources.Add_previous_lines;
                 prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
             }

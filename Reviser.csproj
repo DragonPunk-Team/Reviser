@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -172,11 +172,11 @@
     <Compile Include="src\NoteEditor.Designer.cs">
       <DependentUpon>NoteEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\LE\PrevLinesEditor.cs">
+    <Compile Include="src\LE\OtherLinesEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\LE\PrevLinesEditor.Designer.cs">
-      <DependentUpon>PrevLinesEditor.cs</DependentUpon>
+    <Compile Include="src\LE\OtherLinesEditor.Designer.cs">
+      <DependentUpon>OtherLinesEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="src\ProjectFile.cs" />
     <Compile Include="src\ProjectSettings.cs">
@@ -224,8 +224,8 @@
     <EmbeddedResource Include="src\NoteEditor.resx">
       <DependentUpon>NoteEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\LE\PrevLinesEditor.resx">
-      <DependentUpon>PrevLinesEditor.cs</DependentUpon>
+    <EmbeddedResource Include="src\LE\OtherLinesEditor.resx">
+      <DependentUpon>OtherLinesEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\ProjectSettings.resx">
       <DependentUpon>ProjectSettings.cs</DependentUpon>
