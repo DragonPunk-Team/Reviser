@@ -28,8 +28,8 @@ namespace Reviser
 
         #region Regex
         // Used in FormatProposal()
-        private readonly Regex codeRx = new (@"`([^`]*)`", RegexOptions.Compiled);
-        private readonly Regex normRx = new (@"<n>([^</>]*)</n>", RegexOptions.Compiled);
+        private readonly Regex codeRx = new(@"`([^`]*)`", RegexOptions.Compiled);
+        private readonly Regex normRx = new(@"<n>([^</>]*)</n>", RegexOptions.Compiled);
 
         // Used in FormatPlainText()
         private readonly Regex nonWordRx = new(@"\W", RegexOptions.Compiled);
