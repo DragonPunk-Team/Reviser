@@ -7,16 +7,18 @@ namespace Reviser.LE
 {
     public partial class OtherLinesEditor : Form
     {
-        IFile origFile;
-        IFile tranFile;
+        private IFile origFile;
+        private IFile tranFile;
+        private OtherLines type;
         public string lineId;
 
-        public OtherLinesEditor(IFile origFile, IFile tranFile, string lineId)
+        public OtherLinesEditor(OtherLines type, IFile origFile, IFile tranFile, string lineId)
         {
             InitializeComponent();
 
             this.origFile = origFile;
             this.tranFile = tranFile;
+            this.type = type;
             this.lineId = lineId;
         }
 
@@ -24,7 +26,7 @@ namespace Reviser.LE
         {
             if (lineId != "-1")
             {
-                Text = Language.Strings.PrevLinesEditor_WindowTitle_Edit;
+                Text = WindowTitle(true);
                 idBox.Text = lineId;
                 removeBtn.Enabled = true;
 
@@ -32,8 +34,19 @@ namespace Reviser.LE
             }
             else
             {
-                Text = Language.Strings.PrevLinesEditor_WindowTitle_Add;
+                Text = WindowTitle(false);
             }
+        }
+
+        private string WindowTitle(bool withLineID)
+        {
+            if (type == OtherLines.Previous)
+                return withLineID ? Language.Strings.OtherLinesEditor_WindowTitle_Edit_Previous : Language.Strings.OtherLinesEditor_WindowTitle_Add_Previous;
+
+            if (type == OtherLines.Next)
+                return withLineID ? Language.Strings.OtherLinesEditor_WindowTitle_Edit_Next : Language.Strings.OtherLinesEditor_WindowTitle_Add_Next;
+
+            return string.Empty;
         }
 
         private void searchBtn_Click(object sender, EventArgs e)

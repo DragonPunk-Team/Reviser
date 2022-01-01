@@ -47,11 +47,21 @@ namespace Reviser.LE
 
             PrepareGameFiles($"\\{ld.currentFile}");
 
-            if (ld.fc != null && ld.fc.prevLineId != "-1")
+            if (ld.fc != null)
             {
-                prevLinesBtn.Text = ld.fc.prevLineId;
-                prevLinesBtn.Image = Properties.Resources.Add_previous_lines;
-                prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+                if (ld.fc.prevLineId != "-1" && !string.IsNullOrWhiteSpace(ld.fc.prevLineId))
+                {
+                    prevLinesBtn.Text = ld.fc.prevLineId;
+                    prevLinesBtn.Image = Properties.Resources.Add_previous_lines;
+                    prevLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+                }
+
+                if (ld.fc.nextLineId != "-1" && !string.IsNullOrWhiteSpace(ld.fc.nextLineId))
+                {
+                    nextLinesBtn.Text = ld.fc.nextLineId;
+                    nextLinesBtn.Image = Properties.Resources.Add_following_lines;
+                    nextLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+                }
             }
         }
 
@@ -111,6 +121,7 @@ namespace Reviser.LE
                 commentBox.Enabled = false;
                 commentCheckBox.Enabled = false;
                 prevLinesBtn.Enabled = false;
+                nextLinesBtn.Enabled = false;
             }
             else
             {
@@ -118,6 +129,7 @@ namespace Reviser.LE
                 commentBox.Enabled = true;
                 commentCheckBox.Enabled = true;
                 prevLinesBtn.Enabled = true;
+                nextLinesBtn.Enabled = true;
             }
         }
 
@@ -134,6 +146,7 @@ namespace Reviser.LE
                 proposal = commentBox.Text,
                 comment = commentCheckBox.Checked,
                 prevLineId = prevLinesBtn.Text,
+                nextLineId = nextLinesBtn.Text,
                 color = colorCheckBox.Checked
             };
 
@@ -318,7 +331,7 @@ namespace Reviser.LE
 
         private void prevLinesBtn_Click(object sender, EventArgs e)
         {
-            var ole = new OtherLinesEditor(origFile, tranFile, prevLinesBtn.Text);
+            var ole = new OtherLinesEditor(OtherLines.Previous, origFile, tranFile, prevLinesBtn.Text);
             var dr = ole.ShowDialog();
 
             if (dr == DialogResult.OK)
@@ -343,6 +356,27 @@ namespace Reviser.LE
 
             idBox.Text = text;
             idBox.Select(cursor, 0);
+        }
+
+        private void nextLinesBtn_Click(object sender, EventArgs e)
+        {
+            var ole = new OtherLinesEditor(OtherLines.Next, origFile, tranFile, nextLinesBtn.Text);
+            var dr = ole.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                nextLinesBtn.Text = ole.lineId;
+                nextLinesBtn.Image = Properties.Resources.Add_following_lines;
+                nextLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+            }
+            else if (dr == DialogResult.Abort)
+            {
+                nextLinesBtn.Text = "-1";
+                nextLinesBtn.Image = Properties.Resources.Add_following_lines___no_lines;
+                nextLinesBtn.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            }
+
+            commentBox.Focus();
         }
     }
 }

@@ -72,7 +72,7 @@
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(75, 23);
             this.addBtn.TabIndex = 4;
-            this.addBtn.Text = Language.Strings.PrevLinesEditor_addBtn;
+            this.addBtn.Text = Language.Strings.OtherLinesEditor_addBtn;
             this.addBtn.UseVisualStyleBackColor = true;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 

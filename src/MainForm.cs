@@ -283,6 +283,7 @@ namespace Reviser
                     lineId = lineEditor.newfc.lineId,
                     proposal = lineEditor.newfc.proposal,
                     prevLineId = lineEditor.newfc.prevLineId,
+                    nextLineId = lineEditor.newfc.nextLineId,
                     comment = lineEditor.newfc.comment,
                     color = lineEditor.newfc.color
                 };

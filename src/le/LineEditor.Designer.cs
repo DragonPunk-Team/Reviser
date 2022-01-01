@@ -28,6 +28,7 @@ namespace Reviser.LE
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LineEditor));
             this.lineIDLabel = new System.Windows.Forms.Label();
             this.idBox = new System.Windows.Forms.TextBox();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
@@ -37,6 +38,7 @@ namespace Reviser.LE
             this.insertLineIDBtn = new System.Windows.Forms.ToolStripButton();
             this.insertFileLineIDBtn = new System.Windows.Forms.ToolStripButton();
             this.plainTextBtn = new System.Windows.Forms.ToolStripButton();
+            this.nextLinesBtn = new System.Windows.Forms.ToolStripButton();
             this.prevLinesBtn = new System.Windows.Forms.ToolStripButton();
             this.saveBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
@@ -107,6 +109,7 @@ namespace Reviser.LE
             this.insertLineIDBtn,
             this.insertFileLineIDBtn,
             this.plainTextBtn,
+            this.nextLinesBtn,
             this.prevLinesBtn});
             this.toolStrip.Location = new System.Drawing.Point(3, 0);
             this.toolStrip.Name = "toolStrip";
@@ -159,6 +162,20 @@ namespace Reviser.LE
             this.plainTextBtn.Size = new System.Drawing.Size(23, 22);
             this.plainTextBtn.ToolTipText = global::Reviser.Language.Strings.LineEditor_plainTextBtn;
             this.plainTextBtn.Click += new System.EventHandler(this.normalTextBtn_Click);
+            // 
+            // nextLinesBtn
+            // 
+            this.nextLinesBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.nextLinesBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.nextLinesBtn.Enabled = false;
+            this.nextLinesBtn.Image = ((System.Drawing.Image)(resources.GetObject("nextLinesBtn.Image")));
+            this.nextLinesBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.nextLinesBtn.Name = "nextLinesBtn";
+            this.nextLinesBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.nextLinesBtn.Size = new System.Drawing.Size(23, 22);
+            this.nextLinesBtn.Text = "-1";
+            this.nextLinesBtn.ToolTipText = Language.Strings.LineEditor_nextLinesBtn;
+            this.nextLinesBtn.Click += new System.EventHandler(this.nextLinesBtn_Click);
             // 
             // prevLinesBtn
             // 
@@ -297,5 +314,6 @@ namespace Reviser.LE
         private System.Windows.Forms.ToolStripButton plainTextBtn;
         private System.Windows.Forms.ToolStripButton insertFileLineIDBtn;
         private System.Windows.Forms.ToolStripButton prevLinesBtn;
+        private System.Windows.Forms.ToolStripButton nextLinesBtn;
     }
 }
