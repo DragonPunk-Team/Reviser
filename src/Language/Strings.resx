@@ -356,18 +356,18 @@ Clicking "No" will ignore the new file list and the new file paths.</value>
     <value>Line ID:</value>
     <comment>KEEP THE COLON AFTER THE STRING</comment>
   </data>
-  <data name="PrevLinesEditor_WindowTitle_Add" xml:space="preserve">
+  <data name="OtherLinesEditor_WindowTitle_Add_Previous" xml:space="preserve">
     <value>Add Previous Lines</value>
     <comment>Window title for OtherLinesEditor, shown when adding new previous lines</comment>
   </data>
-  <data name="PrevLinesEditor_WindowTitle_Edit" xml:space="preserve">
+  <data name="OtherLinesEditor_WindowTitle_Edit_Previous" xml:space="preserve">
     <value>Edit Previous Lines</value>
     <comment>Window title for OtherLinesEditor, shown when editing existing previous lines</comment>
   </data>
   <data name="Generic_NoLinesFoundError" xml:space="preserve">
     <value>No lines found!</value>
   </data>
-  <data name="PrevLinesEditor_addBtn" xml:space="preserve">
+  <data name="OtherLinesEditor_addBtn" xml:space="preserve">
     <value>Add</value>
   </data>
   <data name="LineEditor_WindowTitle_Add" xml:space="preserve">
@@ -406,5 +406,13 @@ Clicking "No" will ignore the new file list and the new file paths.</value>
   <data name="GenerateReport_NextLine_Plural" xml:space="preserve">
     <value>Next lines</value>
     <comment>Used in GenerateFile.Generate(), written to final report</comment>
+  </data>
+  <data name="OtherLinesEditor_WindowTitle_Add_Next" xml:space="preserve">
+    <value>Add Next Lines</value>
+    <comment>Window title for OtherLinesEditor, shown when adding new next lines</comment>
+  </data>
+  <data name="OtherLinesEditor_WindowTitle_Edit_Next" xml:space="preserve">
+    <value>Edit Next Lines</value>
+    <comment>Window title for OtherLinesEditor, shown when editing existing next lines</comment>
   </data>
 </root>

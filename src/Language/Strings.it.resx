@@ -330,16 +330,16 @@ Cliccando "No", la nuova lista dei file e i nuovi percorsi saranno ignorati.</va
   <data name="Generic_LineID_Colon" xml:space="preserve">
     <value>ID riga:</value>
   </data>
-  <data name="PrevLinesEditor_WindowTitle_Add" xml:space="preserve">
+  <data name="OtherLinesEditor_WindowTitle_Add_Previous" xml:space="preserve">
     <value>Aggiungi righe precedenti</value>
   </data>
-  <data name="PrevLinesEditor_WindowTitle_Edit" xml:space="preserve">
+  <data name="OtherLinesEditor_WindowTitle_Edit_Previous" xml:space="preserve">
     <value>Modifica righe precedenti</value>
   </data>
   <data name="Generic_NoLinesFoundError" xml:space="preserve">
     <value>Nessuna riga trovata!</value>
   </data>
-  <data name="PrevLinesEditor_addBtn" xml:space="preserve">
+  <data name="OtherLinesEditor_addBtn" xml:space="preserve">
     <value>Aggiungi</value>
   </data>
   <data name="LineEditor_WindowTitle_Add" xml:space="preserve">
@@ -374,5 +374,11 @@ Cliccando "No", la nuova lista dei file e i nuovi percorsi saranno ignorati.</va
   </data>
   <data name="GenerateReport_NextLine_Plural" xml:space="preserve">
     <value>Frasi successive</value>
+  </data>
+  <data name="OtherLinesEditor_WindowTitle_Add_Next" xml:space="preserve">
+    <value>Aggiungi righe successive</value>
+  </data>
+  <data name="OtherLinesEditor_WindowTitle_Edit_Next" xml:space="preserve">
+    <value>Modifica righe successive</value>
   </data>
 </root>

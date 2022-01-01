@@ -683,27 +683,45 @@ namespace Reviser.Language {
         /// <summary>
         ///   Cerca una stringa localizzata simile a Add.
         /// </summary>
-        internal static string PrevLinesEditor_addBtn {
+        internal static string OtherLinesEditor_addBtn {
             get {
-                return ResourceManager.GetString("PrevLinesEditor_addBtn", resourceCulture);
+                return ResourceManager.GetString("OtherLinesEditor_addBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Add Next Lines.
+        /// </summary>
+        internal static string OtherLinesEditor_WindowTitle_Add_Next {
+            get {
+                return ResourceManager.GetString("OtherLinesEditor_WindowTitle_Add_Next", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Add Previous Lines.
         /// </summary>
-        internal static string PrevLinesEditor_WindowTitle_Add {
+        internal static string OtherLinesEditor_WindowTitle_Add_Previous {
             get {
-                return ResourceManager.GetString("PrevLinesEditor_WindowTitle_Add", resourceCulture);
+                return ResourceManager.GetString("OtherLinesEditor_WindowTitle_Add_Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Edit Next Lines.
+        /// </summary>
+        internal static string OtherLinesEditor_WindowTitle_Edit_Next {
+            get {
+                return ResourceManager.GetString("OtherLinesEditor_WindowTitle_Edit_Next", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Edit Previous Lines.
         /// </summary>
-        internal static string PrevLinesEditor_WindowTitle_Edit {
+        internal static string OtherLinesEditor_WindowTitle_Edit_Previous {
             get {
-                return ResourceManager.GetString("PrevLinesEditor_WindowTitle_Edit", resourceCulture);
+                return ResourceManager.GetString("OtherLinesEditor_WindowTitle_Edit_Previous", resourceCulture);
             }
         }
         
