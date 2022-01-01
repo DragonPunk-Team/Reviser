@@ -127,7 +127,7 @@ namespace Reviser.LE
             this.copyLineBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyLineBtn.Name = "copyLineBtn";
             this.copyLineBtn.Size = new System.Drawing.Size(23, 22);
-            this.copyLineBtn.ToolTipText = global::Reviser.Language.Strings.LineEditor_copyLineBtn;
+            this.copyLineBtn.ToolTipText = Language.Strings.LineEditor_copyLineBtn;
             this.copyLineBtn.Click += new System.EventHandler(this.copyLineBtn_Click);
             // 
             // insertLineIDBtn
@@ -138,7 +138,7 @@ namespace Reviser.LE
             this.insertLineIDBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.insertLineIDBtn.Name = "insertLineIDBtn";
             this.insertLineIDBtn.Size = new System.Drawing.Size(23, 22);
-            this.insertLineIDBtn.ToolTipText = global::Reviser.Language.Strings.LineEditor_insertLineIDBtn;
+            this.insertLineIDBtn.ToolTipText = Language.Strings.LineEditor_insertLineIDBtn;
             this.insertLineIDBtn.Click += new System.EventHandler(this.insertLineIdBtn_Click);
             // 
             // insertFileLineIDBtn
@@ -160,7 +160,7 @@ namespace Reviser.LE
             this.plainTextBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.plainTextBtn.Name = "plainTextBtn";
             this.plainTextBtn.Size = new System.Drawing.Size(23, 22);
-            this.plainTextBtn.ToolTipText = global::Reviser.Language.Strings.LineEditor_plainTextBtn;
+            this.plainTextBtn.ToolTipText = Language.Strings.LineEditor_plainTextBtn;
             this.plainTextBtn.Click += new System.EventHandler(this.normalTextBtn_Click);
             // 
             // nextLinesBtn
