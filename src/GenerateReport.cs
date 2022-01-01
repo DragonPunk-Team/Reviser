@@ -20,12 +20,6 @@ namespace Reviser
         private IFile origFile;
         private IFile tranFile;
 
-        private enum OtherLines
-        {
-            Previous,
-            Next
-        }
-
         #region Regex
         // Used in FormatProposal()
         private readonly Regex codeRx = new(@"`([^`]*)`", RegexOptions.Compiled);

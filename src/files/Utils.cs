@@ -3,6 +3,12 @@ using System.Text.RegularExpressions;
 
 namespace Reviser.Files
 {
+    public enum OtherLines
+    {
+        Previous,
+        Next
+    }
+
     public static class Utils
     {
         #region Regex
