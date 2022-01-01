@@ -20,6 +20,12 @@ namespace Reviser
         private IFile origFile;
         private IFile tranFile;
 
+        private enum OtherLines
+        {
+            Previous,
+            Next
+        }
+
         #region Regex
         // Used in FormatProposal()
         private readonly Regex codeRx = new (@"`([^`]*)`", RegexOptions.Compiled);
@@ -122,25 +128,10 @@ namespace Reviser
                         sb.AppendLine(fc.proposal.Replace("*", "\\*"));
 
                     if (fc.prevLineId != "-1")
-                    {
-                        var origPrevLines = origFile.GetLines(fc.prevLineId);
-                        var tranPrevLines = tranFile.GetLines(fc.prevLineId);
+                        sb.Append(FormatOtherLines(OtherLines.Previous, fc, file));
 
-                        sb.Append("\n\n");
-
-                        if (origPrevLines.Length > 1)
-                            sb.AppendLine($"**{Language.Strings.GenerateReport_PreviousLine_Plural}:**");
-                        else
-                            sb.AppendLine($"**{Language.Strings.GenerateReport_PreviousLine}:**");
-
-                        sb.Append("\n\n");
-
-                        foreach (var prevLine in origPrevLines)
-                        {
-                            var prevIndex = Array.IndexOf(origPrevLines, prevLine);
-                            sb.AppendLine(FormatLine(prevLine.Item2, tranPrevLines[prevIndex].Item2, prevLine.Item1, file, fc.contentId));
-                        }
-                    }
+                    if (fc.nextLineId != "-1")
+                        sb.Append(FormatOtherLines(OtherLines.Next, fc, file));
 
                     sb.Append("\n\n\n");
 
@@ -297,6 +288,51 @@ namespace Reviser
                 tranLine = tranFile.RemoveColors(tranLine);
 
             sb.AppendLine(tranLine.Replace("*", "\\*"));
+
+            return sb.ToString();
+        }
+
+        private string FormatOtherLines(OtherLines type, ProjectFile.FileContent fc, string file)
+        {
+            var sb = new StringBuilder();
+            Tuple<string, string>[] origOtherLines, tranOtherLines;
+
+            if (type == OtherLines.Previous)
+            {
+                origOtherLines = origFile.GetLines(fc.prevLineId);
+                tranOtherLines = tranFile.GetLines(fc.prevLineId);
+
+                sb.Append("\n\n");
+
+                if (origOtherLines.Length > 1)
+                    sb.AppendLine($"**{Language.Strings.GenerateReport_PreviousLine_Plural}:**");
+                else
+                    sb.AppendLine($"**{Language.Strings.GenerateReport_PreviousLine}:**");
+            }
+            else if (type == OtherLines.Next)
+            {
+                origOtherLines = origFile.GetLines(fc.nextLineId);
+                tranOtherLines = tranFile.GetLines(fc.nextLineId);
+
+                sb.Append("\n\n");
+
+                if (origOtherLines.Length > 1)
+                    sb.AppendLine($"**{Language.Strings.GenerateReport_NextLine_Plural}:**");
+                else
+                    sb.AppendLine($"**{Language.Strings.GenerateReport_NextLine}:**");
+            }
+            else
+            {
+                return string.Empty;
+            }
+
+            sb.Append("\n\n");
+
+            foreach (var otherLine in origOtherLines)
+            {
+                var index = Array.IndexOf(origOtherLines, otherLine);
+                sb.AppendLine(FormatLine(otherLine.Item2, tranOtherLines[index].Item2, otherLine.Item1, file, fc.contentId));
+            }
 
             return sb.ToString();
         }
