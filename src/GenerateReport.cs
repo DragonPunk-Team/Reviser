@@ -121,10 +121,10 @@ namespace Reviser
                     else
                         sb.AppendLine(fc.proposal.Replace("*", "\\*"));
 
-                    if (fc.prevLineId != "-1")
+                    if (fc.prevLineId != "-1" && fc.prevLineId != null)
                         sb.Append(FormatOtherLines(OtherLines.Previous, fc, file));
 
-                    if (fc.nextLineId != "-1")
+                    if (fc.nextLineId != "-1" && fc.nextLineId != null)
                         sb.Append(FormatOtherLines(OtherLines.Next, fc, file));
 
                     sb.Append("\n\n\n");
@@ -196,7 +196,7 @@ namespace Reviser
 
                         var endLine = newLine.Substring(strIndex);
 
-                        if (!string.IsNullOrEmpty(endLine))
+                        if (!string.IsNullOrWhiteSpace(endLine))
                             sb.Append(FormatPlainText(endLine));
                     }
 
@@ -236,6 +236,9 @@ namespace Reviser
             sb.Append(text);
 
             var len = text.Length;
+
+            if (len == 0)
+                return sb.ToString();
 
             if (nonWordRx.IsMatch(text.Substring(len - 1, 1)))
             {
