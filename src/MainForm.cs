@@ -334,8 +334,8 @@ namespace Reviser
 
                 foreach (ListViewItem lvi in listView.SelectedItems)
                 {
-                    var lineID = lvi.SubItems[0].Text;
-                    var item = pf.project.files[currentItem].content.Single(fc => fc.lineId == lineID);
+                    var contentID = (int)lvi.Tag;
+                    var item = pf.project.files[currentItem].content.Single(fc => fc.contentId == contentID);
 
                     pf.project.files[currentItem].content.Remove(item);
 
