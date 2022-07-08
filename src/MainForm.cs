@@ -175,23 +175,20 @@ namespace Reviser
 
         private void listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!fileListBox.CheckedItems.Contains(fileListBox.SelectedItem))
+            if (listView.SelectedItems.Count <= 0 || listView.Items.Count <= 0)
             {
-                if (listView.SelectedItems.Count <= 0 || listView.Items.Count <= 0)
-                {
-                    editLineBtn.Enabled = false;
-                    delLineBtn.Enabled = false;
-                }
-                else if (listView.SelectedItems.Count == 1)
-                {
-                    editLineBtn.Enabled = true;
-                    delLineBtn.Enabled = true;
-                }
-                else if (listView.SelectedItems.Count > 1)
-                {
-                    editLineBtn.Enabled = false;
-                    delLineBtn.Enabled = true;
-                }
+                editLineBtn.Enabled = false;
+                delLineBtn.Enabled = false;
+            }
+            else if (listView.SelectedItems.Count == 1)
+            {
+                editLineBtn.Enabled = true;
+                delLineBtn.Enabled = true;
+            }
+            else if (listView.SelectedItems.Count > 1)
+            {
+                editLineBtn.Enabled = false;
+                delLineBtn.Enabled = true;
             }
         }
 
