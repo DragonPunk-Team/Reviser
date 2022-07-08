@@ -23,7 +23,7 @@ namespace Reviser.Files.GMDv2
         private readonly Regex colRx = new (@"<(|\/)red>", RegexOptions.Compiled);
 
         // Used to remove tags.
-        private readonly Regex tagRx = new (@"<[A-Z 0-9_]*>", RegexOptions.Compiled);
+        private readonly Regex tagRx = new (@"<[A-Z 0-9_-]*>", RegexOptions.Compiled);
         #endregion
 
         public void SetGame(string game)
