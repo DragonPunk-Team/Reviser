@@ -112,6 +112,7 @@ namespace Reviser.LE
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
+            idBox.Text = Utils.CleanIds(idBox.Text);
             tranLines = tranFile.GetLines(idBox.Text);
             lineBox.Text = Utils.FormatLines(origFile, tranFile, idBox.Text, colorCheckBox.Checked);
 
@@ -142,7 +143,7 @@ namespace Reviser.LE
         {
             newfc = new ProjectFile.FileContent
             {
-                lineId = Utils.CleanIds(idBox.Text),
+                lineId = idBox.Text,
                 proposal = commentBox.Text,
                 comment = commentCheckBox.Checked,
                 prevLineId = prevLinesBtn.Text,

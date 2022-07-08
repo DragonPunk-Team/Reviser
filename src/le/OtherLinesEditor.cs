@@ -51,6 +51,7 @@ namespace Reviser.LE
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
+            idBox.Text = Utils.CleanIds(idBox.Text);
             lineBox.Text = Utils.FormatLines(origFile, tranFile, idBox.Text, false);
             CheckAddBtn();
         }
@@ -87,7 +88,7 @@ namespace Reviser.LE
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            lineId = Utils.CleanIds(idBox.Text);
+            lineId = idBox.Text;
             CloseForm(save: true);
         }
 
