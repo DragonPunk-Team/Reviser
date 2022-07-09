@@ -415,4 +415,13 @@ Clicking "No" will ignore the new file list and the new file paths.</value>
     <value>Edit Next Lines</value>
     <comment>Window title for OtherLinesEditor, shown when editing existing next lines</comment>
   </data>
+  <data name="MainForm_AllFilesComplete" xml:space="preserve">
+    <value>The last file in the project was marked as complete.
+Do you want to generate a report?</value>
+    <comment>Shown when marking a file as completed while all the others file are marked as such</comment>
+  </data>
+  <data name="MainForm_AllFilesComplete_Title" xml:space="preserve">
+    <value>Almost there!</value>
+    <comment>Window title for AllFilesComplete</comment>
+  </data>
 </root>

@@ -430,6 +430,25 @@ namespace Reviser.Language {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a The last file in the project was marked as complete.
+        ///Do you want to generate a report?.
+        /// </summary>
+        internal static string MainForm_AllFilesComplete {
+            get {
+                return ResourceManager.GetString("MainForm_AllFilesComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Almost there!.
+        /// </summary>
+        internal static string MainForm_AllFilesComplete_Title {
+            get {
+                return ResourceManager.GetString("MainForm_AllFilesComplete_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a This file was marked as complete.
         ///If you want to edit it, untick it from the file list..
         /// </summary>

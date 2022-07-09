@@ -381,4 +381,11 @@ Cliccando "No", la nuova lista dei file e i nuovi percorsi saranno ignorati.</va
   <data name="OtherLinesEditor_WindowTitle_Edit_Next" xml:space="preserve">
     <value>Modifica righe successive</value>
   </data>
+  <data name="MainForm_AllFilesComplete" xml:space="preserve">
+    <value>L'ultimo file del progetto è stato contrassegnato come completo.
+Vuoi generare un report?</value>
+  </data>
+  <data name="MainForm_AllFilesComplete_Title" xml:space="preserve">
+    <value>Ci siamo quasi!</value>
+  </data>
 </root>

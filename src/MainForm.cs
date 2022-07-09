@@ -449,11 +449,25 @@ namespace Reviser
                 pf.project.files[item].complete = checkState;
                 CompleteToggle(checkState);
                 SetFileChanged(true);
+                CheckAllCompleted(pf.project.files);
             }
             else
             {
                 e.NewValue = e.CurrentValue;
             }
+        }
+
+        private void CheckAllCompleted(SortedDictionary<string, ProjectFile.RevisedFile> files)
+        {
+            var completed = files.Count(file => file.Value.complete);
+
+            if (completed != files.Count)
+                return;
+
+            var dr = MessageBox.Show(Language.Strings.MainForm_AllFilesComplete, Language.Strings.MainForm_AllFilesComplete_Title, MessageBoxButtons.YesNo);
+
+            if (dr == DialogResult.Yes)
+                generateReportBtn_Click(null, null);
         }
 
         private void addNoteBtn_Click(object sender, EventArgs e)
