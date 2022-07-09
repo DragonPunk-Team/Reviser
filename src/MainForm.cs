@@ -424,62 +424,35 @@ namespace Reviser
         {
             var dr = DialogResult.Yes;
             var item = fileListBox.SelectedItem.ToString();
+            var checkState = (e.NewValue == CheckState.Checked);
 
-            if (e.NewValue == CheckState.Checked)
+            if (!pf.project.files.ContainsKey(item))
             {
-                if (!pf.project.files.ContainsKey(item))
+                var rf = new ProjectFile.RevisedFile
                 {
-                    var rf = new ProjectFile.RevisedFile
-                    {
-                        complete = false,
-                        note = string.Empty,
-                        content = new List<ProjectFile.FileContent>(),
-                    };
+                    complete = !checkState,
+                    note = string.Empty,
+                    content = new List<ProjectFile.FileContent>(),
+                };
 
-                    pf.project.files.Add(item, rf);
-                }
+                pf.project.files.Add(item, rf);
+            }
 
-                if (pf.project.files[item].content.Count > 0)
-                    dr = MessageBox.Show(Language.Strings.MainForm_MarkAsCompleteWarning, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo);
+            if (pf.project.files[item].content.Count > 0)
+            {
+                var text = checkState ? Language.Strings.MainForm_MarkAsCompleteWarning : Language.Strings.MainForm_MarkAsNotCompleteWarning;
+                dr = MessageBox.Show(text, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo);
+            }
 
-                if (dr == DialogResult.Yes)
-                {
-                    pf.project.files[item].complete = true;
-                    CompleteToggle(true);
-                    SetFileChanged(true);
-                }
-                else
-                {
-                    e.NewValue = CheckState.Unchecked;
-                }
+            if (dr == DialogResult.Yes)
+            {
+                pf.project.files[item].complete = checkState;
+                CompleteToggle(checkState);
+                SetFileChanged(true);
             }
             else
             {
-                if (!pf.project.files.ContainsKey(item))
-                {
-                    var rf = new ProjectFile.RevisedFile
-                    {
-                        complete = true,
-                        note = string.Empty,
-                        content = new List<ProjectFile.FileContent>(),
-                    };
-
-                    pf.project.files.Add(item, rf);
-                }
-
-                if (pf.project.files[item].content.Count > 0)
-                    dr = MessageBox.Show(Language.Strings.MainForm_MarkAsNotCompleteWarning, Language.Strings.Generic_Warning, MessageBoxButtons.YesNo);
-
-                if (dr == DialogResult.Yes)
-                {
-                    pf.project.files[item].complete = false;
-                    CompleteToggle(false);
-                    SetFileChanged(true);
-                }
-                else
-                {
-                    e.NewValue = CheckState.Checked;
-                }
+                e.NewValue = e.CurrentValue;
             }
         }
 
